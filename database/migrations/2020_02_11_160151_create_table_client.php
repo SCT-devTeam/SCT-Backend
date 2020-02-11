@@ -14,17 +14,20 @@ class CreateTableClient extends Migration
     public function up()
     {
         Schema::create('client', function (Blueprint $table) {
-            $table->bigIncrements('id_contact');
-            $table->enum('civilite_con',['Madame','Monsieur','Autres']);
-            $table->string('nom_con');
-            $table->string('prenom_con');
-            $table->string('mail_con');
-            $table->string('poste_con');
-            $table->integer('num_tel_con');
-            $table->integer('num_fixe_con');
-            $table->integer('num_perso_con');
-            $table->integer('num_fax_con');
-            $table->string('note_con',300);
+            $table->bigIncrements('id_cli');
+            $table->enum('type_cli',['Particulier','Professionnel']);
+            $table->enum('statut_cli',['Prospect','Client','Archivé','Supprimé']);
+            $table->date('date_cli');
+            $table->string('nom_ccli');
+            $table->integer('siret_cli');
+            $table->string('TVA_intercom_cli');
+            $table->integer('tel_cli');
+            $table->string('mail_cli');
+            $table->integer('num_rue_cli');
+            $table->string('nom_rue_cli');
+            $table->integer('cp_cli');
+            $table->string('ville_cli');
+            $table->string('note_cli',300);
         });
     }
 
