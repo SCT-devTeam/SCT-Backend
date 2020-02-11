@@ -13,21 +13,21 @@ class CreateTableClient extends Migration
      */
     public function up()
     {
-        Schema::create('client', function (Blueprint $table) {
-            $table->bigIncrements('id_cli');
-            $table->enum('type_cli',['Particulier','Professionnel']);
-            $table->enum('statut_cli',['Prospect','Client','Archivé','Supprimé']);
-            $table->date('date_cli');
-            $table->string('nom_ccli');
-            $table->integer('siret_cli');
-            $table->string('TVA_intercom_cli');
-            $table->integer('tel_cli');
-            $table->string('mail_cli');
-            $table->integer('num_rue_cli');
-            $table->string('nom_rue_cli');
-            $table->integer('cp_cli');
-            $table->string('ville_cli');
-            $table->string('note_cli',300);
+        Schema::create('customers', function (Blueprint $table) {
+            $table->bigIncrements('customer_id');
+            $table->enum('customer_type',['Particulier','Professionnel']);
+            $table->enum('status',['Prospect','Client','Archivé','Supprimé']);
+            $table->date('meeting_date');
+            $table->string('company_name');
+            $table->integer('siret');
+            $table->string('tva_number');
+            $table->integer('phone');
+            $table->string('email');
+            $table->integer('street_number');
+            $table->string('street_name');
+            $table->integer('zipcode');
+            $table->string('city');
+            $table->string('note',300);
         });
     }
 
@@ -38,6 +38,6 @@ class CreateTableClient extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('client');
+        Schema::dropIfExists('customers');
     }
 }

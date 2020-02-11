@@ -13,15 +13,16 @@ class CreateTableUtilisateur extends Migration
      */
     public function up()
     {
-        Schema::create('utilisateur', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nom_uti');
-            $table->string('prenom_uti');
-            $table->string('mail_uti');
-            $table->integer('tel_uti');
-            $table->string('pwd_uti');
-            $table->boolean('est_admin');
-            $table->string('note_uti');
+            $table->string('lastname');
+            $table->enum('gender',['man','wmoan','unspecified']);
+            $table->string('firstname');
+            $table->string('email');
+            $table->integer('phone');
+            $table->string('pwd');
+            $table->boolean('is_admin');
+            $table->string('notes');
         });
     }
 
@@ -32,6 +33,6 @@ class CreateTableUtilisateur extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('utilisateur');
+        Schema::dropIfExists('users');
     }
 }

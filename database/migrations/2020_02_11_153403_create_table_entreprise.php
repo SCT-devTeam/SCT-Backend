@@ -13,22 +13,22 @@ class CreateTableEntreprise extends Migration
      */
     public function up()
     {
-        Schema::create('entreprise', function (Blueprint $table) {
-                $table->bigIncrements('id_entreprise');
-                $table->enum('type_ent',['Micro-entreprise','SA','SAS','SARL','AE','EI','EIRL','EURL','SASU']);
-                $table->string('nom_ent');
-                $table->integer('siret_ent');
-                $table->string('mail_ent');
-                $table->integer('num_ent');
-                $table->integer('num_rue_ent');
-                $table->string('nom_rue_ent');
-                $table->integer('cp_ent');
-                $table->string('ville_ent');
-                $table->string('note_ent',500);
-                $table->string('condi_payement_fact');
-                $table->string('condi_accept_devis');
-                $table->string('notice_fac_ent');
-                $table->string('notice_devis_ent');
+        Schema::create('companies', function (Blueprint $table) {
+                $table->bigIncrements('company_id');
+                $table->enum('legal_form',['Micro-entreprise','SA','SAS','SARL','AE','EI','EIRL','EURL','SASU']);
+                $table->string('name');
+                $table->integer('siret');
+                $table->string('email');
+                $table->integer('phone');
+                $table->integer('street_number');
+                $table->string('street_name');
+                $table->integer('zipcode');
+                $table->string('town');
+                $table->string('notes',500);
+                $table->string('default_invoice_payment_terms');
+                $table->string('default_quote_accepting_conditions');
+                $table->string('default_invoice_notice');
+                $table->string('default_quote_notice');
         });
     }
 
@@ -39,6 +39,6 @@ class CreateTableEntreprise extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entreprise');
+        Schema::dropIfExists('companies');
     }
 }

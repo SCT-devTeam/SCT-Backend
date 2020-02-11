@@ -13,18 +13,18 @@ class CreateTableContact extends Migration
      */
     public function up()
     {
-        Schema::create('table_contact', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('civilite_con',['Madame','Monsieur','Autres']);
-            $table->string('nom_con');
-            $table->string('prenom_con');
-            $table->string('mail_con');
-            $table->string('poste_con');
-            $table->integer('num_tel_con');
-            $table->integer('num_fixe_con');
-            $table->integer('num_perso_con');
-            $table->integer('num_fax_con');
-            $table->string('note_con',300);
+            $table->enum('gender',['man','woman','unspecified']);
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('email');
+            $table->string('job');
+            $table->integer('phone_mobile');
+            $table->integer('phone_fix');
+            $table->integer('phone_personnal');
+            $table->integer('phone_fax');
+            $table->string('notes',300);
         });
     }
 
@@ -35,6 +35,6 @@ class CreateTableContact extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_contact');
+        Schema::dropIfExists('contacts');
     }
 }
