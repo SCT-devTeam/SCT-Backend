@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "beb059a2ec293c0ce49c7dff48096cc7",
+=======
+    "content-hash": "7f5df8e2b5fdf5df937ae970565a3e0f",
+>>>>>>> 249f7508820aa5541c10701f9d298f8e1d453978
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3000,6 +3004,60 @@
             ],
             "time": "2020-03-01T23:56:01+00:00"
         },
+<<<<<<< HEAD
+=======
+        {
+            "name": "voku/portable-ascii",
+            "version": "1.4.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/voku/portable-ascii.git",
+                "reference": "9fd2b224c71448b5f84aef9d499a1428d79776a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/9fd2b224c71448b5f84aef9d499a1428d79776a2",
+                "reference": "9fd2b224c71448b5f84aef9d499a1428d79776a2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0 || ~7.0"
+            },
+            "suggest": {
+                "ext-intl": "Use Intl for transliterator_transliterate() support"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "voku\\": "src/voku/",
+                    "voku\\tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lars Moelleken",
+                    "homepage": "http://www.moelleken.org/"
+                }
+            ],
+            "description": "Portable ASCII library - performance optimized (ascii) string functions for php.",
+            "homepage": "https://github.com/voku/portable-ascii",
+            "keywords": [
+                "ascii",
+                "clean",
+                "php"
+            ],
+            "time": "2020-03-06T02:47:42+00:00"
+        }
+    ],
+    "packages-dev": [
+>>>>>>> 249f7508820aa5541c10701f9d298f8e1d453978
         {
             "name": "voku/portable-ascii",
             "version": "1.4.9",
@@ -3052,6 +3110,7 @@
     ],
     "packages-dev": [
         {
+<<<<<<< HEAD
             "name": "barryvdh/laravel-ide-helper",
             "version": "v2.6.7",
             "source": {
@@ -3073,6 +3132,27 @@
                 "illuminate/filesystem": "^5.5|^6|^7",
                 "illuminate/support": "^5.5|^6|^7",
                 "php": ">=7.2"
+=======
+            "name": "facade/flare-client-php",
+            "version": "1.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facade/flare-client-php.git",
+                "reference": "db1e03426e7f9472c9ecd1092aff00f56aa6c004"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/db1e03426e7f9472c9ecd1092aff00f56aa6c004",
+                "reference": "db1e03426e7f9472c9ecd1092aff00f56aa6c004",
+                "shasum": ""
+            },
+            "require": {
+                "facade/ignition-contracts": "~1.0",
+                "illuminate/pipeline": "^5.5|^6.0|^7.0",
+                "php": "^7.1",
+                "symfony/http-foundation": "^3.3|^4.1|^5.0",
+                "symfony/var-dumper": "^3.4|^4.0|^5.0"
+>>>>>>> 249f7508820aa5541c10701f9d298f8e1d453978
             },
             "require-dev": {
                 "illuminate/config": "^5.5|^6|^7",
@@ -3120,6 +3200,7 @@
                 "phpstorm",
                 "sublime"
             ],
+<<<<<<< HEAD
             "time": "2020-02-25T20:41:32+00:00"
         },
         {
@@ -3141,6 +3222,41 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.0,<4.5"
+=======
+            "time": "2020-03-02T15:52:04+00:00"
+        },
+        {
+            "name": "facade/ignition",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facade/ignition.git",
+                "reference": "b8dbf7791c81619161270d580a64a30bad41b832"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/b8dbf7791c81619161270d580a64a30bad41b832",
+                "reference": "b8dbf7791c81619161270d580a64a30bad41b832",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "facade/flare-client-php": "^1.0",
+                "facade/ignition-contracts": "^1.0",
+                "filp/whoops": "^2.4",
+                "illuminate/support": "^7.0",
+                "monolog/monolog": "^2.0",
+                "php": "^7.2.5",
+                "scrivo/highlight.php": "^9.15",
+                "symfony/console": "^5.0",
+                "symfony/var-dumper": "^5.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.14",
+                "mockery/mockery": "^1.3",
+                "orchestra/testbench": "5.0"
+>>>>>>> 249f7508820aa5541c10701f9d298f8e1d453978
             },
             "suggest": {
                 "dflydev/markdown": "~1.0",
@@ -3149,6 +3265,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
+<<<<<<< HEAD
                     "dev-master": "2.0.x-dev"
                 }
             },
@@ -3870,6 +3987,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
+=======
+>>>>>>> 249f7508820aa5541c10701f9d298f8e1d453978
                     "dev-master": "2.x-dev"
                 },
                 "laravel": {
