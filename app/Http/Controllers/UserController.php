@@ -12,13 +12,11 @@ class UserController extends Controller
 {
     public function login (Request $request) {
 
-        $usr = User::where('email', $request->email)-first();
-
+        $usr = User::where('email', $request->email)->first();
         if ($usr || Hash::check($request->pwd, $usr->pwd))
         {
-
+            return response()->json($usr->api_token);
         }
-
     }
 
     public function signup (Request $request) {
