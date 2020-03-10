@@ -166,13 +166,7 @@ return [
     |
     */
 
-<<<<<<< HEAD
-    'secure' => env('SESSION_SECURE_COOKIE', false),
-    'same_site' => 'lax',
-=======
     'secure' => env('SESSION_SECURE_COOKIE', null),
->>>>>>> 249f7508820aa5541c10701f9d298f8e1d453978
-
     'same_site' => 'lax',
     /*
     |--------------------------------------------------------------------------
