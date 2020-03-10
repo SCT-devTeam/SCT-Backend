@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnUsersToken extends Migration
+class AlterTableUserColumnNotes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class AddColumnUsersToken extends Migration
      */
     public function up()
     {
-        // adding a column in `users` table for the api login
-        Schema::table('users', function ($table) {
-            $table->string('api_token', 80)->after('pwd')
-                ->unique()
-                ->nullable()
-                ->default(null);
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('notes')->nullable()->change();
         });
     }
 
@@ -29,10 +25,8 @@ class AddColumnUsersToken extends Migration
      */
     public function down()
     {
-        // deleting the column
-
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('api_token');
+            $table->string('notes')->nullable(false)->change();
         });
     }
 }
