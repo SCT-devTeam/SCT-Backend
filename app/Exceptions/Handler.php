@@ -4,10 +4,9 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
-<<<<<<< HEAD
-=======
 
->>>>>>> 249f7508820aa5541c10701f9d298f8e1d453978
+
+
 class Handler extends ExceptionHandler
 {
     /**
