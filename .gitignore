@@ -52,3 +52,5 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+resources/views/frontend.blade.php
+public/frontend-assets
