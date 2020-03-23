@@ -5,10 +5,18 @@
   "author": "Julien SEIXAS (Zyr0)",
   "license": "https://github.com/SCT-devTeam/SCT-Backend/blob/master/LICENSE.md#the-open-source-common-sense-license",
   "version": "1.0.0",
+  "homepage": "https://github.com/SCT-devTeam/SCT-Backend#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SCT-devTeam/SCT-Backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SCT-devTeam/SCT-Backend/issues"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "rm -rf ../../public/frontend-assets/{js,css,img} && ../views/frontend.blade.php && vue-cli-service build --no-clean",
-    "clean": "rm -rf ../../public/frontend-assets/{js,css,img} && ../views/frontend.blade.php",
+    "build": "rm -rf ../../public/frontend-assets/{js,css,img} && rm -rf  ../views/frontend.blade.php && vue-cli-service build --no-clean",
+    "clean": "rm -rf ../../public/frontend-assets/{js,css,img} && rm -rf  ../views/frontend.blade.php",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
