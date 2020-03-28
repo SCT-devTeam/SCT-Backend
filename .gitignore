@@ -44,6 +44,9 @@ public/hot
 public_html/storage
 public_html/hot
 
+composer.lock
+package-lock.json
+
 storage/*.key
 /storage/*.key
 .env

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableUtilisateur extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,14 +15,13 @@ class CreateTableUtilisateur extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('lastname');
-            $table->enum('gender',['man','wmoan','unspecified']);
-            $table->string('firstname');
+            $table->enum('gender',['man','woman','unspecified']);
+            $table->string('lastname',100);
+            $table->string('firstname',100);
             $table->string('email');
-            $table->integer('phone');
+            $table->string('phone',15)->nullable();
             $table->string('pwd');
-            $table->boolean('is_admin');
-            $table->string('notes');
+            $table->string('notes')->nullable();
         });
     }
 
