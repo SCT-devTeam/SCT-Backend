@@ -15,13 +15,13 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('gender',['man','wmoan','unspecified']);
+            $table->enum('gender',['man','woman','unspecified']);
             $table->string('lastname',100);
             $table->string('firstname',100);
             $table->string('email');
-            $table->string('phone',15);
+            $table->string('phone',15)->nullable();
             $table->string('pwd');
-            $table->string('notes');
+            $table->string('notes')->nullable();
         });
     }
 
