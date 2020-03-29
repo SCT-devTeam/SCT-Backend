@@ -24,7 +24,7 @@ module.exports = {
     // TODO: Fix integrity
     // integrity: true,
 
-    // transpileDependencies: ['vuex-persist'],
+    transpileDependencies: ['vuex-persist'],
 
     // TODO: Fixed webpack configuration to keep the same result as without the configuration
     configureWebpack: {
