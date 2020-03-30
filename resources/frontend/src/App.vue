@@ -7,4 +7,5 @@
 
 <script></script>
 
+<!-- TODO: add auto import of sass files -->
 <style lang="scss"></style>
