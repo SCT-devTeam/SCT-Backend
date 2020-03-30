@@ -35,7 +35,7 @@ module.exports = {
                 description: "SCT Backoffice"
             })
         ]
-    },
+    }
 
     // Snippet to replace Webpack configuration
     // pages: {
