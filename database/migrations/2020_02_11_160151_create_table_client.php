@@ -14,20 +14,26 @@ class CreateTableClient extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->bigIncrements('customer_id');
-            $table->enum('customer_type',['Particulier','Professionnel']);
-            $table->enum('status',['Prospect','Client','Archivé','Supprimé']);
+            $table->bigIncrements('id');
+            $table->enum('customer_type',['individual','professional']);
+            $table->enum('status',['prospect','active','achived','deleted']);
             $table->date('meeting_date');
             $table->string('company_name');
             $table->integer('siret');
             $table->string('tva_number');
-            $table->integer('phone');
-            $table->string('email');
+            $table->string('firstname',100);
+            $table->string('lastname',100);
             $table->integer('street_number');
             $table->string('street_name');
             $table->integer('zipcode');
             $table->string('city');
             $table->string('note',300);
+            $table->enum('default_payment_method',['credit_cardbank_transfer','bank_check','cash','multiple']);
+            $table->unsignedBigInteger('contacts');
+
+            // setup constraint to contact table
+            $table->foreign('contacts')->references('id')->on('contacts');
+
         });
     }
 
