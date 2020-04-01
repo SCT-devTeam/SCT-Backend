@@ -7,3 +7,15 @@ $color__inactive_subtitle: #505050; // Inactive / Subtitle & Separator - Dove Gr
 $color__background: #fafafa; // Background - Alabaster
 $color__validation_ok: #34f71e; // Validation OK - Harlequin
 $color__validation_no: #f71e1e; // Validation NO - Torch Red
+
+:root {
+    --main: #{$color__main}; // Main - Ripe Lemon
+    --secondary-principal: #{$color__secondary--alternative}; // Secondary - Actions & Icons Alternative - Electric Violet
+    --secondary-alternative: #{$color__secondary}; // Secondary - Actions & Icons Principal - Pickled Bluewood
+    --active: #{$color__action_active}; // Actions & Icons Active - Dark Blue
+    --black: #{$color__black}; // Black for Icons & Text - Cod Gray
+    --inactive: #{$color__inactive_subtitle}; // Inactive / Subtitle & Separator - Dove Gray
+    --background: #{$color__background}; // Background - Alabaster
+    --validation-ok: #{$color__validation_ok}; // Validation OK - Harlequin
+    --validation-no: #{$color__validation_no}; // Validation NO - Torch Red
+}
