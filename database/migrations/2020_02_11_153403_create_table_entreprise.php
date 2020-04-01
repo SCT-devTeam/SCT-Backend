@@ -41,7 +41,7 @@ class CreateTableEntreprise extends Migration
                 $table->unsignedBigInteger('customer');
 
                 // mise en place de la contrainte sur la table
-                $table->foreign('customer')->references('in')->on('customers');
+                $table->foreign('customer')->references('id')->on('customers');
 
         });
     }
