@@ -18,8 +18,8 @@ class CreateTableContact extends Migration
             $table->enum('gender',['man','woman','unspecified']);
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('email');
             $table->string('job');
+            $table->string('email');
             $table->integer('phone_mobile');
             $table->integer('phone_fix');
             $table->integer('phone_personnal');
