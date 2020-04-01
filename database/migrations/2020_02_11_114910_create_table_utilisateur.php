@@ -22,6 +22,11 @@ class CreateUsersTable extends Migration
             $table->string('phone',15)->nullable();
             $table->string('pwd');
             $table->string('notes')->nullable();
+            $table->unsignedBigInteger('companies');
+
+            //setup constraint Users
+            $table->foreign('companies')->references('id')->on('customers');
+
         });
     }
 
