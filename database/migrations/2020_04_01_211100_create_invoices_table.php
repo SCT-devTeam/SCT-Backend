@@ -15,8 +15,8 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('company_id');
-            $table->integer('customer_id');
+            $table->unsignedBigInteger('company_id');
+            $table->unsignedBigInteger('customer_id');
             $table->enum('qualification',['edited','awaiting_payment','overdue','revived','disputed','legal_proceedings','promise','paid','cashed']);
             $table->date('edition_date');
             $table->date('payment_date');
@@ -30,10 +30,10 @@ class CreateInvoicesTable extends Migration
             $table->date('last_qualification_date');
             $table->date('chasing_date');
             $table->string('note');
-            $table->integer('original_quote');
+            $table->unsignedBigInteger('original_quote');
 
             // Setup constraint
-            $table->foreign('quotes')->references('id')->on('quotes');
+            $table->foreign('original_quote')->references('id')->on('quotes');
             $table->foreign('company_id')->references('id')->on('companies');
             $table->foreign('customer_id')->references('id')->on('customer');
 
