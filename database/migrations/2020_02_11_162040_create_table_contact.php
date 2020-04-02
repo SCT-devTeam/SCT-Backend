@@ -25,6 +25,11 @@ class CreateTableContact extends Migration
             $table->integer('phone_personnal');
             $table->integer('phone_fax');
             $table->string('notes',300);
+            $table->unsignedBigInteger('customer');
+
+            // setup constraint to contact table
+            $table->foreign('customer')->references('id')->on('customers');
+
         });
     }
 

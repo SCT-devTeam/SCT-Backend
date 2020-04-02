@@ -29,10 +29,7 @@ class CreateTableClient extends Migration
             $table->string('city');
             $table->string('note',300);
             $table->enum('default_payment_method',['credit_cardbank_transfer','bank_check','cash','multiple']);
-            $table->unsignedBigInteger('contacts');
 
-            // setup constraint to contact table
-            $table->foreign('contacts')->references('id')->on('contacts');
 
         });
     }
