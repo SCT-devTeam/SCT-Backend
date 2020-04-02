@@ -25,7 +25,7 @@ class CreateInvoicesItemsTable extends Migration
 
             //setup constraint
             $table->foreign('invoice_id')->references('id')->on('invoices');
-            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('item_id')->references('id')->on('services_products');
         });
     }
 
