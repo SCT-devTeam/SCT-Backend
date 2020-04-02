@@ -15,9 +15,8 @@ class CreateInvoicesItemsTable extends Migration
     {
         Schema::create('invoices_items', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer(('invoice_id'));
-            $table->enum('item_type',['product','service']);
-            $table->integer('item_id');
+            $table->unsignedBigInteger(('invoice_id'));
+            $table->unsignedBigInteger('item_id');
             $table->string('label',100);
             $table->string('description');
             $table->integer('pre_vat_price_in_cents');
