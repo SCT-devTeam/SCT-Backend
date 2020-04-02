@@ -86,7 +86,6 @@
                 error: '',
                 isHovered: false,
                 isActive: false,
-                isValide: false,
                 topLineOffset: 20,
                 labelPosition: {
                     top: "50%",
@@ -184,10 +183,11 @@
                 if (this.error === '' && !regex.test(this.value)) {
                     this.error = 'Please enter a correct password';
                     this.outlineColor = "var(--colors-validation-no)";
-                    this.isValide = false;
+
+                    this.$emit('isValid', false);
                 } else if (this.error === '' && regex.test(this.value)) {
                     this.outlineColor = "var(--colors-validation-ok";
-                    this.isValide = true;
+                    this.$emit('isValid', true);
                 }
             },
         }

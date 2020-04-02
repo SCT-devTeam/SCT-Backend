@@ -183,8 +183,10 @@ export default {
             if (this.error === '' && !regex.test(this.value.toLowerCase())) {
                 this.error = 'Please enter a correct email';
                 this.outlineColor = "var(--colors-validation-no)";
+                this.$emit('isValid', true);
             } else if (this.error === '' && regex.test(this.value.toLowerCase())) {
                 this.outlineColor = "var(--colors-validation-ok";
+                this.$emit('isValid', false);
             }
         },
     }
