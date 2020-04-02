@@ -1,9 +1,5 @@
 <template>
-    <div
-        class="InputEmail"
-        @mouseover="hovered"
-        @mouseleave="notHovered"
-    >
+    <div class="InputEmail" @mouseover="hovered" @mouseleave="notHovered">
         <label
             v-bind:for="name"
             ref="label"
@@ -13,7 +9,10 @@
         >
         <span
             class="outline-top"
-            v-bind:style="{ left: topLineOffset + 'px', 'background-color': outlineColor }"
+            v-bind:style="{
+                left: topLineOffset + 'px',
+                'background-color': outlineColor
+            }"
             @mouseover="hovered"
         ></span>
         <input
@@ -35,7 +34,7 @@
         />
         <span
             class="outline-bot"
-            v-bind:style="{'background-color': outlineColor }"
+            v-bind:style="{ 'background-color': outlineColor }"
             @mouseover="hovered"
         ></span>
 
@@ -73,25 +72,27 @@
             />
         </svg>
 
-        <p v-if="error">{{ error }}</p>
+        <p v-if="error" class="error">{{ error }}</p>
     </div>
 </template>
 
 <script>
+    // Change inputs by stylise vuetify inputs : https://vuetifyjs.com/en/components/text-fields/#text-fields
 export default {
     name: "EmailSCT",
     data() {
         return {
-            value: null,
-            error: null,
+            value: '',
+            error: '',
             isHovered: false,
             isActive: false,
+            isFilled: false,
             topLineOffset: 20,
             labelPosition: {
                 top: "50%",
                 left: "15px"
             },
-            outlineColor: 'white',
+            outlineColor: "white"
         };
     },
     props: {
@@ -117,9 +118,10 @@ export default {
             // TODO: fix required markup to the correct HTML5 syntax
         }
     },
+    computed: {},
     methods: {
-        hovered(e) {
-            if (!this.isHovered && !this.isActive) {
+        hovered() {
+            if (!this.isHovered && !this.isActive && !this.isFilled) {
                 this.isHovered = true;
 
                 this.topLineOffset += this.$refs.label.clientWidth + 10;
@@ -127,38 +129,68 @@ export default {
                 this.labelPosition.left = "25px";
             }
         },
-        notHovered(e) {
+        notHovered() {
             this.isHovered = false;
-            if (!this.isActive) {
+            if (!this.isActive && !this.isFilled) {
                 this.topLineOffset = 20;
                 this.labelPosition.top = "50%";
                 this.labelPosition.left = "15px";
             }
         },
-        active(e) {
+        active() {
             if (!this.isActive) {
                 this.isActive = !this.isActive;
 
                 if (this.isActive) {
                     this.labelPosition.top = "0";
                     this.labelPosition.left = "25px";
-                    this.outlineColor = 'var(--secondary-principal)';
-                } else {
+                    this.outlineColor = "var(--colors-active)";
+                } else if (!this.isFilled) {
                     this.labelPosition.top = "50%";
                     this.labelPosition.left = "15px";
                 }
             }
         },
-        notActive(e) {
+        notActive() {
             this.isActive = false;
-            this.topLineOffset = 20;
-            this.labelPosition.top = "50%";
-            this.labelPosition.left = "15px";
-            this.outlineColor = 'white';
+            if (!this.isFilled) {
+                this.topLineOffset = 20;
+                this.labelPosition.top = "50%";
+                this.labelPosition.left = "15px";
+            }
+            if (this.error === '') { this.outlineColor = "white"; }
+            this.checkInput();
         },
-        newKeyboardAction(e) {
+        newKeyboardAction() {
             this.$emit("valueChanged", this.value);
-        }
+
+            if (this.value !== '') {
+                this.isFilled = true;
+            } else if (this.value === '') {
+                this.isFilled = false;
+            }
+
+            setTimeout(this.checkInput, 500);
+        },
+        checkInput() {
+            const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            // Check if empty
+            if (this.value === '' || this.value === '') {
+                this.error = 'Please enter an email address';
+                this.outlineColor = "var(--colors-validation-no)";
+            } else if (this.value !== '' || this.value !== '') {
+                this.error = '';
+            }
+
+            // Check if value = correct email
+            if (this.error === '' && !regex.test(this.value.toLowerCase())) {
+                this.error = 'Please enter a correct email';
+                this.outlineColor = "var(--colors-validation-no)";
+            } else if (this.error === '' && regex.test(this.value.toLowerCase())) {
+                this.outlineColor = "var(--colors-validation-ok";
+            }
+        },
     }
 };
 </script>
@@ -174,6 +206,8 @@ export default {
 div.InputEmail {
     position: relative;
     border: 5px solid transparent;
+    border-bottom-width: 20px;
+
 
     /*&:after {
         content: "";
@@ -189,6 +223,7 @@ div.InputEmail {
         top: 50%;
         left: 15px;
         transform: translateY(-50%);
+        z-index: 1;
 
         cursor: text;
 
@@ -248,6 +283,13 @@ div.InputEmail {
         &#border-right {
             right: -2px;
         }
+    }
+
+    > p.error {
+        position: absolute;
+        bottom: -20px;
+        left: 5px;
+        margin: 0;
     }
 }
 </style>
