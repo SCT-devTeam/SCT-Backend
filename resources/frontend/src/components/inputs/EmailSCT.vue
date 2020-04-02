@@ -86,7 +86,6 @@ export default {
             error: '',
             isHovered: false,
             isActive: false,
-            isFilled: false,
             topLineOffset: 20,
             labelPosition: {
                 top: "50%",
@@ -118,7 +117,11 @@ export default {
             // TODO: fix required markup to the correct HTML5 syntax
         }
     },
-    computed: {},
+    computed: {
+        isFilled() {
+            return !!this.value;
+        }
+    },
     methods: {
         hovered() {
             if (!this.isHovered && !this.isActive && !this.isFilled) {
@@ -163,14 +166,7 @@ export default {
         },
         newKeyboardAction() {
             this.$emit("valueChanged", this.value);
-
-            if (this.value !== '') {
-                this.isFilled = true;
-            } else if (this.value === '') {
-                this.isFilled = false;
-            }
-
-            setTimeout(this.checkInput, 500);
+            setTimeout(this.checkInput, 700);
         },
         checkInput() {
             const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
