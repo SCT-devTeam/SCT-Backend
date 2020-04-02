@@ -38,10 +38,7 @@ class CreateTableEntreprise extends Migration
                 $table->string('default_invoice_notice');
                 $table->string('default_quote_notice');
                 $table->string('notes',500);
-                $table->unsignedBigInteger('customer');
 
-                // mise en place de la contrainte sur la table
-                $table->foreign('customer')->references('id')->on('customers');
 
         });
     }

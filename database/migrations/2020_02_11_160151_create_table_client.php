@@ -29,7 +29,10 @@ class CreateTableClient extends Migration
             $table->string('city');
             $table->string('note',300);
             $table->enum('default_payment_method',['credit_cardbank_transfer','bank_check','cash','multiple']);
+            $table->unsignedBigInteger('company');
 
+            // mise en place de la contrainte sur la table
+            $table->foreign('company')->references('id')->on('companies');
 
         });
     }
