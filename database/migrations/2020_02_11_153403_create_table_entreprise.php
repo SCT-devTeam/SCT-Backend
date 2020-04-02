@@ -14,7 +14,7 @@ class CreateTableEntreprise extends Migration
     public function up()
     {
         Schema::create('companies', function (Blueprint $table) {
-                $table->bigIncrements('company_id');
+                $table->bigIncrements('id');
                 $table->enum('legal_form',['Micro-entreprise','SA','SAS','SARL','AE','EI','EIRL','EURL','SASU']);
                 $table->string('name');
                 $table->integer('siret');

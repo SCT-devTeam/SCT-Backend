@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('companies');
 
             //setup constraint Users
-            $table->foreign('companies')->references('id')->on('customers');
+            $table->foreign('companies')->references('id')->on('companies');
 
         });
     }
