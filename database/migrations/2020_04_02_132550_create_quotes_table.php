@@ -15,8 +15,8 @@ class CreateQuotesTable extends Migration
     {
         Schema::create('quotes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('company_id');
-            $table->integer('customer_id');
+            $table->unsignedBigInteger('company_id');
+            $table->unsignedBigInteger('customer_id');
             $table->enum('qualification',['draft','edited','awaiting_approuval','revived','accepted','declined','discontinued']);
             $table->date('edition_date');
             $table->smallInteger('validity_delay_in_days');
