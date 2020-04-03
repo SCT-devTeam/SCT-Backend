@@ -127,7 +127,7 @@ export default {
             if (!this.isHovered && !this.isActive && !this.isFilled) {
                 this.isHovered = true;
 
-                this.topLineOffset += this.$refs.label.clientWidth + 10;
+                this.updateTopLine();
                 this.labelPosition.top = "0";
                 this.labelPosition.left = "25px";
             }
@@ -135,7 +135,7 @@ export default {
         notHovered() {
             this.isHovered = false;
             if (!this.isActive && !this.isFilled) {
-                this.topLineOffset = 20;
+                this.updateTopLine();
                 this.labelPosition.top = "50%";
                 this.labelPosition.left = "15px";
             }
@@ -157,12 +157,19 @@ export default {
         notActive() {
             this.isActive = false;
             if (!this.isFilled) {
-                this.topLineOffset = 20;
+                this.updateTopLine();
                 this.labelPosition.top = "50%";
                 this.labelPosition.left = "15px";
             }
             if (this.error === '') { this.outlineColor = "white"; }
             this.checkInput();
+        },
+        updateTopLine() {
+            if (this.topLineOffset === 20) {
+                this.topLineOffset += this.$refs.label.clientWidth + 10;
+            } else {
+                this.topLineOffset = 20;
+            }
         },
         newKeyboardAction() {
             this.$emit("valueChanged", this.value);
