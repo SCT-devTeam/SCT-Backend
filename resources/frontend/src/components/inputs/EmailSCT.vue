@@ -242,6 +242,7 @@ div.InputEmail {
         position: absolute;
         left: 20px;
         right: 20px;
+        z-index: 2;
 
         height: 2px;
 
@@ -268,7 +269,7 @@ div.InputEmail {
         border: 0;
         background-color: rgba(255, 255, 255, 0.3);
 
-        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 
         outline: none;
 
