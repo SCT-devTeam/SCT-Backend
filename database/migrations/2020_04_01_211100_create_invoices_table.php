@@ -20,7 +20,6 @@ class CreateInvoicesTable extends Migration
             $table->enum('qualification',['edited','awaiting_payment','overdue','revived','disputed','legal_proceedings','promise','paid','cashed']);
             $table->date('edition_date');
             $table->date('payment_date');
-            $table->date('payment_date');
             $table->smallInteger('payment_delay_in_days');
             $table->string('payment_terms');
             $table->string('notice');
@@ -35,7 +34,7 @@ class CreateInvoicesTable extends Migration
             // Setup constraint
             $table->foreign('original_quote')->references('id')->on('quotes');
             $table->foreign('company_id')->references('id')->on('companies');
-            $table->foreign('customer_id')->references('id')->on('customer');
+            $table->foreign('customer_id')->references('id')->on('customers');
 
 
 
