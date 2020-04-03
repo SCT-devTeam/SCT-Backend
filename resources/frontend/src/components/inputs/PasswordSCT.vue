@@ -190,7 +190,7 @@
 
                 // Check if value = correct password
                 if (this.error === '' && !regex.test(this.value)) {
-                    this.error = 'Please enter a correct password';
+                    this.error = 'Please enter a secured password';
                     this.outlineColor = "var(--colors-validation-no)";
 
                     this.$emit('isValid', false);
