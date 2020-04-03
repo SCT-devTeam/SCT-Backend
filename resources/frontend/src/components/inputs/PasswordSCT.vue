@@ -147,8 +147,8 @@
                         this.labelPosition.top = "0";
                         this.labelPosition.left = "25px";
                         this.outlineColor = "var(--colors-active)";
+                        !this.isHovered ? this.updateTopLine() : null;
                     } else if (!this.isFilled) {
-                        this.updateTopLine();
                         this.labelPosition.top = "50%";
                         this.labelPosition.left = "15px";
                     }
@@ -184,7 +184,7 @@
                 if (this.value === '' || this.value === '') {
                     this.error = 'Please enter an password address';
                     this.outlineColor = "var(--colors-validation-no)";
-                } else if (this.value !== '' || this.value !== '') {
+                } else {
                     this.error = '';
                 }
 

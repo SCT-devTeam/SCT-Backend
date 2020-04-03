@@ -182,7 +182,7 @@ export default {
             if (this.value === '' || this.value === '') {
                 this.error = 'Please enter an email address';
                 this.outlineColor = "var(--colors-validation-no)";
-            } else if (this.value !== '' || this.value !== '') {
+            } else {
                 this.error = '';
             }
 
@@ -190,10 +190,12 @@ export default {
             if (this.error === '' && !regex.test(this.value.toLowerCase())) {
                 this.error = 'Please enter a correct email';
                 this.outlineColor = "var(--colors-validation-no)";
-                this.$emit('isValid', true);
+
+                this.$emit('isValid', false);
             } else if (this.error === '' && regex.test(this.value.toLowerCase())) {
                 this.outlineColor = "var(--colors-validation-ok";
-                this.$emit('isValid', false);
+
+                this.$emit('isValid', true);
             }
         },
     }
