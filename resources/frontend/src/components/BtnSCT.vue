@@ -4,8 +4,8 @@
         v-bind:name="name"
         v-bind:title="title"
         v-bind:type="type"
-        :disabled="disabled"
-        v-bind:class="{ disabled: disabled }"
+        :disabled="isDisabled"
+        v-bind:class="{ disabled: isDisabled }"
     >
         {{ value }}
     </button>
@@ -42,60 +42,60 @@ export default {
             type: String,
             default: "Button"
         },
-        disabled: {
+        isDisabled: {
             type: Boolean,
-            default: false,
-        },
+            default: false
+        }
     }
 };
 </script>
 
 <style scoped lang="scss">
-    @import "src/sass/colors";
-    @import "src/sass/typography";
+@import "src/sass/colors";
+@import "src/sass/typography";
 
-    button#ButtonSCT {
-        padding: 5px 10px;
+button#ButtonSCT {
+    padding: 5px 10px;
 
-        position: relative;
+    position: relative;
 
-        border: 2px solid #fff;
-        border-radius: 20px;
+    border: 2px solid #fff;
+    border-radius: 20px;
 
-        background: $color__secondary;
-        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    background: $color__secondary;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
 
-        font-family: $font__heading;
-        font-weight: 400;
-        font-size: 15px;
-        text-align: left;
-        color: #fff;
+    font-family: $font__heading;
+    font-weight: 400;
+    font-size: 15px;
+    text-align: left;
+    color: #fff;
 
-        cursor: pointer;
+    cursor: pointer;
 
-        outline: none;
+    outline: none;
 
-        &:focus {
-            background-color: $color__action_active;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
+    &:focus {
+        background-color: $color__action_active;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
 
-        &.disabled {
-            cursor: not-allowed;
-            background-color: $color__secondary;
+    &.disabled {
+        cursor: not-allowed;
+        background-color: $color__secondary;
 
-            &:after {
-                content: '';
-                position: absolute;
-                top: -2px;
-                bottom: -2px;
-                left: -2px;
-                right: -2px;
+        &:after {
+            content: "";
+            position: absolute;
+            top: -2px;
+            bottom: -2px;
+            left: -2px;
+            right: -2px;
 
-                border-radius: 20px;
+            border-radius: 20px;
 
-                background-color: #{$color__inactive_subtitle}47;
-            }
+            background-color: #{$color__inactive_subtitle}47;
         }
     }
+}
 </style>

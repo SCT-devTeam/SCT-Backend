@@ -77,13 +77,13 @@
 </template>
 
 <script>
-    // Change inputs by stylise vuetify inputs : https://vuetifyjs.com/en/components/text-fields/#text-fields
+// Change inputs by stylise vuetify inputs : https://vuetifyjs.com/en/components/text-fields/#text-fields
 export default {
     name: "EmailSCT",
     data() {
         return {
-            value: '',
-            error: '',
+            value: "",
+            error: "",
             isHovered: false,
             isActive: false,
             topLineOffset: 20,
@@ -161,7 +161,9 @@ export default {
                 this.labelPosition.top = "50%";
                 this.labelPosition.left = "15px";
             }
-            if (this.error === '') { this.outlineColor = "white"; }
+            if (this.error === "") {
+                this.outlineColor = "white";
+            }
             this.checkInput();
         },
         updateTopLine() {
@@ -179,25 +181,29 @@ export default {
             const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
             // Check if empty
-            if (this.value === '' || this.value === '') {
-                this.error = 'Please enter an email address';
+            if (this.value === "" || this.value === "") {
+                this.error = "Please enter an email address";
                 this.outlineColor = "var(--colors-validation-no)";
+                this.$emit("isValid", false);
             } else {
-                this.error = '';
+                this.error = "";
             }
 
             // Check if value = correct email
-            if (this.error === '' && !regex.test(this.value.toLowerCase())) {
-                this.error = 'Please enter a correct email';
+            if (this.error === "" && !regex.test(this.value.toLowerCase())) {
+                this.error = "Please enter a correct email";
                 this.outlineColor = "var(--colors-validation-no)";
 
-                this.$emit('isValid', false);
-            } else if (this.error === '' && regex.test(this.value.toLowerCase())) {
+                this.$emit("isValid", false);
+            } else if (
+                this.error === "" &&
+                regex.test(this.value.toLowerCase())
+            ) {
                 this.outlineColor = "var(--colors-validation-ok";
 
-                this.$emit('isValid', true);
+                this.$emit("isValid", true);
             }
-        },
+        }
     }
 };
 </script>
@@ -214,7 +220,6 @@ div.InputEmail {
     position: relative;
     border: 5px solid transparent;
     border-bottom-width: 20px;
-
 
     /*&:after {
         content: "";
