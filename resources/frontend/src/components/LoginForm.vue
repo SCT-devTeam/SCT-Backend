@@ -75,44 +75,44 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "src/sass/colors";
-@import "src/sass/typography";
+    @import "src/sass/colors";
+    @import "src/sass/typography";
 
-div#login-form {
-    max-width: 400px;
+    div#login-form {
+        max-width: 500px;
 
-    padding: 20px;
-    padding-bottom: 30px;
+        padding: 20px;
+        padding-bottom: 30px;
 
-    position: relative;
+        position: relative;
 
-    border-radius: 15px;
+        border-radius: 15px;
 
-    background-color: $color__main;
+        background-color: $color__main;
 
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 
-    > .input {
-        width: 300px;
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            height: 20px;
+
+            border-radius: 0 0 15px 15px;
+
+            background-color: white;
+        }
+
+        .error {
+            margin: 5px 0;
+            color: $color__validation_no;
+        }
     }
 
-    &:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-
-        height: 20px;
-
-        border-radius: 0 0 15px 15px;
-
-        background-color: white;
+    .input {
+        width: 400px;
     }
-
-    .error {
-        margin: 5px 0;
-        color: $color__validation_no;
-    }
-}
 </style>
