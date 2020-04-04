@@ -94,7 +94,7 @@ button#ButtonSCT {
 
             border-radius: 20px;
 
-            background-color: #{$color__inactive_subtitle}47;
+            background-color: #{$color__inactive_subtitle}55;
         }
     }
 }
