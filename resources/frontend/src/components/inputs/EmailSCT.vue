@@ -38,10 +38,6 @@
             @mouseover="hovered"
         ></span>
 
-        <!--        <v-style type="text/css">-->
-        <!--            &#45;&#45;topLineOffset:px;-->
-        <!--        </v-style>-->
-
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 40"
@@ -220,15 +216,6 @@ div.InputEmail {
     position: relative;
     border: 5px solid transparent;
     border-bottom-width: 20px;
-
-    /*&:after {
-        content: "";
-        position: absolute;
-        top: -10px;
-        bottom: -2px;
-        left: -2px;
-        right: -2px;
-    }*/
 
     > label {
         position: absolute;
