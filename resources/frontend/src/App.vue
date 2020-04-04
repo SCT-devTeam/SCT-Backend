@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <MainMenu></MainMenu>
+        <MainMenu v-if="isLoggedIn"></MainMenu>
         <router-view />
     </div>
 </template>
@@ -8,10 +8,16 @@
 <script>
     // @ is an alias to /src
     import MainMenu from "@/components/MainMenu";
+    import { mapGetters } from "vuex";
 
     export default {
         name: "App",
         components: { MainMenu },
+        computed: {
+            isLoggedIn: function () {
+                return this.$store.getters.isLoggedIn;
+            }
+        },
     }
 </script>
 
