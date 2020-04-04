@@ -181,7 +181,7 @@ export default {
         checkInput() {
             // TODO: use better regex (2 caracters type + 10 caracters min + no date etc...)
             const regex = new RegExp(
-                "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"
+                "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{10,}$"
             );
 
             // Check if empty
@@ -194,7 +194,7 @@ export default {
 
             // Check if value = correct password
             if (this.error === "" && !regex.test(this.value)) {
-                this.error = "Please enter a secured password";
+                this.error = "Please enter a stronger password (10 characters with 2 of low & UPPER case + special characters + numbers";
                 this.outlineColor = "var(--colors-validation-no)";
 
                 this.$emit("isValid", false);
@@ -218,8 +218,6 @@ export default {
 div.InputPassword {
     position: relative;
     border: 5px solid transparent;
-    border-bottom-width: 20px;
-
     /*&:after {
             content: "";
             position: absolute;
@@ -228,6 +226,7 @@ div.InputPassword {
             left: -2px;
             right: -2px;
         }*/
+    border-bottom-width: 40px;
 
     > label {
         position: absolute;
@@ -299,7 +298,7 @@ div.InputPassword {
 
     > p.error {
         position: absolute;
-        bottom: -20px;
+        bottom: -40px;
         left: 5px;
         margin: 0;
     }
