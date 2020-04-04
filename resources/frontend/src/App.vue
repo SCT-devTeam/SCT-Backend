@@ -1,17 +1,41 @@
 <template>
     <div id="app">
+        <MainMenu></MainMenu>
         <router-view />
-        <!-- <router-link to="/---">---</router-link> -->
     </div>
 </template>
 
-<script></script>
+<script>
+    // @ is an alias to /src
+    import MainMenu from "@/components/MainMenu";
+
+    export default {
+        name: "App",
+        components: { MainMenu },
+    }
+</script>
 
 <!-- TODO: add auto import of sass files -->
 <style lang="scss">
-@import "src/sass/colors";
-@import "src/sass/typography";
-body {
-    background-color: $color__background;
-}
+    @import "src/sass/normalize.scss";
+    @import "src/sass/colors";
+    @import "src/sass/typography";
+    html,
+    body,
+    div#app {
+        height: 100%;
+        max-height: 100vh;
+    }
+    body {
+        margin: 0;
+        background-color: $color__background;
+    }
+
+    div#app {
+        display: flex;
+
+        > nav#Main-menu {
+
+        }
+    }
 </style>
