@@ -43,5 +43,12 @@
         > nav#Main-menu {
 
         }
+
+        > div {
+            height: 100%;
+            width: 100%;
+
+            margin-left: 50px;
+        }
     }
 </style>
