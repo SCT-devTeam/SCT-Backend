@@ -179,6 +179,7 @@ export default {
             const regex = new RegExp(
                 "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{10,}$"
             );
+            // const regex = new RegExp("^(?=.*[a-z].*[a-z])(?=.*[A-Z].*[A-Z])(?=.*[0-9].*[0-9])(?=.*[!@#\\$%\\^&\\*].*[!@#\\$%\\^&\\*]).{10,}");
 
             // Check if empty
             if (this.value === "" || this.value === "") {
