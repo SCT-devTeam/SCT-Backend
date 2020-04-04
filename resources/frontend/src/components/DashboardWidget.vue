@@ -1,6 +1,6 @@
 <template>
     <div id="widget">
-        <span class="icon">
+        <span class="icon" v-bind:style="bgColor">
             <img
                 v-bind:src="imgSrcPath"
                 v-bind:alt="icon + ' icon'"
@@ -23,7 +23,10 @@
             },
             imgSrcsetPath() {
                 return require("@/assets/icons/" + this.icon + "_icon_blue.svg" );
-            }
+            },
+            bgColor() {
+                return "--circle-color: var(--colors-" + this.color + ")";
+            },
         },
         props: {
             icon: {
@@ -40,6 +43,10 @@
                 default: 'text',
                 required: true,
             },
+            color: {
+                type: String,
+                default: "main",
+            }
         },
     }
 </script>
@@ -65,23 +72,43 @@
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 
         > span.icon {
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
 
+            position: relative;
+
             width: 115px;
             height: 115px;
 
-            border-radius: 50%;
 
-            background-color: #{$color__main}80;
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                height: 130px;
+                width: 130px;
+
+                border-radius: 50%;
+
+                background-color: var(--circle-color);
+
+                opacity: 0.5;
+            }
 
             > img {
                 height: 70%;
+                z-index: 1;
             }
         }
 
         > span.informations {
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -89,6 +116,7 @@
 
             > p {
                 margin: 0;
+                text-align: center;
             }
 
             > p.indicator {
