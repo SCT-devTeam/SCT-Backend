@@ -30,11 +30,6 @@ class CreateQuotesTable extends Migration
             $table->date('revived_date');
             $table->date('last_qualification_date');
 
-            //setup constraint
-            $table->foreign('company_id')->references('id')->on('companies');
-            $table->foreign('customer_id')->references('id')->on('customers');
-
-
         });
     }
 

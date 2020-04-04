@@ -23,9 +23,6 @@ class CreateQuotesItemsTable extends Migration
             $table->integer('var_rate');
             $table->integer('quantity');
 
-            //setup constraint
-            $table->foreign('quote_id')->references('id')->on('quotes');
-            $table->foreign('item_id')->references('id')->on('services_products');
         });
     }
 

@@ -31,16 +31,6 @@ class CreateInvoicesTable extends Migration
             $table->string('note');
             $table->unsignedBigInteger('original_quote');
 
-            // Setup constraint
-            $table->foreign('original_quote')->references('id')->on('quotes');
-            $table->foreign('company_id')->references('id')->on('companies');
-            $table->foreign('customer_id')->references('id')->on('customers');
-
-
-
-
-
-
         });
     }
 

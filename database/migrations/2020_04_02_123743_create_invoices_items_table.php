@@ -23,9 +23,6 @@ class CreateInvoicesItemsTable extends Migration
             $table->integer('var_rate');
             $table->integer('quantity');
 
-            //setup constraint
-            $table->foreign('invoice_id')->references('id')->on('invoices');
-            $table->foreign('item_id')->references('id')->on('services_products');
         });
     }
 

@@ -23,10 +23,6 @@ class CreateServicesProductsTable extends Migration
             $table->enum('item_type',['service','product']);
             $table->integer('quantity');
 
-            //setup constraint
-            $table->foreign('company_id')->references('id')->on('companies');
-
-
         });
     }
 

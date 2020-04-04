@@ -31,8 +31,6 @@ class CreateTableClient extends Migration
             $table->enum('default_payment_method',['credit_cardbank_transfer','bank_check','cash','multiple']);
             $table->unsignedBigInteger('company');
 
-            // mise en place de la contrainte sur la table
-            $table->foreign('company')->references('id')->on('companies');
 
         });
     }

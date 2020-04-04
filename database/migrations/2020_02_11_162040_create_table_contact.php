@@ -27,8 +27,6 @@ class CreateTableContact extends Migration
             $table->string('notes',300);
             $table->unsignedBigInteger('customer');
 
-            // setup constraint to contact table
-            $table->foreign('customer')->references('id')->on('customers');
 
         });
     }
