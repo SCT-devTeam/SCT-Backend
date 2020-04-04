@@ -190,7 +190,8 @@ export default {
 
             // Check if value = correct password
             if (this.error === "" && !regex.test(this.value)) {
-                this.error = "Please enter a stronger password (10 characters with 2 of low & UPPER case + special characters + numbers";
+                this.error =
+                    "Please enter a stronger password (10 characters with 2 of low & UPPER case + special characters + numbers";
                 this.outlineColor = "var(--colors-validation-no)";
 
                 this.$emit("isValid", false);
