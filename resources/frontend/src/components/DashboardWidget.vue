@@ -2,9 +2,9 @@
     <div id="widget">
         <span class="icon">
             <img
-                v-bind:src="`@/assets/icons/${icon}_icon_blue.png`"
+                v-bind:src="imgSrcPath"
                 v-bind:alt="icon + ' icon'"
-                v-bind:srcset="`@/assets/icons/${icon}_icon_blue.png`"
+                v-bind:srcset="imgSrcsetPath"
             />
         </span>
         <span class="informations">
@@ -17,6 +17,14 @@
 <script>
     export default {
         name: "DashboardWidget",
+        computed: {
+            imgSrcPath() {
+                return require("@/assets/icons/" + this.icon + "_icon_blue.png" );
+            },
+            imgSrcsetPath() {
+                return require("@/assets/icons/" + this.icon + "_icon_blue.svg" );
+            }
+        },
         props: {
             icon: {
                 type: String,
