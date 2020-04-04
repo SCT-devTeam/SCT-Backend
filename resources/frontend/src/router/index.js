@@ -39,12 +39,12 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     const publicPages = ["/login"];
     const authRequired = !publicPages.includes(to.path);
-    // const storedUser = localStorage.getItem('user') === "" ? null : localStorage.getItem('user');
 
-    if (authRequired && !store.getters.isLoggedIn) {
-        return next("/login");
-    }
-    next();
+    if (authRequired && store.getters.isLoggedIn === false) {
+        next("/login");
+    } else if (to.name === "Login" && store.getters.isLoggedIn) {
+        next("/");
+    } else next();
 });
 
 export default router;
