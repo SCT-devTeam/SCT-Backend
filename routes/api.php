@@ -21,8 +21,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/devis', 'DevisController@list');
     Route::post('/register', 'AuthController@register');
     Route::get('/me', function (Request $request){
-        dd('ac');
-        return response();
+        return $request->user();
     });
 });
 
