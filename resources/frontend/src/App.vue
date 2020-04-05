@@ -45,10 +45,12 @@
         }
 
         > div {
-            height: 100%;
+            height: calc(100% - 40px);
+            max-height: 100vh;
             width: 100%;
+            max-width: 100vw;
 
-            margin-left: 50px;
+            margin: 20px 50px;
         }
     }
 </style>
