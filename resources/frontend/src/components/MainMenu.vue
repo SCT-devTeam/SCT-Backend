@@ -139,7 +139,7 @@ export default {
                         font-size: 1.2em;
                     }
 
-                    &.router-link-active:before {
+                    &.router-link-exact-active:before {
                         content: '';
                         position: absolute;
                         right: -5px;
