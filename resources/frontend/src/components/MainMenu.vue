@@ -16,15 +16,15 @@
             </li>
             <li>
                 <img src="../assets/icons/avatar_icon_blue.png" alt="Customer icon" srcset="../assets/icons/avatar_icon_blue.svg">
-                <router-link :to="{name: 'Dashboard'}" data-title="Customers">Customers</router-link>
+                <router-link :to="{name: 'Customers'}" data-title="Customers">Customers</router-link>
             </li>
             <li>
                 <img src="../assets/icons/invoice_icon_blue.png" alt="Invoice icon" srcset="../assets/icons/invoice_icon_blue.svg">
-                <router-link :to="{name: 'Dashboard'}" data-title="Writings">Writings</router-link>
+                <router-link :to="{name: 'Writings'}" data-title="Writings">Writings</router-link>
             </li>
             <li>
                 <img src="../assets/icons/book_icon_blue.png" alt="Receipt icon" srcset="../assets/icons/book_icon_blue.svg">
-                <router-link :to="{name: 'Dashboard'}" data-title="Receipt book">Receipt book</router-link>
+                <router-link :to="{name: 'ReceiptBook'}" data-title="Receipt book">Receipt book</router-link>
             </li>
         </ul>
 
