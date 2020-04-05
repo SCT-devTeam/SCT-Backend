@@ -25,6 +25,24 @@ const routes = [
         name: "Logout",
         component: () =>
             import(/* webpackChunkName: "logout" */ "../views/Logout.vue")
+    },
+    {
+        path: "/customers",
+        name: "Customers",
+        component: () =>
+            import(/* webpackChunkName: "logout" */ "../views/Customers.vue")
+    },
+    {
+        path: "/writings",
+        name: "Writings",
+        component: () =>
+            import(/* webpackChunkName: "logout" */ "../views/Writings.vue")
+    },
+    {
+        path: "/receipt-book",
+        name: "ReceiptBook",
+        component: () =>
+            import(/* webpackChunkName: "logout" */ "../views/ReceiptBook.vue")
     }
     // TOO: add 404 fallback for bad urls
     // { path: '*', component: NotFoundComponent }
