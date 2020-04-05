@@ -49,6 +49,11 @@ class AddConstraintsAllTables extends Migration
         Schema::table('services_products', function (Blueprint $table) {
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
         });
+
+        Schema::table('personal_access_tokens', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+        });
     }
 
     /**
@@ -94,6 +99,11 @@ class AddConstraintsAllTables extends Migration
 
         Schema::table('services_products', function (Blueprint $table) {
             $table->dropForeign(['company_id']);
+
+        });
+
+        Schema::table('personal_access_tokens', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
 
         });
     }
