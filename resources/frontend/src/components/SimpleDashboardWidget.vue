@@ -16,7 +16,7 @@
 
 <script>
     export default {
-        name: "DashboardWidget",
+        name: "SimpleDashboardWidget",
         computed: {
             imgSrcPath() {
                 return require("@/assets/icons/" + this.icon + "_icon_blue.png" );
@@ -98,7 +98,7 @@
 
                 background-color: var(--circle-color);
 
-                opacity: 0.5;
+                opacity: 0.3;
             }
 
             > img {
