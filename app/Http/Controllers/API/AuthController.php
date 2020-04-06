@@ -49,10 +49,10 @@ class AuthController extends Controller
             'device_name' => 'required'
         ]);
         // 1
-/** @var User $user */
+        /** @var User $user */
         $user = User::where('email', $request->email)->first();
         // 2
-
+//        dd($user);
         if (!$user || !Hash::check($request->password, $user->pwd)) {
             return response()->json(['error' => 'The provided credentials are incorrect.'], 422);
         }
