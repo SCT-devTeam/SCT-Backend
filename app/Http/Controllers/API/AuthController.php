@@ -24,14 +24,19 @@ class AuthController extends Controller
 
         // 2
         $input = $request->all();
-
-        $usr = new User();
-
-        $usr->getRegister($input);
-
-
+        $input['password'] = Hash::make($input['password']);
+        /** @var User $user */
+        $user = User::firstOrCreate([
+            'email'=>$request->email,
+        ],[
+            'gender'=>$request->gender,
+            'lastname'=>$request->lastname,
+            'firstname'=>$request->firstname,
+            'phone'=>$request->number,
+            'pwd'=> Hash::make($request->pwd),
+        ]);
         // 3
-        $token = $usr->createToken($input->device_name)->plainTextToken;
+        $token = $user->createToken($input->device_name)->plainTextToken;
         // 4
         return response()->json(['token' => $token], 200);
     }
@@ -44,15 +49,10 @@ class AuthController extends Controller
             'device_name' => 'required'
         ]);
         // 1
-/** @var User $user */
-
-        $user = new User();
-
-        $user = $user->getLogin($request);
-
-
+        /** @var User $user */
+        $user = User::where('email', $request->email)->first();
         // 2
-
+//        dd($user);
         if (!$user || !Hash::check($request->password, $user->pwd)) {
             return response()->json(['error' => 'The provided credentials are incorrect.'], 422);
         }
