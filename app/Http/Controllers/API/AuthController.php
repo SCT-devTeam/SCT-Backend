@@ -20,9 +20,17 @@ class AuthController extends Controller
 
         // 2
         $input = $request->all();
-        $input['password'] = bcrypt($input['password']); //hash et non bcrypt
+        $input['password'] = Hash::make($input['password']); 
         /** @var User $user */
-        $user = User::firstOrCreate($input); // a réécrtire
+        $user = User::firstOrCreate([
+            'email'=>$request->email,
+        ],[
+            'gender'=>$request->gender,
+            'lastname'=>$request->lastname,
+            'firstname'=>$request->firstname,
+            'phone'=>$request->number,
+            'pwd'=> Hash::make($request->pwd),
+        ]);
         // 3
         $token = $user->createToken($input->device_name)->plainTextToken;
         // 4
@@ -49,6 +57,14 @@ class AuthController extends Controller
 
         return response()->json(['token' => $user->createToken($request->device_name)->plainTextToken]);
         // 4
+    }
+
+    public function logout(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+
+
+
     }
 
 }
