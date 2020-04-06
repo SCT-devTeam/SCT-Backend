@@ -18,7 +18,7 @@ class CreateTableUtilisateur extends Migration
             $table->enum('gender',['man','woman','unspecified']);
             $table->string('lastname',100);
             $table->string('firstname',100);
-            $table->string('email');
+            $table->string('email', 191)->unique();
             $table->string('phone',15)->nullable();
             $table->string('pwd');
             $table->string('notes')->nullable();
