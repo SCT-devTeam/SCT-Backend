@@ -6,7 +6,7 @@
 
 <script>
 // @ is an alias to /src
-import LoginForm from "@/components/LoginForm";
+import LoginForm from "@/components/Forms/LoginForm";
 
 /* eslint-disable */
 export default {

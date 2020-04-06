@@ -82,8 +82,8 @@
 <script>
 // @ is an alias to /src
 import { mapState } from "vuex";
-import SimpleDashboardWidget from "@/components/SimpleDashboardWidget";
-import GraphDashboardWidget from "@/components/GraphDashboardWidget";
+import SimpleDashboardWidget from "@/components/DashboardWidgets/SimpleDashboardWidget";
+import GraphDashboardWidget from "@/components/DashboardWidgets/GraphDashboardWidget";
 
 export default {
     name: "Dashboard",

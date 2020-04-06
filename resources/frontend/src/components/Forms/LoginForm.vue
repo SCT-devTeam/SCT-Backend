@@ -37,7 +37,7 @@
 import { mapMutations } from "vuex";
 import EmailSCT from "@/components/inputs/EmailSCT";
 import PasswordSCT from "@/components/inputs/PasswordSCT";
-import BtnSCT from "@/components/BtnSCT";
+import BtnSCT from "@/components/Buttons/BtnSCT";
 
 export default {
     name: "LoginForm",
