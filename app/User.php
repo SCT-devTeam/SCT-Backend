@@ -98,7 +98,7 @@ class User extends Authenticatable
     }
 
     public function getLogin ($request) {
-        $user = User::where('email', $request->email)->first();
+         return $user = User::where('email', $request->email)->first();
 
     }
 

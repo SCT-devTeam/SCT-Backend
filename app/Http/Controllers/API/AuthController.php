@@ -44,7 +44,7 @@ class AuthController extends Controller
 
         $user = new User();
 
-        $user->getLogin($request);
+        $user = $user->getLogin($request);
 
 
         // 2
