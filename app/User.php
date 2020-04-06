@@ -6,6 +6,7 @@ use Eloquent;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
@@ -82,8 +83,7 @@ class User extends Authenticatable
      * @param $input
      * @return User
      */
-    public function getRegister($input){
-        $input['password'] = Hash::make($input['password']);
+    static public function create($input){
         /** @var User $user */
         $user = User::firstOrCreate([
             'email'=>$input['email']
@@ -91,15 +91,17 @@ class User extends Authenticatable
             'gender'=>$input['gender'],
             'lastname'=>$input['lastname'],
             'firstname'=>$input['firstname'],
-            'phone'=>$input['number'],
+            'phone'=>$input['phone'],
             'pwd'=> Hash::make($input['pwd']),
         ]);
         return $user;
     }
 
-    public function getLogin ($request) {
+    static public function getLogin ($request) {
         $user = User::where('email', $request->email)->first();
-
     }
 
+    static public function getFirstUser() {
+        return User::find(1);
+    }
 }
