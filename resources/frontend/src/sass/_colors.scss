@@ -10,8 +10,8 @@ $color__validation_no: #f71e1e; // Validation NO - Torch Red
 
 :root {
     --colors-main: #{$color__main}; // Main - Ripe Lemon
-    --colors-secondary-principal: #{$color__secondary--alternative}; // Secondary - Actions & Icons Alternative - Electric Violet
-    --colors-secondary-alternative: #{$color__secondary}; // Secondary - Actions & Icons Principal - Pickled Bluewood
+    --colors-secondary-principal: #{$color__secondary}; // Secondary - Actions & Icons Alternative - Electric Violet
+    --colors-secondary-alternative: #{$color__secondary--alternative}; // Secondary - Actions & Icons Principal - Pickled Bluewood
     --colors-active: #{$color__action_active}; // Actions & Icons Active - Dark Blue
     --colors-black: #{$color__black}; // Black for Icons & Text - Cod Gray
     --colors-inactive: #{$color__inactive_subtitle}; // Inactive / Subtitle & Separator - Dove Gray
