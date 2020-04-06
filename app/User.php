@@ -78,4 +78,28 @@ class User extends Authenticatable
         return $this->hasMany(PersonalAccessTokens::class, 'user_id', 'id');
     }
 
+    /**
+     * @param $input
+     * @return User
+     */
+    public function getRegister($input){
+        $input['password'] = Hash::make($input['password']);
+        /** @var User $user */
+        $user = User::firstOrCreate([
+            'email'=>$input['email']
+        ],[
+            'gender'=>$input['gender'],
+            'lastname'=>$input['lastname'],
+            'firstname'=>$input['firstname'],
+            'phone'=>$input['number'],
+            'pwd'=> Hash::make($input['pwd']),
+        ]);
+        return $user;
+    }
+
+    public function getLogin ($request) {
+        $user = User::where('email', $request->email)->first();
+
+    }
+
 }

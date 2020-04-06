@@ -20,19 +20,14 @@ class AuthController extends Controller
 
         // 2
         $input = $request->all();
-        $input['password'] = Hash::make($input['password']); 
-        /** @var User $user */
-        $user = User::firstOrCreate([
-            'email'=>$request->email,
-        ],[
-            'gender'=>$request->gender,
-            'lastname'=>$request->lastname,
-            'firstname'=>$request->firstname,
-            'phone'=>$request->number,
-            'pwd'=> Hash::make($request->pwd),
-        ]);
+
+        $usr = new User();
+
+        $usr->getRegister($input);
+
+
         // 3
-        $token = $user->createToken($input->device_name)->plainTextToken;
+        $token = $usr->createToken($input->device_name)->plainTextToken;
         // 4
         return response()->json(['token' => $token], 200);
     }
@@ -46,7 +41,12 @@ class AuthController extends Controller
         ]);
         // 1
 /** @var User $user */
-        $user = User::where('email', $request->email)->first();
+
+        $user = new User();
+
+        $user->getLogin($request);
+
+
         // 2
 
         if (!$user || !Hash::check($request->password, $user->pwd)) {
