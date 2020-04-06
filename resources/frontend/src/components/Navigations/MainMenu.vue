@@ -11,19 +11,19 @@
 
         <ul class="menu">
             <li>
-                <img src="../assets/icons/dashboard_icon_blue.png" alt="Dashboard icon" srcset="../assets/icons/dashboard_icon_blue.svg">
+                <img src="@/assets/icons/dashboard_icon_blue.png" alt="Dashboard icon" srcset="@/assets/icons/dashboard_icon_blue.svg">
                 <router-link :to="{name: 'Dashboard'}" data-title="Dashboard">Dashboard</router-link>
             </li>
             <li>
-                <img src="../assets/icons/avatar_icon_blue.png" alt="Customer icon" srcset="../assets/icons/avatar_icon_blue.svg">
+                <img src="@/assets/icons/avatar_icon_blue.png" alt="Customer icon" srcset="@/assets/icons/avatar_icon_blue.svg">
                 <router-link :to="{name: 'Customers'}" data-title="Customers">Customers</router-link>
             </li>
             <li>
-                <img src="../assets/icons/invoice_icon_blue.png" alt="Invoice icon" srcset="../assets/icons/invoice_icon_blue.svg">
+                <img src="@/assets/icons/invoice_icon_blue.png" alt="Invoice icon" srcset="@/assets/icons/invoice_icon_blue.svg">
                 <router-link :to="{name: 'Writings'}" data-title="Writings">Writings</router-link>
             </li>
             <li>
-                <img src="../assets/icons/book_icon_blue.png" alt="Receipt icon" srcset="../assets/icons/book_icon_blue.svg">
+                <img src="@/assets/icons/book_icon_blue.png" alt="Receipt icon" srcset="@/assets/icons/book_icon_blue.svg">
                 <router-link :to="{name: 'ReceiptBook'}" data-title="Receipt book">Receipt book</router-link>
             </li>
         </ul>
@@ -53,6 +53,8 @@ export default {
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+
+        z-index: 1;
 
         width: 60px;
 
@@ -188,7 +190,7 @@ export default {
                 border-radius: 20px;
 
                 background-color: white;
-                background-image: url("../assets/icons/settings_icon_blue.png");
+                background-image: url("../../assets/icons/settings_icon_blue.png");
                 background-position: center;
                 background-size: 80%;
                 background-repeat: no-repeat;
