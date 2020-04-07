@@ -23,7 +23,10 @@ Route::middleware('auth:sanctum')->group(function() {
     });
     Route::get('logout', 'API\AuthController@logout');
     Route::post('/createCompany', 'CompanyController@create');
+    Route::post('/createCustomer', 'CustomerController@create');
     Route::post('/register', 'AuthController@register');
+    Route::post('/customers', 'CustomerController@getCustomerAll');
+
 
 });
 

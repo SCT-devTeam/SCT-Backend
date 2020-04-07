@@ -41,4 +41,9 @@ class CompanyController extends Controller
         return response()->json(['test'=>'non']);
 
     }
+
+    public function selectCompany()
+    {
+
+    }
 }
