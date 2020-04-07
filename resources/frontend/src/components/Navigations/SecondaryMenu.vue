@@ -1,8 +1,7 @@
 <template>
     <nav id="Secondary-menu">
         <ul>
-            <li @click="itemClicked('Prospects')" :class="{'active': currentItemNav === 'Prospects'}">Prospects</li>
-            <li @click="itemClicked('Customers')" :class="{'active': currentItemNav === 'Customers'}">Customers</li>
+            <li v-for="item in items" @click="itemClicked(item)" :class="{'active': currentItemNav === item}">{{item}}</li>
         </ul>
     </nav>
 </template>
@@ -12,7 +11,13 @@
         name: "SecondaryMenu",
         data() {
             return {
-                currentItemNav: 'Prospects',
+                currentItemNav: this.items[0],
+            }
+        },
+        props: {
+            items: {
+                type: Array,
+                required: true,
             }
         },
         methods: {
