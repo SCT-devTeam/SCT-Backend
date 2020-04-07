@@ -56,6 +56,33 @@ class install extends Command
 
         $this->call("migrate"); // Apply migrations
 
+        $company = null;
+        $company = Company::first();
+
+        if ($company == null) {
+
+            $this->info("No company registered");
+
+
+            $firstCompanyName = $this->ask('What\'s your company name ?');
+            while (!$firstCompanyName != null || !$firstCompanyName != '') {
+                $firstCompanyName = $this->ask('What\'s your company name ? (can\'t be empty !)');
+            }
+
+            $company = Company::create([
+                'legal_form' => 'SA',
+                'name' => $firstCompanyName,
+                'email' => 'a@a.com'
+            ]);
+
+            if ($company != null) {
+                $this->info('Company created !');
+            } else {
+                $this->error("An error has occurred on company creation, please retry");
+            }
+        }
+
+
         $user = null;
         $user = User::first();
 
@@ -94,6 +121,8 @@ class install extends Command
                 $firstUserPhone = $this->ask('What\'s your mobile phone(Will used for A2F) ? (can\'t be empty !)');
             }
 
+            $this->info(Company::first()->id);
+
             $user = User::create([
                 'firstname' => $firstUserFirstName,
                 'lastname' => $firstUserLastName,
@@ -101,6 +130,7 @@ class install extends Command
                 'email' => $firstUserEmail,
                 'pwd' => $firstUserPwd,
                 'phone' => $firstUserPhone,
+                'companies' => Company::first()->id,
             ]);
 
             if ($user != null) {
@@ -110,32 +140,6 @@ class install extends Command
             }
         }
 
-
-        $company = null;
-        $company = Company::first();
-
-        if ($company == null) {
-
-            $this->info("No company registered");
-
-
-            $firstCompanyName = $this->ask('What\'s your company name ?');
-            while (!$firstCompanyName != null || !$firstCompanyName != '') {
-                $firstCompanyName = $this->ask('What\'s your company name ? (can\'t be empty !)');
-            }
-
-            $company = Company::create([
-                'legal_form' => 'SA',
-                'name' => $firstCompanyName,
-                'email' => 'a@a.com'
-            ]);
-
-            if ($company != null) {
-                $this->info('Company created !');
-            } else {
-                $this->error("An error has occurred on company creation, please retry");
-            }
-        }
 
         $this->info('Configuration finished, you can now access to the app on [' . $app_url . '] using your login previously created');
 
