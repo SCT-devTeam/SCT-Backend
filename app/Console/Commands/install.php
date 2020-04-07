@@ -55,6 +55,8 @@ class install extends Command
 
             $this->info("First install detected !");
 
+            $this->info("No user registered");
+
 
             $firstUserFirstName = $this->ask('What\'s your firstname ?');
             while (!$firstUserFirstName != null || !$firstUserFirstName != '') {
@@ -107,6 +109,9 @@ class install extends Command
 
         if ($company == null) {
 
+            $this->info("No company registered");
+
+
             $firstCompanyName = $this->ask('What\'s your company name ?');
             while (!$firstCompanyName != null || !$firstCompanyName != '') {
                 $firstCompanyName = $this->ask('What\'s your company name ? (can\'t be empty !)');
@@ -115,6 +120,7 @@ class install extends Command
             $company = Company::create([
                 'legal_form' => 'SA',
                 'name' => $firstCompanyName,
+                'email' => 'a@a.com'
             ]);
 
             if ($company != null) {
