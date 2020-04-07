@@ -37,4 +37,10 @@ class UserController extends Controller
 
         return response()->json($usr->api_token);
     }
+
+    public function deleteUsr (Request $request)
+    {
+        $usr = User::where('email', $request->email)->first();
+
+    }
 }
