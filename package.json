@@ -5,6 +5,9 @@
   "author": "Julien SEIXAS (Zyr0)",
   "license": "https://github.com/SCT-devTeam/SCT-Backend/blob/master/LICENSE.md#the-open-source-common-sense-license",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.13.0"
+  },
   "homepage": "https://github.com/SCT-devTeam/SCT-Backend#readme",
   "repository": {
     "type": "git",
