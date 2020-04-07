@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 //});
 
 Route::middleware('auth:sanctum')->group(function() {
-    Route::post('/createCompany', 'CompanyController@create');
+    Route::get('/devis', 'DevisController@list');
     Route::post('/register', 'AuthController@register');
     Route::get('/me', function (Request $request){
         return $request->user();

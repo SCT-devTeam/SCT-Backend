@@ -15,29 +15,29 @@ class CreateTableEntreprise extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->enum('legal_form',['Micro-entreprise','SA','SAS','SARL','AE','EI','EIRL','EURL','SASU']);
+                $table->enum('legal_form',['Micro-entreprise','SA','SAS','SARL','AE','EI','EIRL','EURL','SASU'])->nullable();
                 $table->string('name');
-                $table->integer('siret');
+                $table->integer('siret')->nullable();
                 $table->string('email');
-                $table->integer('phone');
-                $table->integer('street_number');
-                $table->string('street_name');
-                $table->integer('zipcode');
-                $table->string('city');
-                $table->integer('capital_in_cents');
-                $table->string('insurance');
-                $table->string('bban',34);
-                $table->boolean('bban_anytmie');
-                $table->smallInteger('default_revive_delay_in_days');
-                $table->smallInteger('default_payment_delay_in_days');
-                $table->string('default_payment_terms');
-                $table->enum('default_payment_method', ['credit_cardbank_transfer','bank_check','cash','multiple']);
-                $table->integer('default_down_payment_percentage');
-                $table->smallInteger('default_quote_validity_delay_in_days');
-                $table->string('default_quote_accepting_conditions');
-                $table->string('default_invoice_notice');
-                $table->string('default_quote_notice');
-                $table->string('notes',500);
+                $table->integer('phone')->nullable();
+                $table->integer('street_number')->nullable();
+                $table->string('street_name')->nullable();
+                $table->integer('zipcode')->nullable();
+                $table->string('city')->nullable();
+                $table->integer('capital_in_cents')->nullable();
+                $table->string('insurance')->nullable();
+                $table->string('bban',34)->nullable();
+                $table->boolean('bban_anytmie')->nullable();
+                $table->smallInteger('default_revive_delay_in_days')->nullable();
+                $table->smallInteger('default_payment_delay_in_days')->nullable();
+                $table->string('default_payment_terms')->nullable();
+                $table->enum('default_payment_method', ['credit_cardbank_transfer','bank_check','cash','multiple->$this->nullable()']);
+                $table->integer('default_down_payment_percentage')->nullable();
+                $table->smallInteger('default_quote_validity_delay_in_days')->nullable();
+                $table->string('default_quote_accepting_conditions')->nullable();
+                $table->string('default_invoice_notice')->nullable();
+                $table->string('default_quote_notice')->nullable();
+                $table->string('notes',500)->nullable();
 
 
         });
