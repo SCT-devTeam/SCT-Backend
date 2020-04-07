@@ -2,11 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Controllers\API\AuthController;
+use App\Company;
 use App\User;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class install extends Command
 {
@@ -50,18 +49,24 @@ class install extends Command
         $this->call("migrate"); // Apply migrations
 
         $user = null;
-        $user = User::getFirstUser();
+        $user = User::first();
 
         if ($user == null) {
 
             $this->info("First install detected !");
 
-            // Set basic user informations
-            $firstUser = [
-                'firstname' => $this->ask('What\'s your firstname ?'),
-                'lastname' => $this->ask('What\'s your lastname ?'),
-                'gender' => $this->choice('What\'s your gender ?', ['man','woman','unspecified'], 0),
-            ];
+
+            $firstUserFirstName = $this->ask('What\'s your firstname ?');
+            while (!$firstUserFirstName != null || !$firstUserFirstName != '') {
+                $firstUserFirstName = $this->ask('What\'s your firstname ? (can\'t be empty !)');
+            }
+
+            $firstUserLastName = $this->ask('What\'s your lastname ?');
+            while (!$firstUserLastName != null || !$firstUserLastName != '') {
+                $firstUserLastName = $this->ask('What\'s your lastname ? (can\'t be empty !)');
+            }
+
+            $firstUserGender = $this->choice('What\'s your gender ?', ['man','woman','unspecified'], 2);
 
             // Ask user informations with validation
             $firstUserEmail = $this->ask('What\'s your email address (used for login) ?');
@@ -69,30 +74,58 @@ class install extends Command
                 $firstUserEmail = $this->ask('Please enter a CORRECT email address, it is used for login !');
             }
 
-            $firstUserPwd = $this->secret('Please enter a strong password (used for login)');
+            $firstUserPwd = Hash::make($this->secret('Please enter a STRONG password, it is used for login'));
             while (!preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$#", $firstUserPwd)) {
                 $this->info("A strong password begin at 8 characters with 1 lowercase + 1 CAPS + 1 number + 1 special character");
-                $firstUserPwd = $this->secret('Please enter a STRONGER password, it is used for login');
+                $firstUserPwd = Hash::make($this->secret('Please enter a STRONGER password, it is used for login'));
             }
 
             $firstUserPhone = $this->ask("What\'s your mobile phone (Will used for A2F) ?");
+            while (!$firstUserPhone != null || !$firstUserPhone != '') {
+                $firstUserPhone = $this->ask('What\'s your mobile phone(Will used for A2F) ? (can\'t be empty !)');
+            }
 
-            $firstUser += [
+            $user = User::create([
+                'firstname' => $firstUserFirstName,
+                'lastname' => $firstUserLastName,
+                'gender' => $firstUserGender,
                 'email' => $firstUserEmail,
                 'pwd' => $firstUserPwd,
                 'phone' => $firstUserPhone,
-            ];
-
-            $user = User::create($firstUser);
+            ]);
 
             if ($user != null) {
                 $this->info('Account created !');
-
-                $this->info('Configuration finished, you can now access to the app on [' . $app_url . '] using your login previously created');
             } else {
                 $this->error("An error has occurred on account creation, please retry");
             }
         }
+
+
+        $company = null;
+        $company = Company::first();
+
+        if ($company == null) {
+
+            $firstCompanyName = $this->ask('What\'s your company name ?');
+            while (!$firstCompanyName != null || !$firstCompanyName != '') {
+                $firstCompanyName = $this->ask('What\'s your company name ? (can\'t be empty !)');
+            }
+
+            $company = Company::create([
+                'legal_form' => 'SA',
+                'name' => $firstCompanyName,
+            ]);
+
+            if ($company != null) {
+                $this->info('Company created !');
+            } else {
+                $this->error("An error has occurred on company creation, please retry");
+            }
+        }
+
+        $this->info('Configuration finished, you can now access to the app on [' . $app_url . '] using your login previously created');
+
         return;
     }
 }
