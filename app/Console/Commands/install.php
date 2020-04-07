@@ -43,8 +43,16 @@ class install extends Command
     {
         $app_env = env('APP_ENV', false);
         $app_url = env('APP_URL', false);
+        $app_key = env('APP_KEY', false);
+
 
         $this->info("Application running on " . $app_env . " mode");
+
+
+        if (!$app_key) {
+            $this->info("First install detected !");
+            $this->call("key:gen");
+        }
 
         $this->call("migrate"); // Apply migrations
 
@@ -53,7 +61,6 @@ class install extends Command
 
         if ($user == null) {
 
-            $this->info("First install detected !");
 
             $this->info("No user registered");
 
