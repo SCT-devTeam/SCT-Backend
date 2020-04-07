@@ -28,6 +28,8 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\PersonalAccessTokens whereToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\PersonalAccessTokens whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\PersonalAccessTokens whereUserId($value)
+ * @property-read \App\User $tokenable
+ * @property-read \App\User $user
  */
 class PersonalAccessTokens extends PersonalAccessToken
 {
