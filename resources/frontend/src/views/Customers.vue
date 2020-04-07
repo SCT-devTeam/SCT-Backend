@@ -1,6 +1,6 @@
 <template>
     <div id="customers">
-        <SecondaryMenu @navigationChanged="viewDisplayed = $event"></SecondaryMenu>
+        <SecondaryMenu @navigationChanged="viewDisplayed = $event" :items="['Prospects', 'Customers']"></SecondaryMenu>
         <div id="customers__view">
             <ProspectsList v-if="this.viewDisplayed === 'Prospects'"></ProspectsList>
             <CustomersList v-if="this.viewDisplayed === 'Customers'"></CustomersList>
