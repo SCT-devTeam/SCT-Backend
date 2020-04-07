@@ -8,6 +8,7 @@
             <div id="panel-2__container">
                 <CustomerProfileCard @displayContact="contactToDisplay = $event"></CustomerProfileCard>
                 <ContactProfileCard v-if="this.contactToDisplay != null" class="panel-2__container__contact"></ContactProfileCard>
+                <span v-if="this.contactToDisplay != null" id="panel-2__container__contact__back" @click="contactToDisplay = null"></span>
             </div>
         </div>
     </div>
@@ -75,10 +76,24 @@
 
                 > div.panel-2__container__contact {
                     position: absolute;
-                    top: 0;
-                    right: 0;
-                    bottom: 0;
+                    top: 5px;
+                    right: 5px;
+                    left: 20px;
+                    bottom: 5px;
                     z-index: 2;
+                }
+
+                > span#panel-2__container__contact__back {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+
+                    width: 19px;
+
+                    background-color: rgba(0, 0, 0, 0.5);
+                    
+                    cursor: pointer;
                 }
             }
         }
