@@ -7,7 +7,7 @@
 
 <script>
     // @ is an alias to /src
-    import MainMenu from "@/components/MainMenu";
+    import MainMenu from "@/components/Navigations/MainMenu";
     import { mapGetters } from "vuex";
 
     export default {
