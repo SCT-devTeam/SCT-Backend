@@ -20,8 +20,8 @@
                 title="FirstName"
                 placeholder="FirstName"
                 label="FirstName"
-                v-bind:defaultValue="entity.firstName"
-                v-bind:isEditable="isEditionMode"
+                v-model="entity.firstName"
+                :isEditable="isEditionMode"
             ></TextSCT>
 
             <TextSCT
@@ -29,14 +29,14 @@
                 title="LastName"
                 placeholder="LastName"
                 label="LastName"
-                v-bind:defaultValue="entity.lastName"
+                v-model="entity.lastName"
                 v-bind:isEditable="isEditionMode"
             ></TextSCT>
         </div>
 
         <p class="title">Contacts</p>
 
-        <TextFiledSCT class="filed" @iconClicked="displayContact" v-for="contact in entity.contacts" :defaultValue="contact.firstName + ' ' + contact.lastName" displayIcon="true"></TextFiledSCT>
+        <TextFiledSCT class="filed" @iconClicked="displayContact" v-for="contact in entity.contacts" :defaultValue="contact.firstName + ' ' + contact.lastName" :displayIcon="true"></TextFiledSCT>
 
         <p class="title">Notes</p>
 
@@ -49,6 +49,18 @@
             v-bind:defaultValue="entity.notes"
             v-bind:isEditable="isEditionMode"
         ></TextSCT>
+
+        <EditCircleBtnSCT
+            class="btn"
+            v-if="!isEditionMode"
+            @clicked="toggleMode"
+        ></EditCircleBtnSCT>
+
+        <ValidationCircleBtnSCT
+            class="btn"
+            v-if="isEditionMode"
+            @clicked="toggleMode"
+        ></ValidationCircleBtnSCT>
     </div>
 </template>
 
@@ -56,10 +68,12 @@
     import DropdownSCT from "./inputs/DropdownSCT";
     import TextSCT from "./inputs/TextSCT";
     import TextFiledSCT from "./DisplayTexts/TextFiledSCT";
+    import EditCircleBtnSCT from "./Buttons/EditCircleBtnSCT";
+    import ValidationCircleBtnSCT from "./Buttons/ValidationCircleBtnSCT";
 
     export default {
         name: "ProfileCard",
-        components: { DropdownSCT, TextSCT, TextFiledSCT },
+        components: { DropdownSCT, TextSCT, TextFiledSCT, EditCircleBtnSCT, ValidationCircleBtnSCT },
         data() {
             return {
                 isEditionMode: false,
@@ -85,6 +99,9 @@
         methods: {
             displayContact: function () {
                 console.log('display contact');
+            },
+            toggleMode: function () {
+                this.isEditionMode = !this.isEditionMode;
             }
         },
     }
