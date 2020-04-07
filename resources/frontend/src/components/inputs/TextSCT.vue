@@ -17,7 +17,6 @@
         ></span>
         <input
             type="text"
-            :id="name"
             ref="input"
             :name="name"
             :placeholder="placeholder"
