@@ -17,11 +17,11 @@ class CreateQuotesItemsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger(('quote_id'));
             $table->unsignedBigInteger('item_id');
-            $table->string('label',100);
-            $table->string('description');
-            $table->integer('pre_vat_price_in_cents');
-            $table->integer('var_rate');
-            $table->integer('quantity');
+            $table->string('label',100)->nullable();
+            $table->string('description')->nullable();
+            $table->integer('pre_vat_price_in_cents')->nullable();
+            $table->integer('var_rate')->nullable();
+            $table->integer('quantity')->nullable();
 
         });
     }

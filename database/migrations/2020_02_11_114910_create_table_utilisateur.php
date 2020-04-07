@@ -15,7 +15,7 @@ class CreateTableUtilisateur extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('gender',['man','woman','unspecified']);
+            $table->enum('gender',['man','woman','unspecified'])->nullable();
             $table->string('lastname',100);
             $table->string('firstname',100);
             $table->string('email', 191)->unique();
