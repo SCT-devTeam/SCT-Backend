@@ -7,7 +7,7 @@
             <p class="status">Amount</p>
         </span>
         <div id="container">
-            <span class="line" v-for="writing in this.writings">
+            <span class="line" v-for="(writing, index) in this.writings" :key="index" @click="itemClicked(index)">
                 <p class="date">{{writing.date}}</p>
                 <p class="status">{{writing.status}}</p>
                 <p class="customerName">{{writing.customerName}}</p>
@@ -42,6 +42,11 @@
                 ]
             }
         },
+        methods: {
+            itemClicked: function (writing_id) {
+                this.$emit('itemClicked', writing_id);
+            }
+        }
     }
 </script>
 
@@ -124,6 +129,8 @@
                 height: 50px;
 
                 padding-right: calc(5% - 10px);
+
+                cursor: pointer;
 
                 > p {
                     font-family: $font__text;
