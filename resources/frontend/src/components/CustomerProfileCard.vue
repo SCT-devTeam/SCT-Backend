@@ -36,7 +36,7 @@
 
         <p class="title">Contacts</p>
 
-        <TextFiledSCT class="filed" @iconClicked="displayContact" v-for="contact in entity.contacts" :defaultValue="contact.firstName + ' ' + contact.lastName" :displayIcon="true"></TextFiledSCT>
+        <TextFiledSCT class="filed" @iconClicked="displayContact(contact.id)" v-for="contact in entity.contacts" :defaultValue="contact.firstName + ' ' + contact.lastName" :displayIcon="true"></TextFiledSCT>
 
         <p class="title">Notes</p>
 
@@ -83,11 +83,13 @@
                     lastName: 'Doe',
                     contacts: [
                         {
+                            id: 1,
                             firstName: 'John',
                             lastName: 'Doe',
                             notes: 'Here\'s some notes',
                         },
                         {
+                            id: 2,
                             firstName: 'Jan',
                             lastName: 'Doe',
                             notes: 'Silence is golden'
@@ -97,8 +99,8 @@
             }
         },
         methods: {
-            displayContact: function () {
-                console.log('display contact');
+            displayContact: function (contact_id) {
+                this.$emit('displayContact', contact_id);
             },
             toggleMode: function () {
                 this.isEditionMode = !this.isEditionMode;
