@@ -18,11 +18,13 @@ use Illuminate\Http\Request;
 //});
 
 Route::middleware('auth:sanctum')->group(function() {
-    Route::post('/createCompany', 'CompanyController@create');
-    Route::post('/register', 'AuthController@register');
     Route::get('/me', function (Request $request){
         return $request->user();
     });
+    Route::get('logout', 'API\AuthController@logout');
+    Route::post('/createCompany', 'CompanyController@create');
+    Route::post('/register', 'AuthController@register');
+
 });
 
 Route::prefix('airlock')->namespace('API')->group(function() {
