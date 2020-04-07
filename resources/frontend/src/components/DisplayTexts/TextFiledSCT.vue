@@ -54,13 +54,6 @@
 // Change input by stylise vuetify input : https://vuetifyjs.com/en/components/text-fields/#text-fields
 export default {
     name: "TextSCT",
-    mounted() {
-        // TODO: fix label position & topline offset
-        if (this.value.length > 0) {
-            this.toggleTopLine();
-            this.toggleLabel();
-        }
-    },
     data() {
         return {
             value: this.defaultValue,
@@ -109,6 +102,7 @@ export default {
         }
     },
     methods: {
+        // TODO: refactor it based on TextSCT input
         hovered() {
             if (!this.isHovered && !this.isActive && !this.isFilled) {
                 this.isHovered = true;
