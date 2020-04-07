@@ -17,18 +17,18 @@ class CreateQuotesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('company_id');
             $table->unsignedBigInteger('customer_id');
-            $table->enum('qualification',['draft','edited','awaiting_approuval','revived','accepted','declined','discontinued']);
-            $table->date('edition_date');
-            $table->smallInteger('validity_delay_in_days');
-            $table->smallInteger('payment_delay_in_days');
-            $table->string('payment_terms');
-            $table->enum('payment_method',['credit_cardbank_transfer','bank_check','cash','multiple']);
-            $table->integer('down_payment_percentage');
-            $table->string('notice');
-            $table->string('accepting_conditions');
-            $table->date('sending_date');
-            $table->date('revived_date');
-            $table->date('last_qualification_date');
+            $table->enum('qualification',['draft','edited','awaiting_approuval','revived','accepted','declined','discontinued'])->nullable();
+            $table->date('edition_date')->nullable();
+            $table->smallInteger('validity_delay_in_days')->nullable();
+            $table->smallInteger('payment_delay_in_days')->nullable();
+            $table->string('payment_terms')->nullable();
+            $table->enum('payment_method',['credit_cardbank_transfer','bank_check','cash','multiple'])->nullable();
+            $table->integer('down_payment_percentage')->nullable();
+            $table->string('notice')->nullable();
+            $table->string('accepting_conditions')->nullable();
+            $table->date('sending_date')->nullable();
+            $table->date('revived_date')->nullable();
+            $table->date('last_qualification_date')->nullable();
 
         });
     }
