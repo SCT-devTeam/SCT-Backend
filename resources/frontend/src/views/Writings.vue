@@ -1,17 +1,25 @@
 <template>
     <div id="writings">
         <SecondaryMenu @navigationChanged="viewDisplayed = $event" :items="['Quotes', 'Invoices']"></SecondaryMenu>
-        <WritingsTable></WritingsTable>
+        <WritingsTable @itemClicked="writingEditIdforModal = $event"></WritingsTable>
+        <Writing v-if="writingEditIdforModal" :writingId="writingEditIdforModal"></Writing>
     </div>
 </template>
 
 <script>
     import SecondaryMenu from "../components/Navigations/SecondaryMenu";
     import WritingsTable from "../components/WritingsTable";
+    import Writing from "../components/modals/Writing";
+
 
     export default {
         name: "Writings",
-        components:{ SecondaryMenu, WritingsTable }
+        components:{ SecondaryMenu, WritingsTable, Writing },
+        data() {
+            return {
+                writingEditIdforModal: null,
+            }
+        }
     }
 </script>
 
