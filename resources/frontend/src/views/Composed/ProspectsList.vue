@@ -92,7 +92,7 @@
                     width: 19px;
 
                     background-color: rgba(0, 0, 0, 0.5);
-                    
+
                     cursor: pointer;
                 }
             }
