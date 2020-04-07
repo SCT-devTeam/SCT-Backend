@@ -16,12 +16,12 @@ class CreateServicesProductsTable extends Migration
         Schema::create('services_products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('company_id');
-            $table->string('label',100);
-            $table->string('description');
-            $table->integer('pre_vat_price_in_cents');
-            $table->integer('vat_rate');
-            $table->enum('item_type',['service','product']);
-            $table->integer('quantity');
+            $table->string('label',100)->nullable();
+            $table->string('description')->nullable();
+            $table->integer('pre_vat_price_in_cents')->nullable();
+            $table->integer('vat_rate')->nullable();
+            $table->enum('item_type',['service','product'])->nullable();
+            $table->integer('quantity')->nullable();
 
         });
     }
