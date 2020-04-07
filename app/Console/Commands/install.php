@@ -53,8 +53,6 @@ class install extends Command
             $this->info("First install detected !");
         }
 
-        $this->call("migrate"); // Apply migrations
-
         $company = null;
         $company = Company::first();
 
@@ -119,8 +117,6 @@ class install extends Command
             while (!$firstUserPhone != null || !$firstUserPhone != '') {
                 $firstUserPhone = $this->ask('What\'s your mobile phone(Will used for A2F) ? (can\'t be empty !)');
             }
-
-            $this->info(Company::first()->id);
 
             $user = User::create([
                 'firstname' => $firstUserFirstName,
