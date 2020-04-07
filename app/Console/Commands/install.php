@@ -51,6 +51,7 @@ class install extends Command
 
         if (!$app_key) {
             $this->info("First install detected !");
+            $this->call('migrate');
         }
 
         $company = null;
