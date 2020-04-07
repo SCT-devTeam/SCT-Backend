@@ -17,18 +17,18 @@
         ></span>
         <input
             type="text"
-            v-bind:id="name"
+            :id="name"
             ref="input"
-            v-bind:name="name"
-            v-bind:placeholder="placeholder"
-            v-bind:title="title"
+            :name="name"
+            :placeholder="placeholder"
+            :title="title"
+            :value="value"
             :required="isRequired"
             :disabled="!isEditable"
-            v-model="value"
-            v-bind:class="{ hovered: isHovered, active: isActive }"
-            v-on:keyup="newKeyboardAction"
-            v-on:focusin="active"
-            v-on:focusout="notActive"
+            :class="{ hovered: isHovered, active: isActive }"
+            @input="onInput"
+            @focusin="active"
+            @focusout="notActive"
             @mouseover="hovered"
         />
         <span
@@ -73,24 +73,11 @@
 // Change inputs by stylise vuetify inputs : https://vuetifyjs.com/en/components/text-fields/#text-fields
 export default {
     name: "TextSCT",
-    mounted() {
-        if (this.value.length > 0) {
-            this.toggleTopLine();
-            this.toggleLabel();
-        }
-    },
     data() {
         return {
-            value: this.defaultValue,
             error: "",
             isHovered: false,
             isActive: false,
-            topLineOffset: 20,
-            labelPosition: {
-                top: "50%",
-                left: "15px"
-            },
-            outlineColor: "var(--colors-secondary-principal)"
         };
     },
     props: {
@@ -110,7 +97,7 @@ export default {
             type: String,
             default: "Text"
         },
-        defaultValue: String,
+        value: String,
         isRequired: {
             type: Boolean,
             default: false
@@ -124,59 +111,53 @@ export default {
     computed: {
         isFilled() {
             return !!this.value;
-        }
+        },
+        isInteracting() {
+            return this.isHovered || this.isActive || this.isFilled;
+        },
+        topLineOffset() {
+            if (this.isInteracting) {
+                return (this.$refs.label?.clientWidth || 0) + 30;
+            }
+
+            return 20;
+        },
+        labelPosition() {
+            if (this.isInteracting) {
+                return {
+                    top: "0",
+                    left: "25px",
+                }
+            }
+
+            return {
+                top: "50%",
+                left: "15px",
+            }
+        },
+        outlineColor() {
+            if (this.isActive) {
+                return "var(--colors-active)";
+            }
+
+            return "var(--colors-secondary-principal)";
+        },
     },
     methods: {
         hovered() {
-            if (!this.isHovered && !this.isActive && !this.isFilled) {
-                this.isHovered = true;
-                this.toggleTopLine();
-                this.toggleLabel()
-            }
+            this.isHovered = true;
         },
         notHovered() {
             this.isHovered = false;
-            if (!this.isActive && !this.isFilled) {
-                this.toggleTopLine();
-                this.toggleLabel()
-            }
         },
         active() {
-            if (!this.isActive) {
-                this.isActive = !this.isActive;
-
-                if (this.isActive) {
-                    this.toggleLabel();
-                    this.outlineColor = "var(--colors-active)";
-                }
-            }
+            this.isActive = true;
         },
         notActive() {
             this.isActive = false;
-            if (!this.isFilled) {
-                this.toggleTopLine();
-                this.toggleLabel()
-            }
-            this.outlineColor = "var(--colors-secondary-principal)";
         },
-        toggleTopLine() {
-            if (this.topLineOffset === 20 && (this.isFilled || this.isHovered)) {
-                this.topLineOffset += this.$refs.label.clientWidth + 10;
-            } else {
-                this.topLineOffset = 20;
-            }
-        },
-        toggleLabel() {
-            if (this.labelPosition.top === "0" && !this.isFilled && !this.isHovered) {
-                this.labelPosition.top = "50%";
-                this.labelPosition.left = "15px";
-            } else {
-                this.labelPosition.top = "0";
-                this.labelPosition.left = "25px";
-            }
-        },
-        newKeyboardAction() {
-            this.$emit("valueChanged", this.value);
+        onInput(e) {
+            this.$emit("input", e.target.value);
         },
     },
 };
