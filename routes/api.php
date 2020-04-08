@@ -22,29 +22,21 @@ Route::middleware('auth:sanctum')->group(function() {
         return $request->user();
     });
     Route::get('logout', 'API\AuthController@logout');
-    Route::post('/createCompany', 'CompanyController@create');
-    Route::post('/createCustomer', 'CustomerController@create');
     Route::post('/register', 'AuthController@register');
+
+    Route::post('/createCustomer', 'CustomerController@create');
     Route::post('/customers', 'CustomerController@getCustomerAll');
+
+    Route::post('/createCompany', 'CompanyController@create');
     Route::get('/company', 'CompanyController@selectCompany');
 
     Route::post('/contacts', 'ContactController@getContact');
     Route::post('/updateContacts', 'ContactController@updateContact');
     Route::post('/deleteContacts', 'ContactController@deleteContact');
 
-
 });
 
 Route::prefix('airlock')->namespace('API')->group(function() {
-    Route::post('/register', 'AuthController@register');
     Route::post('/login', 'AuthController@login');
 
 });
-
-Route::get('/devis', 'DevisController@list');
-
-
-//Route::get
-Route::post('signin', 'UserController@login');
-
-Route::post('signup','UserController@signup');
