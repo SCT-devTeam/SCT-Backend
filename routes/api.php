@@ -26,6 +26,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('/createCustomer', 'CustomerController@create');
     Route::post('/register', 'AuthController@register');
     Route::post('/customers', 'CustomerController@getCustomerAll');
+    Route::get('/company', 'CompanyController@selectCompany');
 
 
 });

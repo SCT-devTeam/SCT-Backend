@@ -42,8 +42,10 @@ class CompanyController extends Controller
 
     }
 
-    public function selectCompany()
+    public function selectCompany(Request $request)
     {
-
+        $idcompany = $request->user()->companies;
+        $company = Company::where('id','=',$idcompany)->get();
+        return response()->json(['comp'=>$company]);
     }
 }
