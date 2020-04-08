@@ -30,9 +30,10 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('/createCompany', 'CompanyController@create');
     Route::get('/company', 'CompanyController@selectCompany');
 
-    Route::post('/contacts', 'ContactController@getContact');
-    Route::post('/updateContacts', 'ContactController@updateContact');
-    Route::post('/deleteContacts', 'ContactController@deleteContact');
+    Route::post('/createContact', 'ContactController@create');
+    Route::post('/contact', 'ContactController@getContact');
+    Route::post('/updateContact', 'ContactController@updateContact');
+    Route::post('/deleteContact', 'ContactController@deleteContact');
 
 });
 

@@ -21,7 +21,9 @@ class ContactController extends Controller
             'phone_personnal'=>$request->phone_personnal ,
             'phone_fax'=>$request->phone_fax ,
             'notes'=>$request->notes ,
+            'customer'=>$request->id_customer,
         ]);
+        return response()->json(['Contact', $contact],200);
     }
 
     public function getContact(Request $request)
