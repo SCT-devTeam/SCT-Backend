@@ -28,6 +28,10 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('/customers', 'CustomerController@getCustomerAll');
     Route::get('/company', 'CompanyController@selectCompany');
 
+    Route::post('/contacts', 'ContactController@getContact');
+    Route::post('/updateContacts', 'ContactController@updateContact');
+    Route::post('/deleteContacts', 'ContactController@deleteContact');
+
 
 });
 
