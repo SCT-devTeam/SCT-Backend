@@ -10,9 +10,13 @@ import { mapMutations } from "vuex";
 export default {
     name: "Logout",
     methods: {
-        ...mapMutations(["LOGOUT_USER"]),
+        ...mapMutations({
+            set_token: "SET_TOKEN",
+            set_user: "SER_USER"
+        }),
         logoutUser: function() {
-            this.LOGOUT_USER();
+            this.set_token(null);
+            this.set_user(null);
             this.$router.push({ name: "Login" });
         }
     }
