@@ -25,6 +25,24 @@ const routes = [
         name: "Logout",
         component: () =>
             import(/* webpackChunkName: "logout" */ "../views/Logout.vue")
+    },
+    {
+        path: "/customers",
+        name: "Customers",
+        component: () =>
+            import(/* webpackChunkName: "logout" */ "../views/Customers.vue")
+    },
+    {
+        path: "/writings",
+        name: "Writings",
+        component: () =>
+            import(/* webpackChunkName: "logout" */ "../views/Writings.vue")
+    },
+    {
+        path: "/receipt-book",
+        name: "ReceiptBook",
+        component: () =>
+            import(/* webpackChunkName: "logout" */ "../views/ReceiptBook.vue")
     }
     // TOO: add 404 fallback for bad urls
     // { path: '*', component: NotFoundComponent }
@@ -39,12 +57,18 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     const publicPages = ["/login"];
     const authRequired = !publicPages.includes(to.path);
-    // const storedUser = localStorage.getItem('user') === "" ? null : localStorage.getItem('user');
 
-    if (authRequired && !store.getters.isLoggedIn) {
-        return next("/login");
-    }
-    next();
+    if (authRequired && store.getters.isLoggedIn === false) {
+        next({
+            name: "Login",
+            replace: true
+        });
+    } else if (to.name === "Login" && store.getters.isLoggedIn) {
+        next({
+            name: "Dashboard",
+            replace: true
+        });
+    } else next();
 });
 
 export default router;
