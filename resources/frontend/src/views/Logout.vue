@@ -12,7 +12,7 @@ export default {
     methods: {
         ...mapMutations({
             set_token: "SET_TOKEN",
-            set_user: "SER_USER"
+            set_user: "SET_USER"
         }),
         logoutUser: function() {
             this.set_token(null);
