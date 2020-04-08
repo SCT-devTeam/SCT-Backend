@@ -60,21 +60,26 @@
             ...mapMutations({
                 set_token: "SET_TOKEN"
             }),
-            submitForm: async function () {
+            submitForm: function () {
                 if (this.isValidForm) {
-                    const token = await this.axios.post('/api/airlock/login', {
-                            email: this.email,
-                            password: this.password,
-                            device_name: "Navigator"
+                    this.axios.post('/api/airlock/login', {
+                        email: this.email,
+                        password: this.password,
+                        device_name: "Navigator"
+                    }, {
+                        header: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json",
                         },
-                        {
-                            header: {
-                                "Content-Type": "application/json",
-                                "Accept": "application/json",
-                            },
-                        });
-                    this.set_token(token);
-                    await this.$router.replace({name: "Dashboard"});
+                    }).then(({data: {token}}) => {
+                        if (token) {
+                            this.set_token(token);
+                            this.$router.replace({name: "Dashboard"});
+                        }
+                    }).catch(reason => {
+                        const {response: {data: {error}}} = reason;
+                        this.error = error;
+                    });
                 } else {
                     this.error = "Please fix input errors";
                 }
