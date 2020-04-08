@@ -77,10 +77,7 @@ class Company extends Model
         'default_down_payment_percentage', 'default_quote_validity_delay_in_days', 'default_quote_accepting_conditions',
         'default_invoice_notice', 'default_quote_notice', 'notes'];
 
-    /**
-     * @var array
-     */
-    protected $hidden = ['id'];
+
 
 
 
