@@ -34,44 +34,53 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-import EmailSCT from "@/components/inputs/EmailSCT";
-import PasswordSCT from "@/components/inputs/PasswordSCT";
-import BtnSCT from "@/components/Buttons/BtnSCT";
+    import {mapMutations} from "vuex";
+    import EmailSCT from "@/components/inputs/EmailSCT";
+    import PasswordSCT from "@/components/inputs/PasswordSCT";
+    import BtnSCT from "@/components/Buttons/BtnSCT";
 
-export default {
-    name: "LoginForm",
-    components: { EmailSCT, PasswordSCT, BtnSCT },
-    data() {
-        return {
-            email: "",
-            emailValid: false,
-            password: "",
-            passwordValid: false,
-            error: ""
-        };
-    },
-    computed: {
-        isValidForm: function() {
-            return this.emailValid === true && this.passwordValid === true;
-        }
-    },
-    methods: {
-        ...mapMutations({
-            updateUser: "UPDATE_CURRENT_USER"
-        }),
-        submitForm: function() {
-            if (this.isValidForm) {
-                this.updateUser({
-                    email: this.email
-                });
-                this.$router.replace({ name: "Dashboard" });
-            } else {
-                this.error = "Please fix input errors";
+    export default {
+        name: "LoginForm",
+        components: {EmailSCT, PasswordSCT, BtnSCT},
+        data() {
+            return {
+                email: "",
+                emailValid: false,
+                password: "",
+                passwordValid: false,
+                error: ""
+            };
+        },
+        computed: {
+            isValidForm: function () {
+                return this.emailValid === true && this.passwordValid === true;
+            }
+        },
+        methods: {
+            ...mapMutations({
+                set_token: "SET_TOKEN"
+            }),
+            submitForm: async function () {
+                if (this.isValidForm) {
+                    const token = await this.axios.post('/api/airlock/login', {
+                            email: this.email,
+                            password: this.password,
+                            device_name: "Navigator"
+                        },
+                        {
+                            header: {
+                                "Content-Type": "application/json",
+                                "Accept": "application/json",
+                            },
+                        });
+                    this.set_token(token);
+                    await this.$router.replace({name: "Dashboard"});
+                } else {
+                    this.error = "Please fix input errors";
+                }
             }
         }
-    }
-};
+    };
 </script>
 
 <style scoped lang="scss">
