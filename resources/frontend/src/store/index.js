@@ -9,20 +9,45 @@ const vuexPersist = new VuexPersist({
     storage: window.localStorage
 });
 
+// TODO: Apply naming conventions : https://docs.vuestorefront.io/guide/vuex/vuex-conventions.html
 export default new Vuex.Store({
     state: {
-        user: null
+        user: {
+            token: null,
+            firstname: null,
+            lastname: null,
+            email: null,
+            phone: null,
+            notes: null,
+            companies: null,
+        }
     },
     getters: {
-        isLoggedIn: state => !(state.user === null)
+        isLoggedIn: state => !(state.user.token === null),  // TODO: change this by an api call
+        user: state => {
+            return {
+                firstname: state.user.firstname || null,
+                lastname: state.user.lastname || null,
+                email: state.user.email || null,
+                phone: state.user.phone || null,
+                notes: state.user.notes || null,
+                companies: state.user.companies || null,
+            }
+        },
+        token: state => state.user.token,
     },
     mutations: {
-        UPDATE_CURRENT_USER: (state, userData) => {
-            state.user = userData;
+        SET_TOKEN(state, token) {
+            state.user.token = token || null;
         },
-        LOGOUT_USER: state => {
-            state.user = null;
-        }
+        SET_USER(state, userData) {
+            state.user.firstname = userData.firstname || null;
+            state.user.lastname = userData.lastname || null;
+            state.user.email = userData.email || null;
+            state.user.phone = userData.phone || null;
+            state.user.notes = userData.notes || null;
+            state.user.companies = userData.companies || null;
+        },
     },
     actions: {},
     modules: {},
