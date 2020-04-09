@@ -46,7 +46,14 @@
             />
         </svg>
 
-        <img id="arrow" @click="arrowClicked" src="@/assets/icons/arrow_icon_blue.png" alt="Display contact" title="Display contact" srcset="@/assets/icons/arrow_icon_blue.svg" v-if="this.displayIcon">
+        <img
+            id="arrow"
+            @click="arrowClicked"
+            :src="imgSrcPath"
+            :alt="icon + ' icon'"
+            title="Display contact"
+            :srcset="imgSrcsetPath"
+            v-if="this.icon !== undefined || this.icon != null">
     </div>
 </template>
 
@@ -86,10 +93,7 @@ export default {
             type: String,
             default: "Text"
         },
-        displayIcon: {
-            type: Boolean,
-            default: false,
-        },
+        icon: String,
         isRequired: {
             type: Boolean,
             default: false
@@ -99,7 +103,13 @@ export default {
     computed: {
         isFilled() {
             return !!this.value;
-        }
+        },
+        imgSrcPath() {
+            return require("@/assets/icons/" + this.icon + "_icon_blue.png" );
+        },
+        imgSrcsetPath() {
+            return require("@/assets/icons/" + this.icon + "_icon_blue.svg" );
+        },
     },
     methods: {
         // TODO: refactor it based on TextSCT input
