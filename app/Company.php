@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -63,16 +62,15 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Company extends Model
 {
+    public $timestamps = false;
     protected $table = "companies";
     protected $primaryKey = 'id';
-    public $timestamps = false;
-
     /**
      * @var array
      */
     protected $fillable = [
-        'id','legal_form','name','siret', 'email', 'phone', 'street_number','street_name', 'zipcode', 'city',
-        'capital_in_cents','insurance', 'bban', 'bban_anytmie', 'default_revive_delay_in_days',
+        'id', 'legal_form', 'name', 'siret', 'email', 'phone', 'street_number', 'street_name', 'zipcode', 'city',
+        'capital_in_cents', 'insurance', 'bban', 'bban_anytmie', 'default_revive_delay_in_days',
         'default_payment_delay_in_days', 'default_payment_terms', 'default_payment_method',
         'default_down_payment_percentage', 'default_quote_validity_delay_in_days', 'default_quote_accepting_conditions',
         'default_invoice_notice', 'default_quote_notice', 'notes'

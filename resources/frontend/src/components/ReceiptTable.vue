@@ -8,10 +8,10 @@
         </span>
         <div id="container">
             <span
-                class="line"
-                v-for="(receipt, index) in this.receipts"
                 :key="index"
                 @click="itemClicked(index)"
+                class="line"
+                v-for="(receipt, index) in this.receipts"
             >
                 <p class="date">{{ receipt.date }}</p>
                 <p class="label">{{ receipt.entity }}</p>
@@ -23,205 +23,206 @@
 </template>
 
 <script>
-export default {
-    entity: "CustomersTable",
-    data() {
-        return {
-            receipts: [
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                }
-            ]
-        };
-    },
-    methods: {
-        itemClicked: function(receipt_id) {
-            this.$emit("itemClicked", receipt_id);
+    export default {
+        entity: "CustomersTable",
+        data() {
+            return {
+                receipts: [
+                    {
+                        date: "15/03/2020",
+                        entity: "John Doe",
+                        amount: "150,00€",
+                        label: "------"
+                    },
+                    {
+                        date: "15/03/2020",
+                        entity: "John Doe",
+                        amount: "150,00€",
+                        label: "------"
+                    },
+                    {
+                        date: "15/03/2020",
+                        entity: "John Doe",
+                        amount: "150,00€",
+                        label: "------"
+                    },
+                    {
+                        date: "15/03/2020",
+                        entity: "John Doe",
+                        amount: "150,00€",
+                        label: "------"
+                    },
+                    {
+                        date: "15/03/2020",
+                        entity: "John Doe",
+                        amount: "150,00€",
+                        label: "------"
+                    },
+                    {
+                        date: "15/03/2020",
+                        entity: "John Doe",
+                        amount: "150,00€",
+                        label: "------"
+                    },
+                    {
+                        date: "15/03/2020",
+                        entity: "John Doe",
+                        amount: "150,00€",
+                        label: "------"
+                    },
+                    {
+                        date: "15/03/2020",
+                        entity: "John Doe",
+                        amount: "150,00€",
+                        label: "------"
+                    },
+                    {
+                        date: "15/03/2020",
+                        entity: "John Doe",
+                        amount: "150,00€",
+                        label: "------"
+                    },
+                    {
+                        date: "15/03/2020",
+                        entity: "John Doe",
+                        amount: "150,00€",
+                        label: "------"
+                    },
+                    {
+                        date: "15/03/2020",
+                        entity: "John Doe",
+                        amount: "150,00€",
+                        label: "------"
+                    },
+                    {
+                        date: "15/03/2020",
+                        entity: "John Doe",
+                        amount: "150,00€",
+                        label: "------"
+                    },
+                    {
+                        date: "15/03/2020",
+                        entity: "John Doe",
+                        amount: "150,00€",
+                        label: "------"
+                    },
+                    {
+                        date: "15/03/2020",
+                        entity: "John Doe",
+                        amount: "150,00€",
+                        label: "------"
+                    },
+                    {
+                        date: "15/03/2020",
+                        entity: "John Doe",
+                        amount: "150,00€",
+                        label: "------"
+                    },
+                    {
+                        date: "15/03/2020",
+                        entity: "John Doe",
+                        amount: "150,00€",
+                        label: "------"
+                    }
+                ]
+            };
+        },
+        methods: {
+            itemClicked: function (receipt_id) {
+                this.$emit("itemClicked", receipt_id);
+            }
         }
-    }
-};
+    };
 </script>
 
-<style scoped lang="scss">
-@import "src/scss/colors";
-@import "src/scss/typography";
-div#Customers-table {
-    display: flex;
-    flex-direction: column;
+<style lang="scss" scoped>
+    @import "src/scss/colors";
+    @import "src/scss/typography";
 
-    position: relative;
-
-    max-height: calc(100% - 130px);
-
-    padding-top: 60px;
-
-    border-radius: 15px;
-
-    background: #fff;
-
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-
-    span {
+    div#Customers-table {
         display: flex;
-        align-items: center;
+        flex-direction: column;
 
-        max-width: 100%;
+        position: relative;
 
-        margin-bottom: 10px;
-        padding: 0 5%;
+        max-height: calc(100% - 130px);
 
-        background-color: #ececec80;
+        padding-top: 60px;
 
-        > p {
-            flex: 1;
-        }
-    }
+        border-radius: 15px;
 
-    > span#head {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
+        background: #fff;
 
-        height: 60px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 
-        border-radius: 15px 15px 0 0;
+        span {
+            display: flex;
+            align-items: center;
 
-        background: $color__main;
+            max-width: 100%;
 
-        > p {
-            font-family: $font__heading;
-            font-size: 2em;
-        }
-    }
+            margin-bottom: 10px;
+            padding: 0 5%;
 
-    > div#container {
-        overflow-y: scroll;
-
-        scrollbar-color: $color__inactive_subtitle;
-        scrollbar-width: 10px;
-
-        &::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            border-radius: 5px;
-
-            background-color: $color__inactive_subtitle;
-        }
-
-        &::-webkit-scrollbar-track {
-            border-radius: 5px;
-
-            background-color: #{$color__inactive_subtitle}49;
-        }
-
-        > span.line {
-            height: 50px;
-
-            padding-right: calc(5% - 10px);
-
-            cursor: pointer;
+            background-color: #ececec80;
 
             > p {
-                font-family: $font__text;
-                font-size: 1em;
+                flex: 1;
+            }
+        }
+
+        > span#head {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 60px;
+
+            border-radius: 15px 15px 0 0;
+
+            background: $color__main;
+
+            > p {
+                font-family: $font__heading;
+                font-size: 2em;
+            }
+        }
+
+        > div#container {
+            overflow-y: scroll;
+
+            scrollbar-color: $color__inactive_subtitle;
+            scrollbar-width: 10px;
+
+            &::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                border-radius: 5px;
+
+                background-color: $color__inactive_subtitle;
+            }
+
+            &::-webkit-scrollbar-track {
+                border-radius: 5px;
+
+                background-color: #{$color__inactive_subtitle}49;
+            }
+
+            > span.line {
+                height: 50px;
+
+                padding-right: calc(5% - 10px);
+
+                cursor: pointer;
+
+                > p {
+                    font-family: $font__text;
+                    font-size: 1em;
+                }
             }
         }
     }
-}
 </style>

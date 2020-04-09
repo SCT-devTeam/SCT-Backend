@@ -36,9 +36,9 @@ class CompanyController extends Controller
             'default_quote_notice' => $request->default_quote_notice,
             'notes' => $request->notes
         ]);
-        if ($comp) return response()->json(['name'=>$request->name],200);
+        if ($comp) return response()->json(['name' => $request->name], 200);
 
-        return response()->json(['test'=>'non']);
+        return response()->json(['test' => 'non']);
 
     }
 }

@@ -17,15 +17,15 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::middleware('auth:sanctum')->group(function() {
+Route::middleware('auth:sanctum')->group(function () {
     Route::get('/devis', 'DevisController@list');
     Route::post('/register', 'AuthController@register');
-    Route::get('/me', function (Request $request){
+    Route::get('/me', function (Request $request) {
         return $request->user();
     });
 });
 
-Route::prefix('airlock')->namespace('API')->group(function() {
+Route::prefix('airlock')->namespace('API')->group(function () {
     Route::post('/register', 'AuthController@register');
     Route::post('/login', 'AuthController@login');
 
@@ -37,4 +37,4 @@ Route::get('/devis', 'DevisController@list');
 //Route::get
 Route::post('signin', 'UserController@login');
 
-Route::post('signup','UserController@signup');
+Route::post('signup', 'UserController@signup');

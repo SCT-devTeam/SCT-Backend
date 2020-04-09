@@ -38,10 +38,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Contact extends Model
 {
-    protected $table = "contacts";
-    protected $primaryKey ="id";
     public $timestamps = false;
-
+    protected $table = "contacts";
+    protected $primaryKey = "id";
     protected $fillable = [
         'gender',
         'firstname',
@@ -53,5 +52,5 @@ class Contact extends Model
         'phone_personnal',
         'phone_fax',
         'notes',
-        ];
+    ];
 }

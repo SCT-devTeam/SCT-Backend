@@ -2,10 +2,10 @@
     <nav id="Secondary-menu">
         <ul>
             <li
-                v-for="(item, index) in items"
+                :class="{ active: currentItemNav === item }"
                 :key="index"
                 @click="itemClicked(item)"
-                :class="{ active: currentItemNav === item }"
+                v-for="(item, index) in items"
             >
                 {{ item }}
             </li>
@@ -14,96 +14,97 @@
 </template>
 
 <script>
-export default {
-    name: "SecondaryMenu",
-    data() {
-        return {
-            currentItemNav: this.items[0]
-        };
-    },
-    props: {
-        items: {
-            type: Array,
-            required: true
-        }
-    },
-    methods: {
-        itemClicked: function(itemName) {
-            if (itemName !== this.currentItemNav) {
-                this.$emit("navigationChanged", itemName);
+    export default {
+        name: "SecondaryMenu",
+        data() {
+            return {
+                currentItemNav: this.items[0]
+            };
+        },
+        props: {
+            items: {
+                type: Array,
+                required: true
             }
-            this.currentItemNav = itemName;
+        },
+        methods: {
+            itemClicked: function (itemName) {
+                if (itemName !== this.currentItemNav) {
+                    this.$emit("navigationChanged", itemName);
+                }
+                this.currentItemNav = itemName;
+            }
         }
-    }
-};
+    };
 </script>
 
-<style scoped lang="scss">
-@import "src/scss/colors";
-@import "src/scss/typography";
-nav#Secondary-menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+<style lang="scss" scoped>
+    @import "src/scss/colors";
+    @import "src/scss/typography";
 
-    > ul {
+    nav#Secondary-menu {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
 
-        height: fit-content;
-        width: fit-content;
+        > ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-        margin: 0;
-        padding: 0 5px;
-
-        border-radius: 25px;
-
-        background-color: $color__secondary;
-
-        list-style: none;
-
-        > li {
-            position: relative;
-            z-index: 1;
+            height: fit-content;
+            width: fit-content;
 
             margin: 0;
-            padding: 10px;
+            padding: 0 5px;
 
             border-radius: 25px;
 
-            color: white;
-            font-family: $font__text;
-            font-size: 1em;
+            background-color: $color__secondary;
 
-            cursor: pointer;
+            list-style: none;
 
-            &:first-child {
-                margin-right: 10px;
-            }
+            > li {
+                position: relative;
+                z-index: 1;
 
-            &:last-child {
-                margin-left: 10px;
-            }
+                margin: 0;
+                padding: 10px;
 
-            &.active {
-                color: $color__black;
+                border-radius: 25px;
 
-                &:before {
-                    content: "";
-                    position: absolute;
-                    top: 5px;
-                    bottom: 5px;
-                    left: 3px;
-                    right: 3px;
-                    z-index: -1;
+                color: white;
+                font-family: $font__text;
+                font-size: 1em;
 
-                    border-radius: 25px;
+                cursor: pointer;
 
-                    background-color: white;
+                &:first-child {
+                    margin-right: 10px;
+                }
+
+                &:last-child {
+                    margin-left: 10px;
+                }
+
+                &.active {
+                    color: $color__black;
+
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        top: 5px;
+                        bottom: 5px;
+                        left: 3px;
+                        right: 3px;
+                        z-index: -1;
+
+                        border-radius: 25px;
+
+                        background-color: white;
+                    }
                 }
             }
         }
     }
-}
 </style>

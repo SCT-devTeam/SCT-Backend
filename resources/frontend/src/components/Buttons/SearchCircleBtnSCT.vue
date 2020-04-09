@@ -1,117 +1,117 @@
 <template>
     <button
-        id="CircleButtonSCT"
+        :class="{ disabled: isDisabled }"
+        :disabled="isDisabled"
         :name="name"
         :title="title"
         :type="type"
-        :disabled="isDisabled"
-        :class="{ disabled: isDisabled }"
+        id="CircleButtonSCT"
     >
         Search
     </button>
 </template>
 
 <script>
-export default {
-    name: "SearchCircleBtnSCT",
-    props: {
-        name: {
-            type: String,
-            default: "Button"
-        },
-        title: {
-            type: String,
-            default: "Button"
-        },
-        type: {
-            type: String,
-            validator: value => {
-                switch (value) {
-                    case "button":
-                    case "submit":
-                    case "reset":
-                        return true;
-
-                    default:
-                        return false;
-                }
+    export default {
+        name: "SearchCircleBtnSCT",
+        props: {
+            name: {
+                type: String,
+                default: "Button"
             },
-            default: "button"
-        },
-        value: {
-            type: String,
-            default: "Button"
-        },
-        isDisabled: {
-            type: Boolean,
-            default: false
+            title: {
+                type: String,
+                default: "Button"
+            },
+            type: {
+                type: String,
+                validator: value => {
+                    switch (value) {
+                        case "button":
+                        case "submit":
+                        case "reset":
+                            return true;
+
+                        default:
+                            return false;
+                    }
+                },
+                default: "button"
+            },
+            value: {
+                type: String,
+                default: "Button"
+            },
+            isDisabled: {
+                type: Boolean,
+                default: false
+            }
         }
-    }
-};
+    };
 </script>
 
-<style scoped lang="scss">
-@import "src/scss/colors";
-@import "src/scss/typography";
+<style lang="scss" scoped>
+    @import "src/scss/colors";
+    @import "src/scss/typography";
 
-button#CircleButtonSCT {
-    height: 45px;
-    width: 45px;
+    button#CircleButtonSCT {
+        height: 45px;
+        width: 45px;
 
-    padding: 5px;
+        padding: 5px;
 
-    position: relative;
+        position: relative;
 
-    border: 2px solid #fff;
-    border-radius: 50%;
+        border: 2px solid #fff;
+        border-radius: 50%;
 
-    background: $color__secondary;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+        background: $color__secondary;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
 
-    font-size: 1px;
-    color: transparent;
+        font-size: 1px;
+        color: transparent;
 
-    cursor: pointer;
+        cursor: pointer;
 
-    outline: none;
+        outline: none;
 
-    &:focus {
-        background-color: $color__action_active;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    }
+        &:focus {
+            background-color: $color__action_active;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
 
-    &:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-
-        border-radius: 20px;
-
-        background-image: url("../../assets/icons/search_icon_white.png");
-        background-position: center;
-        background-size: 50%;
-        background-repeat: no-repeat;
-    }
-
-    &.disabled {
-        cursor: not-allowed;
-        background-color: $color__secondary;
-
-        &:after {
+        &:before {
             content: "";
             position: absolute;
-            top: -2px;
-            bottom: -2px;
-            left: -2px;
-            right: -2px;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
 
-            border-radius: 50%;
+            border-radius: 20px;
 
-            background-color: #{$color__inactive_subtitle}55;
+            background-image: url("../../assets/icons/search_icon_white.png");
+            background-position: center;
+            background-size: 50%;
+            background-repeat: no-repeat;
+        }
+
+        &.disabled {
+            cursor: not-allowed;
+            background-color: $color__secondary;
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: -2px;
+                bottom: -2px;
+                left: -2px;
+                right: -2px;
+
+                border-radius: 50%;
+
+                background-color: #{$color__inactive_subtitle}55;
+            }
         }
     }
-}
 </style>

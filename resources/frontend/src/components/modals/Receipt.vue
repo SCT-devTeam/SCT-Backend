@@ -1,11 +1,11 @@
 <template>
     <div class="receipt_modal">
-        <span class="background" @click="exit"></span>
+        <span @click="exit" class="background"></span>
         <div class="receipt_modal__receipt" ref="receipt">
             <input
                 class="receipt__company"
-                v-model="receipt.company"
                 type="text"
+                v-model="receipt.company"
             />
             <div class="receipt__items-table">
                 <span class="table__head">
@@ -14,17 +14,17 @@
                     <p class="price">Price</p>
                 </span>
                 <span
+                    :key="index"
                     class="table__item"
                     v-for="(item, index) in receipt.items"
-                    :key="index"
                 >
-                    <input class="label" v-model="item.label" type="text" />
+                    <input class="label" type="text" v-model="item.label"/>
                     <input
                         class="quantity"
-                        v-model="item.quantity"
                         type="number"
+                        v-model="item.quantity"
                     />
-                    <input class="price" v-model="item.price" type="number" />
+                    <input class="price" type="number" v-model="item.price"/>
                 </span>
             </div>
             <p class="total">{{ this.total }}</p>
@@ -34,209 +34,210 @@
 </template>
 
 <script>
-export default {
-    // TODO: add TVA pourcentage
-    name: "receipt",
-    data() {
-        return {
-            receipt: {
-                company: "Company",
-                customer: "Customer",
-                items: [
-                    {
-                        id: 0,
-                        label: "item label",
-                        quantity: 1,
-                        price: 10
-                    },
-                    {
-                        id: 1,
-                        label: "item label",
-                        quantity: 3,
-                        price: 30
-                    }
-                ]
-            }
-        };
-    },
-    props: {
-        receiptId: Number
-    },
-    computed: {
-        total() {
-            let total = 0;
-            for (let itemIndex in this.receipt.items) {
-                total += Number(this.receipt.items[itemIndex].price);
-            }
-            return total;
-        }
-    },
-    methods: {
-        exit() {
-            this.save();
-            this.$emit("close");
+    export default {
+        // TODO: add TVA pourcentage
+        name: "receipt",
+        data() {
+            return {
+                receipt: {
+                    company: "Company",
+                    customer: "Customer",
+                    items: [
+                        {
+                            id: 0,
+                            label: "item label",
+                            quantity: 1,
+                            price: 10
+                        },
+                        {
+                            id: 1,
+                            label: "item label",
+                            quantity: 3,
+                            price: 30
+                        }
+                    ]
+                }
+            };
         },
-        save() {
-            // TODO: API request
+        props: {
+            receiptId: Number
+        },
+        computed: {
+            total() {
+                let total = 0;
+                for (let itemIndex in this.receipt.items) {
+                    total += Number(this.receipt.items[itemIndex].price);
+                }
+                return total;
+            }
+        },
+        methods: {
+            exit() {
+                this.save();
+                this.$emit("close");
+            },
+            save() {
+                // TODO: API request
+            }
         }
-    }
-};
+    };
 </script>
 
-<style scoped lang="scss">
-@import "src/scss/colors";
-@import "src/scss/typography";
+<style lang="scss" scoped>
+    @import "src/scss/colors";
+    @import "src/scss/typography";
 
-div.receipt_modal {
-    display: flex;
-    justify-content: center;
+    div.receipt_modal {
+        display: flex;
+        justify-content: center;
 
-    padding: 20px 0;
+        padding: 20px 0;
 
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-
-    overflow-y: scroll;
-
-    > span.background {
         position: fixed;
         top: 0;
         bottom: 0;
         left: 0;
-        right: 17px;
-        z-index: -1;
+        right: 0;
+        z-index: 10;
 
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-    > div.receipt_modal__receipt {
-        display: flex;
-        flex-direction: column;
+        overflow-y: scroll;
 
-        min-height: 90%;
-        height: fit-content;
-        width: 50%;
+        > span.background {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 17px;
+            z-index: -1;
 
-        border-radius: 15px;
-
-        background-color: white;
-
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-
-        > input.receipt__company {
-            max-width: 35%;
-
-            margin: 50px;
-            padding: 7px;
-
-            border-radius: 15px;
-
-            background-color: #ececec;
-
-            white-space: pre-line;
+            background-color: rgba(0, 0, 0, 0.5);
         }
 
-        > input.receipt__customer {
-            align-self: flex-end;
-
-            max-width: 35%;
-
-            margin: 50px;
-            padding: 7px;
-
-            border-radius: 15px;
-
-            background-color: #ececec;
-
-            white-space: pre-line;
-        }
-
-        > div.receipt__items-table {
+        > div.receipt_modal__receipt {
             display: flex;
             flex-direction: column;
-            justify-content: stretch;
 
-            align-self: center;
-            justify-self: center;
+            min-height: 90%;
+            height: fit-content;
+            width: 50%;
 
-            width: 90%;
+            border-radius: 15px;
 
-            border-radius: 20px 20px 15px 15px;
+            background-color: white;
 
-            background-color: #fafafa;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 
-            > span {
+            > input.receipt__company {
+                max-width: 35%;
+
+                margin: 50px;
+                padding: 7px;
+
+                border-radius: 15px;
+
+                background-color: #ececec;
+
+                white-space: pre-line;
+            }
+
+            > input.receipt__customer {
+                align-self: flex-end;
+
+                max-width: 35%;
+
+                margin: 50px;
+                padding: 7px;
+
+                border-radius: 15px;
+
+                background-color: #ececec;
+
+                white-space: pre-line;
+            }
+
+            > div.receipt__items-table {
                 display: flex;
-                justify-content: space-around;
+                flex-direction: column;
+                justify-content: stretch;
 
-                padding: 5px 25px;
+                align-self: center;
+                justify-self: center;
 
-                > p.label,
-                > input.label {
-                    flex: 5;
-                }
+                width: 90%;
 
-                > p.quantity,
-                > input.quantity {
-                    flex: 0.7;
-                    text-align: center;
-                }
+                border-radius: 20px 20px 15px 15px;
 
-                > p.price,
-                > input.price {
-                    flex: 0.7;
-                    text-align: right;
-                }
+                background-color: #fafafa;
 
-                &.table__head {
-                    border-radius: 15px 15px 0 0;
+                > span {
+                    display: flex;
+                    justify-content: space-around;
 
-                    background-color: $color__main;
+                    padding: 5px 25px;
 
-                    > p {
-                        margin: 5px 0;
-
-                        font-family: $font__heading;
-                        font-weight: bold;
-                        font-size: 1.2em;
+                    > p.label,
+                    > input.label {
+                        flex: 5;
                     }
-                }
 
-                &.table__item {
-                    margin-bottom: 10px;
-                    background-color: #ececec80;
+                    > p.quantity,
+                    > input.quantity {
+                        flex: 0.7;
+                        text-align: center;
+                    }
 
-                    &:last-child {
-                        margin-bottom: 0;
-                        border-radius: 0 0 15px 15px;
+                    > p.price,
+                    > input.price {
+                        flex: 0.7;
+                        text-align: right;
+                    }
+
+                    &.table__head {
+                        border-radius: 15px 15px 0 0;
+
+                        background-color: $color__main;
+
+                        > p {
+                            margin: 5px 0;
+
+                            font-family: $font__heading;
+                            font-weight: bold;
+                            font-size: 1.2em;
+                        }
+                    }
+
+                    &.table__item {
+                        margin-bottom: 10px;
+                        background-color: #ececec80;
+
+                        &:last-child {
+                            margin-bottom: 0;
+                            border-radius: 0 0 15px 15px;
+                        }
                     }
                 }
             }
-        }
 
-        > p.total {
-            align-self: flex-end;
-            margin-right: 50px;
-            padding: 7px;
+            > p.total {
+                align-self: flex-end;
+                margin-right: 50px;
+                padding: 7px;
 
-            border: 2px solid $color__secondary;
-            border-radius: 20px;
+                border: 2px solid $color__secondary;
+                border-radius: 20px;
 
-            background-color: #ececec;
-        }
+                background-color: #ececec;
+            }
 
-        > p.notice {
-            justify-self: flex-end;
-            align-self: center;
+            > p.notice {
+                justify-self: flex-end;
+                align-self: center;
 
-            padding: 10px;
+                padding: 10px;
 
-            border-radius: 20px;
-            background-color: #ececec;
+                border-radius: 20px;
+                background-color: #ececec;
+            }
         }
     }
-}
 </style>

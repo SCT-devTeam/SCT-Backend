@@ -1,1 +1,8 @@
-<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 30"><g id="tick_icon_violet" data-name="tick icon violet"><line id="Ligne_2" data-name="Ligne 2" x1="1.5" y1="15.5" x2="14.5" y2="28.5" fill="none" stroke="#4f1ef7" stroke-linecap="round" stroke-width="3"/><line id="Ligne_3" data-name="Ligne 3" x1="41.5" y1="1.5" x2="14.5" y2="28.5" fill="none" stroke="#4f1ef7" stroke-linecap="round" stroke-width="3"/></g></svg>
+<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 30">
+    <g id="tick_icon_violet" data-name="tick icon violet">
+        <line id="Ligne_2" data-name="Ligne 2" x1="1.5" y1="15.5" x2="14.5" y2="28.5" fill="none" stroke="#4f1ef7"
+              stroke-linecap="round" stroke-width="3"/>
+        <line id="Ligne_3" data-name="Ligne 3" x1="41.5" y1="1.5" x2="14.5" y2="28.5" fill="none" stroke="#4f1ef7"
+              stroke-linecap="round" stroke-width="3"/>
+    </g>
+</svg>

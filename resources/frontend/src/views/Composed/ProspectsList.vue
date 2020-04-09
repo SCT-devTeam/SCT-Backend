@@ -10,13 +10,13 @@
                     @displayContact="contactToDisplay = $event"
                 ></CustomerProfileCard>
                 <ContactProfileCard
-                    v-if="this.contactToDisplay != null"
                     class="panel-2__container__contact"
+                    v-if="this.contactToDisplay != null"
                 ></ContactProfileCard>
                 <span
-                    v-if="this.contactToDisplay != null"
-                    id="panel-2__container__contact__back"
                     @click="contactToDisplay = null"
+                    id="panel-2__container__contact__back"
+                    v-if="this.contactToDisplay != null"
                 ></span>
             </div>
         </div>
@@ -24,92 +24,92 @@
 </template>
 
 <script>
-import SearchForm from "../../components/Forms/SearchForm";
-import CustomersTable from "../../components/CustomersTable";
-import CustomerProfileCard from "../../components/CustomerProfileCard";
-import ContactProfileCard from "../../components/ContactProfileCard";
+    import SearchForm from "../../components/Forms/SearchForm";
+    import CustomersTable from "../../components/CustomersTable";
+    import CustomerProfileCard from "../../components/CustomerProfileCard";
+    import ContactProfileCard from "../../components/ContactProfileCard";
 
-export default {
-    name: "ProspectsList",
-    components: {
-        SearchForm,
-        CustomersTable,
-        CustomerProfileCard,
-        ContactProfileCard
-    },
-    data() {
-        return {
-            contactToDisplay: null
-        };
-    }
-};
+    export default {
+        name: "ProspectsList",
+        components: {
+            SearchForm,
+            CustomersTable,
+            CustomerProfileCard,
+            ContactProfileCard
+        },
+        data() {
+            return {
+                contactToDisplay: null
+            };
+        }
+    };
 </script>
 
-<style scoped lang="scss">
-div#prospect-list {
-    display: flex;
-    height: 100%;
-    width: 100%;
-
-    > div#panel-1 {
-        flex: 2;
+<style lang="scss" scoped>
+    div#prospect-list {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-
         height: 100%;
+        width: 100%;
 
-        > form#Search-form {
-            width: 60%;
+        > div#panel-1 {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
-            margin-left: 20%;
-            margin-bottom: 20px;
+            height: 100%;
+
+            > form#Search-form {
+                width: 60%;
+
+                margin-left: 20%;
+                margin-bottom: 20px;
+            }
+
+            > div#Customers-table {
+                width: 100%;
+            }
         }
 
-        > div#Customers-table {
-            width: 100%;
-        }
-    }
-
-    > div#panel-2 {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-
-        > div#panel-2__container {
+        > div#panel-2 {
+            flex: 1;
             display: flex;
             justify-content: center;
 
-            position: relative;
+            > div#panel-2__container {
+                display: flex;
+                justify-content: center;
 
-            width: 60%;
+                position: relative;
 
-            padding: 5px;
+                width: 60%;
 
-            overflow: hidden;
+                padding: 5px;
 
-            > div.panel-2__container__contact {
-                position: absolute;
-                top: 5px;
-                right: 5px;
-                left: 20px;
-                bottom: 5px;
-                z-index: 2;
-            }
+                overflow: hidden;
 
-            > span#panel-2__container__contact__back {
-                position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
+                > div.panel-2__container__contact {
+                    position: absolute;
+                    top: 5px;
+                    right: 5px;
+                    left: 20px;
+                    bottom: 5px;
+                    z-index: 2;
+                }
 
-                width: 19px;
+                > span#panel-2__container__contact__back {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
 
-                background-color: rgba(0, 0, 0, 0.5);
+                    width: 19px;
 
-                cursor: pointer;
+                    background-color: rgba(0, 0, 0, 0.5);
+
+                    cursor: pointer;
+                }
             }
         }
     }
-}
 </style>

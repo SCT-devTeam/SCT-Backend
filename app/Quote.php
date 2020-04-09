@@ -44,10 +44,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Quote extends Model
 {
+    public $timestamps = false;
     protected $table = "quotes";
     protected $primaryKey = "id";
-    public $timestamps = false;
-
     protected $fillable = [
         'company_id',
         'customer_id',

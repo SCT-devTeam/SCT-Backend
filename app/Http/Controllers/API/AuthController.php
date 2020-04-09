@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -27,13 +26,13 @@ class AuthController extends Controller
         $input['password'] = Hash::make($input['password']);
         /** @var User $user */
         $user = User::firstOrCreate([
-            'email'=>$request->email,
-        ],[
-            'gender'=>$request->gender,
-            'lastname'=>$request->lastname,
-            'firstname'=>$request->firstname,
-            'phone'=>$request->number,
-            'pwd'=> Hash::make($request->pwd),
+            'email' => $request->email,
+        ], [
+            'gender' => $request->gender,
+            'lastname' => $request->lastname,
+            'firstname' => $request->firstname,
+            'phone' => $request->number,
+            'pwd' => Hash::make($request->pwd),
         ]);
         // 3
         $token = $user->createToken($input->device_name)->plainTextToken;
@@ -66,7 +65,6 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         $user = User::where('email', $request->email)->first();
-
 
 
     }

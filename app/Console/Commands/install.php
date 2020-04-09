@@ -100,7 +100,7 @@ class install extends Command
                 $firstUserLastName = $this->ask('What\'s your lastname ? (can\'t be empty !)');
             }
 
-            $firstUserGender = $this->choice('What\'s your gender ?', ['man','woman','unspecified'], 2);
+            $firstUserGender = $this->choice('What\'s your gender ?', ['man', 'woman', 'unspecified'], 2);
 
             // Ask user informations with validation
             $firstUserEmail = $this->ask('What\'s your email address (used for login) ?');

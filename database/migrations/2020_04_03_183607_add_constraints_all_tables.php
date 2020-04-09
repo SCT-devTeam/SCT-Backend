@@ -78,22 +78,22 @@ class AddConstraintsAllTables extends Migration
         });
 
         Schema::table('invoices', function (Blueprint $table) {
-            $table->dropForeign(['original_quote','company_id','customer_id']);
+            $table->dropForeign(['original_quote', 'company_id', 'customer_id']);
 
         });
 
         Schema::table('invoices_items', function (Blueprint $table) {
-            $table->dropForeign(['invoice_id','item_id']);
+            $table->dropForeign(['invoice_id', 'item_id']);
 
         });
 
         Schema::table('quotes', function (Blueprint $table) {
-            $table->dropForeign(['company_id','customer_id']);
+            $table->dropForeign(['company_id', 'customer_id']);
 
         });
 
         Schema::table('quotes_items', function (Blueprint $table) {
-            $table->dropForeign(['quote_id','item_id']);
+            $table->dropForeign(['quote_id', 'item_id']);
 
         });
 
