@@ -75,7 +75,7 @@ class CompanyController extends Controller
         $company->default_invoice_notice = $request->default_invoice_notice;
         $company->default_quote_notice = $request->default_quote_notice;
         $company->notes = $request->notes;
-        
+
         $company->save();
         return response()->json(['company' => $company], 200);
 

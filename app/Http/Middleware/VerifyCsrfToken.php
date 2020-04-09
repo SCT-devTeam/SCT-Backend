@@ -19,6 +19,6 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        "api/*" // Remove unused CSRF Laravel token verification
     ];
 }

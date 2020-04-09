@@ -1,39 +1,26 @@
 <template>
     <div id="Login">
-        <h1>Login</h1>
-
-        <form @submit.prevent="updateUser">
-            <input placeholder="username" type="text" v-model="username"/>
-        </form>
+        <LoginForm></LoginForm>
     </div>
 </template>
 
 <script>
     // @ is an alias to /src
+import LoginForm from "@/components/Forms/LoginForm";
 
-    import {mapMutations} from "vuex";
-    import store from "../store/index";
+    /* eslint-disable */
 
     export default {
         name: "Login",
-        data() {
-            return {
-                username: ""
-            };
+        components: { LoginForm
         },
-        methods: {
-            ...mapMutations(["UPDATE_CURRENT_USER"]),
-            updateUser: function () {
-                this.UPDATE_CURRENT_USER({
-                    name: this.username
-                });
-                this.username = "";
-                console.log("[STATE] user = " + JSON.stringify(store.state.user));
-                console.log("[STATE] isLoggedIn = " + store.getters.isLoggedIn);
-                this.$router.replace({name: "Dashboard"});
-            }
-        }
     };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+    @import "src/sass/colors";
+    @import "src/sass/typography";
+    body {
+        background-color: var(--colors-main);
+    }
+</style>

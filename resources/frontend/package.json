@@ -5,7 +5,11 @@
     "author": "Julien SEIXAS (Zyr0)",
     "license": "https://github.com/SCT-devTeam/SCT-Backend/blob/master/LICENSE.md#the-open-source-common-sense-license",
     "version": "1.0.0",
-    "homepage": "https://github.com/SCT-devTeam/SCT-Backend#readme",
+    "engines": {
+    "node": "12.13.0",
+    "npm": "6.12.0"
+  },
+  "homepage": "https://github.com/SCT-devTeam/SCT-Backend#readme",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/SCT-devTeam/SCT-Backend.git"
@@ -20,8 +24,10 @@
         "lint": "vue-cli-service lint"
     },
     "dependencies": {
+    "axios": "^0.19.2",
         "core-js": "^3.6.4",
         "vue": "^2.6.11",
+    "vue-axios": "^2.1.5",
         "vue-router": "^3.1.5",
         "vuex": "^3.1.2",
         "vuex-persist": "^2.2.0"
