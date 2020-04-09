@@ -28,7 +28,7 @@
             </li>
         </ul>
 
-        <router-link :to="{ name: 'Logout'}" class="Profile_link">
+        <router-link :to="{ name: 'Profile'}" class="Profile_link">
             <img
                 class="SCT-logo_img"
                 src="@/assets/Artboards_Diversity_Avatars_by_Netguru-05.png"
