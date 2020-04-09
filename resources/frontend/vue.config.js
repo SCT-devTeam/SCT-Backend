@@ -26,7 +26,7 @@ module.exports = {
 
     transpileDependencies: ["vuex-persist"],
 
-    // TODO: Fixed webpack configuration to keep the same result as without the configuration
+    // TODO: Fixe webpack configuration to keep the same result as without the configuration
     configureWebpack: {
         plugins: [
             new HtmlWebpackPlugin({
