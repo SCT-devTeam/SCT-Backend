@@ -2,7 +2,7 @@
     <div id="writings">
         <SecondaryMenu @navigationChanged="viewDisplayed = $event" :items="['Quotes', 'Invoices']"></SecondaryMenu>
         <WritingsTable @itemClicked="writingEditIdforModal = $event"></WritingsTable>
-        <Writing v-if="writingEditIdforModal" :writingId="writingEditIdforModal"></Writing>
+        <Writing v-if="writingEditIdforModal" :writingId="writingEditIdforModal" @close="writingEditIdforModal = null"></Writing>
     </div>
 </template>
 
