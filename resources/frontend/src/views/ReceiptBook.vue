@@ -30,8 +30,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../sass/typography";
-@import "src/sass/colors";
+@import "src/scss/typography";
+@import "src/scss/colors";
 
 div#Receipt-book {
     display: flex;

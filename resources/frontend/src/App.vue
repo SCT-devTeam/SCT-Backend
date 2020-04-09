@@ -24,9 +24,9 @@ export default {
 
 <!-- TODO: add auto import of sass files -->
 <style lang="scss">
-@import "src/sass/normalize.scss";
-@import "src/sass/colors";
-@import "src/sass/typography";
+@import "src/scss/normalize.scss";
+@import "src/scss/colors";
+@import "src/scss/typography";
 html,
 body,
 div#app {

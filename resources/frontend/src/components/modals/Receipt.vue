@@ -84,8 +84,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "src/sass/colors";
-@import "src/sass/typography";
+@import "src/scss/colors";
+@import "src/scss/typography";
 
 div.receipt_modal {
     display: flex;
