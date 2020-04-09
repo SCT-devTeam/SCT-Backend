@@ -83,7 +83,7 @@ export default {
     data() {
         return {
             isEditionMode: false,
-            user: this.$store.getters.user
+            user: this.$store.getters.getUser
         };
     },
     methods: {
