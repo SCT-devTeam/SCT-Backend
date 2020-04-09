@@ -43,9 +43,18 @@ const routes = [
         name: "ReceiptBook",
         component: () =>
             import(/* webpackChunkName: "logout" */ "../views/ReceiptBook.vue")
+    },
+    {
+        path: "/profile",
+        name: "Profile",
+        component: () =>
+            import(/* webpackChunkName: "profile" */ "../views/Profile.vue")
+    },
+    {
+        path: '*',
+        redirect: "/"
     }
     // TOO: add 404 fallback for bad urls
-    // { path: '*', component: NotFoundComponent }
 ];
 
 const router = new VueRouter({
