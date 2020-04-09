@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
+
+
 class UserController extends Controller
 {
     public function login (Request $request) {
@@ -15,6 +17,7 @@ class UserController extends Controller
         $usr = User::where('email', $request->email)->first();
         if ($usr || Hash::check($request->pwd, $usr->pwd))
         {
+            $token = $usr->createToken();
             return response()->json($usr->api_token);
         }
     }
@@ -33,5 +36,11 @@ class UserController extends Controller
         ]);
 
         return response()->json($usr->api_token);
+    }
+
+    public function deleteUsr (Request $request)
+    {
+        $usr = User::where('email', $request->email)->first();
+
     }
 }

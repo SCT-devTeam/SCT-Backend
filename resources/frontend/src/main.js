@@ -2,6 +2,18 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+
+Vue.use(VueAxios, axios);
+
+const baseURL = window.location.hostname === 'localhost' ? 'http://localhost:8000' : 'https://' + window.location.hostname;
+
+if (typeof baseURL !== 'undefined') {
+    Vue.axios.defaults.baseURL = baseURL;
+}
+
 
 Vue.config.productionTip = false;
 
