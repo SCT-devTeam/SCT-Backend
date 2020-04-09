@@ -1,10 +1,8 @@
 <template>
-    <div class="InputSearch" @mouseover="hovered" @mouseleave="notHovered">
+    <div class="Filed-text">
         <label
             v-bind:for="name"
             ref="label"
-            v-bind:style="{ top: labelPosition.top, left: labelPosition.left }"
-            @mouseover="hovered"
             >{{ label }}</label
         >
         <span
@@ -13,34 +11,17 @@
                 left: topLineOffset + 'px',
                 'background-color': outlineColor
             }"
-            @mouseover="hovered"
         ></span>
-        <input
-            type="search"
-            v-bind:id="name"
-            ref="input"
-            v-bind:name="name"
-            v-bind:placeholder="placeholder"
-            v-bind:title="title"
-            :required="isRequired"
-            v-model="value"
-            v-bind:class="{ hovered: isHovered, active: isActive }"
-            v-on:keyup="newKeyboardAction"
-            v-on:focusin="active"
-            v-on:focusout="notActive"
-            @mouseover="hovered"
-        />
+        <p>{{this.value}}</p>
         <span
             class="outline-bot"
             v-bind:style="{ 'background-color': outlineColor }"
-            @mouseover="hovered"
         ></span>
 
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 40"
             id="border-left"
-            @mouseover="hovered"
         >
             <path
                 d="M1251.006,687h0a19,19,0,0,0,.016-38"
@@ -55,7 +36,6 @@
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 40"
             id="border-right"
-            @mouseover="hovered"
         >
             <path
                 d="M1251.006,687h0a19,19,0,0,0,.016-38"
@@ -65,17 +45,25 @@
                 stroke-width="2"
             />
         </svg>
+
+        <img
+            id="arrow"
+            @click="arrowClicked"
+            :src="imgSrcPath"
+            :alt="icon + ' icon'"
+            title="Display contact"
+            :srcset="imgSrcsetPath"
+            v-if="this.icon !== undefined || this.icon != null">
     </div>
 </template>
 
 <script>
-// Change inputs by stylise vuetify inputs : https://vuetifyjs.com/en/components/text-fields/#text-fields
+// Change input by stylise vuetify input : https://vuetifyjs.com/en/components/text-fields/#text-fields
 export default {
-    // TODO: refactor it based on TextSCT input
-    name: "SearchSCT",
+    name: "TextSCT",
     data() {
         return {
-            value: "",
+            value: this.defaultValue,
             error: "",
             isHovered: false,
             isActive: false,
@@ -90,20 +78,22 @@ export default {
     props: {
         name: {
             type: String,
-            default: "search"
+            default: "text"
         },
         title: {
             type: String,
-            default: "Enter your search here"
+            default: "Enter your text here"
         },
         placeholder: {
             type: String,
-            default: "Search"
+            default: "Text"
         },
+        defaultValue: String,
         label: {
             type: String,
-            default: "Search"
+            default: "Text"
         },
+        icon: String,
         isRequired: {
             type: Boolean,
             default: false
@@ -113,9 +103,16 @@ export default {
     computed: {
         isFilled() {
             return !!this.value;
-        }
+        },
+        imgSrcPath() {
+            return require("@/assets/icons/" + this.icon + "_icon_blue.png" );
+        },
+        imgSrcsetPath() {
+            return require("@/assets/icons/" + this.icon + "_icon_blue.svg" );
+        },
     },
     methods: {
+        // TODO: refactor it based on TextSCT input
         hovered() {
             if (!this.isHovered && !this.isActive && !this.isFilled) {
                 this.isHovered = true;
@@ -163,8 +160,8 @@ export default {
                 this.topLineOffset = 20;
             }
         },
-        newKeyboardAction() {
-            this.$emit("valueChanged", this.value);
+        arrowClicked() {
+            this.$emit("iconClicked");
         },
     }
 };
@@ -178,7 +175,8 @@ export default {
     transition: all 300ms ease-in-out;
 }
 
-div.InputSearch {
+div.Filed-text {
+    min-width: 100px;
     position: relative;
     border: 5px solid transparent;
 
@@ -193,6 +191,8 @@ div.InputSearch {
 
         color: $color__inactive_subtitle;
         font-family: $font__subtitle;
+
+        opacity: 0; // TODO: remove this
     }
 
     > span {
@@ -214,10 +214,13 @@ div.InputSearch {
         }
     }
 
-    > input {
-        height: 40px;
-        width: 100%;
+    > p {
+        display: flex;
+        align-items: center;
 
+        height: 40px;
+
+        margin: 0;
         padding: 0 15px;
 
         position: relative;
@@ -248,6 +251,15 @@ div.InputSearch {
         &#border-right {
             right: -2px;
         }
+    }
+
+    > img#arrow {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+
+        width: 25px;
     }
 
     > p.error {

@@ -1,5 +1,5 @@
 <template>
-    <div class="InputSearch" @mouseover="hovered" @mouseleave="notHovered">
+    <div class="InputText" @mouseover="hovered" @mouseleave="notHovered">
         <label
             v-bind:for="name"
             ref="label"
@@ -16,18 +16,18 @@
             @mouseover="hovered"
         ></span>
         <input
-            type="search"
-            v-bind:id="name"
+            type="text"
             ref="input"
-            v-bind:name="name"
-            v-bind:placeholder="placeholder"
-            v-bind:title="title"
+            :name="name"
+            :placeholder="placeholder"
+            :title="title"
+            :value="value"
             :required="isRequired"
-            v-model="value"
-            v-bind:class="{ hovered: isHovered, active: isActive }"
-            v-on:keyup="newKeyboardAction"
-            v-on:focusin="active"
-            v-on:focusout="notActive"
+            :disabled="!isEditable"
+            :class="{ hovered: isHovered, active: isActive }"
+            @input="onInput"
+            @focusin="active"
+            @focusout="notActive"
             @mouseover="hovered"
         />
         <span
@@ -71,102 +71,94 @@
 <script>
 // Change inputs by stylise vuetify inputs : https://vuetifyjs.com/en/components/text-fields/#text-fields
 export default {
-    // TODO: refactor it based on TextSCT input
-    name: "SearchSCT",
+    name: "TextSCT",
     data() {
         return {
-            value: "",
             error: "",
             isHovered: false,
             isActive: false,
-            topLineOffset: 20,
-            labelPosition: {
-                top: "50%",
-                left: "15px"
-            },
-            outlineColor: "var(--colors-secondary-principal)"
         };
     },
     props: {
         name: {
             type: String,
-            default: "search"
+            default: "text"
         },
         title: {
             type: String,
-            default: "Enter your search here"
+            default: "Enter your text here"
         },
         placeholder: {
             type: String,
-            default: "Search"
+            default: "Text"
         },
         label: {
             type: String,
-            default: "Search"
+            default: "Text"
         },
+        value: String,
         isRequired: {
             type: Boolean,
             default: false
             // TODO: fix required markup to the correct HTML5 syntax
+        },
+        isEditable: {
+            type: Boolean,
+            default: true,
         }
     },
     computed: {
         isFilled() {
             return !!this.value;
-        }
+        },
+        isInteracting() {
+            return this.isHovered || this.isActive || this.isFilled;
+        },
+        topLineOffset() {
+            if (this.isInteracting) {
+                return (this.$refs.label?.clientWidth || 0) + 30;
+            }
+
+            return 20;
+        },
+        labelPosition() {
+            if (this.isInteracting) {
+                return {
+                    top: "0",
+                    left: "25px",
+                }
+            }
+
+            return {
+                top: "50%",
+                left: "15px",
+            }
+        },
+        outlineColor() {
+            if (this.isActive) {
+                return "var(--colors-active)";
+            }
+
+            return "var(--colors-secondary-principal)";
+        },
     },
     methods: {
         hovered() {
-            if (!this.isHovered && !this.isActive && !this.isFilled) {
-                this.isHovered = true;
-
-                this.updateTopLine();
-                this.labelPosition.top = "0";
-                this.labelPosition.left = "25px";
-            }
+            this.isHovered = true;
         },
         notHovered() {
             this.isHovered = false;
-            if (!this.isActive && !this.isFilled) {
-                this.updateTopLine();
-                this.labelPosition.top = "50%";
-                this.labelPosition.left = "15px";
-            }
         },
         active() {
-            if (!this.isActive) {
-                this.isActive = !this.isActive;
-
-                if (this.isActive) {
-                    this.labelPosition.top = "0";
-                    this.labelPosition.left = "25px";
-                    this.outlineColor = "var(--colors-active)";
-                } else if (!this.isFilled) {
-                    this.labelPosition.top = "50%";
-                    this.labelPosition.left = "15px";
-                }
-            }
+            this.isActive = true;
         },
         notActive() {
             this.isActive = false;
-            if (!this.isFilled) {
-                this.updateTopLine();
-                this.labelPosition.top = "50%";
-                this.labelPosition.left = "15px";
-            }
-            this.outlineColor = "var(--colors-secondary-principal)";
         },
-        updateTopLine() {
-            if (this.topLineOffset === 20) {
-                this.topLineOffset += this.$refs.label.clientWidth + 10;
-            } else {
-                this.topLineOffset = 20;
-            }
+        onInput(e) {
+            this.$emit("input", e.target.value);
         },
-        newKeyboardAction() {
-            this.$emit("valueChanged", this.value);
-        },
-    }
+    },
 };
 </script>
 
@@ -178,7 +170,7 @@ export default {
     transition: all 300ms ease-in-out;
 }
 
-div.InputSearch {
+div.InputText {
     position: relative;
     border: 5px solid transparent;
 
@@ -189,7 +181,7 @@ div.InputSearch {
         transform: translateY(-50%);
         z-index: 1;
 
-        cursor: text;
+        cursor: default;
 
         color: $color__inactive_subtitle;
         font-family: $font__subtitle;
@@ -216,7 +208,7 @@ div.InputSearch {
 
     > input {
         height: 40px;
-        width: 100%;
+        width: calc(100% - 30px);
 
         padding: 0 15px;
 
@@ -227,6 +219,10 @@ div.InputSearch {
         background-color: #{$color__secondary}4D;
 
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
+        font-family: $font__text;
+        font-size: 1em;
+        color: $color__black;
 
         outline: none;
 

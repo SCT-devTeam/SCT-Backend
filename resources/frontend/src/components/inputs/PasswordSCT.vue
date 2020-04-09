@@ -74,6 +74,7 @@
 
 <script>
 // Change inputs by stylise vuetify inputs : https://vuetifyjs.com/en/components/text-fields/#text-fields
+// TODO: refactor it based on TextSCT input
 export default {
     name: "PasswordSCT",
     data() {
