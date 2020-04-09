@@ -17,8 +17,8 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::middleware('auth:sanctum')->group(function() {
-    Route::get('/me', function (Request $request){
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/me', function (Request $request) {
         return $request->user();
     });
     Route::get('logout', 'API\AuthController@logout');
@@ -37,7 +37,7 @@ Route::middleware('auth:sanctum')->group(function() {
 
 });
 
-Route::prefix('airlock')->namespace('API')->group(function() {
+Route::prefix('airlock')->namespace('API')->group(function () {
     Route::post('/login', 'AuthController@login');
 
 });

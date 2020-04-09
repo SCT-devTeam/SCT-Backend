@@ -46,10 +46,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Invoice extends Model
 {
+    public $timestamps = false;
     protected $table = "invoices";
     protected $primaryKey = "id";
-    public $timestamps = false;
-
     protected $fillable = [
         'company_id',
         'customer_id',
