@@ -123,6 +123,9 @@
                 }
             }
         },
+        props: {
+            // TODO: pass contact object like on TextSCT component
+        },
         methods: {
             toggleMode: function () {
                 this.isEditionMode = !this.isEditionMode;
