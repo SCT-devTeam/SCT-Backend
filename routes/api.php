@@ -35,6 +35,16 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/updateContact', 'ContactController@updateContact');
     Route::post('/deleteContact', 'ContactController@deleteContact');
 
+    Route::post('/invoice', 'InvoiceController@getInvoice');
+    Route::post('/createInvoice', 'InvoiceController@create');
+    Route::post('/updateInvoice', 'InvoiceController@update');
+    Route::post('/deleteInvoice', 'InvoiceController@delete');
+
+    Route::post('/quote', 'QuoteController@getquote');
+    Route::post('/createQuote', 'QuoteController@create');
+    Route::post('/updateQuote', 'QuoteController@update');
+    Route::post('/deleteQuote', 'QuoteController@delete');
+
 });
 
 Route::prefix('airlock')->namespace('API')->group(function () {
