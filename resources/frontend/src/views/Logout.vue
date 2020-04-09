@@ -5,18 +5,22 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+    import {mapMutations} from "vuex";
 
-export default {
-    name: "Logout",
-    methods: {
-        ...mapMutations(["LOGOUT_USER"]),
-        logoutUser: function() {
-            this.LOGOUT_USER();
-            this.$router.push({ name: "Login" });
+    export default {
+        name: "Logout",
+        methods: {
+            ...mapMutations({
+                set_token: "SET_TOKEN",
+                set_user: "SET_USER"
+            }),
+            logoutUser() {
+                this.set_token(null);
+                this.set_user({});
+                this.$router.push({name: "Login"});
+            }
         }
-    }
-};
+    };
 </script>
 
 <style scoped></style>
