@@ -66,4 +66,14 @@ class InvoiceController extends Controller
         return response()->json(['status','Deletion ok'],200);
     }
 
+    public function getInvoice(Request $request)
+    {
+        $invoices = Invoice::where([
+            ['company_id','=',$request->user()->company],
+            ['customer_id','=',$request->customer_id]
+        ])->get();
+
+        return response()->json(['invoices'=>$invoices]);
+    }
+
 }
