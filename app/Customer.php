@@ -46,10 +46,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Customer extends Model
 {
+    public $timestamps = false;
     protected $table = "customers";
     protected $primaryKey = 'id';
-    public $timestamps = false;
-
     /**
      * @var array
      */
@@ -69,8 +68,7 @@ class Customer extends Model
         'note',
         'default_payment_method',
         'company'
-        ];
-
+    ];
 
 
 }

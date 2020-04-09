@@ -13,9 +13,9 @@ class DatabaseSeeder extends Seeder
     {
         $companie = \App\Company::create(
             [
-                'name'=>'ouioui',
-                'email'=>'oui@oui.com',
-                'default_payment_method'=>'cash'
+                'name' => 'ouioui',
+                'email' => 'oui@oui.com',
+                'default_payment_method' => 'cash'
             ]
         );
         \App\User::create([
@@ -24,19 +24,19 @@ class DatabaseSeeder extends Seeder
             'firstname' => 'Noni',
             'email' => 'a@aa.com',
             'pwd' => Hash::make('A'),
-            'companies'=>$companie->id
+            'companies' => $companie->id
         ]);
         \App\Customer::create([
-            'customer_type'=>'individual',
+            'customer_type' => 'individual',
             'lastname' => 'cust1',
             'firstname' => 'Non',
-            'company'=>$companie->id
+            'company' => $companie->id
         ]);
         \App\Customer::create([
-            'customer_type'=>'individual',
+            'customer_type' => 'individual',
             'lastname' => 'aze',
             'firstname' => 'Non',
-            'company'=>$companie->id
+            'company' => $companie->id
         ]);
 
     }
