@@ -1,15 +1,15 @@
 <template>
     <div class="InputText" @mouseover="hovered" @mouseleave="notHovered">
         <label
-            v-bind:for="name"
+            :for="name"
             ref="label"
-            v-bind:style="{ top: labelPosition.top, left: labelPosition.left }"
+            :style="{ top: labelPosition.top, left: labelPosition.left }"
             @mouseover="hovered"
             >{{ label }}</label
         >
         <span
             class="outline-top"
-            v-bind:style="{
+            :style="{
                 left: topLineOffset + 'px',
                 'background-color': outlineColor
             }"
@@ -32,7 +32,7 @@
         />
         <span
             class="outline-bot"
-            v-bind:style="{ 'background-color': outlineColor }"
+            :style="{ 'background-color': outlineColor }"
             @mouseover="hovered"
         ></span>
 
@@ -46,7 +46,7 @@
                 d="M1251.006,687h0a19,19,0,0,0,.016-38"
                 transform="translate(-1251.006 -648)"
                 fill="none"
-                v-bind:stroke="outlineColor"
+                :stroke="outlineColor"
                 stroke-width="2"
             />
         </svg>
@@ -61,7 +61,7 @@
                 d="M1251.006,687h0a19,19,0,0,0,.016-38"
                 transform="translate(-1251.006 -648)"
                 fill="none"
-                v-bind:stroke="outlineColor"
+                :stroke="outlineColor"
                 stroke-width="2"
             />
         </svg>
@@ -76,7 +76,7 @@ export default {
         return {
             error: "",
             isHovered: false,
-            isActive: false,
+            isActive: false
         };
     },
     props: {
@@ -104,7 +104,7 @@ export default {
         },
         isEditable: {
             type: Boolean,
-            default: true,
+            default: true
         }
     },
     computed: {
@@ -125,14 +125,14 @@ export default {
             if (this.isInteracting) {
                 return {
                     top: "0",
-                    left: "25px",
-                }
+                    left: "25px"
+                };
             }
 
             return {
                 top: "50%",
-                left: "15px",
-            }
+                left: "15px"
+            };
         },
         outlineColor() {
             if (this.isActive) {
@@ -140,7 +140,7 @@ export default {
             }
 
             return "var(--colors-secondary-principal)";
-        },
+        }
     },
     methods: {
         hovered() {
@@ -157,12 +157,12 @@ export default {
         },
         onInput(e) {
             this.$emit("input", e.target.value);
-        },
-    },
+        }
+    }
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 @import "src/sass/colors";
 @import "src/sass/typography";
 
@@ -216,7 +216,7 @@ div.InputText {
 
         border-radius: 100px;
         border: 0;
-        background-color: #{$color__secondary}4D;
+        background-color: #{$color__secondary}4d;
 
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 

@@ -6,7 +6,7 @@
 
 <script>
 // @ is an alias to /src
-import LoginForm from "@/components/Forms/LoginForm";
+import LoginForm from "../components/Forms/LoginForm";
 
 /* eslint-disable */
 export default {
@@ -15,7 +15,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
     @import "src/sass/colors";
     @import "src/sass/typography";
     body {

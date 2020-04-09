@@ -1,21 +1,17 @@
 <template>
     <div class="Filed-text">
-        <label
-            v-bind:for="name"
-            ref="label"
-            >{{ label }}</label
-        >
+        <label :for="name" ref="label">{{ label }}</label>
         <span
             class="outline-top"
-            v-bind:style="{
+            :style="{
                 left: topLineOffset + 'px',
                 'background-color': outlineColor
             }"
         ></span>
-        <p>{{this.value}}</p>
+        <p>{{ this.value }}</p>
         <span
             class="outline-bot"
-            v-bind:style="{ 'background-color': outlineColor }"
+            :style="{ 'background-color': outlineColor }"
         ></span>
 
         <svg
@@ -27,7 +23,7 @@
                 d="M1251.006,687h0a19,19,0,0,0,.016-38"
                 transform="translate(-1251.006 -648)"
                 fill="none"
-                v-bind:stroke="outlineColor"
+                :stroke="outlineColor"
                 stroke-width="2"
             />
         </svg>
@@ -41,7 +37,7 @@
                 d="M1251.006,687h0a19,19,0,0,0,.016-38"
                 transform="translate(-1251.006 -648)"
                 fill="none"
-                v-bind:stroke="outlineColor"
+                :stroke="outlineColor"
                 stroke-width="2"
             />
         </svg>
@@ -53,7 +49,8 @@
             :alt="icon + ' icon'"
             title="Display contact"
             :srcset="imgSrcsetPath"
-            v-if="this.icon !== undefined || this.icon != null">
+            v-if="this.icon !== undefined || this.icon != null"
+        />
     </div>
 </template>
 
@@ -105,11 +102,15 @@ export default {
             return !!this.value;
         },
         imgSrcPath() {
-            return require("@/assets/icons/" + this.icon + "_icon_blue.png" );
+            return require("../../assets/icons/" +
+                this.icon +
+                "_icon_blue.png");
         },
         imgSrcsetPath() {
-            return require("@/assets/icons/" + this.icon + "_icon_blue.svg" );
-        },
+            return require("../../assets/icons/" +
+                this.icon +
+                "_icon_blue.svg");
+        }
     },
     methods: {
         // TODO: refactor it based on TextSCT input
@@ -162,12 +163,12 @@ export default {
         },
         arrowClicked() {
             this.$emit("iconClicked");
-        },
+        }
     }
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 @import "src/sass/colors";
 @import "src/sass/typography";
 
@@ -227,7 +228,7 @@ div.Filed-text {
 
         border-radius: 100px;
         border: 0;
-        background-color: #{$color__secondary}4D;
+        background-color: #{$color__secondary}4d;
 
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 

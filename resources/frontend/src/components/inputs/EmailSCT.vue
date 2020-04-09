@@ -1,15 +1,15 @@
 <template>
     <div class="InputEmail" @mouseover="hovered" @mouseleave="notHovered">
         <label
-            v-bind:for="name"
+            :for="name"
             ref="label"
-            v-bind:style="{ top: labelPosition.top, left: labelPosition.left }"
+            :style="{ top: labelPosition.top, left: labelPosition.left }"
             @mouseover="hovered"
             >{{ label }}</label
         >
         <span
             class="outline-top"
-            v-bind:style="{
+            :style="{
                 left: topLineOffset + 'px',
                 'background-color': outlineColor
             }"
@@ -17,24 +17,24 @@
         ></span>
         <input
             type="email"
-            v-bind:id="name"
+            :id="name"
             ref="input"
-            v-bind:name="name"
-            v-bind:placeholder="placeholder"
-            v-bind:title="title"
+            :name="name"
+            :placeholder="placeholder"
+            :title="title"
             autocomplete="email"
             minlength="5"
             :required="isRequired"
             v-model="value"
-            v-bind:class="{ hovered: isHovered, active: isActive }"
-            v-on:keyup="newKeyboardAction"
-            v-on:focusin="active"
-            v-on:focusout="notActive"
+            :class="{ hovered: isHovered, active: isActive }"
+            @keyup="newKeyboardAction"
+            @focusin="active"
+            @focusout="notActive"
             @mouseover="hovered"
         />
         <span
             class="outline-bot"
-            v-bind:style="{ 'background-color': outlineColor }"
+            :style="{ 'background-color': outlineColor }"
             @mouseover="hovered"
         ></span>
 
@@ -48,7 +48,7 @@
                 d="M1251.006,687h0a19,19,0,0,0,.016-38"
                 transform="translate(-1251.006 -648)"
                 fill="none"
-                v-bind:stroke="outlineColor"
+                :stroke="outlineColor"
                 stroke-width="2"
             />
         </svg>
@@ -63,7 +63,7 @@
                 d="M1251.006,687h0a19,19,0,0,0,.016-38"
                 transform="translate(-1251.006 -648)"
                 fill="none"
-                v-bind:stroke="outlineColor"
+                :stroke="outlineColor"
                 stroke-width="2"
             />
         </svg>
@@ -175,7 +175,7 @@ export default {
             setTimeout(this.checkInput, 700);
         },
         checkInput() {
-            const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
             // Check if empty
             if (this.value === "" || this.value === "") {
@@ -205,7 +205,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 @import "src/sass/colors";
 @import "src/sass/typography";
 

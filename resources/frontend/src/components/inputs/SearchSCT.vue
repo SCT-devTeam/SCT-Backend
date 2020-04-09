@@ -1,15 +1,15 @@
 <template>
     <div class="InputSearch" @mouseover="hovered" @mouseleave="notHovered">
         <label
-            v-bind:for="name"
+            :for="name"
             ref="label"
-            v-bind:style="{ top: labelPosition.top, left: labelPosition.left }"
+            :style="{ top: labelPosition.top, left: labelPosition.left }"
             @mouseover="hovered"
             >{{ label }}</label
         >
         <span
             class="outline-top"
-            v-bind:style="{
+            :style="{
                 left: topLineOffset + 'px',
                 'background-color': outlineColor
             }"
@@ -17,22 +17,22 @@
         ></span>
         <input
             type="search"
-            v-bind:id="name"
+            :id="name"
             ref="input"
-            v-bind:name="name"
-            v-bind:placeholder="placeholder"
-            v-bind:title="title"
+            :name="name"
+            :placeholder="placeholder"
+            :title="title"
             :required="isRequired"
             v-model="value"
-            v-bind:class="{ hovered: isHovered, active: isActive }"
-            v-on:keyup="newKeyboardAction"
-            v-on:focusin="active"
-            v-on:focusout="notActive"
+            :class="{ hovered: isHovered, active: isActive }"
+            @keyup="newKeyboardAction"
+            @focusin="active"
+            @focusout="notActive"
             @mouseover="hovered"
         />
         <span
             class="outline-bot"
-            v-bind:style="{ 'background-color': outlineColor }"
+            :style="{ 'background-color': outlineColor }"
             @mouseover="hovered"
         ></span>
 
@@ -46,7 +46,7 @@
                 d="M1251.006,687h0a19,19,0,0,0,.016-38"
                 transform="translate(-1251.006 -648)"
                 fill="none"
-                v-bind:stroke="outlineColor"
+                :stroke="outlineColor"
                 stroke-width="2"
             />
         </svg>
@@ -61,7 +61,7 @@
                 d="M1251.006,687h0a19,19,0,0,0,.016-38"
                 transform="translate(-1251.006 -648)"
                 fill="none"
-                v-bind:stroke="outlineColor"
+                :stroke="outlineColor"
                 stroke-width="2"
             />
         </svg>
@@ -165,12 +165,12 @@ export default {
         },
         newKeyboardAction() {
             this.$emit("valueChanged", this.value);
-        },
+        }
     }
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 @import "src/sass/colors";
 @import "src/sass/typography";
 
@@ -224,7 +224,7 @@ div.InputSearch {
 
         border-radius: 100px;
         border: 0;
-        background-color: #{$color__secondary}4D;
+        background-color: #{$color__secondary}4d;
 
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 

@@ -1,11 +1,11 @@
 <template>
     <button
         id="ButtonSCT"
-        v-bind:name="name"
-        v-bind:title="title"
-        v-bind:type="type"
+        :name="name"
+        :title="title"
+        :type="type"
         :disabled="isDisabled"
-        v-bind:class="{ disabled: isDisabled }"
+        :class="{ disabled: isDisabled }"
     >
         {{ value }}
     </button>

@@ -19,11 +19,11 @@ export default new Vuex.Store({
             email: null,
             phone: null,
             notes: null,
-            companies: null,
+            companies: null
         }
     },
     getters: {
-        isLoggedIn: state => !(state.user.token === null),  // TODO: change this by an api call
+        isLoggedIn: state => !(state.user.token === null), // TODO: change this by an api call
         user: state => {
             return {
                 firstname: state.user.firstname || null,
@@ -31,10 +31,10 @@ export default new Vuex.Store({
                 email: state.user.email || null,
                 phone: state.user.phone || null,
                 notes: state.user.notes || null,
-                companies: state.user.companies || null,
-            }
+                companies: state.user.companies || null
+            };
         },
-        token: state => state.user.token,
+        token: state => state.user.token
     },
     mutations: {
         SET_TOKEN(state, token) {
@@ -47,7 +47,7 @@ export default new Vuex.Store({
             state.user.phone = userData.phone || null;
             state.user.notes = userData.notes || null;
             state.user.companies = userData.companies || null;
-        },
+        }
     },
     actions: {},
     modules: {},
