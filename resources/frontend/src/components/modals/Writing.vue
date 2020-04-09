@@ -23,13 +23,13 @@
                     class="table__item"
                     v-for="(item, index) in invoice.items"
                 >
-                    <input class="label" type="text" v-model="item.label"/>
+                    <input class="label" type="text" v-model="item.label" />
                     <input
                         class="quantity"
                         type="number"
                         v-model="item.quantity"
                     />
-                    <input class="price" type="number" v-model="item.price"/>
+                    <input class="price" type="number" v-model="item.price" />
                 </span>
             </div>
             <p class="total">{{ this.total }}</p>
@@ -39,207 +39,207 @@
 </template>
 
 <script>
-    export default {
-        name: "writing",
-        data() {
-            return {
-                invoice: {
-                    company: "Company",
-                    customer: "Customer",
-                    items: [
-                        {
-                            label: "item label",
-                            quantity: 1,
-                            price: 10
-                        },
-                        {
-                            label: "item label",
-                            quantity: 3,
-                            price: 30
-                        }
-                    ]
-                }
-            };
-        },
-        props: {
-            writingId: Number
-        },
-        computed: {
-            total() {
-                let total = 0;
-                for (let itemIndex in this.invoice.items) {
-                    total += Number(this.invoice.items[itemIndex].price);
-                }
-                return total;
+export default {
+    name: "writing",
+    data() {
+        return {
+            invoice: {
+                company: "Company",
+                customer: "Customer",
+                items: [
+                    {
+                        label: "item label",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        label: "item label",
+                        quantity: 3,
+                        price: 30
+                    }
+                ]
             }
-        },
-        methods: {
-            exit() {
-                this.save();
-                this.$emit("close");
-            },
-            save() {
-                // TODO: API request
+        };
+    },
+    props: {
+        writingId: Number
+    },
+    computed: {
+        total() {
+            let total = 0;
+            for (let itemIndex in this.invoice.items) {
+                total += Number(this.invoice.items[itemIndex].price);
             }
+            return total;
         }
-    };
+    },
+    methods: {
+        exit() {
+            this.save();
+            this.$emit("close");
+        },
+        save() {
+            // TODO: API request
+        }
+    }
+};
 </script>
 
 <style lang="scss" scoped>
-    @import "src/scss/colors";
-    @import "src/scss/typography";
+@import "src/scss/colors";
+@import "src/scss/typography";
 
-    div.writing_modal {
-        display: flex;
-        justify-content: center;
+div.writing_modal {
+    display: flex;
+    justify-content: center;
 
-        padding: 20px 0;
+    padding: 20px 0;
 
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+
+    overflow-y: scroll;
+
+    > span.background {
         position: fixed;
         top: 0;
         bottom: 0;
         left: 0;
-        right: 0;
-        z-index: 10;
+        right: 17px;
+        z-index: -1;
 
-        overflow-y: scroll;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
 
-        > span.background {
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 17px;
-            z-index: -1;
+    > div.writing_modal__invoice {
+        display: flex;
+        flex-direction: column;
 
-            background-color: rgba(0, 0, 0, 0.5);
-        }
+        min-height: 90%;
+        height: fit-content;
+        width: 50%;
 
-        > div.writing_modal__invoice {
-            display: flex;
-            flex-direction: column;
+        border-radius: 15px;
 
-            min-height: 90%;
-            height: fit-content;
-            width: 50%;
+        background-color: white;
+
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+
+        > input.invoice__company {
+            max-width: 35%;
+
+            margin: 50px;
+            padding: 7px;
 
             border-radius: 15px;
 
-            background-color: white;
+            background-color: #ececec;
 
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            white-space: pre-line;
+        }
 
-            > input.invoice__company {
-                max-width: 35%;
+        > input.invoice__customer {
+            align-self: flex-end;
 
-                margin: 50px;
-                padding: 7px;
+            max-width: 35%;
 
-                border-radius: 15px;
+            margin: 50px;
+            padding: 7px;
 
-                background-color: #ececec;
+            border-radius: 15px;
 
-                white-space: pre-line;
-            }
+            background-color: #ececec;
 
-            > input.invoice__customer {
-                align-self: flex-end;
+            white-space: pre-line;
+        }
 
-                max-width: 35%;
+        > div.invoice__items-table {
+            display: flex;
+            flex-direction: column;
+            justify-content: stretch;
 
-                margin: 50px;
-                padding: 7px;
+            align-self: center;
+            justify-self: center;
 
-                border-radius: 15px;
+            width: 90%;
 
-                background-color: #ececec;
+            border-radius: 20px 20px 15px 15px;
 
-                white-space: pre-line;
-            }
+            background-color: #fafafa;
 
-            > div.invoice__items-table {
+            > span {
                 display: flex;
-                flex-direction: column;
-                justify-content: stretch;
+                justify-content: space-around;
 
-                align-self: center;
-                justify-self: center;
+                padding: 5px 25px;
 
-                width: 90%;
+                > p.label,
+                > input.label {
+                    flex: 5;
+                }
 
-                border-radius: 20px 20px 15px 15px;
+                > p.quantity,
+                > input.quantity {
+                    flex: 0.7;
+                    text-align: center;
+                }
 
-                background-color: #fafafa;
+                > p.price,
+                > input.price {
+                    flex: 0.7;
+                    text-align: right;
+                }
 
-                > span {
-                    display: flex;
-                    justify-content: space-around;
+                &.table__head {
+                    border-radius: 15px 15px 0 0;
 
-                    padding: 5px 25px;
+                    background-color: $color__main;
 
-                    > p.label,
-                    > input.label {
-                        flex: 5;
+                    > p {
+                        margin: 5px 0;
+
+                        font-family: $font__heading;
+                        font-weight: bold;
+                        font-size: 1.2em;
                     }
+                }
 
-                    > p.quantity,
-                    > input.quantity {
-                        flex: 0.7;
-                        text-align: center;
-                    }
+                &.table__item {
+                    margin-bottom: 10px;
+                    background-color: #ececec80;
 
-                    > p.price,
-                    > input.price {
-                        flex: 0.7;
-                        text-align: right;
-                    }
-
-                    &.table__head {
-                        border-radius: 15px 15px 0 0;
-
-                        background-color: $color__main;
-
-                        > p {
-                            margin: 5px 0;
-
-                            font-family: $font__heading;
-                            font-weight: bold;
-                            font-size: 1.2em;
-                        }
-                    }
-
-                    &.table__item {
-                        margin-bottom: 10px;
-                        background-color: #ececec80;
-
-                        &:last-child {
-                            margin-bottom: 0;
-                            border-radius: 0 0 15px 15px;
-                        }
+                    &:last-child {
+                        margin-bottom: 0;
+                        border-radius: 0 0 15px 15px;
                     }
                 }
             }
+        }
 
-            > p.total {
-                align-self: flex-end;
-                margin-right: 50px;
-                padding: 7px;
+        > p.total {
+            align-self: flex-end;
+            margin-right: 50px;
+            padding: 7px;
 
-                border: 2px solid $color__secondary;
-                border-radius: 20px;
+            border: 2px solid $color__secondary;
+            border-radius: 20px;
 
-                background-color: #ececec;
-            }
+            background-color: #ececec;
+        }
 
-            > p.notice {
-                justify-self: flex-end;
-                align-self: center;
+        > p.notice {
+            justify-self: flex-end;
+            align-self: center;
 
-                padding: 10px;
+            padding: 10px;
 
-                border-radius: 20px;
-                background-color: #ececec;
-            }
+            border-radius: 20px;
+            background-color: #ececec;
         }
     }
+}
 </style>

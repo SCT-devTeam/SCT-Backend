@@ -5,10 +5,10 @@
 </template>
 
 <script>
-    // @ is an alias to /src
-    import LoginForm from "../components/Forms/LoginForm";
+// @ is an alias to /src
+import LoginForm from "../components/Forms/LoginForm";
 
-    /* eslint-disable */
+/* eslint-disable */
     export default {
         name: "Login",
         components: {LoginForm},

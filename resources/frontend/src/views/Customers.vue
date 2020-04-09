@@ -16,32 +16,32 @@
 </template>
 
 <script>
-    import SecondaryMenu from "../components/Navigations/SecondaryMenu";
-    import ProspectsList from "./Composed/ProspectsList";
-    import CustomersList from "./Composed/CustomersList";
+import SecondaryMenu from "../components/Navigations/SecondaryMenu";
+import ProspectsList from "./Composed/ProspectsList";
+import CustomersList from "./Composed/CustomersList";
 
-    export default {
-        name: "Customers",
-        components: {SecondaryMenu, ProspectsList, CustomersList},
-        data() {
-            return {
-                viewDisplayed: "Prospects"
-            };
-        }
-    };
+export default {
+    name: "Customers",
+    components: { SecondaryMenu, ProspectsList, CustomersList },
+    data() {
+        return {
+            viewDisplayed: "Prospects"
+        };
+    }
+};
 </script>
 
 <style lang="scss" scoped>
-    div#customers {
+div#customers {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    > div#customers__view {
         display: flex;
-        flex-direction: column;
-        align-items: stretch;
 
-        > div#customers__view {
-            display: flex;
-
-            height: calc(100% - 70px);
-            padding-top: 30px;
-        }
+        height: calc(100% - 70px);
+        padding-top: 30px;
     }
+}
 </style>

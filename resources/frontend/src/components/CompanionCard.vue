@@ -17,80 +17,80 @@
 </template>
 
 <script>
-    import TextFiledSCT from "./DisplayTexts/TextFiledSCT";
+import TextFiledSCT from "./DisplayTexts/TextFiledSCT";
 
-    export default {
-        name: "CompanionCard",
-        components: {TextFiledSCT},
-        data() {
-            return {
-                isEditionMode: false,
-                devices: [
-                    {
-                        name: "phone-1",
-                        id: 1
-                    },
-                    {
-                        name: "phone-2",
-                        id: 2
-                    }
-                ]
-            };
-        },
-        methods: {
-            removeDevice: function (device_id) {
-                // TODO: API request
-            }
+export default {
+    name: "CompanionCard",
+    components: { TextFiledSCT },
+    data() {
+        return {
+            isEditionMode: false,
+            devices: [
+                {
+                    name: "phone-1",
+                    id: 1
+                },
+                {
+                    name: "phone-2",
+                    id: 2
+                }
+            ]
+        };
+    },
+    methods: {
+        removeDevice: function(device_id) {
+            // TODO: API request
         }
-    };
+    }
+};
 </script>
 
 <style lang="scss" scoped>
-    @import "src/scss/colors";
-    @import "src/scss/typography";
+@import "src/scss/colors";
+@import "src/scss/typography";
 
-    div#profile-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+div#profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-        padding: 10px;
+    padding: 10px;
 
-        border-radius: 15px;
-        background: #fff;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 
-        > img {
-            max-width: 150px;
-            max-height: 150px;
+    > img {
+        max-width: 150px;
+        max-height: 150px;
 
-            margin-bottom: 10px;
+        margin-bottom: 10px;
 
-            border-radius: 50%;
-            border: 2px solid #2f3e55;
-        }
-
-        > div.Input-dropdown {
-            width: 70%;
-            margin-bottom: 25px;
-        }
-
-        > div#name {
-            display: flex;
-            width: 90%;
-        }
-
-        > p.title {
-            width: 100%;
-
-            padding-left: 10%;
-
-            font-family: $font__text;
-            font-size: 1.2em;
-        }
-
-        > div.filed {
-            width: 85%;
-        }
+        border-radius: 50%;
+        border: 2px solid #2f3e55;
     }
+
+    > div.Input-dropdown {
+        width: 70%;
+        margin-bottom: 25px;
+    }
+
+    > div#name {
+        display: flex;
+        width: 90%;
+    }
+
+    > p.title {
+        width: 100%;
+
+        padding-left: 10%;
+
+        font-family: $font__text;
+        font-size: 1.2em;
+    }
+
+    > div.filed {
+        width: 85%;
+    }
+}
 </style>

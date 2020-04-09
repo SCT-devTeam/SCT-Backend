@@ -80,55 +80,55 @@
 </template>
 
 <script>
-    // @ is an alias to /src
-    import {mapState} from "vuex";
-    import SimpleDashboardWidget from "../components/DashboardWidgets/SimpleDashboardWidget";
-    import GraphDashboardWidget from "../components/DashboardWidgets/GraphDashboardWidget";
+// @ is an alias to /src
+import { mapState } from "vuex";
+import SimpleDashboardWidget from "../components/DashboardWidgets/SimpleDashboardWidget";
+import GraphDashboardWidget from "../components/DashboardWidgets/GraphDashboardWidget";
 
-    export default {
-        name: "Dashboard",
-        data() {
-            return {
-                default: 0
-            };
-        },
-        components: {SimpleDashboardWidget, GraphDashboardWidget},
-        computed: {
-            ...mapState(["user"])
-        }
-    };
+export default {
+    name: "Dashboard",
+    data() {
+        return {
+            default: 0
+        };
+    },
+    components: { SimpleDashboardWidget, GraphDashboardWidget },
+    computed: {
+        ...mapState(["user"])
+    }
+};
 </script>
 
 <style lang="scss" scoped>
-    div#dashboard {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: 0.25fr repeat(4, 1fr);
-        grid-column-gap: 30px;
-        grid-row-gap: 30px;
+div#dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 0.25fr repeat(4, 1fr);
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
 
-        justify-items: center;
+    justify-items: center;
 
-        > h1 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            grid-area: 1 / 1 / 2 / 5;
+    > h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        grid-area: 1 / 1 / 2 / 5;
 
-            height: 100%;
-            width: 100%;
+        height: 100%;
+        width: 100%;
 
-            margin: 0;
-        }
-
-        > div.widget-graph-1 {
-            grid-column: 3 / 5;
-            grid-row: 3 / 5;
-        }
-
-        > div.widget-graph-2 {
-            grid-column: 1 / 3;
-            grid-row: 4 / 6;
-        }
+        margin: 0;
     }
+
+    > div.widget-graph-1 {
+        grid-column: 3 / 5;
+        grid-row: 3 / 5;
+    }
+
+    > div.widget-graph-2 {
+        grid-column: 1 / 3;
+        grid-row: 4 / 6;
+    }
+}
 </style>

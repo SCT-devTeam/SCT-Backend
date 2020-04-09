@@ -5,7 +5,7 @@
             :style="{ top: labelPosition.top, left: labelPosition.left }"
             @mouseover="hovered"
             ref="label"
-        >{{ label }}</label
+            >{{ label }}</label
         >
         <span
             :style="{
@@ -69,188 +69,188 @@
 </template>
 
 <script>
-    // Change inputs by stylise vuetify inputs : https://vuetifyjs.com/en/components/text-fields/#text-fields
-    export default {
-        name: "TextSCT",
-        data() {
+// Change inputs by stylise vuetify inputs : https://vuetifyjs.com/en/components/text-fields/#text-fields
+export default {
+    name: "TextSCT",
+    data() {
+        return {
+            error: "",
+            isHovered: false,
+            isActive: false
+        };
+    },
+    props: {
+        name: {
+            type: String,
+            default: "text"
+        },
+        title: {
+            type: String,
+            default: "Enter your text here"
+        },
+        placeholder: {
+            type: String,
+            default: "Text"
+        },
+        label: {
+            type: String,
+            default: "Text"
+        },
+        value: String,
+        isRequired: {
+            type: Boolean,
+            default: false
+            // TODO: fix required markup to the correct HTML5 syntax
+        },
+        isEditable: {
+            type: Boolean,
+            default: true
+        }
+    },
+    computed: {
+        isFilled() {
+            return !!this.value;
+        },
+        isInteracting() {
+            return this.isHovered || this.isActive || this.isFilled;
+        },
+        topLineOffset() {
+            if (this.isInteracting) {
+                return (this.$refs.label?.clientWidth || 0) + 30;
+            }
+
+            return 20;
+        },
+        labelPosition() {
+            if (this.isInteracting) {
+                return {
+                    top: "0",
+                    left: "25px"
+                };
+            }
+
             return {
-                error: "",
-                isHovered: false,
-                isActive: false
+                top: "50%",
+                left: "15px"
             };
         },
-        props: {
-            name: {
-                type: String,
-                default: "text"
-            },
-            title: {
-                type: String,
-                default: "Enter your text here"
-            },
-            placeholder: {
-                type: String,
-                default: "Text"
-            },
-            label: {
-                type: String,
-                default: "Text"
-            },
-            value: String,
-            isRequired: {
-                type: Boolean,
-                default: false
-                // TODO: fix required markup to the correct HTML5 syntax
-            },
-            isEditable: {
-                type: Boolean,
-                default: true
+        outlineColor() {
+            if (this.isActive) {
+                return "var(--colors-active)";
             }
-        },
-        computed: {
-            isFilled() {
-                return !!this.value;
-            },
-            isInteracting() {
-                return this.isHovered || this.isActive || this.isFilled;
-            },
-            topLineOffset() {
-                if (this.isInteracting) {
-                    return (this.$refs.label?.clientWidth || 0) + 30;
-                }
 
-                return 20;
-            },
-            labelPosition() {
-                if (this.isInteracting) {
-                    return {
-                        top: "0",
-                        left: "25px"
-                    };
-                }
-
-                return {
-                    top: "50%",
-                    left: "15px"
-                };
-            },
-            outlineColor() {
-                if (this.isActive) {
-                    return "var(--colors-active)";
-                }
-
-                return "var(--colors-secondary-principal)";
-            }
-        },
-        methods: {
-            hovered() {
-                this.isHovered = true;
-            },
-            notHovered() {
-                this.isHovered = false;
-            },
-            active() {
-                this.isActive = true;
-            },
-            notActive() {
-                this.isActive = false;
-            },
-            onInput(e) {
-                this.$emit("input", e.target.value);
-            }
+            return "var(--colors-secondary-principal)";
         }
-    };
+    },
+    methods: {
+        hovered() {
+            this.isHovered = true;
+        },
+        notHovered() {
+            this.isHovered = false;
+        },
+        active() {
+            this.isActive = true;
+        },
+        notActive() {
+            this.isActive = false;
+        },
+        onInput(e) {
+            this.$emit("input", e.target.value);
+        }
+    }
+};
 </script>
 
 <style lang="scss" scoped>
-    @import "src/scss/colors";
-    @import "src/scss/typography";
+@import "src/scss/colors";
+@import "src/scss/typography";
 
-    * {
-        transition: all 300ms ease-in-out;
+* {
+    transition: all 300ms ease-in-out;
+}
+
+div.InputText {
+    position: relative;
+    border: 5px solid transparent;
+
+    > label {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+        z-index: 1;
+
+        cursor: default;
+
+        color: $color__inactive_subtitle;
+        font-family: $font__subtitle;
     }
 
-    div.InputText {
-        position: relative;
-        border: 5px solid transparent;
+    > span {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        z-index: 2;
 
-        > label {
-            position: absolute;
-            top: 50%;
-            left: 15px;
-            transform: translateY(-50%);
-            z-index: 1;
+        height: 2px;
 
-            cursor: default;
+        background-color: $color__secondary;
 
-            color: $color__inactive_subtitle;
-            font-family: $font__subtitle;
-        }
-
-        > span {
-            position: absolute;
-            left: 20px;
-            right: 20px;
-            z-index: 2;
-
-            height: 2px;
-
-            background-color: $color__secondary;
-
-            &.outline-top {
-                top: -2px;
-            }
-
-            &.outline-bot {
-                bottom: -2px;
-            }
-        }
-
-        > input {
-            height: 40px;
-            width: calc(100% - 30px);
-
-            padding: 0 15px;
-
-            position: relative;
-
-            border-radius: 100px;
-            border: 0;
-            background-color: #{$color__secondary}4d;
-
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-
-            font-family: $font__text;
-            font-size: 1em;
-            color: $color__black;
-
-            outline: none;
-
-            &::placeholder {
-                color: transparent;
-            }
-        }
-
-        > svg {
-            position: absolute;
+        &.outline-top {
             top: -2px;
-            height: calc(100% + 4px);
-
-            &#border-left {
-                left: -2px;
-                transform: scale(-1, 1);
-            }
-
-            &#border-right {
-                right: -2px;
-            }
         }
 
-        > p.error {
-            position: absolute;
-            bottom: -20px;
-            left: 5px;
-            margin: 0;
+        &.outline-bot {
+            bottom: -2px;
         }
     }
+
+    > input {
+        height: 40px;
+        width: calc(100% - 30px);
+
+        padding: 0 15px;
+
+        position: relative;
+
+        border-radius: 100px;
+        border: 0;
+        background-color: #{$color__secondary}4d;
+
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
+        font-family: $font__text;
+        font-size: 1em;
+        color: $color__black;
+
+        outline: none;
+
+        &::placeholder {
+            color: transparent;
+        }
+    }
+
+    > svg {
+        position: absolute;
+        top: -2px;
+        height: calc(100% + 4px);
+
+        &#border-left {
+            left: -2px;
+            transform: scale(-1, 1);
+        }
+
+        &#border-right {
+            right: -2px;
+        }
+    }
+
+    > p.error {
+        position: absolute;
+        bottom: -20px;
+        left: 5px;
+        margin: 0;
+    }
+}
 </style>
