@@ -31,6 +31,7 @@ module.exports = {
         plugins: [
             new HtmlWebpackPlugin({
                 template: join(__dirname, "/src/index.html"),
+                favicon: 'src/assets/logos/sct_logo_colored_roundedWithoutSubtitle.png',
                 title: "SCT Backoffice",
                 description: "SCT Backoffice"
             })
