@@ -39,4 +39,12 @@ class CustomerController extends Controller
         $customers = Customer::where('company', '=', $request->id_company)->get();
         return response()->json(['cust' => $customers]);
     }
+
+    public function delete(Request $request)
+    {
+        $request->validate(['id'=>'required']);
+        $customer = Customer::find($request->id);
+        $customer->delete();
+        return response()->json(['status', 'Deletion ok'], 200);
+    }
 }

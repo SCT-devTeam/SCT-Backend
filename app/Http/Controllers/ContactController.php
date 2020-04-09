@@ -54,6 +54,8 @@ class ContactController extends Controller
 
     public function deleteContact(Request $request)
     {
+        $request->validate(['id'=>'required']);
+
         $contact = Contact::find($request->id_contact);
         $contact->delete();
 
