@@ -112,7 +112,6 @@ export const outlineInputMixin = {
         },
         notActive() {
             this.isActive = false;
-            this.checkInput();
         },
         onInput(e) {
             this.$emit("input", e.target.value);

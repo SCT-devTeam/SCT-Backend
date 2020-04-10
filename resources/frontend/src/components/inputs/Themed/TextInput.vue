@@ -91,6 +91,9 @@ export default {
     name: "TextSCT",
     mixins: [outlineInputMixin],
     methods: {
+        notActive() {
+            this.checkInput();
+        },
         checkInput() {
             // Check if empty
             if (this.value === "") {
