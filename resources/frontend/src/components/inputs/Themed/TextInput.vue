@@ -107,6 +107,7 @@ export default {
     },
     methods: {
         notActive() {
+            this.isActive = false;
             this.checkInput();
         },
         checkInput() {
