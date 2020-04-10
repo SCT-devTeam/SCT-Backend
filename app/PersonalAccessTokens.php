@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\PersonalAccessToken;
 
 /**
@@ -33,7 +32,7 @@ use Laravel\Sanctum\PersonalAccessToken;
  */
 class PersonalAccessTokens extends PersonalAccessToken
 {
-   protected $table = "personal_access_tokens";
+    protected $table = "personal_access_tokens";
 
     public function user()
     {

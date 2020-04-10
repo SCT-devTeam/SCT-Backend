@@ -4,54 +4,52 @@
 <head>
     <meta charset="utf-8">
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <meta name="description" content="<%= htmlWebpackPlugin.options.description %>">
+    <meta content="<%= htmlWebpackPlugin.options.description %>" name="description">
 
-    <meta http-equiv=X-UA-Compatible content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta content="IE=edge" http-equiv=X-UA-Compatible>
+    <meta content="width=device-width,initial-scale=1,user-scalable=no" name="viewport">
 
-    <meta name="format-detection" content="date=no,telephone=no,address=no,email=no">
+    <meta content="date=no,telephone=no,address=no,email=no" name="format-detection">
 
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="yes" name="mobile-web-app-capable">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
 
     <base href="/">
 
     <!-- TODO: Create manifest -->
     <!-- <link rel="manifest" href="/app.webmanifest"> -->
-
-    <!-- TODO: Add link parameter to favicon -->
-    <link rel="icon" href="/favicon.ico">
-
 </head>
 <body>
 
-    <div id="app"></div>
-    <noscript id="app-error">
-        <style>
-            noscript#app-error {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
+<div id="app"></div>
+<noscript id="app-error">
+    <style>
+        noscript#app-error {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
 
-                padding: 50px;
-            }
+            padding: 50px;
+        }
 
-            noscript#app-error > h1,
-            noscript#app-error > p {
-                text-align: center;
-                white-space: pre-line;
-            }
-        </style>
-        <!-- TODO: Translate this message -->
-        <h1>Il semblerai qu'il y ai une erreur lors du chargement de l'application.</h1>
-        <p>Vérifiez que vous ayez le Javascript d'activé et que votre bloqueur de pub est désactivé.
-            Nous n'avons intégré aucune pub ou traqueur dans votre application; <b>vos données sont une priorité pour nous</b>.
-            Il arrive que certains bloqueurs de pub empêche notre technologie à se charger.</p>
+        noscript#app-error > h1,
+        noscript#app-error > p {
+            text-align: center;
+            white-space: pre-line;
+        }
+    </style>
+    <!-- TODO: Translate this message -->
+    <h1>Il semblerai qu'il y ai une erreur lors du chargement de l'application.</h1>
+    <p>Vérifiez que vous ayez le Javascript d'activé et que votre bloqueur de pub est désactivé.
+        Nous n'avons intégré aucune pub ou traqueur dans votre application; <b>vos données sont une priorité pour
+            nous</b>.
+        Il arrive que certains bloqueurs de pub empêche notre technologie à se charger.</p>
 
-        <p>Si le problème continu vous pouvez faire une demande de support en ouvrant une <a href="https://github.com/SCT-devTeam/SCT-Backend/issues">issue</a></p>
-    </noscript>
+    <p>Si le problème continu vous pouvez faire une demande de support en ouvrant une <a
+        href="https://github.com/SCT-devTeam/SCT-Backend/issues">issue</a></p>
+</noscript>
 
 </body>
 </html>

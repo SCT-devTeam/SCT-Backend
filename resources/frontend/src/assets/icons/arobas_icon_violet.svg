@@ -1,1 +1,12 @@
-<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39.96 39.98"><g id="arobas_icon_violet" data-name="arobas icon violet"><path id="outline" d="M27.32,12.77V24.86c0,2.14,1.28,5.83,5.72,5.21S38,23.35,38,20A18,18,0,0,0,2,20H2c0,10.86,9.28,18,18,18,.11,0,16.43,0,16.43,0" transform="translate(0 0.03)" fill="none" stroke="#4f1ef7" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/><g id="circle"><circle cx="19.52" cy="19.5" r="8.5" fill="none"/><circle cx="19.52" cy="19.5" r="6.5" fill="none" stroke="#4f1ef7" stroke-width="4"/></g></g></svg>
+<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39.96 39.98">
+    <g id="arobas_icon_violet" data-name="arobas icon violet">
+        <path id="outline"
+              d="M27.32,12.77V24.86c0,2.14,1.28,5.83,5.72,5.21S38,23.35,38,20A18,18,0,0,0,2,20H2c0,10.86,9.28,18,18,18,.11,0,16.43,0,16.43,0"
+              transform="translate(0 0.03)" fill="none" stroke="#4f1ef7" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="4"/>
+        <g id="circle">
+            <circle cx="19.52" cy="19.5" r="8.5" fill="none"/>
+            <circle cx="19.52" cy="19.5" r="6.5" fill="none" stroke="#4f1ef7" stroke-width="4"/>
+        </g>
+    </g>
+</svg>
