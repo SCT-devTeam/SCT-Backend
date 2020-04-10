@@ -5,6 +5,7 @@
     transition: all 300ms ease-in-out;
 }
 
+
 div.container {
     display: flex;
     flex-direction: column;
@@ -65,9 +66,9 @@ div.container {
             overflow: hidden;
             cursor: text;
 
-            > input {
+            > input,
+            > select {
                 min-height: 40px;
-                width: calc(100% - 30px);
 
                 padding: 0 15px;
 
@@ -86,6 +87,14 @@ div.container {
                 &::placeholder {
                     color: transparent;
                 }
+            }
+
+            > input {
+                width: calc(100% - 30px);
+            }
+
+            > select {
+                width: 100%;
             }
 
             &:before {
@@ -119,6 +128,7 @@ div.container {
             }
         }
     }
+
 
     > p.error {
         margin: 5px 0 0 5px;
