@@ -77,6 +77,7 @@
 
 <script>
 // Change input by stylise vuetify input : https://vuetifyjs.com/en/components/text-fields/#text-fields
+// TODO: Separate share logic in multiple files
 import {outlineInputMixin} from "../Inputs/mixins/outlineInputMixin";
 
 export default {
