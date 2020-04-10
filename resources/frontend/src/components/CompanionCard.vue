@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import TextFiledSCT from "./Fileds/Themed/Display/TextFiledSCT";
+import TextFiledSCT from "./Fileds/Themed/Display/TextFiled";
 
 export default {
     name: "CompanionCard",

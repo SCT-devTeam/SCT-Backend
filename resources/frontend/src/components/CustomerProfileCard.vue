@@ -44,7 +44,9 @@
         <p class="title">Contacts</p>
 
         <TextFiledSCT
-            :defaultValue="contact.firstName + ' ' + contact.lastName"
+            :name="'Contact-' + contactFullname(contact)"
+            title="Click on it to view his card"
+            :value="contactFullname(contact)"
             icon="arrow"
             :key="index"
             @iconClicked="displayContact(contact.id)"
@@ -81,7 +83,7 @@
 
 <script>
 import TextInput from "./Fileds/Themed/Inputs/TextInput";
-import TextFiledSCT from "./Fileds/Themed/Display/TextFiledSCT";
+import TextFiledSCT from "./Fileds/Themed/Display/TextFiled";
 import DropdownInput from "./Fileds/Themed/Inputs/DropdownInput";
 import EditCircleBtnSCT from "./Buttons/EditCircleBtnSCT";
 import ValidationCircleBtnSCT from "./Buttons/ValidationCircleBtnSCT";
@@ -125,6 +127,9 @@ export default {
         },
         toggleMode: function() {
             this.isEditionMode = !this.isEditionMode;
+        },
+        contactFullname: function (contactObj) {
+            return contactObj.firstName + ' ' + contactObj.lastName;
         }
     }
 };

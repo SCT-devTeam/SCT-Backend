@@ -33,11 +33,14 @@ div.container {
             background-color: transparent;
 
             overflow: hidden;
-            cursor: text;
 
             > input,
-            > select {
+            > select,
+            > p{
+                display: flex;
+                align-items: center;
                 min-height: 40px;
+                width: 100%;
 
                 padding: 0 15px;
 
