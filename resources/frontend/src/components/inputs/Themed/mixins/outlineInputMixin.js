@@ -1,13 +1,10 @@
-import {emailValidator} from "../../utils/emailValidator";
-import {passwordValidator} from "../../utils/passwordValidator";
-
 export const outlineInputMixin = {
     data() {
         return {
             error: "",
             isHovered: false,
             isActive: false,
-            isValid: null,
+            isValid: null
         };
     },
     props: {
@@ -25,13 +22,8 @@ export const outlineInputMixin = {
         type: {
             type: String,
             default: "text",
-            validator: (prop) => [
-                'text',
-                'email',
-                'password',
-                'search',
-                'tel',
-            ].includes(prop)
+            validator: prop =>
+                ["text", "email", "password", "search", "tel"].includes(prop)
         },
         bgColor: {
             type: String,
@@ -102,8 +94,7 @@ export const outlineInputMixin = {
             if (this.isValid != null && this.isValid)
                 return "var(--colors-validation-ok)";
 
-            if (this.isActive)
-                return "var(--colors-active)";
+            if (this.isActive) return "var(--colors-active)";
 
             return "var(--colors-secondary-principal)";
         }
@@ -126,6 +117,6 @@ export const outlineInputMixin = {
         onInput(e) {
             this.$emit("input", e.target.value);
             setTimeout(this.checkInput, 700);
-        },
+        }
     }
 };

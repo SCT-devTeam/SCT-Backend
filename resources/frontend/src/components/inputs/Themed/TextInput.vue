@@ -11,7 +11,7 @@
                 }"
                 @mouseover="hovered"
                 ref="label"
-            >{{ fieldLabel }}</label
+                >{{ fieldLabel }}</label
             >
             <span
                 class="outline-top"
@@ -26,6 +26,7 @@
                 class="input-container"
                 :style="{ '--inputBgColor': inputBgColor }"
             >
+                <!-- TODO: implement all attributes -->
                 <input
                     :name="name"
                     :placeholder="inputPlaceholder"
@@ -81,63 +82,64 @@
 </template>
 
 <script>
-    // Change inputs by stylise vuetify inputs : https://vuetifyjs.com/en/components/text-fields/#text-fields
-    import {emailValidator} from "../utils/emailValidator"
-    import {passwordValidator} from "../utils/passwordValidator"
-    import {outlineInputMixin} from "./mixins/outlineInputMixin";
+// Change inputs by stylise vuetify inputs : https://vuetifyjs.com/en/components/text-fields/#text-fields
+import { emailValidator } from "../utils/emailValidator";
+import { passwordValidator } from "../utils/passwordValidator";
+import { outlineInputMixin } from "./mixins/outlineInputMixin";
 
-    export default {
-        name: "TextSCT",
-        mixins: [outlineInputMixin],
-        methods: {
-            checkInput() {
-                // Check if empty
-                if (this.value === "") {
-                    this.error = "Please fill the filed";
-                    this.isValid = false;
-                    this.$emit("isValid", false);
-                } else {
-                    this.error = "";
-                }
+export default {
+    name: "TextSCT",
+    mixins: [outlineInputMixin],
+    methods: {
+        checkInput() {
+            // Check if empty
+            if (this.value === "") {
+                this.error = "Please fill the filed";
+                this.isValid = false;
+                this.$emit("isValid", false);
+            } else {
+                this.error = "";
+            }
 
-                switch (this.type) {
-                    case "email":
-                        if (this.error === "" && !emailValidator(this.value)) {
-                            this.error = "Please enter a correct email";
-                            this.isValid = false;
+            switch (this.type) {
+                case "email":
+                    if (this.error === "" && !emailValidator(this.value)) {
+                        this.error = "Please enter a correct email";
+                        this.isValid = false;
 
-                            this.$emit("isValid", false);
-                        } else if (
-                            this.error === "" &&
-                            emailValidator(this.value)
-                        ) {
-                            this.isValid = true;
+                        this.$emit("isValid", false);
+                    } else if (
+                        this.error === "" &&
+                        emailValidator(this.value)
+                    ) {
+                        this.isValid = true;
 
-                            this.$emit("isValid", true);
-                        }
-                        break;
+                        this.$emit("isValid", true);
+                    }
+                    break;
 
-                    case "password":
-                        if (this.error === "" && !passwordValidator(this.value)) {
-                            this.error = "Please enter a stronger password (10 characters with 2 of low & UPPER case + special characters + numbers";
-                            this.isValid = false;
+                case "password":
+                    if (this.error === "" && !passwordValidator(this.value)) {
+                        this.error =
+                            "Please enter a stronger password (10 characters with 2 of low & UPPER case + special characters + numbers";
+                        this.isValid = false;
 
-                            this.$emit("isValid", false);
-                        } else if (
-                            this.error === "" &&
-                            emailValidator(this.value)
-                        ) {
-                            this.isValid = true;
+                        this.$emit("isValid", false);
+                    } else if (
+                        this.error === "" &&
+                        emailValidator(this.value)
+                    ) {
+                        this.isValid = true;
 
-                            this.$emit("isValid", true);
-                        }
-                        break;
-                }
+                        this.$emit("isValid", true);
+                    }
+                    break;
             }
         }
-    };
+    }
+};
 </script>
 
 <style lang="scss" scoped>
-    @import "mixins/outlineInputMixin";
+@import "mixins/outlineInputMixin";
 </style>
