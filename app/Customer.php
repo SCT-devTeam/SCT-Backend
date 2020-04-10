@@ -67,9 +67,8 @@ class Customer extends Model
         'city',
         'note',
         'default_payment_method',
+        'company'
     ];
-
-    protected $hidden = ['id'];
 
 
 }

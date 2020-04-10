@@ -52,5 +52,6 @@ class Contact extends Model
         'phone_personnal',
         'phone_fax',
         'notes',
+        'customer'
     ];
 }

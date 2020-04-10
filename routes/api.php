@@ -27,14 +27,28 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::prefix('airlock')->namespace('API')->group(function () {
     Route::post('/register', 'AuthController@register');
-    Route::post('/login', 'AuthController@login');
 
-});
+    Route::post('/customers', 'CustomerController@getCustomerAll');
+    Route::post('/createCustomer', 'CustomerController@create');
+    Route::post('/deleteCustomer', 'CustomerController@delete');
 
-Route::get('/devis', 'DevisController@list');
+    Route::get('/company', 'CompanyController@selectCompany');
+    Route::post('/createCompany', 'CompanyController@create');
+    Route::post('/deleteCompany', 'CompanyController@delete');
 
+    Route::post('/createContact', 'ContactController@create');
+    Route::post('/contact', 'ContactController@getContact');
+    Route::post('/updateContact', 'ContactController@updateContact');
+    Route::post('/deleteContact', 'ContactController@deleteContact');
 
-//Route::get
-Route::post('signin', 'UserController@login');
+    Route::post('/invoice', 'InvoiceController@getInvoice');
+    Route::post('/createInvoice', 'InvoiceController@create');
+    Route::post('/updateInvoice', 'InvoiceController@update');
+    Route::post('/deleteInvoice', 'InvoiceController@delete');
+
+    Route::post('/quote', 'QuoteController@getquote');
+    Route::post('/createQuote', 'QuoteController@create');
+    Route::post('/updateQuote', 'QuoteController@update');
+    Route::post('/deleteQuote', 'QuoteController@delete');
 
 Route::post('signup', 'UserController@signup');
