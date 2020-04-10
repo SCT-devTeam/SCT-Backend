@@ -12,7 +12,11 @@ div.container {
         min-width: 100px;
         min-height: 40px;
 
-
+        > label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
         > div.input-container {
             display: flex;
