@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import SearchSCT from "../inputs/SearchSCT";
+import SearchSCT from "../Inputs/SearchSCT";
 import SearchCircleBtnSCT from "../Buttons/SearchCircleBtnSCT";
 
 export default {

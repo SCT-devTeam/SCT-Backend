@@ -66,8 +66,8 @@
 </template>
 
 <script>
-import DropdownSCT from "./inputs/DropdownSCT";
-import TextSCT from "./inputs/TextSCT";
+import DropdownSCT from "./Inputs/DropdownSCT";
+import TextSCT from "./Inputs/TextSCT";
 import EditCircleBtnSCT from "./Buttons/EditCircleBtnSCT";
 import ValidationCircleBtnSCT from "./Buttons/ValidationCircleBtnSCT";
 import { mapMutations } from "vuex";

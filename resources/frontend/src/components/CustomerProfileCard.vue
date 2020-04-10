@@ -75,8 +75,8 @@
 </template>
 
 <script>
-import DropdownSCT from "./inputs/DropdownSCT";
-import TextSCT from "./inputs/TextSCT";
+import DropdownSCT from "./Inputs/DropdownSCT";
+import TextSCT from "./Inputs/TextSCT";
 import TextFiledSCT from "./DisplayTexts/TextFiledSCT";
 import EditCircleBtnSCT from "./Buttons/EditCircleBtnSCT";
 import ValidationCircleBtnSCT from "./Buttons/ValidationCircleBtnSCT";

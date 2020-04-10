@@ -97,7 +97,7 @@
 </template>
 
 <script>
-import TextSCT from "./inputs/TextSCT";
+import TextSCT from "./Inputs/TextSCT";
 import EditCircleBtnSCT from "./Buttons/EditCircleBtnSCT";
 import ValidationCircleBtnSCT from "./Buttons/ValidationCircleBtnSCT";
 

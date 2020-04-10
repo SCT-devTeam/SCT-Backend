@@ -35,8 +35,8 @@
 
 <script>
 import { mapMutations } from "vuex";
-import EmailSCT from "../../components/inputs/EmailSCT";
-import PasswordSCT from "../../components/inputs/PasswordSCT";
+import EmailSCT from "../../components/Inputs/EmailSCT";
+import PasswordSCT from "../../components/Inputs/PasswordSCT";
 import BtnSCT from "../../components/Buttons/BtnSCT";
 
 export default {
