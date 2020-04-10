@@ -6,81 +6,90 @@
         />
 
         <div id="name">
-            <TextSCT
-                :isEditable="isEditionMode"
-                label="FirstName"
-                name="FirstName"
-                placeholder="FirstName"
+            <TextInput
+                name="firstname"
                 title="FirstName"
-                v-model="entity.firstName"
-            ></TextSCT>
-
-            <TextSCT
+                placeholder="FirstName"
+                v-model:value="entity.firstName"
+                @onInput="entity.firstName = $event"
                 :isEditable="isEditionMode"
-                label="LastName"
-                name="LastName"
-                placeholder="LastName"
+            >
+            </TextInput>
+
+            <TextInput
+                name="lastname"
                 title="LastName"
-                v-model="entity.lastName"
-            ></TextSCT>
+                placeholder="LastName"
+                v-model:value="entity.lastName"
+                @onInput="entity.lastName = $event"
+                :isEditable="isEditionMode"
+            >
+            </TextInput>
         </div>
 
-        <TextSCT
+        <TextInput
+            name="job-position"
+            title="Job Position"
+            placeholder="Job Position"
+            v-model:value="entity.job"
+            @onInput="entity.job = $event"
             :isEditable="isEditionMode"
-            label="job position"
-            name="job position"
-            placeholder="job position"
-            title="job position"
-            v-model="entity.job"
-        ></TextSCT>
+        >
+        </TextInput>
 
-        <TextSCT
+        <TextInput
+            name="phone-fixed"
+            title="Phone Fixed"
+            placeholder="Phone Fixed"
+            v-model:value="entity.phone_fixe"
+            @onInput="entity.phone_fixe = $event"
             :isEditable="isEditionMode"
-            label="phone fixed"
-            name="phone fixed"
-            placeholder="phone fixed"
-            title="phone fixed"
-            v-model="entity.phone_fixe"
-        ></TextSCT>
+        >
+        </TextInput>
 
-        <TextSCT
+        <TextInput
+            name="phone-mobile"
+            title="Phone Mobile"
+            placeholder="Phone Mobile"
+            v-model:value="entity.phone_mobile"
+            @onInput="entity.phone_mobile = $event"
             :isEditable="isEditionMode"
-            label="phone mobile"
-            name="phone mobile"
-            placeholder="phone mobile"
-            title="phone mobile"
-            v-model="entity.phone_mobile"
-        ></TextSCT>
+        >
+        </TextInput>
 
-        <TextSCT
-            :isEditable="isEditionMode"
-            label="phone personal"
-            name="phone personal"
-            placeholder="phone personal"
-            title="phone personal"
-            v-model="entity.phone_personnal"
-        ></TextSCT>
 
-        <TextSCT
+        <TextInput
+            name="phone-personal"
+            title="Phone Personal"
+            placeholder="Phone Personal"
+            v-model:value="entity.phone_personnal"
+            @onInput="entity.phone_personnal = $event"
             :isEditable="isEditionMode"
-            label="phone fax"
-            name="phone fax"
-            placeholder="phone fax"
-            title="phone fax"
-            v-model="entity.phone_fax"
-        ></TextSCT>
+        >
+        </TextInput>
+
+        <TextInput
+            name="phone-fax"
+            title="Phone Fax"
+            placeholder="Phone Fax"
+            v-model:value="entity.phone_fax"
+            @onInput="entity.phone_fax = $event"
+            :isEditable="isEditionMode"
+        >
+        </TextInput>
 
         <p class="title">Notes</p>
 
         <!-- TODO: replace it by text area -->
-        <TextSCT
-            :defaultValue="entity.notes"
-            :isEditable="isEditionMode"
-            label="Notes"
+        <TextInput
             name="Notes"
-            placeholder="Notes"
             title="Notes"
-        ></TextSCT>
+            placeholder="Notes"
+            v-model:value="entity.notes"
+            @onInput="entity.notes = $event"
+            :isEditable="isEditionMode"
+        >
+        </TextInput>
 
         <EditCircleBtnSCT
             @clicked="toggleMode"
@@ -97,14 +106,14 @@
 </template>
 
 <script>
-import TextSCT from "./Inputs/TextSCT";
+import TextInput from "./Inputs/Themed/TextInput";
 import EditCircleBtnSCT from "./Buttons/EditCircleBtnSCT";
 import ValidationCircleBtnSCT from "./Buttons/ValidationCircleBtnSCT";
 
 export default {
     name: "ProfileCard",
     components: {
-        TextSCT,
+        TextInput,
         EditCircleBtnSCT,
         ValidationCircleBtnSCT
     },

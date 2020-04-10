@@ -10,18 +10,31 @@
         <p class="error">{{ error }}</p>
 
         <form @submit.prevent="submitForm" id="login-form__form" method="get">
-            <EmailSCT
-                :required="true"
+            <TextInput
+                class="input"
+                name="email"
+                placeholder="Email"
+                title="Enter your email here"
+                type="email"
+                :isRequired="true"
+                v-model:value="email"
+                @onInput="email = $event"
                 @isValid="emailValid = $event"
-                @valueChanged="email = $event"
+            >
+            </TextInput>
+
+            <TextInput
                 class="input"
-            ></EmailSCT>
-            <PasswordSCT
-                :required="true"
+                name="password"
+                placeholder="Password"
+                title="Enter your password here"
+                type="password"
+                :isRequired="true"
+                v-model:value="password"
+                @onInput="password = $event"
                 @isValid="passwordValid = $event"
-                @valueChanged="password = $event"
-                class="input"
-            ></PasswordSCT>
+            >
+            </TextInput>
             <BtnSCT
                 :isDisabled="!isValidForm"
                 name="submit"
@@ -35,13 +48,12 @@
 
 <script>
 import { mapMutations } from "vuex";
-import EmailSCT from "../../components/Inputs/EmailSCT";
-import PasswordSCT from "../../components/Inputs/PasswordSCT";
 import BtnSCT from "../../components/Buttons/BtnSCT";
+import TextInput from "../Inputs/Themed/TextInput";
 
 export default {
     name: "LoginForm",
-    components: { EmailSCT, PasswordSCT, BtnSCT },
+    components: { TextInput, BtnSCT },
     data() {
         return {
             email: "",
@@ -139,5 +151,7 @@ div#login-form {
 
 .input {
     width: 400px;
+
+    margin: 10px 0;
 }
 </style>

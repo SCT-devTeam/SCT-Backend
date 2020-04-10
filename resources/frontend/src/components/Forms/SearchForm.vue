@@ -1,17 +1,24 @@
 <template>
     <form @submit.prevent="submitForm" id="Search-form" method="get">
-        <SearchSCT @valueChanged="query = $event" id="search-input"></SearchSCT>
+        <TextInput
+            class="search-input"
+            name="search"
+            title="Search"
+            placeholder="Search"
+            v-model:value="query"
+            @onInput="query = $event">
+        </TextInput>
         <SearchCircleBtnSCT :isDisabled="!isFilled"></SearchCircleBtnSCT>
     </form>
 </template>
 
 <script>
-import SearchSCT from "../Inputs/SearchSCT";
+import TextInput from "../Inputs/Themed/TextInput";
 import SearchCircleBtnSCT from "../Buttons/SearchCircleBtnSCT";
 
 export default {
     name: "SearchForm",
-    components: { SearchSCT, SearchCircleBtnSCT },
+    components: { TextInput, SearchCircleBtnSCT },
     data() {
         return {
             query: ""
@@ -36,7 +43,7 @@ export default {
 form#Search-form {
     display: flex;
 
-    > #search-input {
+    > .search-input {
         width: 90%;
     }
 }

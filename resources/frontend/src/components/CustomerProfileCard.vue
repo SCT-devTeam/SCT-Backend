@@ -5,36 +5,42 @@
             src="../assets/Artboards_Diversity_Avatars_by_Netguru-29.png"
         />
 
-        <DropdownSCT
-            defaultOption="Prospect"
-            label="Customer Status"
-            title="Select customer status"
-        ></DropdownSCT>
+        <DropdownInput
+            name="customer-status"
+            title="Customer Status"
+            placeholder="Customer Status"
+            :options="['prospect', 'active', 'archived', 'deleted']"
+            v-model:value="value"
+            @onInput="value = $event">
+        </DropdownInput>
 
-        <DropdownSCT
+        <DropdownInput
+            name="customer-type"
+            title="Customer Type"
+            placeholder="Customer Type"
             :options="['individual', 'professional']"
-            label="Customer type"
-            title="Select customer type"
-        ></DropdownSCT>
+            v-model:value="value"
+            @onInput="value = $event">
+        </DropdownInput>
 
         <div id="name">
-            <TextSCT
-                :isEditable="isEditionMode"
-                label="FirstName"
-                name="FirstName"
-                placeholder="FirstName"
+            <TextInput
+                name="firstname"
                 title="FirstName"
-                v-model="entity.firstName"
-            ></TextSCT>
-
-            <TextSCT
+                placeholder="FirstName"
                 :isEditable="isEditionMode"
-                label="LastName"
-                name="LastName"
-                placeholder="LastName"
+                v-model:value="entity.firstName"
+                @onInput="entity.firstName = $event">
+            </TextInput>
+
+            <TextInput
+                name="lastname"
                 title="LastName"
-                v-model="entity.lastName"
-            ></TextSCT>
+                placeholder="LastName"
+                :isEditable="isEditionMode"
+                v-model:value="entity.lastName"
+                @onInput="entity.lastName = $event">
+            </TextInput>
         </div>
 
         <p class="title">Contacts</p>
@@ -51,14 +57,15 @@
         <p class="title">Notes</p>
 
         <!-- TODO: replace it by text area -->
-        <TextSCT
-            :defaultValue="entity.notes"
-            :isEditable="isEditionMode"
-            label="Notes"
-            name="Notes"
-            placeholder="Notes"
+
+        <TextInput
+            name="notes"
             title="Notes"
-        ></TextSCT>
+            placeholder="Notes"
+            :isEditable="isEditionMode"
+            v-model:value="entity.notes"
+            @onInput="entity.notes = $event">
+        </TextInput>
 
         <EditCircleBtnSCT
             @clicked="toggleMode"
@@ -75,18 +82,18 @@
 </template>
 
 <script>
-import DropdownSCT from "./Inputs/DropdownSCT";
-import TextSCT from "./Inputs/TextSCT";
+import TextInput from "./Inputs/Themed/TextInput";
 import TextFiledSCT from "./DisplayTexts/TextFiledSCT";
+import DropdownInput from "./Inputs/Themed/DropdownInput";
 import EditCircleBtnSCT from "./Buttons/EditCircleBtnSCT";
 import ValidationCircleBtnSCT from "./Buttons/ValidationCircleBtnSCT";
 
 export default {
     name: "ProfileCard",
     components: {
-        DropdownSCT,
-        TextSCT,
+        TextInput,
         TextFiledSCT,
+        DropdownInput,
         EditCircleBtnSCT,
         ValidationCircleBtnSCT
     },

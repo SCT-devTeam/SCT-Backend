@@ -5,49 +5,54 @@
             src="../assets/Artboards_Diversity_Avatars_by_Netguru-29.png"
         />
 
-        <DropdownSCT
+        <DropdownInput
+            name="gender"
+            placeholder="Gender"
+            title="Select the gender"
             :options="['Unspecified', 'Woman', 'Man']"
-            label="Gender"
-            title="Select your gender"
-        ></DropdownSCT>
+            v-model:value="value"
+            @onInput="value = $event">
+        </DropdownInput>
 
         <div id="name">
-            <TextSCT
-                :isEditable="isEditionMode"
-                label="FirstName"
-                name="FirstName"
+
+            <TextInput
+                name="firstname"
                 placeholder="FirstName"
                 title="FirstName"
-                v-model="user.firstname"
-            ></TextSCT>
-
-            <TextSCT
                 :isEditable="isEditionMode"
-                label="LastName"
-                name="LastName"
+                v-model:value="user.firstname"
+                @onInput="user.firstname = $event">
+            </TextInput>
+
+            <TextInput
+                name="lastname"
                 placeholder="LastName"
                 title="LastName"
-                v-model="user.lastname"
-            ></TextSCT>
+                :isEditable="isEditionMode"
+                v-model:value="user.lastname"
+                @onInput="user.lastname = $event">
+            </TextInput>
         </div>
 
-        <TextSCT
-            :isEditable="isEditionMode"
-            label="email"
+        <TextInput
             name="email"
-            placeholder="email"
-            title="email"
-            v-model="user.email"
-        ></TextSCT>
-
-        <TextSCT
+            placeholder="Email"
+            title="Email"
             :isEditable="isEditionMode"
-            label="Mobile phone"
-            name="Mobile phone"
-            placeholder="Mobile phone"
-            title="Mobile phone"
-            v-model="user.phone"
-        ></TextSCT>
+            v-model:value="user.email"
+            @onInput="user.email = $event">
+        </TextInput>
+
+        <TextInput
+            name="phone"
+            placeholder="Mobile Phone"
+            title="Mobile Phone"
+            :isEditable="isEditionMode"
+            v-model:value="user.phone"
+            @onInput="user.phone = $event">
+        </TextInput>
+
 
         <EditCircleBtnSCT
             @clicked="toggleMode"
@@ -66,8 +71,8 @@
 </template>
 
 <script>
-import DropdownSCT from "./Inputs/DropdownSCT";
-import TextSCT from "./Inputs/TextSCT";
+import DropdownInput from "./Inputs/Themed/DropdownInput";
+import TextInput from "./Inputs/Themed/TextInput";
 import EditCircleBtnSCT from "./Buttons/EditCircleBtnSCT";
 import ValidationCircleBtnSCT from "./Buttons/ValidationCircleBtnSCT";
 import { mapMutations } from "vuex";
@@ -75,8 +80,8 @@ import { mapMutations } from "vuex";
 export default {
     name: "ProfileCard",
     components: {
-        DropdownSCT,
-        TextSCT,
+        DropdownInput,
+        TextInput,
         EditCircleBtnSCT,
         ValidationCircleBtnSCT
     },
