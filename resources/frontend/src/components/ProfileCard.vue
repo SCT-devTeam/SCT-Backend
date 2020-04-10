@@ -9,9 +9,7 @@
             name="gender"
             placeholder="Gender"
             title="Select the gender"
-            :options="['Unspecified', 'Woman', 'Man']"
-            v-model:value="value"
-            @onInput="value = $event">
+            :options="['Unspecified', 'Woman', 'Man']">
         </DropdownInput>
 
         <div id="name">

@@ -10,8 +10,7 @@
             title="Customer Status"
             placeholder="Customer Status"
             :options="['prospect', 'active', 'archived', 'deleted']"
-            v-model:value="value"
-            @onInput="value = $event">
+        >
         </DropdownInput>
 
         <DropdownInput
@@ -19,8 +18,7 @@
             title="Customer Type"
             placeholder="Customer Type"
             :options="['individual', 'professional']"
-            v-model:value="value"
-            @onInput="value = $event">
+        >
         </DropdownInput>
 
         <div id="name">

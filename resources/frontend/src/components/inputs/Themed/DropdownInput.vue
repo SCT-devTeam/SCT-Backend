@@ -2,9 +2,7 @@
 <!--<DropdownInput-->
 <!--    name="DropDownInput"-->
 <!--    title="DropDownInput"-->
-<!--    :options="['option 1', 'option 2']"-->
-<!--    v-model:value="value"-->
-<!--    @onInput="value = $event">-->
+<!--    :options="['option 1', 'option 2']">-->
 <!--</DropdownInput>-->
 
 <template>
@@ -48,7 +46,6 @@
                     @mouseover="hovered"
                     :disabled="isDisabled"
                     ref="input"
-                    :type="type"
                     :readonly="isDisabled"
                 >
                     <option :key="index" v-for="(option, index) in options"
