@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import VuexPersist from "vuex-persist";
+import axios from 'axios'
 
 Vue.use(Vuex);
 
@@ -41,6 +42,7 @@ export default new Vuex.Store({
             state.user.token = token || null;
         },
         SET_USER(state, userData) {
+            console.log(userData);
             state.user.firstname = userData.firstname || null;
             state.user.lastname = userData.lastname || null;
             state.user.email = userData.email || null;
@@ -50,7 +52,26 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        // TODO: Do all api request here
+        async fetchUser({ commit, state }) {
+            axios.get(
+                "/api/me",
+                {
+                    headers:{
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                        'Authorization': `Bearer ${state.user.token}`,
+                    }
+                }
+            ).then((data) => {
+                if (data.message) {
+                    console.error("An error has occurred while fetching user data : ", data.message);
+                }
+                console.log(data);
+                commit("SET_USER", data.data);
+            }).catch(reason => {
+                console.error(reason);
+            })
+        }
     },
     modules: {},
     plugins: [vuexPersist.plugin]
