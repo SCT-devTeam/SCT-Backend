@@ -1,1 +1,29 @@
-<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44.48 40"><g id="robot_icon_yellow" data-name="robot icon yellow"><g id="face_outline" data-name="face outline"><rect x="4.35" y="13" width="36" height="27" rx="7" fill="none"/><rect x="5.1" y="13.75" width="34.5" height="25.5" rx="6.25" fill="none" stroke="#f7c91e" stroke-width="1.5"/></g><path id="mouth" d="M17.85,33a5.22,5.22,0,0,0,4.66,2.25c3.42,0,4.34-2.25,4.34-2.25" transform="translate(0)" fill="none" stroke="#f7c91e" stroke-linecap="round" stroke-width="1.5"/><g id="eye_right" data-name="eye right"><circle cx="30.85" cy="23" r="4" fill="none"/><circle cx="30.85" cy="23" r="3.25" fill="none" stroke="#f7c91e" stroke-width="1.5"/></g><g id="eye_left" data-name="eye left"><circle cx="14.85" cy="23" r="4" fill="none"/><circle cx="14.85" cy="23" r="3.25" fill="none" stroke="#f7c91e" stroke-width="1.5"/></g><path id="ear_right" data-name="ear right" d="M39.75,21.64a4.17,4.17,0,0,1,4,4.31,4.37,4.37,0,0,1-4,4.46" transform="translate(0)" fill="none" stroke="#f7c91e" stroke-linecap="round" stroke-width="1.5"/><path id="ear_left" data-name="ear left" d="M4.72,21.64A4.17,4.17,0,0,0,.75,26a4.37,4.37,0,0,0,4,4.46" transform="translate(0)" fill="none" stroke="#f7c91e" stroke-linecap="round" stroke-width="1.5"/><line id="antena" x1="22.35" y1="13.33" x2="22.35" y2="7.33" fill="none" stroke="#f7c91e" stroke-linecap="round" stroke-width="1.5"/><g id="antena_circle" data-name="antena  circle"><circle cx="22.35" cy="4" r="4" fill="none"/><circle cx="22.35" cy="4" r="3.25" fill="none" stroke="#f7c91e" stroke-width="1.5"/></g></g></svg>
+<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44.48 40">
+    <g id="robot_icon_yellow" data-name="robot icon yellow">
+        <g id="face_outline" data-name="face outline">
+            <rect x="4.35" y="13" width="36" height="27" rx="7" fill="none"/>
+            <rect x="5.1" y="13.75" width="34.5" height="25.5" rx="6.25" fill="none" stroke="#f7c91e"
+                  stroke-width="1.5"/>
+        </g>
+        <path id="mouth" d="M17.85,33a5.22,5.22,0,0,0,4.66,2.25c3.42,0,4.34-2.25,4.34-2.25" transform="translate(0)"
+              fill="none" stroke="#f7c91e" stroke-linecap="round" stroke-width="1.5"/>
+        <g id="eye_right" data-name="eye right">
+            <circle cx="30.85" cy="23" r="4" fill="none"/>
+            <circle cx="30.85" cy="23" r="3.25" fill="none" stroke="#f7c91e" stroke-width="1.5"/>
+        </g>
+        <g id="eye_left" data-name="eye left">
+            <circle cx="14.85" cy="23" r="4" fill="none"/>
+            <circle cx="14.85" cy="23" r="3.25" fill="none" stroke="#f7c91e" stroke-width="1.5"/>
+        </g>
+        <path id="ear_right" data-name="ear right" d="M39.75,21.64a4.17,4.17,0,0,1,4,4.31,4.37,4.37,0,0,1-4,4.46"
+              transform="translate(0)" fill="none" stroke="#f7c91e" stroke-linecap="round" stroke-width="1.5"/>
+        <path id="ear_left" data-name="ear left" d="M4.72,21.64A4.17,4.17,0,0,0,.75,26a4.37,4.37,0,0,0,4,4.46"
+              transform="translate(0)" fill="none" stroke="#f7c91e" stroke-linecap="round" stroke-width="1.5"/>
+        <line id="antena" x1="22.35" y1="13.33" x2="22.35" y2="7.33" fill="none" stroke="#f7c91e" stroke-linecap="round"
+              stroke-width="1.5"/>
+        <g id="antena_circle" data-name="antena  circle">
+            <circle cx="22.35" cy="4" r="4" fill="none"/>
+            <circle cx="22.35" cy="4" r="3.25" fill="none" stroke="#f7c91e" stroke-width="1.5"/>
+        </g>
+    </g>
+</svg>

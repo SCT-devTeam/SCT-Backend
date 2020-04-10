@@ -26,11 +26,13 @@ module.exports = {
 
     transpileDependencies: ["vuex-persist"],
 
-    // TODO: Fixed webpack configuration to keep the same result as without the configuration
+    // TODO: Fixe webpack configuration to keep the same result as without the configuration
     configureWebpack: {
         plugins: [
             new HtmlWebpackPlugin({
                 template: join(__dirname, "/src/index.html"),
+                favicon:
+                    "src/assets/logos/sct_logo_colored_roundedWithoutSubtitle.png",
                 title: "SCT Backoffice",
                 description: "SCT Backoffice"
             })

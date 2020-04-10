@@ -1,0 +1,99 @@
+@import 'src/scss/colors';
+@import 'src/scss/typography';
+
+div.container {
+    display: flex;
+    flex-direction: column;
+
+    div.filed {
+        display: flex;
+        position: relative;
+
+        min-width: 100px;
+        min-height: 40px;
+
+        > label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        > div.input-container {
+            display: flex;
+            justify-content: stretch;
+            align-items: stretch;
+
+            width: 100%;
+
+            position: relative;
+            z-index: 1;
+
+            border-radius: 20000px;
+
+            background-color: transparent;
+
+            overflow: hidden;
+
+            > input,
+            > select,
+            > p{
+                display: flex;
+                align-items: center;
+                min-height: 40px;
+                width: 100%;
+
+                padding: 0 15px;
+
+                border-radius: 20000px;
+                border: 0;
+                background-color: transparent;
+
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
+                font-family: $font__text;
+                font-size: 1em;
+                color: $color__black;
+
+                outline: none;
+
+                &::placeholder {
+                    color: transparent;
+                }
+            }
+
+            > input {
+                width: calc(100% - 30px);
+            }
+
+            > select {
+                width: 100%;
+            }
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: -1;
+
+                border-radius: 20000px;
+
+                background-color: var(--inputBgColor);
+                opacity: 0.3;
+            }
+        }
+    }
+
+    > p.error {
+        min-height: 1em;
+        min-width: 100%;
+
+        margin: 5px 0 0 5px;
+
+        color: $color__validation_no;
+
+        line-break: anywhere;
+    }
+}

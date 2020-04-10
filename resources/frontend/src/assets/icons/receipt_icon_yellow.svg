@@ -1,1 +1,20 @@
-<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40.6 41.02"><g id="receipt_icon_yellow" data-name="receipt icon yellow"><g id="outline"><path id="main" d="M.75.75,6.12,4.93,11.22.75l5.33,4.18L21.65.75l5.16,4.18L32,.75V40.27H.74Z" transform="translate(0.01 0)" fill="none" stroke="#f7c91e" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path id="paperFold" d="M32,16.5h7.83V36a3.63,3.63,0,0,1-2.14,3.55,11,11,0,0,1-5.72.53" transform="translate(0.01 0)" fill="none" stroke="#f7c91e" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></g><g id="lines"><line id="Ligne_3" data-name="Ligne 3" x1="8.54" y1="30.08" x2="25.72" y2="30.08" fill="none" stroke="#f7c91e" stroke-linecap="round" stroke-width="1.5"/><line id="Ligne_2" data-name="Ligne 2" x1="8.54" y1="21.52" x2="25.72" y2="21.52" fill="none" stroke="#f7c91e" stroke-linecap="round" stroke-width="1.5"/><line id="Ligne_1" data-name="Ligne 1" x1="8.54" y1="12.95" x2="14.98" y2="12.95" fill="none" stroke="#f7c91e" stroke-linecap="round" stroke-width="1.5"/></g></g></svg>
+<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40.6 41.02">
+    <g id="receipt_icon_yellow" data-name="receipt icon yellow">
+        <g id="outline">
+            <path id="main" d="M.75.75,6.12,4.93,11.22.75l5.33,4.18L21.65.75l5.16,4.18L32,.75V40.27H.74Z"
+                  transform="translate(0.01 0)" fill="none" stroke="#f7c91e" stroke-linecap="round"
+                  stroke-linejoin="round" stroke-width="1.5"/>
+            <path id="paperFold" d="M32,16.5h7.83V36a3.63,3.63,0,0,1-2.14,3.55,11,11,0,0,1-5.72.53"
+                  transform="translate(0.01 0)" fill="none" stroke="#f7c91e" stroke-linecap="round"
+                  stroke-linejoin="round" stroke-width="1.5"/>
+        </g>
+        <g id="lines">
+            <line id="Ligne_3" data-name="Ligne 3" x1="8.54" y1="30.08" x2="25.72" y2="30.08" fill="none"
+                  stroke="#f7c91e" stroke-linecap="round" stroke-width="1.5"/>
+            <line id="Ligne_2" data-name="Ligne 2" x1="8.54" y1="21.52" x2="25.72" y2="21.52" fill="none"
+                  stroke="#f7c91e" stroke-linecap="round" stroke-width="1.5"/>
+            <line id="Ligne_1" data-name="Ligne 1" x1="8.54" y1="12.95" x2="14.98" y2="12.95" fill="none"
+                  stroke="#f7c91e" stroke-linecap="round" stroke-width="1.5"/>
+        </g>
+    </g>
+</svg>
