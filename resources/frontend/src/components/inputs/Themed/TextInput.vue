@@ -6,7 +6,6 @@
 <!--    @onInput="value = $event">-->
 <!--</TextInput>-->
 
-
 <template>
     <div class="container">
         <div @mouseleave="notHovered" @mouseover="hovered" class="filed">
@@ -20,8 +19,7 @@
                 }"
                 @mouseover="hovered"
                 ref="label"
-                >{{ fieldLabel }}</label
-            >
+                >{{ fieldLabel }}</label>
             <span
                 class="outline-top"
                 :style="{
@@ -105,7 +103,7 @@ export default {
             default: "text",
             validator: prop =>
                 ["text", "email", "password", "search", "tel"].includes(prop)
-        },
+        }
     },
     methods: {
         notActive() {

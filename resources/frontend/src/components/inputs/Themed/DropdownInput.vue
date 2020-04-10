@@ -7,7 +7,6 @@
 <!--    @onInput="value = $event">-->
 <!--</DropdownInput>-->
 
-
 <template>
     <div class="container">
         <div @mouseleave="notHovered" @mouseover="hovered" class="filed">
@@ -15,20 +14,20 @@
             <label
                 :for="name"
                 :style="{
-                top: labelStyle.position.top,
-                left: labelStyle.position.left,
-                cursor: labelStyle.cursor
-            }"
+                    top: labelStyle.position.top,
+                    left: labelStyle.position.left,
+                    cursor: labelStyle.cursor
+                }"
                 @mouseover="hovered"
                 ref="label"
-            >{{ fieldLabel }}</label
+                >{{ fieldLabel }}</label
             >
             <span
                 class="outline-top"
                 :style="{
-                left: topLineOffset + 'px',
-                'background-color': outlineColor
-            }"
+                    left: topLineOffset + 'px',
+                    'background-color': outlineColor
+                }"
                 @mouseover="hovered"
             ></span>
 
@@ -53,7 +52,7 @@
                     :readonly="isDisabled"
                 >
                     <option :key="index" v-for="(option, index) in options"
-                    >{{ option }}
+                        >{{ option }}
                     </option>
                 </select>
             </div>
