@@ -15,7 +15,7 @@ class CreateTableContact extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('gender',['man','woman','unspecified'])->nullable();
+            $table->enum('gender', ['man', 'woman', 'unspecified'])->nullable();
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
             $table->string('job')->nullable();
@@ -24,7 +24,7 @@ class CreateTableContact extends Migration
             $table->integer('phone_fix')->nullable();
             $table->integer('phone_personnal')->nullable();
             $table->integer('phone_fax')->nullable();
-            $table->string('notes',300)->nullable();
+            $table->string('notes', 300)->nullable();
             $table->unsignedBigInteger('customer');
 
 

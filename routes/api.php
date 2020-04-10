@@ -17,24 +17,39 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::middleware('auth:sanctum')->group(function() {
-    Route::get('/devis', 'DevisController@list');
-    Route::post('/register', 'AuthController@register');
-    Route::get('/me', function (Request $request){
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/me', function (Request $request) {
         return $request->user();
     });
+    Route::get('logout', 'API\AuthController@logout');
+    Route::post('/register', 'AuthController@register');
+
+    Route::post('/customers', 'CustomerController@getCustomerAll');
+    Route::post('/createCustomer', 'CustomerController@create');
+    Route::post('/deleteCustomer', 'CustomerController@delete');
+
+    Route::get('/company', 'CompanyController@selectCompany');
+    Route::post('/createCompany', 'CompanyController@create');
+    Route::post('/deleteCompany', 'CompanyController@delete');
+
+    Route::post('/createContact', 'ContactController@create');
+    Route::post('/contact', 'ContactController@getContact');
+    Route::post('/updateContact', 'ContactController@updateContact');
+    Route::post('/deleteContact', 'ContactController@deleteContact');
+
+    Route::post('/invoice', 'InvoiceController@getInvoice');
+    Route::post('/createInvoice', 'InvoiceController@create');
+    Route::post('/updateInvoice', 'InvoiceController@update');
+    Route::post('/deleteInvoice', 'InvoiceController@delete');
+
+    Route::post('/quote', 'QuoteController@getquote');
+    Route::post('/createQuote', 'QuoteController@create');
+    Route::post('/updateQuote', 'QuoteController@update');
+    Route::post('/deleteQuote', 'QuoteController@delete');
+
 });
 
-Route::prefix('airlock')->namespace('API')->group(function() {
-    Route::post('/register', 'AuthController@register');
+Route::prefix('airlock')->namespace('API')->group(function () {
     Route::post('/login', 'AuthController@login');
 
 });
-
-Route::get('/devis', 'DevisController@list');
-
-
-//Route::get
-Route::post('signin', 'UserController@login');
-
-Route::post('signup','UserController@signup');

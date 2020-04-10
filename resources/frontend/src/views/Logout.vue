@@ -14,7 +14,7 @@
                 set_token: "SET_TOKEN",
                 set_user: "SET_USER"
             }),
-            logoutUser() {
+            logoutUser () {
                 this.set_token(null);
                 this.set_user({});
                 this.$router.push({name: "Login"});

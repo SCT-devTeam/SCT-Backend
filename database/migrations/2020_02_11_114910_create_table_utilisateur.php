@@ -15,11 +15,11 @@ class CreateTableUtilisateur extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('gender',['man','woman','unspecified'])->nullable();
-            $table->string('lastname',100);
-            $table->string('firstname',100);
+            $table->enum('gender', ['man', 'woman', 'unspecified'])->nullable();
+            $table->string('lastname', 100);
+            $table->string('firstname', 100);
             $table->string('email', 191)->unique();
-            $table->string('phone',15)->nullable();
+            $table->string('phone', 15)->nullable();
             $table->string('pwd');
             $table->string('notes')->nullable();
             $table->unsignedBigInteger('companies')->nullable();
