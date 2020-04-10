@@ -146,7 +146,7 @@ export default {
                         this.$emit("isValid", false);
                     } else if (
                         this.error === "" &&
-                        emailValidator(this.value)
+                        passwordValidator(this.value)
                     ) {
                         this.isValid = true;
 
