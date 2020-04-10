@@ -1,3 +1,13 @@
+<!--Example to use this component with only specify required props-->
+<!--<DropdownInput-->
+<!--    name="DropDownInput"-->
+<!--    title="DropDownInput"-->
+<!--    :options="['option 1', 'option 2']"-->
+<!--    v-model:value="value"-->
+<!--    @onInput="value = $event">-->
+<!--</DropdownInput>-->
+
+
 <template>
     <div class="container">
         <div @mouseleave="notHovered" @mouseover="hovered" class="filed">

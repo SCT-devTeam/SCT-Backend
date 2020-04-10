@@ -1,3 +1,12 @@
+<!--Example to use this component with only specify required props-->
+<!--<TextInput-->
+<!--    name="TextInput"-->
+<!--    title="TextInput"-->
+<!--    v-model:value="value"-->
+<!--    @onInput="value = $event">-->
+<!--</TextInput>-->
+
+
 <template>
     <div class="container">
         <div @mouseleave="notHovered" @mouseover="hovered" class="filed">
