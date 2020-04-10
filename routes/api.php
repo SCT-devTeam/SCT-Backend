@@ -35,8 +35,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/createContact', 'ContactController@create');
     Route::post('/contact', 'ContactController@getContact');
-    Route::post('/updateContact', 'ContactController@updateContact');
-    Route::post('/deleteContact', 'ContactController@deleteContact');
+    Route::post('/updateContact', 'ContactController@update');
+    Route::post('/deleteContact', 'ContactController@delete');
 
     Route::post('/invoice', 'InvoiceController@getInvoice');
     Route::post('/createInvoice', 'InvoiceController@create');
