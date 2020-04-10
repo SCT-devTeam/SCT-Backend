@@ -84,7 +84,7 @@
                 />
             </svg>
         </div>
-        <p class="error" v-if="error !== ''">{{ error }}</p>
+        <p class="error">{{ error }}</p>
     </div>
 </template>
 
