@@ -131,6 +131,9 @@ div.container {
 
 
     > p.error {
+        min-height: 1em;
+        min-width: 100%;
+
         margin: 5px 0 0 5px;
 
         color: $color__validation_no;
