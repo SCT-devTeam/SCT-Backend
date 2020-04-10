@@ -90,6 +90,14 @@ import { outlineInputMixin } from "./mixins/outlineInputMixin";
 export default {
     name: "TextSCT",
     mixins: [outlineInputMixin],
+    props: {
+        type: {
+            type: String,
+            default: "text",
+            validator: prop =>
+                ["text", "email", "password", "search", "tel"].includes(prop)
+        },
+    },
     methods: {
         notActive() {
             this.checkInput();

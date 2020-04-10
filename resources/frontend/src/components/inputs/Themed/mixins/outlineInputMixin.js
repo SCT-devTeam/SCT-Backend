@@ -19,12 +19,6 @@ export const outlineInputMixin = {
         },
         placeholder: String,
         value: String,
-        type: {
-            type: String,
-            default: "text",
-            validator: prop =>
-                ["text", "email", "password", "search", "tel"].includes(prop)
-        },
         bgColor: {
             type: String,
             default: "--colors-secondary-principal"
