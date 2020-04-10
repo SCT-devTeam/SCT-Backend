@@ -45,7 +45,7 @@
 
         <TextFiledSCT
             :defaultValue="contact.firstName + ' ' + contact.lastName"
-            :displayIcon="true"
+            icon="arrow"
             :key="index"
             @iconClicked="displayContact(contact.id)"
             class="filed"
@@ -80,9 +80,9 @@
 </template>
 
 <script>
-import TextInput from "./Inputs/Themed/TextInput";
-import TextFiledSCT from "./DisplayTexts/TextFiledSCT";
-import DropdownInput from "./Inputs/Themed/DropdownInput";
+import TextInput from "./Fileds/Themed/Inputs/TextInput";
+import TextFiledSCT from "./Fileds/Themed/Display/TextFiledSCT";
+import DropdownInput from "./Fileds/Themed/Inputs/DropdownInput";
 import EditCircleBtnSCT from "./Buttons/EditCircleBtnSCT";
 import ValidationCircleBtnSCT from "./Buttons/ValidationCircleBtnSCT";
 
