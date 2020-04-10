@@ -60,7 +60,7 @@ export const outlineInputMixin = {
         },
         fieldLabel() {
             if (this.label !== undefined) return this.label;
-            else return this.name;
+            else return this.inputPlaceholder;
         },
         isFilled() {
             return !!this.value;
