@@ -69,8 +69,8 @@
 </template>
 
 <script>
-import DropdownInput from "./Inputs/Themed/DropdownInput";
-import TextInput from "./Inputs/Themed/TextInput";
+import DropdownInput from "./Fileds/Themed/Inputs/DropdownInput";
+import TextInput from "./Fileds/Themed/Inputs/TextInput";
 import EditCircleBtnSCT from "./Buttons/EditCircleBtnSCT";
 import ValidationCircleBtnSCT from "./Buttons/ValidationCircleBtnSCT";
 import { mapMutations } from "vuex";

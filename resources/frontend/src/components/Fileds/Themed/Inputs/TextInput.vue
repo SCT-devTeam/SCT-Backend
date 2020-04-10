@@ -90,8 +90,8 @@
 
 <script>
 // Change inputs by stylise vuetify inputs : https://vuetifyjs.com/en/components/text-fields/#text-fields
-import { emailValidator } from "../utils/emailValidator";
-import { passwordValidator } from "../utils/passwordValidator";
+import { emailValidator } from "../../utils/emailValidator";
+import { passwordValidator } from "../../utils/passwordValidator";
 import { outlineInputMixin } from "./mixins/outlineInputMixin";
 
 export default {
@@ -160,5 +160,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "mixins/outlineInputMixin";
+@import "src/components/Fileds/Themed/Inputs/mixins/outlineInputMixin";
 </style>

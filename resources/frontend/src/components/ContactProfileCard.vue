@@ -106,7 +106,7 @@
 </template>
 
 <script>
-import TextInput from "./Inputs/Themed/TextInput";
+import TextInput from "./Fileds/Themed/Inputs/TextInput";
 import EditCircleBtnSCT from "./Buttons/EditCircleBtnSCT";
 import ValidationCircleBtnSCT from "./Buttons/ValidationCircleBtnSCT";
 

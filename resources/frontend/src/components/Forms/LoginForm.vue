@@ -49,7 +49,7 @@
 <script>
 import { mapMutations } from "vuex";
 import BtnSCT from "../../components/Buttons/BtnSCT";
-import TextInput from "../Inputs/Themed/TextInput";
+import TextInput from "../Fileds/Themed/Inputs/TextInput";
 
 export default {
     name: "LoginForm",

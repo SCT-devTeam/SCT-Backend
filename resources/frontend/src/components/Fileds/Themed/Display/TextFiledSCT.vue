@@ -102,12 +102,12 @@ export default {
             return !!this.value;
         },
         imgSrcPath() {
-            return require("../../assets/icons/" +
+            return require("../../../../assets/icons/" +
                 this.icon +
                 "_icon_blue.png");
         },
         imgSrcsetPath() {
-            return require("../../assets/icons/" +
+            return require("../../../../assets/icons/" +
                 this.icon +
                 "_icon_blue.svg");
         }
@@ -169,8 +169,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "src/scss/colors";
-@import "src/scss/typography";
+@import 'src/scss/colors';
+@import 'src/scss/typography';
 
 * {
     transition: all 300ms ease-in-out;

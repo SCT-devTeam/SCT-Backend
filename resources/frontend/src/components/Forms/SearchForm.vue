@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import TextInput from "../Inputs/Themed/TextInput";
+import TextInput from "../Fileds/Themed/Inputs/TextInput";
 import SearchCircleBtnSCT from "../Buttons/SearchCircleBtnSCT";
 
 export default {
