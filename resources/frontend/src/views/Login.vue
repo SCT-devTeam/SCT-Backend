@@ -5,14 +5,16 @@
 </template>
 
 <script>
-// @ is an alias to /src
+    // @ is an alias to /src
 import LoginForm from "@/components/Forms/LoginForm";
 
-/* eslint-disable */
-export default {
-    name: "Login",
-    components: { LoginForm },
-};
+    /* eslint-disable */
+
+    export default {
+        name: "Login",
+        components: { LoginForm
+        },
+    };
 </script>
 
 <style lang="scss" scoped>

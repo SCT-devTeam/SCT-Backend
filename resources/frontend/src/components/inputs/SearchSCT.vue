@@ -71,6 +71,7 @@
 <script>
 // Change inputs by stylise vuetify inputs : https://vuetifyjs.com/en/components/text-fields/#text-fields
 export default {
+    // TODO: refactor it based on TextSCT input
     name: "SearchSCT",
     data() {
         return {

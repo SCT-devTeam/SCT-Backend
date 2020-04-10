@@ -17,13 +17,13 @@ class CreateInvoicesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('company_id');
             $table->unsignedBigInteger('customer_id');
-            $table->enum('qualification',['edited','awaiting_payment','overdue','revived','disputed','legal_proceedings','promise','paid','cashed'])->nullable();
+            $table->enum('qualification', ['edited', 'awaiting_payment', 'overdue', 'revived', 'disputed', 'legal_proceedings', 'promise', 'paid', 'cashed'])->nullable();
             $table->date('edition_date')->nullable();
             $table->date('payment_date')->nullable();
             $table->smallInteger('payment_delay_in_days')->nullable();
             $table->string('payment_terms')->nullable();
             $table->string('notice')->nullable();
-            $table->enum('payment_method',['credit_cardbank_transfer','bank_check','cash','multiple'])->nullable();
+            $table->enum('payment_method', ['credit_cardbank_transfer', 'bank_check', 'cash', 'multiple'])->nullable();
             $table->date('sending_date')->nullable();
             $table->date('revived_date')->nullable();
             $table->date('last_qualification_date')->nullable();

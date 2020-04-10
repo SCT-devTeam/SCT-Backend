@@ -17,7 +17,7 @@ class CreateInvoicesItemsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger(('invoice_id'));
             $table->unsignedBigInteger('item_id');
-            $table->string('label',100)->nullable();
+            $table->string('label', 100)->nullable();
             $table->string('description')->nullable();
             $table->integer('pre_vat_price_in_cents')->nullable();
             $table->integer('var_rate')->nullable();
