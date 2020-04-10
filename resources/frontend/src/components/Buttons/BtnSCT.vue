@@ -1,11 +1,11 @@
 <template>
     <button
-        id="ButtonSCT"
-        v-bind:name="name"
-        v-bind:title="title"
-        v-bind:type="type"
+        :class="{ disabled: isDisabled }"
         :disabled="isDisabled"
-        v-bind:class="{ disabled: isDisabled }"
+        :name="name"
+        :title="title"
+        :type="type"
+        id="ButtonSCT"
     >
         {{ value }}
     </button>
@@ -50,9 +50,9 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-@import "src/sass/colors";
-@import "src/sass/typography";
+<style lang="scss" scoped>
+@import "src/scss/colors";
+@import "src/scss/typography";
 
 button#ButtonSCT {
     padding: 5px 10px;

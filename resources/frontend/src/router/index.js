@@ -51,7 +51,7 @@ const routes = [
             import(/* webpackChunkName: "profile" */ "../views/Profile.vue")
     },
     {
-        path: '*',
+        path: "*",
         redirect: "/"
     }
     // TOO: add 404 fallback for bad urls

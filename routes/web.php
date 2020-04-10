@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('{all}', function(){
+Route::get('{all}', function () {
     return view('frontend');
 })->where('all', '.*');
