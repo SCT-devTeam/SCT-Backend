@@ -10,6 +10,25 @@ class CustomerController extends Controller
 {
     public function create(Request $request)
     {
+        $request->validate(
+            [
+                'customer_type'=>'request',
+                'status'=>'request',
+                'meeting_date'=>'request',
+                'company_name'=>'request',
+                'siret'=>'request',
+                'tva_number'=>'request',
+                'firstname'=>'request',
+                'lastname'=>'request',
+                'street_number'=>'request',
+                'street_name'=>'request',
+                'zipcode'=>'request',
+                'city'=>'request',
+                'note'=>'request',
+                'default_payment_method'=>'request',
+                'company'=>'request',
+            ]
+        );
 
         $companie = Company::find($request->user()->companies);
 
