@@ -9,11 +9,12 @@
 - [SCT-Backend](#sct-backend)
   - [Introduction](#introduction)
   - [Includes](#includes)
+  - [Demo](#demo)
   - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Steps](#steps)
-  - [Project architecture](#project-architecture)
   - [Roadmap](#roadmap)
+  - [Project architecture](#project-architecture)
 
 
 &nbsp; <!-- break line -->
@@ -33,6 +34,24 @@ SCT² is an open source project whose goal is for everyone to have a simple, fas
 This project use [Laravel](https://github.com/laravel/laravel) for the API
 
 This project use [Vue JS](https://github.com/vuejs/vue) for the BackOffice (front-part)
+
+
+&nbsp; <!-- break line -->
+
+
+## Demo
+
+We have configured 2 instances of SCT² so that you can test before installing it in your home.
+
+One instance connected to the `master` branch (stable | slow ring) available [here](https://sct-backend-prod.herokuapp.com)
+
+One instance connected to the `dev` branch (beta | fast ring) available [here](https://sct-backend-dev.herokuapp.com)
+
+> They are hosted by Heroku for free so they can be in sleep mode when you try to acces to it. The first page loading can be a bit slow
+
+Use theses login credentials to connect you:
+  email: `a@aa.co`
+  password: `azER&é34az`
 
 
 &nbsp; <!-- break line -->
@@ -72,6 +91,14 @@ To install and use the projet you need some tools installed on your system:
      - `DB_PASSWORD` : The password to connect to the database
 5. Run `php artisan command:install` and follow the first installation steps
 6. **You're done** ✨
+
+
+&nbsp; <!-- break line -->
+
+
+## Roadmap
+
+Please check `[Unreleased]` tag in [changelog](CHANGELOG.md) to read what's next.
 
 
 &nbsp; <!-- break line -->
@@ -264,7 +291,3 @@ I use my own project architecture to be able to separate source code and compile
  ┣ 📜webpack.mix.js
  ┗ 📜_ide_helper.php
 ```
-
-## Roadmap
-
-Please check `[Unreleased]` tag in [changelog](CHANGELOG.md) to read what's next.
