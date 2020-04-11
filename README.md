@@ -1,4 +1,9 @@
-<!-- markdownlint-disable MD012 MD022 MD024 -->
+<!-- markdownlint-disable MD012 MD022 MD024 MD041 -->
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/ccd3386e825e7c0be224/maintainability)](https://codeclimate.com/github/SCT-devTeam/SCT-Backend/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ccd3386e825e7c0be224/test_coverage)](https://codeclimate.com/github/SCT-devTeam/SCT-Backend/test_coverage)
+
+
 # SCT-Backend
 
 - [SCT-Backend](#sct-backend)
