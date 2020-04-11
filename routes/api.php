@@ -24,14 +24,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('logout', 'API\AuthController@logout');
     Route::post('/register', 'AuthController@register');
 
+    Route::get('/company', 'CompanyController@selectCompany');
+    Route::post('/createCompany', 'CompanyController@create');
+    //Route::post('/deleteCompany', 'CompanyController@delete');
+
     Route::post('/customers', 'CustomerController@getCustomerAll');
     Route::post('/createCustomer', 'CustomerController@create');
     Route::post('/deleteCustomer', 'CustomerController@delete');
     Route::post('/updateCustomer', 'CustomerController@update');
-
-    Route::get('/company', 'CompanyController@selectCompany');
-    Route::post('/createCompany', 'CompanyController@create');
-    Route::post('/deleteCompany', 'CompanyController@delete');
 
     Route::post('/createContact', 'ContactController@create');
     Route::post('/contact', 'ContactController@getContact');

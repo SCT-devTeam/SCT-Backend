@@ -41,7 +41,7 @@ class CustomerController extends Controller
             [
                 'customer_type'=>'required',
                 'status'=>'required',
-                'meeting_date'=>'required',
+                'meeting_date'=>'present',
                 'company_name'=>'required',
                 'siret'=>'required',
                 'tva_number'=>'required',
