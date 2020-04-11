@@ -14,6 +14,7 @@
     - [Prerequisites](#prerequisites)
     - [Steps](#steps)
   - [Roadmap](#roadmap)
+  - [Documentations](#documentations)
   - [Project architecture](#project-architecture)
 
 
@@ -99,6 +100,14 @@ To install and use the projet you need some tools installed on your system:
 ## Roadmap
 
 Please check `[Unreleased]` tag in [changelog](CHANGELOG.md) to read what's next.
+
+
+&nbsp; <!-- break line -->
+
+
+## Documentations
+
+The APi have a documentation, you can check this in the [doc folder](doc/API.md)
 
 
 &nbsp; <!-- break line -->
