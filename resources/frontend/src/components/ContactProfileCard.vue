@@ -91,31 +91,41 @@
         >
         </TextInput>
 
-        <EditCircleBtnSCT
+        <BtnIcon
+            name="Edit"
+            title="Enable edition"
+            value="edit"
+            iconName="pencil_icon_blue"
+            bg-color="--colors-main"
+            icon-size="10"
+            icon-rotation="45"
             @clicked="toggleMode"
             class="btn"
             v-if="!isEditionMode"
-        ></EditCircleBtnSCT>
+        ></BtnIcon>
 
-        <ValidationCircleBtnSCT
+        <BtnIcon
+            name="Validate"
+            title="Disable edition"
+            value="validate"
+            iconName="tick_icon_blue"
+            bg-color="--colors-main"
             @clicked="toggleMode"
             class="btn"
             v-if="isEditionMode"
-        ></ValidationCircleBtnSCT>
+        ></BtnIcon>
     </div>
 </template>
 
 <script>
 import TextInput from "./Fileds/Themed/Inputs/TextInput";
-import EditCircleBtnSCT from "./Buttons/EditCircleBtnSCT";
-import ValidationCircleBtnSCT from "./Buttons/ValidationCircleBtnSCT";
+import BtnIcon from "./Buttons/BtnIcon";
 
 export default {
     name: "ProfileCard",
     components: {
         TextInput,
-        EditCircleBtnSCT,
-        ValidationCircleBtnSCT
+        BtnIcon
     },
     data() {
         return {

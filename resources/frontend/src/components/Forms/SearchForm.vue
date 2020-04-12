@@ -8,17 +8,26 @@
             v-model:value="query"
             @onInput="query = $event">
         </TextInput>
-        <SearchCircleBtnSCT :isDisabled="!isFilled"></SearchCircleBtnSCT>
+
+        <BtnIcon
+            name="Search"
+            title="Start search"
+            value="search"
+            iconName="search_icon_blue"
+            bg-color="--colors-main"
+            @clicked="$emit('startSearch')"
+            :isDisabled="!isFilled"
+        ></BtnIcon>
     </form>
 </template>
 
 <script>
 import TextInput from "../Fileds/Themed/Inputs/TextInput";
-import SearchCircleBtnSCT from "../Buttons/SearchCircleBtnSCT";
+import BtnIcon from "../Buttons/BtnIcon";
 
 export default {
     name: "SearchForm",
-    components: { TextInput, SearchCircleBtnSCT },
+    components: { TextInput, BtnIcon },
     data() {
         return {
             query: ""
@@ -42,6 +51,7 @@ export default {
 <style lang="scss" scoped>
 form#Search-form {
     display: flex;
+    align-items: center;
 
     > .search-input {
         width: 90%;
