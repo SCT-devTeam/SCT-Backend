@@ -3,11 +3,11 @@ export default {
     props: {
         name: {
             type: String,
-            required: true,
+            required: true
         },
         title: {
             type: String,
-            required: true,
+            required: true
         },
         type: {
             type: String,
@@ -26,7 +26,7 @@ export default {
         },
         value: {
             type: String,
-            required: true,
+            required: true
         },
         bgColor: {
             type: String,
@@ -42,6 +42,6 @@ export default {
             if (this.bgColor.startsWith("--"))
                 return "var(" + this.bgColor + ")";
             else return this.bgColor;
-        },
+        }
     }
-}
+};

@@ -92,7 +92,7 @@
 <script>
 // Change inputs by stylise vuetify inputs : https://vuetifyjs.com/en/components/text-fields/#text-fields
 // TODO: refactor it based on TextSCT input
-import { outlineInputMixin } from "./mixins/outlineInputMixin";
+import outlineInputMixin from "./mixins/outlineInputMixin";
 
 export default {
     name: "DropdownInput",

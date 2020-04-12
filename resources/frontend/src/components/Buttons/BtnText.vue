@@ -8,12 +8,12 @@
         :type="type"
         @click="$emit('clicked')"
     >
-        {{value}}
+        {{ value }}
     </button>
 </template>
 
 <script>
-    import mixin from "./mixins/btnMixin";
+import mixin from "./mixins/btnMixin";
 export default {
     name: "BtnSCT",
     mixins: [mixin]
@@ -21,5 +21,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import 'src/components/Buttons/mixins/btnMixin';
+@import "src/components/Buttons/mixins/btnMixin";
 </style>

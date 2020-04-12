@@ -19,14 +19,10 @@ export default {
     name: "SimpleDashboardWidget",
     computed: {
         imgSrcPath() {
-            return require("../../assets/icons/" +
-                this.icon +
-                ".png");
+            return require("../../assets/icons/" + this.icon + ".png");
         },
         imgSrcsetPath() {
-            return require("../../assets/icons/" +
-                this.icon +
-                ".svg");
+            return require("../../assets/icons/" + this.icon + ".svg");
         },
         bgColor() {
             return "--circle-color: var(--colors-" + this.color + ")";

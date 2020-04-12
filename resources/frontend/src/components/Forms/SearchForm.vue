@@ -7,7 +7,8 @@
             placeholder="Search"
             :enableValidation="false"
             v-model:value="query"
-            @onInput="query = $event">
+            @onInput="query = $event"
+        >
         </TextInput>
 
         <BtnIcon

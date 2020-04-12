@@ -10,7 +10,8 @@
                 }"
                 @mouseover="hovered"
                 ref="label"
-            >{{ fieldLabel }}</label>
+                >{{ fieldLabel }}</label
+            >
 
             <span
                 class="outline-top"
@@ -78,25 +79,21 @@
 <script>
 // Change input by stylise vuetify input : https://vuetifyjs.com/en/components/text-fields/#text-fields
 // TODO: Separate share logic in multiple files
-import {outlineInputMixin} from "../Inputs/mixins/outlineInputMixin";
+import { outlineInputMixin } from "../Inputs/mixins/outlineInputMixin";
 
 export default {
     name: "TextSCT",
     mixins: [outlineInputMixin],
     props: {
         icon: String,
-        value: String,
+        value: String
     },
     computed: {
         imgSrcPath() {
-            return require("../../../../assets/icons/" +
-                this.icon +
-                ".png");
+            return require("../../../../assets/icons/" + this.icon + ".png");
         },
         imgSrcsetPath() {
-            return require("../../../../assets/icons/" +
-                this.icon +
-                ".svg");
+            return require("../../../../assets/icons/" + this.icon + ".svg");
         }
     },
     methods: {
@@ -108,17 +105,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../mixins/outlinedFiledsMixin';
-    img.filed-icon {
-        position: absolute;
-        right: 5px;
-        top: 50%;
-        transform: translateY(-50%);
+@import "../mixins/outlinedFiledsMixin";
+img.filed-icon {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
 
-        height: 80%;
+    height: 80%;
 
-        z-index: 1;
+    z-index: 1;
 
-        cursor: pointer;
-    }
+    cursor: pointer;
+}
 </style>

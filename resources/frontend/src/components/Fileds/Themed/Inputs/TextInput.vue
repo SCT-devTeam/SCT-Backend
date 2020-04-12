@@ -19,7 +19,8 @@
                 }"
                 @mouseover="hovered"
                 ref="label"
-                >{{ fieldLabel }}</label>
+                >{{ fieldLabel }}</label
+            >
             <span
                 class="outline-top"
                 :style="{
@@ -108,8 +109,7 @@ export default {
     methods: {
         notActive() {
             this.isActive = false;
-            if (this.enableValidation)
-                this.checkInput();
+            if (this.enableValidation) this.checkInput();
         },
         checkInput() {
             // Check if empty

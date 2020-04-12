@@ -9,18 +9,19 @@
             name="gender"
             placeholder="Gender"
             title="Select the gender"
-            :options="['Unspecified', 'Woman', 'Man']">
+            :options="['Unspecified', 'Woman', 'Man']"
+        >
         </DropdownInput>
 
         <div id="name">
-
             <TextInput
                 name="firstname"
                 placeholder="FirstName"
                 title="FirstName"
                 :isEditable="isEditionMode"
                 v-model:value="user.firstname"
-                @onInput="user.firstname = $event">
+                @onInput="user.firstname = $event"
+            >
             </TextInput>
 
             <TextInput
@@ -29,7 +30,8 @@
                 title="LastName"
                 :isEditable="isEditionMode"
                 v-model:value="user.lastname"
-                @onInput="user.lastname = $event">
+                @onInput="user.lastname = $event"
+            >
             </TextInput>
         </div>
 
@@ -39,7 +41,8 @@
             title="Email"
             :isEditable="isEditionMode"
             v-model:value="user.email"
-            @onInput="user.email = $event">
+            @onInput="user.email = $event"
+        >
         </TextInput>
 
         <TextInput
@@ -48,9 +51,9 @@
             title="Mobile Phone"
             :isEditable="isEditionMode"
             v-model:value="user.phone"
-            @onInput="user.phone = $event">
+            @onInput="user.phone = $event"
+        >
         </TextInput>
-
 
         <BtnIcon
             name="Edit"

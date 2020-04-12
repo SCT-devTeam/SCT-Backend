@@ -1,4 +1,4 @@
-export const outlineInputMixin = {
+export default {
     data() {
         return {
             error: "",

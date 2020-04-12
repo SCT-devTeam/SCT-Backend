@@ -28,7 +28,8 @@
                 placeholder="FirstName"
                 :isEditable="isEditionMode"
                 v-model:value="entity.firstName"
-                @onInput="entity.firstName = $event">
+                @onInput="entity.firstName = $event"
+            >
             </TextInput>
 
             <TextInput
@@ -37,7 +38,8 @@
                 placeholder="LastName"
                 :isEditable="isEditionMode"
                 v-model:value="entity.lastName"
-                @onInput="entity.lastName = $event">
+                @onInput="entity.lastName = $event"
+            >
             </TextInput>
         </div>
 
@@ -64,7 +66,8 @@
             placeholder="Notes"
             :isEditable="isEditionMode"
             v-model:value="entity.notes"
-            @onInput="entity.notes = $event">
+            @onInput="entity.notes = $event"
+        >
         </TextInput>
 
         <BtnIcon
@@ -138,8 +141,8 @@ export default {
         toggleMode: function() {
             this.isEditionMode = !this.isEditionMode;
         },
-        contactFullname: function (contactObj) {
-            return contactObj.firstName + ' ' + contactObj.lastName;
+        contactFullname: function(contactObj) {
+            return contactObj.firstName + " " + contactObj.lastName;
         }
     }
 };
