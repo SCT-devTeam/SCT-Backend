@@ -12,7 +12,7 @@
         <form @submit.prevent="submitForm" id="login-form__form" method="get">
             <TextInput
                 :isRequired="true"
-                @isValid="emailValid = $event"
+                @isValid="isValidEmail = $event"
                 @onInput="email = $event"
                 bg-color="white"
                 class="input"
@@ -26,7 +26,7 @@
 
             <TextInput
                 :isRequired="true"
-                @isValid="passwordValid = $event"
+                @isValid="isValidPwd = $event"
                 @onInput="password = $event"
                 bg-color="white"
                 class="input"
@@ -60,15 +60,15 @@ export default {
     data() {
         return {
             email: "",
-            emailValid: false,
+            isValidEmail: false,
             password: "",
-            passwordValid: false,
+            isValidPwd: false,
             error: ""
         };
     },
     computed: {
         isValidForm: function() {
-            return this.emailValid === true && this.passwordValid === true;
+            return this.isValidEmail === true && this.isValidPwd === true;
         }
     },
     methods: {
