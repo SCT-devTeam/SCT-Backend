@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Implement QR Code generation for mobile connexion
 - Create API tests
 
+### Changed
+
+- Refactor dashboard widget
+    - add icon property
+    - extract logic & style into mixins
+
 
 &nbsp; <!-- break line -->
 
