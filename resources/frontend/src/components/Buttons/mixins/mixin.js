@@ -1,4 +1,5 @@
 export default {
+    // TODO: FIX: box-shadow offset focus -> click
     props: {
         name: {
             type: String,
