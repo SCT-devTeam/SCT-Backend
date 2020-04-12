@@ -42,7 +42,6 @@ export default new Vuex.Store({
             state.user.token = token || null;
         },
         SET_USER(state, userData) {
-            console.log(userData);
             state.user.firstname = userData.firstname || null;
             state.user.lastname = userData.lastname || null;
             state.user.email = userData.email || null;

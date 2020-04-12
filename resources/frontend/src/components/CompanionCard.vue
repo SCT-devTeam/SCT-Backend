@@ -6,6 +6,8 @@
         />
 
         <TextFiledSCT
+            name="Device name"
+            title="Device name"
             :defaultValue="device.name"
             :key="index"
             @iconClicked="removeDevice(device.id)"
