@@ -14,6 +14,7 @@
                 :isRequired="true"
                 @isValid="emailValid = $event"
                 @onInput="email = $event"
+                bg-color="white"
                 class="input"
                 name="email"
                 placeholder="Email"
@@ -27,6 +28,7 @@
                 :isRequired="true"
                 @isValid="passwordValid = $event"
                 @onInput="password = $event"
+                bg-color="white"
                 class="input"
                 name="password"
                 placeholder="Password"
@@ -37,6 +39,7 @@
             </TextInput>
             <BtnSCT
                 :isDisabled="!isValidForm"
+                class="submit"
                 name="submit"
                 title="Submit the form"
                 type="submit"
@@ -120,10 +123,13 @@ export default {
 @import "src/scss/typography";
 
 div#login-form {
-    max-width: 500px;
+    display: flex;
+    flex-direction: column;
 
-    padding: 20px;
-    padding-bottom: 30px;
+    height: fit-content;
+    width: fit-content;
+
+    padding: 50px 35px;
 
     position: relative;
 
@@ -132,6 +138,29 @@ div#login-form {
     background-color: $color__main;
 
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+    > img {
+        align-self: center;
+
+        width: 50%;
+
+        margin-bottom: 50px;
+    }
+
+    > form#login-form__form {
+        display: flex;
+        flex-direction: column;
+
+        .input {
+            width: 400px;
+
+            margin: 10px 0;
+        }
+
+        > button.submit {
+            align-self: flex-end;
+        }
+    }
 
     &:after {
         content: "";
@@ -151,11 +180,5 @@ div#login-form {
         margin: 5px 0;
         color: $color__validation_no;
     }
-}
-
-.input {
-    width: 400px;
-
-    margin: 10px 0;
 }
 </style>
