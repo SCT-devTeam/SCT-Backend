@@ -185,7 +185,7 @@ div#Customers-table {
 
         > p {
             font-family: $font__heading;
-            font-size: 2em;
+            font-size: 2rem;
         }
     }
 
@@ -220,7 +220,7 @@ div#Customers-table {
 
             > p {
                 font-family: $font__text;
-                font-size: 1em;
+                font-size: 1rem;
             }
         }
     }

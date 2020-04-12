@@ -202,7 +202,7 @@ div.receipt_modal {
 
                         font-family: $font__heading;
                         font-weight: bold;
-                        font-size: 1.2em;
+                        font-size: 1.2rem;
                     }
                 }
 

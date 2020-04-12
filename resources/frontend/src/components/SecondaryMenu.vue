@@ -73,7 +73,7 @@ nav#Secondary-menu {
 
             color: white;
             font-family: $font__text;
-            font-size: 1em;
+            font-size: 1rem;
 
             cursor: pointer;
 

@@ -164,7 +164,7 @@ nav#Main-menu {
 
                     color: $color__black;
                     font-family: $font__text;
-                    font-size: 1.2em;
+                    font-size: 1.2rem;
                 }
 
                 &.router-link-exact-active:before {

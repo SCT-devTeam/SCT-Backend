@@ -86,7 +86,7 @@ div#profile-card {
         padding-left: 10%;
 
         font-family: $font__text;
-        font-size: 1.2em;
+        font-size: 1.2rem;
     }
 
     > div.filed {
