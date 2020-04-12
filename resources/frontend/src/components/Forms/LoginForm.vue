@@ -95,20 +95,20 @@ export default {
                             }
                         }
                     )
-                    .then(({ data: { token } }) => {
-                        if (token) {
+                    .then(response => {
+                        console.log(response);
+
+                        if (response.status === 200) {
+                            const token = response.data.token;
                             this.set_token(token);
                             this.fetchUserData();
                             this.$router.replace({ name: "Dashboard" });
+                        } else {
+                            this.error = `An error has occurred, code: ${response.status}`;
                         }
                     })
                     .catch(error => {
-                        // console.log("Reason: ", error.response);
-
-                        this.error =
-                            error.response.status +
-                            " " +
-                            error.response.statusText;
+                        this.error = `${error.response.status} ${error.response.statusText}`;
                     });
             } else {
                 this.error = "Please fix input errors";
