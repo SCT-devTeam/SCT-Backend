@@ -137,7 +137,7 @@ div#login-form {
 
     background-color: $color__main;
 
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 2px 7px 2px rgba(0, 0, 0, 0.7);
 
     > img {
         align-self: center;
