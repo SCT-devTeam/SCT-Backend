@@ -10,7 +10,7 @@
             :key="index"
             @iconClicked="removeDevice(device.id)"
             class="filed"
-            icon="cross"
+            icon="cross_icon_blue"
             v-for="(device, index) in devices"
         ></TextFiledSCT>
     </div>

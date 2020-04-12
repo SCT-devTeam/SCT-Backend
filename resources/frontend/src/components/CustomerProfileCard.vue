@@ -47,7 +47,7 @@
             :name="'Contact-' + contactFullname(contact)"
             title="Click on it to view his card"
             :value="contactFullname(contact)"
-            icon="arrow"
+            icon="arrow_icon_blue"
             :key="index"
             @iconClicked="displayContact(contact.id)"
             class="filed"

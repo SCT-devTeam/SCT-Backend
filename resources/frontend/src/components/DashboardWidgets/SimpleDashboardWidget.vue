@@ -21,12 +21,12 @@ export default {
         imgSrcPath() {
             return require("../../assets/icons/" +
                 this.icon +
-                "_icon_blue.png");
+                ".png");
         },
         imgSrcsetPath() {
             return require("../../assets/icons/" +
                 this.icon +
-                "_icon_blue.svg");
+                ".svg");
         },
         bgColor() {
             return "--circle-color: var(--colors-" + this.color + ")";
