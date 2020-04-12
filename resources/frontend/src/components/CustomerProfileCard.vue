@@ -6,39 +6,39 @@
         />
 
         <DropdownInput
-            name="customer-status"
-            title="Customer Status"
-            placeholder="Customer Status"
             :options="['prospect', 'active', 'archived', 'deleted']"
+            name="customer-status"
+            placeholder="Customer Status"
+            title="Customer Status"
         >
         </DropdownInput>
 
         <DropdownInput
-            name="customer-type"
-            title="Customer Type"
-            placeholder="Customer Type"
             :options="['individual', 'professional']"
+            name="customer-type"
+            placeholder="Customer Type"
+            title="Customer Type"
         >
         </DropdownInput>
 
         <div id="name">
             <TextInput
-                name="firstname"
-                title="FirstName"
-                placeholder="FirstName"
                 :isEditable="isEditionMode"
-                v-model="entity.firstName"
                 @onInput="entity.firstName = $event"
+                name="firstname"
+                placeholder="FirstName"
+                title="FirstName"
+                v-model="entity.firstName"
             >
             </TextInput>
 
             <TextInput
-                name="lastname"
-                title="LastName"
-                placeholder="LastName"
                 :isEditable="isEditionMode"
-                v-model="entity.lastName"
                 @onInput="entity.lastName = $event"
+                name="lastname"
+                placeholder="LastName"
+                title="LastName"
+                v-model="entity.lastName"
             >
             </TextInput>
         </div>
@@ -46,13 +46,13 @@
         <p class="title">Contacts</p>
 
         <TextFiledSCT
-            :name="'Contact-' + contactFullname(contact)"
-            title="Click on it to view his card"
-            :value="contactFullname(contact)"
-            icon="arrow_icon_blue"
             :key="index"
+            :name="'Contact-' + contactFullname(contact)"
+            :value="contactFullname(contact)"
             @iconClicked="displayContact(contact.id)"
             class="filed"
+            icon="arrow_icon_blue"
+            title="Click on it to view his card"
             v-for="(contact, index) in entity.contacts"
         ></TextFiledSCT>
 
@@ -61,37 +61,37 @@
         <!-- TODO: replace it by text area -->
 
         <TextInput
-            name="notes"
-            title="Notes"
-            placeholder="Notes"
             :isEditable="isEditionMode"
-            v-model="entity.notes"
             @onInput="entity.notes = $event"
+            name="notes"
+            placeholder="Notes"
+            title="Notes"
+            v-model="entity.notes"
         >
         </TextInput>
 
         <BtnIcon
+            :icon-rotation="45"
+            :icon-size="10"
+            @clicked="toggleMode"
+            bg-color="--colors-main"
+            class="btn"
+            iconName="pencil_icon_blue"
             name="Edit"
             title="Enable edition"
-            value="edit"
-            iconName="pencil_icon_blue"
-            bg-color="--colors-main"
-            :icon-size="10"
-            :icon-rotation="45"
-            @clicked="toggleMode"
-            class="btn"
             v-if="!isEditionMode"
+            value="edit"
         ></BtnIcon>
 
         <BtnIcon
+            @clicked="toggleMode"
+            bg-color="--colors-main"
+            class="btn"
+            iconName="tick_icon_blue"
             name="Validate"
             title="Disable edition"
-            value="validate"
-            iconName="tick_icon_blue"
-            bg-color="--colors-main"
-            @clicked="toggleMode"
-            class="btn"
             v-if="isEditionMode"
+            value="validate"
         ></BtnIcon>
     </div>
 </template>
@@ -142,7 +142,7 @@ export default {
             this.isEditionMode = !this.isEditionMode;
         },
         contactFullname: function(contactObj) {
-            return contactObj.firstName + " " + contactObj.lastName;
+            return `${contactObj.firstName} ${contactObj.lastName}`;
         }
     }
 };

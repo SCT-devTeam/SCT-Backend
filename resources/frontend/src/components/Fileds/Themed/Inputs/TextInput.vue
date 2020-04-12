@@ -19,36 +19,39 @@
                 }"
                 @mouseover="hovered"
                 ref="label"
-                >{{ fieldLabel }}</label
             >
+                {{ fieldLabel }}
+            </label>
             <span
-                class="outline-top"
                 :style="{
-                    left: topLineOffset + 'px',
+                    left: `${topLineOffset}px`,
                     'background-color': outlineColor
                 }"
                 @mouseover="hovered"
+                class="outline-top"
             ></span>
 
             <div
-                class="input-container"
                 :style="{ '--inputBgColor': inputBgColor }"
+                class="input-container"
             >
                 <!-- TODO: implement all attributes -->
+                <!--suppress HtmlFormInputWithoutLabel -->
                 <input
+                    :disabled="isDisabled"
+                    :id="name"
                     :name="name"
                     :placeholder="inputPlaceholder"
+                    :readonly="isDisabled"
                     :required="isRequired"
                     :title="title"
+                    :type="type"
                     :value="value"
                     @focusin="active"
                     @focusout="notActive"
                     @input="onInput"
                     @mouseover="hovered"
-                    :disabled="isDisabled"
                     ref="input"
-                    :type="type"
-                    :readonly="isDisabled"
                 />
             </div>
             <span
@@ -68,7 +71,7 @@
                     fill="none"
                     stroke-width="2"
                     transform="translate(-1251.006 -648)"
-                />
+                ></path>
             </svg>
 
             <svg
@@ -82,7 +85,7 @@
                     fill="none"
                     stroke-width="2"
                     transform="translate(-1251.006 -648)"
-                />
+                ></path>
             </svg>
         </div>
         <p class="error" v-if="this.enableValidation">{{ error }}</p>

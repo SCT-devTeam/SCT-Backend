@@ -7,73 +7,73 @@
 
         <div id="name">
             <TextInput
-                name="firstname"
-                title="FirstName"
-                placeholder="FirstName"
-                v-model="entity.firstName"
-                @onInput="entity.firstName = $event"
                 :isEditable="isEditionMode"
+                @onInput="entity.firstName = $event"
+                name="firstname"
+                placeholder="FirstName"
+                title="FirstName"
+                v-model="entity.firstName"
             >
             </TextInput>
 
             <TextInput
-                name="lastname"
-                title="LastName"
-                placeholder="LastName"
-                v-model="entity.lastName"
-                @onInput="entity.lastName = $event"
                 :isEditable="isEditionMode"
+                @onInput="entity.lastName = $event"
+                name="lastname"
+                placeholder="LastName"
+                title="LastName"
+                v-model="entity.lastName"
             >
             </TextInput>
         </div>
 
         <TextInput
-            name="job-position"
-            title="Job Position"
-            placeholder="Job Position"
-            v-model="entity.job"
+            :isEditable="isEditionMode"
             @onInput="entity.job = $event"
-            :isEditable="isEditionMode"
+            name="job-position"
+            placeholder="Job Position"
+            title="Job Position"
+            v-model="entity.job"
         >
         </TextInput>
 
         <TextInput
-            name="phone-fixed"
-            title="Phone Fixed"
-            placeholder="Phone Fixed"
-            v-model="entity.phone_fixe"
+            :isEditable="isEditionMode"
             @onInput="entity.phone_fixe = $event"
-            :isEditable="isEditionMode"
+            name="phone-fixed"
+            placeholder="Phone Fixed"
+            title="Phone Fixed"
+            v-model="entity.phone_fixe"
         >
         </TextInput>
 
         <TextInput
-            name="phone-mobile"
-            title="Phone Mobile"
-            placeholder="Phone Mobile"
-            v-model="entity.phone_mobile"
+            :isEditable="isEditionMode"
             @onInput="entity.phone_mobile = $event"
-            :isEditable="isEditionMode"
+            name="phone-mobile"
+            placeholder="Phone Mobile"
+            title="Phone Mobile"
+            v-model="entity.phone_mobile"
         >
         </TextInput>
 
         <TextInput
-            name="phone-personal"
-            title="Phone Personal"
-            placeholder="Phone Personal"
-            v-model="entity.phone_personnal"
+            :isEditable="isEditionMode"
             @onInput="entity.phone_personnal = $event"
-            :isEditable="isEditionMode"
+            name="phone-personal"
+            placeholder="Phone Personal"
+            title="Phone Personal"
+            v-model="entity.phone_personnal"
         >
         </TextInput>
 
         <TextInput
-            name="phone-fax"
-            title="Phone Fax"
-            placeholder="Phone Fax"
-            v-model="entity.phone_fax"
-            @onInput="entity.phone_fax = $event"
             :isEditable="isEditionMode"
+            @onInput="entity.phone_fax = $event"
+            name="phone-fax"
+            placeholder="Phone Fax"
+            title="Phone Fax"
+            v-model="entity.phone_fax"
         >
         </TextInput>
 
@@ -81,37 +81,37 @@
 
         <!-- TODO: replace it by text area -->
         <TextInput
-            name="Notes"
-            title="Notes"
-            placeholder="Notes"
-            v-model="entity.notes"
-            @onInput="entity.notes = $event"
             :isEditable="isEditionMode"
+            @onInput="entity.notes = $event"
+            name="Notes"
+            placeholder="Notes"
+            title="Notes"
+            v-model="entity.notes"
         >
         </TextInput>
 
         <BtnIcon
+            :icon-rotation="45"
+            :icon-size="10"
+            @clicked="toggleMode"
+            bg-color="--colors-main"
+            class="btn"
+            iconName="pencil_icon_blue"
             name="Edit"
             title="Enable edition"
-            value="edit"
-            iconName="pencil_icon_blue"
-            bg-color="--colors-main"
-            :icon-size="10"
-            :icon-rotation="45"
-            @clicked="toggleMode"
-            class="btn"
             v-if="!isEditionMode"
+            value="edit"
         ></BtnIcon>
 
         <BtnIcon
+            @clicked="toggleMode"
+            bg-color="--colors-main"
+            class="btn"
+            iconName="tick_icon_blue"
             name="Validate"
             title="Disable edition"
-            value="validate"
-            iconName="tick_icon_blue"
-            bg-color="--colors-main"
-            @clicked="toggleMode"
-            class="btn"
             v-if="isEditionMode"
+            value="validate"
         ></BtnIcon>
     </div>
 </template>

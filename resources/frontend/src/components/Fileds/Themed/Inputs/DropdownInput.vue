@@ -18,44 +18,47 @@
                 }"
                 @mouseover="hovered"
                 ref="label"
-                >{{ fieldLabel }}</label
             >
+                {{ fieldLabel }}
+            </label>
             <span
-                class="outline-top"
                 :style="{
-                    left: topLineOffset + 'px',
+                    left: `${topLineOffset}px`,
                     'background-color': outlineColor
                 }"
                 @mouseover="hovered"
+                class="outline-top"
             ></span>
 
             <div
-                class="input-container"
                 :style="{ '--inputBgColor': inputBgColor }"
+                class="input-container"
             >
                 <!-- TODO: implement all attributes -->
+                <!--suppress HtmlFormInputWithoutLabel -->
                 <select
+                    :disabled="isDisabled"
+                    :id="name"
                     :name="name"
                     :placeholder="inputPlaceholder"
+                    :readonly="isDisabled"
                     :required="isRequired"
                     :title="title"
                     @focusin="active"
                     @focusout="notActive"
                     @mouseover="hovered"
-                    :disabled="isDisabled"
                     ref="input"
-                    :readonly="isDisabled"
                 >
-                    <option :key="index" v-for="(option, index) in options"
-                        >{{ option }}
+                    <option :key="index" v-for="(option, index) in options">
+                        {{ option }}
                     </option>
                 </select>
             </div>
 
             <span
-                class="outline-bot"
                 :style="{ 'background-color': outlineColor }"
                 @mouseover="hovered"
+                class="outline-bot"
             ></span>
 
             <svg
@@ -69,7 +72,7 @@
                     fill="none"
                     stroke-width="2"
                     transform="translate(-1251.006 -648)"
-                />
+                ></path>
             </svg>
 
             <svg
@@ -83,7 +86,7 @@
                     fill="none"
                     stroke-width="2"
                     transform="translate(-1251.006 -648)"
-                />
+                ></path>
             </svg>
         </div>
     </div>

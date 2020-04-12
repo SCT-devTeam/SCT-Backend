@@ -44,8 +44,7 @@ export default {
             else return this.name;
         },
         inputBgColor() {
-            if (this.bgColor.startsWith("--"))
-                return "var(" + this.bgColor + ")";
+            if (this.bgColor.startsWith("--")) return `var(${this.bgColor})`;
             else return this.bgColor;
         },
         fieldLabel() {

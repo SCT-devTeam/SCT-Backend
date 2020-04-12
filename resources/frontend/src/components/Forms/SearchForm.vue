@@ -1,24 +1,24 @@
 <template>
     <form @submit.prevent="submitForm" id="Search-form" method="get">
         <TextInput
+            :enableValidation="false"
+            @onInput="query = $event"
             class="search-input"
             name="search"
-            title="Search"
             placeholder="Search"
-            :enableValidation="false"
+            title="Search"
             v-model="query"
-            @onInput="query = $event"
         >
         </TextInput>
 
         <BtnIcon
+            :isDisabled="!isFilled"
+            @clicked="$emit('startSearch')"
+            bg-color="--colors-main"
+            iconName="search_icon_blue"
             name="Search"
             title="Start search"
             value="search"
-            iconName="search_icon_blue"
-            bg-color="--colors-main"
-            @clicked="$emit('startSearch')"
-            :isDisabled="!isFilled"
         ></BtnIcon>
     </form>
 </template>

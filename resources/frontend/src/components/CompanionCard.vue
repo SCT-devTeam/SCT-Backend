@@ -6,13 +6,13 @@
         />
 
         <TextFiledSCT
-            name="Device name"
-            title="Device name"
             :defaultValue="device.name"
             :key="index"
             @iconClicked="removeDevice(device.id)"
             class="filed"
             icon="cross_icon_blue"
+            name="Device name"
+            title="Device name"
             v-for="(device, index) in devices"
         ></TextFiledSCT>
     </div>

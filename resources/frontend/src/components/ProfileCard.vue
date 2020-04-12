@@ -6,77 +6,77 @@
         />
 
         <DropdownInput
+            :options="['Unspecified', 'Woman', 'Man']"
             name="gender"
             placeholder="Gender"
             title="Select the gender"
-            :options="['Unspecified', 'Woman', 'Man']"
         >
         </DropdownInput>
 
         <div id="name">
             <TextInput
+                :isEditable="isEditionMode"
+                @onInput="user.firstname = $event"
                 name="firstname"
                 placeholder="FirstName"
                 title="FirstName"
-                :isEditable="isEditionMode"
                 v-model="user.firstname"
-                @onInput="user.firstname = $event"
             >
             </TextInput>
 
             <TextInput
+                :isEditable="isEditionMode"
+                @onInput="user.lastname = $event"
                 name="lastname"
                 placeholder="LastName"
                 title="LastName"
-                :isEditable="isEditionMode"
                 v-model="user.lastname"
-                @onInput="user.lastname = $event"
             >
             </TextInput>
         </div>
 
         <TextInput
+            :isEditable="isEditionMode"
+            @onInput="user.email = $event"
             name="email"
             placeholder="Email"
             title="Email"
-            :isEditable="isEditionMode"
             v-model="user.email"
-            @onInput="user.email = $event"
         >
         </TextInput>
 
         <TextInput
+            :isEditable="isEditionMode"
+            @onInput="user.phone = $event"
             name="phone"
             placeholder="Mobile Phone"
             title="Mobile Phone"
-            :isEditable="isEditionMode"
             v-model="user.phone"
-            @onInput="user.phone = $event"
         >
         </TextInput>
 
         <BtnIcon
+            :icon-rotation="45"
+            :icon-size="10"
+            @clicked="toggleMode"
+            bg-color="--colors-main"
+            class="btn"
+            iconName="pencil_icon_blue"
             name="Edit"
             title="Enable edition"
-            value="edit"
-            iconName="pencil_icon_blue"
-            bg-color="--colors-main"
-            :icon-size="10"
-            :icon-rotation="45"
-            @clicked="toggleMode"
-            class="btn"
             v-if="!isEditionMode"
+            value="edit"
         ></BtnIcon>
 
         <BtnIcon
+            @clicked="toggleMode"
+            bg-color="--colors-main"
+            class="btn"
+            iconName="tick_icon_blue"
             name="Validate"
             title="Disable edition"
-            value="validate"
-            iconName="tick_icon_blue"
-            bg-color="--colors-main"
-            @clicked="toggleMode"
-            class="btn"
             v-if="isEditionMode"
+            value="validate"
         ></BtnIcon>
 
         <button @click="logoutUser">Logout</button>

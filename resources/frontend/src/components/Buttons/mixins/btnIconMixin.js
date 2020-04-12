@@ -15,7 +15,7 @@ export default {
     },
     computed: {
         imgSrcPath() {
-            return require("../../../assets/icons/" + this.iconName + ".png");
+            return require(`../../../assets/icons/${this.iconName}.png`);
         }
     }
 };

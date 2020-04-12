@@ -4,8 +4,8 @@
         :disabled="isDisabled"
         :name="name"
         :title="title"
-        :value="value"
         :type="type"
+        :value="value"
         @click="$emit('clicked')"
     >
         {{ value }}

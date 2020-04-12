@@ -2,11 +2,13 @@
     <div class="receipt_modal">
         <span @click="exit" class="background"></span>
         <div class="receipt_modal__receipt" ref="receipt">
-            <input
-                class="receipt__company"
-                type="text"
-                v-model="receipt.company"
-            />
+            <label>
+                <input
+                    class="receipt__company"
+                    type="text"
+                    v-model="receipt.company"
+                />
+            </label>
             <div class="receipt__items-table">
                 <span class="table__head">
                     <p class="label">Label</p>
@@ -18,13 +20,23 @@
                     class="table__item"
                     v-for="(item, index) in receipt.items"
                 >
-                    <input class="label" type="text" v-model="item.label" />
-                    <input
-                        class="quantity"
-                        type="number"
-                        v-model="item.quantity"
-                    />
-                    <input class="price" type="number" v-model="item.price" />
+                    <label>
+                        <input class="label" type="text" v-model="item.label" />
+                    </label>
+                    <label>
+                        <input
+                            class="quantity"
+                            type="number"
+                            v-model="item.quantity"
+                        />
+                    </label>
+                    <label>
+                        <input
+                            class="price"
+                            type="number"
+                            v-model="item.price"
+                        />
+                    </label>
                 </span>
             </div>
             <p class="total">{{ this.total }}</p>

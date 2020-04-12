@@ -1,17 +1,17 @@
 <template>
     <button
         :class="{ disabled: isDisabled }"
+        :disabled="isDisabled"
+        :name="name"
         :style="{
             'background-color': btnBgColor,
             '--iconLink': `url(${imgSrcPath})`,
             '--iconSize': `${iconSize}%`,
             '--iconRotation': `${iconRotation}deg`
         }"
-        :disabled="isDisabled"
-        :name="name"
         :title="title"
-        :value="value"
         :type="type"
+        :value="value"
         @click="$emit('clicked')"
     >
         {{ value }}
