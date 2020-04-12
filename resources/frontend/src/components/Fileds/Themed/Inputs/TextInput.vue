@@ -2,7 +2,7 @@
 <!--<TextInput-->
 <!--    name="TextInput"-->
 <!--    title="TextInput"-->
-<!--    v-model:value="value"-->
+<!--    v-model="value"-->
 <!--    @onInput="value = $event">-->
 <!--</TextInput>-->
 

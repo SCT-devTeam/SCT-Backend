@@ -11,28 +11,28 @@
 
         <form @submit.prevent="submitForm" id="login-form__form" method="get">
             <TextInput
+                :isRequired="true"
+                @isValid="emailValid = $event"
+                @onInput="email = $event"
                 class="input"
                 name="email"
                 placeholder="Email"
                 title="Enter your email here"
                 type="email"
-                :isRequired="true"
-                v-model:value="email"
-                @onInput="email = $event"
-                @isValid="emailValid = $event"
+                v-model="email"
             >
             </TextInput>
 
             <TextInput
+                :isRequired="true"
+                @isValid="passwordValid = $event"
+                @onInput="password = $event"
                 class="input"
                 name="password"
                 placeholder="Password"
                 title="Enter your password here"
                 type="password"
-                :isRequired="true"
-                v-model:value="password"
-                @onInput="password = $event"
-                @isValid="passwordValid = $event"
+                v-model="password"
             >
             </TextInput>
             <BtnSCT
@@ -102,7 +102,10 @@ export default {
                     .catch(error => {
                         // console.log("Reason: ", error.response);
 
-                        this.error = error.response.status + ' ' + error.response.statusText;
+                        this.error =
+                            error.response.status +
+                            " " +
+                            error.response.statusText;
                     });
             } else {
                 this.error = "Please fix input errors";

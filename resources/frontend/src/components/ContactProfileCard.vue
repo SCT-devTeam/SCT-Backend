@@ -10,7 +10,7 @@
                 name="firstname"
                 title="FirstName"
                 placeholder="FirstName"
-                v-model:value="entity.firstName"
+                v-model="entity.firstName"
                 @onInput="entity.firstName = $event"
                 :isEditable="isEditionMode"
             >
@@ -20,7 +20,7 @@
                 name="lastname"
                 title="LastName"
                 placeholder="LastName"
-                v-model:value="entity.lastName"
+                v-model="entity.lastName"
                 @onInput="entity.lastName = $event"
                 :isEditable="isEditionMode"
             >
@@ -31,7 +31,7 @@
             name="job-position"
             title="Job Position"
             placeholder="Job Position"
-            v-model:value="entity.job"
+            v-model="entity.job"
             @onInput="entity.job = $event"
             :isEditable="isEditionMode"
         >
@@ -41,7 +41,7 @@
             name="phone-fixed"
             title="Phone Fixed"
             placeholder="Phone Fixed"
-            v-model:value="entity.phone_fixe"
+            v-model="entity.phone_fixe"
             @onInput="entity.phone_fixe = $event"
             :isEditable="isEditionMode"
         >
@@ -51,7 +51,7 @@
             name="phone-mobile"
             title="Phone Mobile"
             placeholder="Phone Mobile"
-            v-model:value="entity.phone_mobile"
+            v-model="entity.phone_mobile"
             @onInput="entity.phone_mobile = $event"
             :isEditable="isEditionMode"
         >
@@ -61,7 +61,7 @@
             name="phone-personal"
             title="Phone Personal"
             placeholder="Phone Personal"
-            v-model:value="entity.phone_personnal"
+            v-model="entity.phone_personnal"
             @onInput="entity.phone_personnal = $event"
             :isEditable="isEditionMode"
         >
@@ -71,7 +71,7 @@
             name="phone-fax"
             title="Phone Fax"
             placeholder="Phone Fax"
-            v-model:value="entity.phone_fax"
+            v-model="entity.phone_fax"
             @onInput="entity.phone_fax = $event"
             :isEditable="isEditionMode"
         >
@@ -84,7 +84,7 @@
             name="Notes"
             title="Notes"
             placeholder="Notes"
-            v-model:value="entity.notes"
+            v-model="entity.notes"
             @onInput="entity.notes = $event"
             :isEditable="isEditionMode"
         >

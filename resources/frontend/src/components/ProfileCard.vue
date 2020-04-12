@@ -19,7 +19,7 @@
                 placeholder="FirstName"
                 title="FirstName"
                 :isEditable="isEditionMode"
-                v-model:value="user.firstname"
+                v-model="user.firstname"
                 @onInput="user.firstname = $event"
             >
             </TextInput>
@@ -29,7 +29,7 @@
                 placeholder="LastName"
                 title="LastName"
                 :isEditable="isEditionMode"
-                v-model:value="user.lastname"
+                v-model="user.lastname"
                 @onInput="user.lastname = $event"
             >
             </TextInput>
@@ -40,7 +40,7 @@
             placeholder="Email"
             title="Email"
             :isEditable="isEditionMode"
-            v-model:value="user.email"
+            v-model="user.email"
             @onInput="user.email = $event"
         >
         </TextInput>
@@ -50,7 +50,7 @@
             placeholder="Mobile Phone"
             title="Mobile Phone"
             :isEditable="isEditionMode"
-            v-model:value="user.phone"
+            v-model="user.phone"
             @onInput="user.phone = $event"
         >
         </TextInput>

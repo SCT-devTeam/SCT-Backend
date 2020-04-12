@@ -27,7 +27,7 @@
                 title="FirstName"
                 placeholder="FirstName"
                 :isEditable="isEditionMode"
-                v-model:value="entity.firstName"
+                v-model="entity.firstName"
                 @onInput="entity.firstName = $event"
             >
             </TextInput>
@@ -37,7 +37,7 @@
                 title="LastName"
                 placeholder="LastName"
                 :isEditable="isEditionMode"
-                v-model:value="entity.lastName"
+                v-model="entity.lastName"
                 @onInput="entity.lastName = $event"
             >
             </TextInput>
@@ -65,7 +65,7 @@
             title="Notes"
             placeholder="Notes"
             :isEditable="isEditionMode"
-            v-model:value="entity.notes"
+            v-model="entity.notes"
             @onInput="entity.notes = $event"
         >
         </TextInput>
