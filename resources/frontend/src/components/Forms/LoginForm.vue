@@ -48,7 +48,7 @@
 
 <script>
 import {mapActions, mapMutations} from "vuex";
-import BtnSCT from "../../components/Buttons/BtnSCT";
+import BtnSCT from "../Buttons/Btn";
 import TextInput from "../Fileds/Themed/Inputs/TextInput";
 
 export default {
