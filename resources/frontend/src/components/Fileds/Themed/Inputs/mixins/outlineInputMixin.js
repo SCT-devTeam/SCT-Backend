@@ -32,6 +32,10 @@ export const outlineInputMixin = {
             type: Boolean,
             default: false
             // TODO: fix required markup to the correct HTML5 syntax
+        },
+        enableValidation: {
+            type: Boolean,
+            default: true
         }
     },
     computed: {

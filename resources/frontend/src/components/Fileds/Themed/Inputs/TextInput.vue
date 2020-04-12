@@ -84,7 +84,7 @@
                 />
             </svg>
         </div>
-        <p class="error">{{ error }}</p>
+        <p class="error" v-if="this.enableValidation">{{ error }}</p>
     </div>
 </template>
 
@@ -108,7 +108,8 @@ export default {
     methods: {
         notActive() {
             this.isActive = false;
-            this.checkInput();
+            if (this.enableValidation)
+                this.checkInput();
         },
         checkInput() {
             // Check if empty

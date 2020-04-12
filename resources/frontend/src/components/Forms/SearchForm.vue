@@ -5,6 +5,7 @@
             name="search"
             title="Search"
             placeholder="Search"
+            :enableValidation="false"
             v-model:value="query"
             @onInput="query = $event">
         </TextInput>
