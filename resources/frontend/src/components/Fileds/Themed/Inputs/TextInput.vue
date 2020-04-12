@@ -93,7 +93,7 @@
 // Change inputs by stylise vuetify inputs : https://vuetifyjs.com/en/components/text-fields/#text-fields
 import { emailValidator } from "../../utils/emailValidator";
 import { passwordValidator } from "../../utils/passwordValidator";
-import { outlineInputMixin } from "./mixins/outlineInputMixin";
+import outlineInputMixin from "./mixins/outlineInputMixin";
 
 export default {
     name: "TextSCT",
