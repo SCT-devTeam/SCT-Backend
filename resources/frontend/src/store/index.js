@@ -67,7 +67,6 @@ export default new Vuex.Store({
                             data.message
                         );
                     }
-                    console.log(data);
                     commit("SET_USER", data.data);
                 })
                 .catch(reason => {
