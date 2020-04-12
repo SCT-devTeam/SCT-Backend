@@ -99,13 +99,10 @@ export default {
                             this.$router.replace({ name: "Dashboard" });
                         }
                     })
-                    .catch(reason => {
-                        const {
-                            response: {
-                                data: { error }
-                            }
-                        } = reason;
-                        this.error = error;
+                    .catch(error => {
+                        // console.log("Reason: ", error.response);
+
+                        this.error = error.response.status + ' ' + error.response.statusText;
                     });
             } else {
                 this.error = "Please fix input errors";
