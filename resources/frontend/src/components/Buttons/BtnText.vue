@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    import mixin from "./mixins/mixin";
+    import mixin from "./mixins/btnMixin";
 export default {
     name: "BtnSCT",
     mixins: [mixin]
@@ -21,5 +21,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import "mixins/mixin";
+    @import 'src/components/Buttons/mixins/btnMixin';
 </style>
