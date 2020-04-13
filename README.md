@@ -42,7 +42,7 @@ This project use [Vue JS](https://github.com/vuejs/vue) for the BackOffice (fron
 
 ## Demo
 
-You can find some screenshots of the Backoffice in [docs/demo.md](docs/demo.md))
+You can find some screenshots of the Backoffice in [docs/demo.md](docs/demo.md)
 
 We have configured 2 instances of SCT² so that you can test before installing it in your home.
 
