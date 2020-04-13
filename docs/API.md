@@ -39,7 +39,7 @@
 
 ### logout
 
-> Description
+> Revoke the token specified in the header
 
 **URL** : `/api/logout`
 **Authentication required** : `true`
