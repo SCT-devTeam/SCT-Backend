@@ -72,13 +72,7 @@ export default {
         }
     },
     methods: {
-        ...mapMutations({
-            set_token: "SET_TOKEN"
-        }),
-        ...mapActions({
-            login: "loginUser",
-            fetchUserData: "fetchUser"
-        }),
+        ...mapActions({ login: "loginUser" }),
         submitForm: async function() {
             if (this.isValidForm) {
                 try {
