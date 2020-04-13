@@ -10,8 +10,23 @@ class CustomerController extends Controller
 {
     public function create(Request $request)
     {
-
-
+        $request->validate([
+            'customer_type' => 'present',
+            'status' => 'present',
+            'meeting_date' => 'present',
+            'company_name' => 'present',
+            'siret' => 'present',
+            'tva_number' => 'present',
+            'firstname' => 'present',
+            'lastname' => 'present',
+            'street_number' => 'present',
+            'street_name' => 'present',
+            'zipcode' => 'present',
+            'city' => 'present',
+            'note' => 'present',
+            'default_payment_method' => 'present',
+            'company' => 'present',
+        ]);
         $companie = Company::find($request->user()->companies);
 
         /** @var Customer $customer */
@@ -39,20 +54,20 @@ class CustomerController extends Controller
     {
         $request->validate(
             [
-                'customer_type'=>'required',
-                'status'=>'required',
-                'meeting_date'=>'required',
-                'company_name'=>'required',
-                'siret'=>'required',
-                'tva_number'=>'required',
-                'firstname'=>'required',
-                'lastname'=>'required',
-                'street_number'=>'required',
-                'street_name'=>'required',
-                'zipcode'=>'required',
-                'city'=>'required',
-                'note'=>'required',
-                'default_payment_method'=>'required',
+                'customer_type'=>'present',
+                'status'=>'present',
+                'meeting_date'=>'present',
+                'company_name'=>'present',
+                'siret'=>'present',
+                'tva_number'=>'present',
+                'firstname'=>'present',
+                'lastname'=>'present',
+                'street_number'=>'present',
+                'street_name'=>'present',
+                'zipcode'=>'present',
+                'city'=>'present',
+                'note'=>'present',
+                'default_payment_method'=>'present',
                 'company'=>'required',
             ]
         );
@@ -81,6 +96,10 @@ class CustomerController extends Controller
 
     public function getCustomerAll(Request $request)
     {
+        $request->validate([
+           'id_company'=>'required'
+        ]);
+
         $customers = Customer::where('company', '=', $request->id_company)->get();
         return response()->json(['cust' => $customers]);
     }
