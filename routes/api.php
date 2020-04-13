@@ -42,13 +42,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/createInvoice', 'InvoiceController@create');
     Route::post('/updateInvoice', 'InvoiceController@update');
     Route::post('/deleteInvoice', 'InvoiceController@delete');
-    Route::post('/allInvoice', 'InvoiceController@getAllInvoice');
+    Route::get('/allInvoice', 'InvoiceController@getAllInvoice');
 
     Route::post('/quote', 'QuoteController@getquote');
     Route::post('/createQuote', 'QuoteController@create');
     Route::post('/updateQuote', 'QuoteController@update');
     Route::post('/deleteQuote', 'QuoteController@delete');
-    Route::post('/allQuote', 'QuoteController@getAllQuote');
+    Route::get('/allQuote', 'QuoteController@getAllQuote');
 
 });
 
