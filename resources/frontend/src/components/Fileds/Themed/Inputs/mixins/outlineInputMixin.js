@@ -39,17 +39,17 @@ export default {
         }
     },
     computed: {
-        inputPlaceholder() {
+        filedPlaceholder() {
             if (this.placeholder !== undefined) return this.placeholder;
             else return this.name;
         },
-        inputBgColor() {
+        filedBgColor() {
             if (this.bgColor.startsWith("--")) return `var(${this.bgColor})`;
             else return this.bgColor;
         },
         fieldLabel() {
             if (this.label !== undefined) return this.label;
-            else return this.inputPlaceholder;
+            else return this.filedPlaceholder;
         },
         isFilled() {
             return !!this.value;

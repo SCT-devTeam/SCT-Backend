@@ -31,7 +31,7 @@
             ></span>
 
             <div
-                :style="{ '--inputBgColor': inputBgColor }"
+                :style="{ '--inputBgColor': filedBgColor }"
                 class="input-container"
             >
                 <!-- TODO: implement all attributes -->
@@ -40,7 +40,7 @@
                     :disabled="isDisabled"
                     :id="name"
                     :name="name"
-                    :placeholder="inputPlaceholder"
+                    :placeholder="filedPlaceholder"
                     :readonly="isDisabled"
                     :required="isRequired"
                     :title="title"

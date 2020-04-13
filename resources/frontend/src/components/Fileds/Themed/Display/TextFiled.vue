@@ -23,7 +23,7 @@
             ></span>
 
             <div
-                :style="{ '--inputBgColor': inputBgColor }"
+                :style="{ '--inputBgColor': filedBgColor }"
                 class="input-container"
             >
                 <p :id="name" ref="input" style="margin: 0">{{ this.value }}</p>
