@@ -164,5 +164,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "src/components/Fileds/Themed/Inputs/mixins/outlineInputMixin";
+@import "./mixins/outlineInputMixin";
 </style>
