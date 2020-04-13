@@ -99,7 +99,7 @@ import { passwordValidator } from "../../utils/passwordValidator";
 import outlineInputMixin from "./mixins/outlineInputMixin";
 
 export default {
-    name: "TextSCT",
+    name: "TextInput",
     mixins: [outlineInputMixin],
     props: {
         type: {
