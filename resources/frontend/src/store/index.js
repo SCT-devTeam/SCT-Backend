@@ -51,6 +51,41 @@ export default new Vuex.Store({
         }
     },
     actions: {
+        loginUser({ commit, dispatch }, { email, password }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post(
+                        "/api/airlock/login",
+                        {
+                            email: email,
+                            password: password,
+                            device_name: "Navigator"
+                        },
+                        {
+                            headers: {
+                                "Content-Type": "application/json",
+                                Accept: "application/json"
+                            }
+                        }
+                    )
+                    .then(response => {
+                        if (response.status === 200) {
+                            const token = response.data.token;
+                            commit("SET_TOKEN", token);
+                            dispatch("fetchUser", token);
+
+                            resolve(true);
+                        } else {
+                            reject(
+                                `An error has occurred, code: ${response.status}`
+                            );
+                        }
+                    })
+                    .catch(error => {
+                        reject(error);
+                    });
+            });
+        },
         async fetchUser({ commit, state }) {
             axios
                 .get("/api/me", {

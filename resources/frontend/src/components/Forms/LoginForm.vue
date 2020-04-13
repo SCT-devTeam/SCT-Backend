@@ -76,40 +76,25 @@ export default {
             set_token: "SET_TOKEN"
         }),
         ...mapActions({
+            login: "loginUser",
             fetchUserData: "fetchUser"
         }),
-        submitForm: function() {
+        submitForm: async function() {
             if (this.isValidForm) {
-                this.axios
-                    .post(
-                        "/api/airlock/login",
-                        {
-                            email: this.email,
-                            password: this.password,
-                            device_name: "Navigator"
-                        },
-                        {
-                            headers: {
-                                "Content-Type": "application/json",
-                                Accept: "application/json"
-                            }
-                        }
-                    )
-                    .then(response => {
-                        console.log(response);
-
-                        if (response.status === 200) {
-                            const token = response.data.token;
-                            this.set_token(token);
-                            this.fetchUserData();
-                            this.$router.replace({ name: "Dashboard" });
-                        } else {
-                            this.error = `An error has occurred, code: ${response.status}`;
-                        }
-                    })
-                    .catch(error => {
-                        this.error = `${error.response.status} ${error.response.statusText}`;
+                try {
+                    let loginResult = await this.login({
+                        email: this.email,
+                        password: this.password
                     });
+
+                    if (loginResult === true) {
+                        await this.$router.replace({ name: "Dashboard" });
+                    } else {
+                        this.error = `An error has occurred while login: ${loginResult}`;
+                    }
+                } catch (e) {
+                    this.error = e;
+                }
             } else {
                 this.error = "Please fix input errors";
             }
