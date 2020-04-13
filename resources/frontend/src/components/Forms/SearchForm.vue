@@ -13,9 +13,10 @@
 
         <BtnIcon
             :isDisabled="!isFilled"
-            @clicked="$emit('startSearch')"
-            bg-color="--colors-main"
-            iconName="search_icon_blue"
+            @clicked="$emit('search')"
+            class="btn"
+            bg-color="--colors-secondary-principal"
+            iconName="search_icon_white"
             name="Search"
             title="Start search"
             value="search"
@@ -57,6 +58,15 @@ form#Search-form {
 
     > .search-input {
         width: 90%;
+    }
+
+    > .btn {
+        height: 3rem;
+        max-height: 100%;
+        width: 3rem;
+        max-width: 100%;
+
+        margin-left: 25px;
     }
 }
 </style>
