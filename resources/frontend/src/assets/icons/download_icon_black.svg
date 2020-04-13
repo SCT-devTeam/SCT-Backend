@@ -1,14 +1,1 @@
-<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37.29 40">
-    <g id="download_icon_black" data-name="download icon black">
-        <path id="vertical_line" data-name="vertical line" d="M1.5,38.5H35.79" fill="#1a1a1a" stroke="#1a1a1a"
-              stroke-linecap="round" stroke-width="3"/>
-        <g id="arrow">
-            <line id="right" x1="30.24" y1="23.1" x2="18.64" y2="34.73" fill="none" stroke="#1a1a1a"
-                  stroke-linecap="round" stroke-width="3"/>
-            <line id="center" x1="18.64" y1="1.5" x2="18.64" y2="34.72" fill="none" stroke="#1a1a1a"
-                  stroke-linecap="round" stroke-width="3"/>
-            <line id="left" x1="7.05" y1="23.1" x2="18.51" y2="34.73" fill="none" stroke="#1a1a1a"
-                  stroke-linecap="round" stroke-width="3"/>
-        </g>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="Calque_1" data-name="Calque 1" viewBox="0 0 37.29 40"><g id="download_icon_black" data-name="download icon black"><path id="vertical_line" fill="#1a1a1a" stroke="#1a1a1a" stroke-linecap="round" stroke-width="3" d="M1.5,38.5H35.79" data-name="vertical line"/><g id="arrow"><line id="right" x1="30.24" x2="18.64" y1="23.1" y2="34.73" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-width="3"/><line id="center" x1="18.64" x2="18.64" y1="1.5" y2="34.72" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-width="3"/><line id="left" x1="7.05" x2="18.51" y1="23.1" y2="34.73" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-width="3"/></g></g></svg>
