@@ -10,9 +10,21 @@ class InvoiceController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'company_id'=>'required',
-            'customer_id'=>'required',
-            'original_quote'=>'required',
+            'company_id' => 'required',
+            'customer_id' => 'required',
+            'qualification' => 'present',
+            'edition_date' => 'present',
+            'payment_date' => 'present',
+            'payment_delay_in_days' => 'present',
+            'payment_terms' => 'present',
+            'notice' => 'present',
+            'payment_method' => 'present',
+            'sending_date' => 'present',
+            'revived_date' => 'present',
+            'last_qualification_date' => 'present',
+            'chasing_date' => 'present',
+            'note' => 'present',
+            'original_quote' => 'required',
         ]);
         /** @var Invoice $invoice */
         $invoice = Invoice::create([
@@ -39,6 +51,25 @@ class InvoiceController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'company_id' => 'required',
+            'customer_id' => 'required',
+            'qualification' => 'present',
+            'edition_date' => 'present',
+            'payment_date' => 'present',
+            'payment_delay_in_days' => 'present',
+            'payment_terms' => 'present',
+            'notice' => 'present',
+            'payment_method' => 'present',
+            'sending_date' => 'present',
+            'revived_date' => 'present',
+            'last_qualification_date' => 'present',
+            'chasing_date' => 'present',
+            'note' => 'present',
+            'original_quote' => 'required',
+            'id'=>'required'
+        ]);
+
         $invoice = Invoice::find($request->id);
 //        dd($invoice);
         $invoice->company_id = $request->company_id;
@@ -74,6 +105,9 @@ class InvoiceController extends Controller
 
     public function getInvoice(Request $request)
     {
+        $request->validate([
+            'customer'=>'required'
+        ]);
         $invoices = Invoice::where([
             ['company_id', '=', $request->user()->companies],
             ['customer_id', '=', $request->customer_id]

@@ -9,6 +9,9 @@ class QuoteController extends Controller
 {
     public function create(Request $request)
     {
+        $request->validate([
+            ''
+        ]);
         /** @var Quote $quote */
         $quote = Quote::create([
             'company_id' => $request->company_id,
