@@ -7,8 +7,17 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function create(Request $request)
     {
+        $request->validate([
+            'id_customer' => 'required',
+            'email' => 'email'
+        ]);
+
         /** @var Contact $contact */
         $contact = Contact::create([
             'gender' => $request->gender,
@@ -26,14 +35,37 @@ class ContactController extends Controller
         return response()->json(['Contact', $contact], 200);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getContact(Request $request)
     {
         $contacts = Contact::where('customer', '=', $request->id_customer)->get();
         return response()->json(['contacts', $contacts]);
     }
 
-    public function updateContact(Request $request)
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Request $request)
     {
+
+        $request->validate([
+            'id_contact' => 'required',
+            'gender'=>'requires',
+            'firstname'=>'requires',
+            'lastname'=>'requires',
+            'job'=>'requires',
+            'email'=>'requires',
+            'phone_mobile'=>'requires',
+            'phone_fix'=>'requires',
+            'phone_personnal'=>'requires',
+            'phone_fax'=>'requires',
+            'notes'=>'requires',
+        ]);
+
         $contact = Contact::find($request->id_contact);
 
         $contact->gender = $request->gender;
@@ -52,7 +84,12 @@ class ContactController extends Controller
         return response()->json(['contact', $contact]);
     }
 
-    public function deleteContact(Request $request)
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function delete(Request $request)
     {
         $request->validate(['id'=>'required']);
 

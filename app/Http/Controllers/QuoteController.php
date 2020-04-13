@@ -64,7 +64,7 @@ class QuoteController extends Controller
     public function getQuote(Request $request)
     {
         $quotes = Quote::where([
-            ['company_id','=',$request->user()->company],
+            ['company_id','=',$request->user()->companies],
             ['customer_id','=',$request->customer_id]
         ])->get();
 

@@ -9,6 +9,11 @@ class InvoiceController extends Controller
 {
     public function create(Request $request)
     {
+        $request->validate([
+            'company_id'=>'required',
+            'customer_id'=>'required',
+            'original_quote'=>'required',
+        ]);
         /** @var Invoice $invoice */
         $invoice = Invoice::create([
             'company_id' => $request->company_id,
@@ -70,7 +75,7 @@ class InvoiceController extends Controller
     public function getInvoice(Request $request)
     {
         $invoices = Invoice::where([
-            ['company_id', '=', $request->user()->company],
+            ['company_id', '=', $request->user()->companies],
             ['customer_id', '=', $request->customer_id]
         ])->get();
 

@@ -50,6 +50,32 @@ class CompanyController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'name' => 'required',
+            'legal_form' => 'required',
+            'siret'=>'required',
+            'phone'=>'required',
+            'street_number'=>'required',
+            'street_name'=>'required',
+            'zipcode'=>'required',
+            'city'=>'required',
+            'capital_in_cents'=>'required',
+            'insurance'=>'required',
+            'bban'=>'required',
+            'bban_anytmie'=>'required',
+            'default_revive_delay_in_days'=>'required',
+            'default_payment_delay_in_days'=>'required',
+            'default_payment_terms'=>'required',
+            'default_payment_method'=>'required',
+            'default_down_payment_percentage'=>'required',
+            'default_quote_validity_delay_in_days'=>'required',
+            'default_quote_accepting_conditions'=>'required',
+            'default_invoice_notice'=>'required',
+            'default_quote_notice'=>'required',
+            'notes'=>'required',
+        ]);
+
         $company = Company::find($request->user()->companies);
 
         $company->legal_form = $request->legal_form;

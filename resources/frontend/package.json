@@ -6,10 +6,10 @@
     "license": "https://github.com/SCT-devTeam/SCT-Backend/blob/master/LICENSE.md#the-open-source-common-sense-license",
     "version": "1.0.0",
     "engines": {
-    "node": "12.13.0",
-    "npm": "6.12.0"
-  },
-  "homepage": "https://github.com/SCT-devTeam/SCT-Backend#readme",
+        "node": "12.13.0",
+        "npm": "6.12.0"
+    },
+    "homepage": "https://github.com/SCT-devTeam/SCT-Backend#readme",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/SCT-devTeam/SCT-Backend.git"
@@ -24,10 +24,10 @@
         "lint": "vue-cli-service lint"
     },
     "dependencies": {
-    "axios": "^0.19.2",
+        "axios": "^0.19.2",
         "core-js": "^3.6.4",
         "vue": "^2.6.11",
-    "vue-axios": "^2.1.5",
+        "vue-axios": "^2.1.5",
         "vue-router": "^3.1.5",
         "vuex": "^3.1.2",
         "vuex-persist": "^2.2.0"
@@ -47,5 +47,18 @@
         "prettier": "^1.19.1",
         "sass-loader": "^8.0.2",
         "vue-template-compiler": "^2.6.11"
+    },
+    "gitHooks": {
+        "pre-commit": "lint-staged"
+    },
+    "lint-staged": {
+        "*.js": [
+            "vue-cli-service lint",
+            "git add"
+        ],
+        "*.vue": [
+            "vue-cli-service lint",
+            "git add"
+        ]
     }
 }

@@ -6,10 +6,10 @@
     "license": "https://github.com/SCT-devTeam/SCT-Backend/blob/master/LICENSE.md#the-open-source-common-sense-license",
     "version": "1.0.0",
     "engines": {
-    "node": "12.13.0",
-    "npm": "6.12.0"
-  },
-  "homepage": "https://github.com/SCT-devTeam/SCT-Backend#readme",
+        "node": "12.13.0",
+        "npm": "6.12.0"
+    },
+    "homepage": "https://github.com/SCT-devTeam/SCT-Backend#readme",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/SCT-devTeam/SCT-Backend.git"

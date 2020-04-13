@@ -1,0 +1,66 @@
+@import 'filedsMixin';
+
+div.container {
+
+    div.filed {
+        border: 2px solid transparent;
+        border-top-width: 5px;
+
+        > label {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            z-index: 1;
+
+            color: $color__inactive_subtitle;
+            font-family: $font__subtitle;
+        }
+
+        > span {
+            position: absolute;
+            left: 20px;
+            right: 20px;
+            z-index: 2;
+
+            height: 2px;
+
+            background-color: $color__secondary;
+
+            &.outline-top {
+                top: -2px;
+            }
+
+            &.outline-bot {
+                bottom: -2px;
+            }
+        }
+
+        > svg {
+            position: absolute;
+            top: -2px;
+            height: calc(100% + 4px);
+
+            &.outline-left {
+                left: -2px;
+                transform: scale(-1, 1);
+            }
+
+            &.outline-right {
+                right: -2px;
+            }
+        }
+    }
+
+
+    > p.error {
+        min-height: 1em;
+        min-width: 100%;
+
+        margin: 5px 0 0 5px;
+
+        color: $color__validation_no;
+
+        line-break: anywhere;
+    }
+}
