@@ -42,6 +42,8 @@ This project use [Vue JS](https://github.com/vuejs/vue) for the BackOffice (fron
 
 ## Demo
 
+You can find some screenshots of the Backoffice in [docs/demo.md](docs/demo.md))
+
 We have configured 2 instances of SCT² so that you can test before installing it in your home.
 
 One instance connected to the `master` branch (stable | slow ring) available [here](https://sct-backend-prod.herokuapp.com)
@@ -107,7 +109,7 @@ Please check `[Unreleased]` tag in [changelog](CHANGELOG.md) to read what's next
 
 ## Documentations
 
-The APi have a documentation, you can check this in the [doc folder](doc/API.md)
+The APi have a documentation, you can check this in the [doc folder](docs/API.md)
 
 
 &nbsp; <!-- break line -->
