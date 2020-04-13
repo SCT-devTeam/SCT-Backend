@@ -60,9 +60,9 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| email | unspecified | unspecified | text |  |
-| password | unspecified | unspecified | text |  |
-| device_name | unspecified | unspecified | text |  |
+| email | Required | unspecified | text |  |
+| password | Required | unspecified | text |  |
+| device_name | Required | unspecified | text |  |
 
 ---
 
@@ -114,32 +114,31 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| legal_form | unspecified | unspecified | text |  |
-| default_down_payment_percentage | unspecified | unspecified | Integer |  |
-| email | unspecified | unspecified | text |  |
-| default_revive_delay_in_days | unspecified | unspecified | Integer |  |
-| default_quote_notice | unspecified | unspecified | Integer |  |
-| capital_in_cents | unspecified | unspecified | Integer |  |
-| bban_anytmie | unspecified | unspecified | Integer |  |
-| siret | unspecified | unspecified | Integer |  |
-| phone | unspecified | unspecified | Integer |  |
-| city | unspecified | unspecified | text |  |
-| notes | unspecified | unspecified | text |  |
-| street_number | unspecified | unspecified | Integer |  |
-| street_name | unspecified | unspecified | text |  |
-| default_payment_method | unspecified | unspecified | text |  |
-| default_payment_terms | unspecified | unspecified | text |  |
-| default_payment_delay_in_days | unspecified | unspecified | Integer |  |
-| default_invoice_notice | unspecified | unspecified | Integer |  |
-| bban | unspecified | unspecified | Integer |  |
-| insurance | unspecified | unspecified | text |  |
-| default_quote_validity_delay_in_days | unspecified | unspecified | Integer |  |
-| zipcode | unspecified | unspecified | Integer |  |
-| default_quote_accepting_conditions | unspecified | unspecified | Integer |  |
-| name | unspecified | unspecified | text |  |
+| legal_form | Present | unspecified | text |  |
+| default_down_payment_percentage | Present | unspecified | Integer |  |
+| email | Present | unspecified | text |  |
+| default_revive_delay_in_days | Present | unspecified | Integer |  |
+| default_quote_notice | Present | unspecified | Integer |  |
+| capital_in_cents | Present | unspecified | Integer |  |
+| bban_anytmie | Present | unspecified | Integer |  |
+| siret | Present | unspecified | Integer |  |
+| phone | Present | unspecified | Integer |  |
+| city | Present | unspecified | text |  |
+| notes | Present | unspecified | text |  |
+| street_number | Present | unspecified | Integer |  |
+| street_name | Present | unspecified | text |  |
+| default_payment_method | Present | unspecified | text |  |
+| default_payment_terms | Present | unspecified | text |  |
+| default_payment_delay_in_days | Present | unspecified | Integer |  |
+| default_invoice_notice | Present | unspecified | Integer |  |
+| bban | Present | unspecified | Integer |  |
+| insurance | Present | unspecified | text |  |
+| default_quote_validity_delay_in_days | Present | unspecified | Integer |  |
+| zipcode | Present | unspecified | Integer |  |
+| default_quote_accepting_conditions | Present | unspecified | Integer |  |
+| name | Required | unspecified | text |  |
 
 ---
-
 
 &nbsp; <!-- break line -->
 
@@ -156,7 +155,7 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| id_company | unspecified | unspecified | Integer |  |
+| id_company | Required | unspecified | Integer |  |
 
 ---
 
@@ -170,21 +169,21 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| customer_type | unspecified | unspecified | text |  |
-| status | unspecified | unspecified | text |  |
-| meeting_date | unspecified | unspecified | Integer |  |
-| company_name | unspecified | unspecified | text |  |
-| siret | unspecified | unspecified | Integer |  |
-| tva_number | unspecified | unspecified | Integer |  |
-| firstname | unspecified | unspecified | text |  |
-| lastname | unspecified | unspecified | text |  |
-| street_number | unspecified | unspecified | Integer |  |
-| stret_name | unspecified | unspecified | text |  |
-| zipcode | unspecified | unspecified | Integer |  |
-| city | unspecified | unspecified | text |  |
-| note | unspecified | unspecified | text |  |
-| default_payement_method | unspecified | unspecified | text |  |
-| company | unspecified | unspecified | Integer |  |
+| customer_type | Present | unspecified | text |  |
+| status | Present | unspecified | text |  |
+| meeting_date | Present | unspecified | Integer |  |
+| company_name | Present | unspecified | text |  |
+| siret | Present | unspecified | Integer |  |
+| tva_number | Present | unspecified | Integer |  |
+| firstname | Present | unspecified | text |  |
+| lastname | Present | unspecified | text |  |
+| street_number | Present | unspecified | Integer |  |
+| stret_name | Present | unspecified | text |  |
+| zipcode | Present | unspecified | Integer |  |
+| city | Present | unspecified | text |  |
+| note | Present | unspecified | text |  |
+| default_payement_method | Present | unspecified | text |  |
+| company | Required | unspecified | Integer |  |
 
 ---
 
@@ -198,23 +197,22 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| id | unspecified | unspecified | Integer |  |
-| customer_type | unspecified | unspecified | text |  |
-| status | unspecified | unspecified | text |  |
-| meeting_date | unspecified | unspecified | Integer |  |
-| company_name | unspecified | unspecified | text |  |
-| siret | unspecified | unspecified | Integer |  |
-| tva_number | unspecified | unspecified | Integer |  |
-| firstname | unspecified | unspecified | text |  |
-| lastname | unspecified | unspecified | text |  |
-| street_number | unspecified | unspecified | Integer |  |
-| street_name | unspecified | unspecified | Integer |  |
-| zipcode | unspecified | unspecified | Integer |  |
-| city | unspecified | unspecified | text |  |
-| note | unspecified | unspecified | text |  |
-| default_payment_method | unspecified | unspecified | Integer |  |
-| company | unspecified | unspecified | Integer |  |
-| kjn | unspecified | unspecified | Integer |  |
+| id | Required | unspecified | Integer |  |
+| customer_type | Present | unspecified | text |  |
+| status | Present | unspecified | text |  |
+| meeting_date | Present | unspecified | Integer |  |
+| company_name | Present | unspecified | text |  |
+| siret | Present | unspecified | Integer |  |
+| tva_number | Present | unspecified | Integer |  |
+| firstname | Present | unspecified | text |  |
+| lastname | Present | unspecified | text |  |
+| street_number | Present | unspecified | Integer |  |
+| street_name | Present | unspecified | Integer |  |
+| zipcode | Present | unspecified | Integer |  |
+| city | Present | unspecified | text |  |
+| note | Present | unspecified | text |  |
+| default_payment_method | Present | unspecified | Integer |  |
+| company | Required | unspecified | Integer |  |
 
 ---
 
@@ -228,7 +226,7 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| id | unspecified | unspecified | Integer |  |
+| id | required | unspecified | Integer |  |
 
 ---
 
@@ -248,7 +246,7 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| id_contact | unspecified | unspecified | Integer |  |
+| id_contact | Required | unspecified | Integer |  |
 
 ---
 
@@ -262,17 +260,17 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| id_customer | unspecified | unspecified | Integer |  |
-| job | unspecified | unspecified | text |  |
-| firstname | unspecified | unspecified | text |  |
-| gender | unspecified | unspecified | text |  |
-| lastname | unspecified | unspecified | text |  |
-| email | unspecified | unspecified | text |  |
-| phone_mobile | unspecified | unspecified | Integer |  |
-| phone_fix | unspecified | unspecified | Integer |  |
-| phone_personnal | unspecified | unspecified | Integer |  |
-| phone_fax | unspecified | unspecified | Integer |  |
-| notes | unspecified | unspecified | text |  |
+| id_customer | Required | unspecified | Integer |  |
+| job | Present | unspecified | text |  |
+| firstname | Present | unspecified | text |  |
+| gender | Present | unspecified | text |  |
+| lastname | Present | unspecified | text |  |
+| email | Present | unspecified | text |  |
+| phone_mobile | Present | unspecified | Integer |  |
+| phone_fix | Present | unspecified | Integer |  |
+| phone_personnal | Present | unspecified | Integer |  |
+| phone_fax | Present | unspecified | Integer |  |
+| notes | Present | unspecified | text |  |
 
 ---
 
@@ -286,17 +284,17 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| id_contact | unspecified | unspecified | Integer |  |
-| gender | unspecified | unspecified | text |  |
-| firstname | unspecified | unspecified | text |  |
-| lastname | unspecified | unspecified | text |  |
-| job | unspecified | unspecified | text |  |
-| email | unspecified | unspecified | text |  |
-| phone_mobile | unspecified | unspecified | Integer |  |
-| phone_fix | unspecified | unspecified | Integer |  |
-| phone_personnal | unspecified | unspecified | Integer |  |
-| phone_fax | unspecified | unspecified | Integer |  |
-| notes | unspecified | unspecified | text |  |
+| id_contact | Required | unspecified | Integer |  |
+| gender | Present | unspecified | text |  |
+| firstname | Present | unspecified | text |  |
+| lastname | Present | unspecified | text |  |
+| job | unspecified Present unspecified | text |  |
+| email | Present | unspecified | text |  |
+| phone_mobile | Present | unspecified | Integer |  |
+| phone_fix | Present | unspecified | Integer |  |
+| phone_personnal | Present | unspecified | Integer |  |
+| phone_fax | Present | unspecified | Integer |  |
+| notes | Present | unspecified | text |  |
 
 ---
 
@@ -310,7 +308,7 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| id_customer | unspecified | unspecified | Integer |  |
+| id_customer | Required | unspecified | Integer |  |
 
 ---
 
@@ -330,20 +328,20 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| company_id | unspecified | unspecified | Integer |  |
-| customer_id | unspecified | unspecified | Integer |  |
-| qualification | unspecified | unspecified | text |  |
-| ediition_date | unspecified | unspecified | Integer |  |
-| validity_delay_in_days | unspecified | unspecified | Integer |  |
-| payment_delay_in_days | unspecified | unspecified | Integer |  |
-| payment_terms | unspecified | unspecified | text |  |
-| payment_method | unspecified | unspecified | text |  |
-| down_payment_percentage | unspecified | unspecified | Integer |  |
-| notice | unspecified | unspecified | text |  |
-| accepting_conditions | unspecified | unspecified | text |  |
-| sending_date | unspecified | unspecified | Integer |  |
-| revived_date | unspecified | unspecified | Integer |  |
-| last_qualification_date | unspecified | unspecified | Integer |  |
+| company_id | Required | unspecified | Integer |  |
+| customer_id | Required | unspecified | Integer |  |
+| qualification | Present | unspecified | text |  |
+| ediition_date | Present | unspecified | Integer |  |
+| validity_delay_in_days | Present | unspecified | Integer |  |
+| payment_delay_in_days | Present | unspecified | Integer |  |
+| payment_terms | Present | unspecified | text |  |
+| payment_method | Present | unspecified | text |  |
+| down_payment_percentage | Present | unspecified | Integer |  |
+| notice | Present | unspecified | text |  |
+| accepting_conditions | Present | unspecified | text |  |
+| sending_date | Present | unspecified | Integer |  |
+| revived_date | Present | unspecified | Integer |  |
+| last_qualification_date | Present | unspecified | Integer |  |
 
 ---
 
@@ -357,8 +355,8 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| company | unspecified | unspecified | Integer |  |
-| customer_id | unspecified | unspecified | Integer |  |
+| company | Required | unspecified | Integer |  |
+| customer_id | Required | unspecified | Integer |  |
 
 ---
 
@@ -372,20 +370,20 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| company_id | unspecified | unspecified | Integer |  |
-| customer_id | unspecified | unspecified | Integer |  |
-| qualification | unspecified | unspecified | text |  |
-| ediition_date | unspecified | unspecified | Integer |  |
-| validity_delay_in_days | unspecified | unspecified | Integer |  |
-| payment_delay_in_days | unspecified | unspecified | Integer |  |
-| payment_terms | unspecified | unspecified | text |  |
-| payment_method | unspecified | unspecified | text |  |
-| down_payment_percentage | unspecified | unspecified | Integer |  |
-| notice | unspecified | unspecified | text |  |
-| accepting_conditions | unspecified | unspecified | text |  |
-| sending_date | unspecified | unspecified | Integer |  |
-| revived_date | unspecified | unspecified | Integer |  |
-| last_qualification_date | unspecified | unspecified | Integer |  |
+| company_id | Required | unspecified | Integer |  |
+| customer_id | Required | unspecified | Integer |  |
+| qualification | Present | unspecified | text |  |
+| ediition_date | Present | unspecified | Integer |  |
+| validity_delay_in_days | Present | unspecified | Integer |  |
+| payment_delay_in_days | Present | unspecified | Integer |  |
+| payment_terms | Present | unspecified | text |  |
+| payment_method | Present | unspecified | text |  |
+| down_payment_percentage | Present | unspecified | Integer |  |
+| notice | Present | unspecified | text |  |
+| accepting_conditions | Present | unspecified | text |  |
+| sending_date | Present | unspecified | Integer |  |
+| revived_date | Present | unspecified | Integer |  |
+| last_qualification_date | Present | unspecified | Integer |  |
 
 ---
 
@@ -399,7 +397,7 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| id | unspecified | unspecified | Integer |  |
+| id | Required | unspecified | Integer |  |
 
 ---
 
@@ -418,21 +416,21 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| company_id | unspecified | unspecified | Integer |  |
-| customer_id | unspecified | unspecified | Integer |  |
-| qualification | unspecified | unspecified | text |  |
-| edition_date | unspecified | unspecified | Integer |  |
-| payment_date | unspecified | unspecified | Integer |  |
-| payment_delay_in_days | unspecified | unspecified | Integer |  |
-| payment_terms | unspecified | unspecified | text |  |
-| notice | unspecified | unspecified | text |  |
-| payment_method | unspecified | unspecified | text |  |
-| sending_date | unspecified | unspecified | Integer |  |
-| revived_date | unspecified | unspecified | Integer |  |
-| last_qualification_date | unspecified | unspecified | Integer |  |
-| chasing_date | unspecified | unspecified | Integer |  |
-| note | unspecified | unspecified | text |  |
-| original_quote | unspecified | unspecified | Integer |  |
+| company_id | Required | unspecified | Integer |  |
+| customer_id | Required | unspecified | Integer |  |
+| qualification | Present | unspecified | text |  |
+| edition_date | Present | unspecified | Integer |  |
+| payment_date | Present | unspecified | Integer |  |
+| payment_delay_in_days | Present | unspecified | Integer |  |
+| payment_terms | Present | unspecified | text |  |
+| notice | Present | unspecified | text |  |
+| payment_method | Present | unspecified | text |  |
+| sending_date | Present | unspecified | Integer |  |
+| revived_date | Present | unspecified | Integer |  |
+| last_qualification_date | Present | unspecified | Integer |  |
+| chasing_date | Present | unspecified | Integer |  |
+| note | Present | unspecified | text |  |
+| original_quote | Required | unspecified | Integer |  |
 
 ---
 
@@ -446,7 +444,7 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| id | unspecified | unspecified | Integer |  |
+| id | Required | unspecified | Integer |  |
 
 ---
 
@@ -460,21 +458,21 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| company_id | unspecified | unspecified | Integer |  |
-| customer_id | unspecified | unspecified | Integer |  |
-| qualification | unspecified | unspecified | text |  |
-| edition_date | unspecified | unspecified | Integer |  |
-| payment_date | unspecified | unspecified | Integer |  |
-| payment_delay_in_days | unspecified | unspecified | Integer |  |
-| payment_terms | unspecified | unspecified | text |  |
-| notice | unspecified | unspecified | text |  |
-| payment_method | unspecified | unspecified | text |  |
-| sending_date | unspecified | unspecified | Integer |  |
-| revived_date | unspecified | unspecified | Integer |  |
-| last_qualification_date | unspecified | unspecified | Integer |  |
-| chasing_date | unspecified | unspecified | Integer |  |
-| note | unspecified | unspecified | text |  |
-| original_quote | unspecified | unspecified | Integer |  |
+| company_id | Required | unspecified | Integer |  |
+| customer_id | Required | unspecified | Integer |  |
+| qualification | Present | unspecified | text |  |
+| edition_date | Present | unspecified | Integer |  |
+| payment_date | Present | unspecified | Integer |  |
+| payment_delay_in_days | Present | unspecified | Integer |  |
+| payment_terms | Present | unspecified | text |  |
+| notice | Present | unspecified | text |  |
+| payment_method | Present | unspecified | text |  |
+| sending_date | Present | unspecified | Integer |  |
+| revived_date | Present | unspecified | Integer |  |
+| last_qualification_date | Present | unspecified | Integer |  |
+| chasing_date | Present | unspecified | Integer |  |
+| note | Present | unspecified | text |  |
+| original_quote | Required | unspecified | Integer |  |
 
 ---
 
@@ -488,7 +486,7 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| company | unspecified | unspecified | Integer |  |
-| customer_id | unspecified | unspecified | Integer |  |
+| company | Required | unspecified | Integer |  |
+| customer_id | Required | unspecified | Integer |  |
 
 ---
