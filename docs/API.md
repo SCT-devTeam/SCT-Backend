@@ -114,7 +114,7 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| legal_form | Present | unspecified | text |  |
+| legal_form | Present | unspecified | enum('AE_FR','EI_FR','EIRL_FR','EURL_FR','SA_FR','SAS_FR','SASU_FR','SARL_FR') |  |
 | default_down_payment_percentage | Present | unspecified | Integer |  |
 | email | Present | unspecified | text |  |
 | default_revive_delay_in_days | Present | unspecified | Integer |  |
@@ -127,7 +127,7 @@
 | notes | Present | unspecified | text |  |
 | street_number | Present | unspecified | Integer |  |
 | street_name | Present | unspecified | text |  |
-| default_payment_method | Present | unspecified | text |  |
+| default_payment_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
 | default_payment_terms | Present | unspecified | text |  |
 | default_payment_delay_in_days | Present | unspecified | Integer |  |
 | default_invoice_notice | Present | unspecified | Integer |  |
@@ -169,9 +169,9 @@
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| customer_type | Present | unspecified | text |  |
+| customer_type | Present | unspecified | enum('individual', 'professional') |  |
 | status | Present | unspecified | text |  |
-| meeting_date | Present | unspecified | Integer |  |
+| meeting_date | Present | unspecified | date |  |
 | company_name | Present | unspecified | text |  |
 | siret | Present | unspecified | Integer |  |
 | tva_number | Present | unspecified | Integer |  |
@@ -182,7 +182,7 @@
 | zipcode | Present | unspecified | Integer |  |
 | city | Present | unspecified | text |  |
 | note | Present | unspecified | text |  |
-| default_payement_method | Present | unspecified | text |  |
+| default_payement_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
 | company | Required | unspecified | Integer |  |
 
 ---
@@ -200,7 +200,7 @@
 | id | Required | unspecified | Integer |  |
 | customer_type | Present | unspecified | text |  |
 | status | Present | unspecified | text |  |
-| meeting_date | Present | unspecified | Integer |  |
+| meeting_date | Present | unspecified | date |  |
 | company_name | Present | unspecified | text |  |
 | siret | Present | unspecified | Integer |  |
 | tva_number | Present | unspecified | Integer |  |
@@ -211,7 +211,7 @@
 | zipcode | Present | unspecified | Integer |  |
 | city | Present | unspecified | text |  |
 | note | Present | unspecified | text |  |
-| default_payment_method | Present | unspecified | Integer |  |
+| default_payment_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
 | company | Required | unspecified | Integer |  |
 
 ---
@@ -263,7 +263,7 @@
 | id_customer | Required | unspecified | Integer |  |
 | job | Present | unspecified | text |  |
 | firstname | Present | unspecified | text |  |
-| gender | Present | unspecified | text |  |
+| gender | Present | unspecified | enum('man', 'woman', 'unspecified') |  |
 | lastname | Present | unspecified | text |  |
 | email | Present | unspecified | text |  |
 | phone_mobile | Present | unspecified | Integer |  |
@@ -285,7 +285,7 @@
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
 | id_contact | Required | unspecified | Integer |  |
-| gender | Present | unspecified | text |  |
+| gender | Present | unspecified | enum('man', 'woman', 'unspecified') |  |
 | firstname | Present | unspecified | text |  |
 | lastname | Present | unspecified | text |  |
 | job | unspecified Present unspecified | text |  |
@@ -330,18 +330,18 @@
 | --- | --- | --- | --- | --- |
 | company_id | Required | unspecified | Integer |  |
 | customer_id | Required | unspecified | Integer |  |
-| qualification | Present | unspecified | text |  |
+| qualification | Present | unspecified | enum('draft', 'edited', 'awaiting_approuval', 'revived', 'accepted', 'declined', 'discontinued') |  |
 | ediition_date | Present | unspecified | Integer |  |
 | validity_delay_in_days | Present | unspecified | Integer |  |
 | payment_delay_in_days | Present | unspecified | Integer |  |
 | payment_terms | Present | unspecified | text |  |
-| payment_method | Present | unspecified | text |  |
+| payment_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
 | down_payment_percentage | Present | unspecified | Integer |  |
 | notice | Present | unspecified | text |  |
 | accepting_conditions | Present | unspecified | text |  |
-| sending_date | Present | unspecified | Integer |  |
-| revived_date | Present | unspecified | Integer |  |
-| last_qualification_date | Present | unspecified | Integer |  |
+| sending_date | Present | unspecified | date |  |
+| revived_date | Present | unspecified | date |  |
+| last_qualification_date | Present | unspecified | datedate|  |
 
 ---
 
@@ -372,18 +372,18 @@
 | --- | --- | --- | --- | --- |
 | company_id | Required | unspecified | Integer |  |
 | customer_id | Required | unspecified | Integer |  |
-| qualification | Present | unspecified | text |  |
+| qualification | Present | unspecified | enum('draft', 'edited', 'awaiting_approuval', 'revived', 'accepted', 'declined', 'discontinued') |  |
 | ediition_date | Present | unspecified | Integer |  |
 | validity_delay_in_days | Present | unspecified | Integer |  |
 | payment_delay_in_days | Present | unspecified | Integer |  |
 | payment_terms | Present | unspecified | text |  |
-| payment_method | Present | unspecified | text |  |
+| payment_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
 | down_payment_percentage | Present | unspecified | Integer |  |
 | notice | Present | unspecified | text |  |
 | accepting_conditions | Present | unspecified | text |  |
-| sending_date | Present | unspecified | Integer |  |
-| revived_date | Present | unspecified | Integer |  |
-| last_qualification_date | Present | unspecified | Integer |  |
+| sending_date | Present | unspecified | date |  |
+| revived_date | Present | unspecified | date |  |
+| last_qualification_date | Present | unspecified | date |  |
 
 ---
 
@@ -418,23 +418,23 @@
 | --- | --- | --- | --- | --- |
 | company_id | Required | unspecified | Integer |  |
 | customer_id | Required | unspecified | Integer |  |
-| qualification | Present | unspecified | text |  |
-| edition_date | Present | unspecified | Integer |  |
-| payment_date | Present | unspecified | Integer |  |
+| qualification | Present | unspecified | enum('draft', 'edited', 'awaiting_approuval', 'revived', 'accepted', 'declined', 'discontinued') |  |
+| edition_date | Present | unspecified | date |  |
+| payment_date | Present | unspecified | date |  |
 | payment_delay_in_days | Present | unspecified | Integer |  |
 | payment_terms | Present | unspecified | text |  |
 | notice | Present | unspecified | text |  |
-| payment_method | Present | unspecified | text |  |
-| sending_date | Present | unspecified | Integer |  |
-| revived_date | Present | unspecified | Integer |  |
-| last_qualification_date | Present | unspecified | Integer |  |
-| chasing_date | Present | unspecified | Integer |  |
+| payment_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
+| sending_date | Present | unspecified | date |  |
+| revived_date | Present | unspecified | date |  |
+| last_qualification_date | Present | unspecified | date |  |
+| chasing_date | Present | unspecified | date |  |
 | note | Present | unspecified | text |  |
 | original_quote | Required | unspecified | Integer |  |
 
 ---
 
-### deleteInvoice
+### deleteInvoicedate
 
 > Description
 
@@ -460,17 +460,17 @@
 | --- | --- | --- | --- | --- |
 | company_id | Required | unspecified | Integer |  |
 | customer_id | Required | unspecified | Integer |  |
-| qualification | Present | unspecified | text |  |
-| edition_date | Present | unspecified | Integer |  |
-| payment_date | Present | unspecified | Integer |  |
+| qualification | Present | unspecified | enum('draft', 'edited', 'awaiting_approuval', 'revived', 'accepted', 'declined', 'discontinued') |  |
+| edition_date | Present | unspecified | date |  |
+| payment_date | Present | unspecified | date |  |
 | payment_delay_in_days | Present | unspecified | Integer |  |
 | payment_terms | Present | unspecified | text |  |
 | notice | Present | unspecified | text |  |
-| payment_method | Present | unspecified | text |  |
-| sending_date | Present | unspecified | Integer |  |
-| revived_date | Present | unspecified | Integer |  |
-| last_qualification_date | Present | unspecified | Integer |  |
-| chasing_date | Present | unspecified | Integer |  |
+| payment_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
+| sending_date | Present | unspecified | date |  |
+| revived_date | Present | unspecified | date |  |
+| last_qualification_date | Present | unspecified | date |  |
+| chasing_date | Present | unspecified | date |  |
 | note | Present | unspecified | text |  |
 | original_quote | Required | unspecified | Integer |  |
 
