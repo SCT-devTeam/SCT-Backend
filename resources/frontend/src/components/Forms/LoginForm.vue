@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import {mapActions, mapMutations} from "vuex";
 import BtnSCT from "../../components/Buttons/BtnSCT";
 import TextInput from "../Fileds/Themed/Inputs/TextInput";
 
@@ -72,6 +72,9 @@ export default {
         ...mapMutations({
             set_token: "SET_TOKEN"
         }),
+        ...mapActions({
+            fetchUserData: "fetchUser"
+        }),
         submitForm: function() {
             if (this.isValidForm) {
                 this.axios
@@ -83,7 +86,7 @@ export default {
                             device_name: "Navigator"
                         },
                         {
-                            header: {
+                            headers: {
                                 "Content-Type": "application/json",
                                 Accept: "application/json"
                             }
@@ -92,6 +95,7 @@ export default {
                     .then(({ data: { token } }) => {
                         if (token) {
                             this.set_token(token);
+                            this.fetchUserData();
                             this.$router.replace({ name: "Dashboard" });
                         }
                     })

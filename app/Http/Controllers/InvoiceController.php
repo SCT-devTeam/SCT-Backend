@@ -112,7 +112,6 @@ class InvoiceController extends Controller
             ['company_id', '=', $request->user()->companies],
             ['customer_id', '=', $request->customer_id]
         ])->get();
-        dd($invoices);
 
         return response()->json(['invoices' => $invoices]);
     }
