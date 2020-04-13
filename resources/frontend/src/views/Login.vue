@@ -30,6 +30,7 @@ import LoginForm from "../components/Forms/LoginForm";
         padding-right: 10%;
 
         /* TODO: Add lazy loading to background */
+        /* TODO: replace the link by api call to get author etc.. */
         background-color: $color__background;
         background-image: url("https://source.unsplash.com/collection/9893419");
         background-position: center;
