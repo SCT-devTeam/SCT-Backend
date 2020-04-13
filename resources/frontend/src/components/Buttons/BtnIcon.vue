@@ -30,4 +30,5 @@ export default {
 
 <style lang="scss" scoped>
 @import "mixins/btnIconMixin";
+/* TODO: add border */
 </style>
