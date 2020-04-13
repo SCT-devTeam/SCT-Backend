@@ -23,7 +23,7 @@ class CreateInvoicesTable extends Migration
             $table->smallInteger('payment_delay_in_days')->nullable();
             $table->string('payment_terms')->nullable();
             $table->string('notice')->nullable();
-            $table->enum('payment_method', ['credit_cardbank_transfer', 'bank_check', 'cash', 'multiple'])->nullable();
+            $table->enum('payment_method', ['credit_card','bank_transfer', 'bank_check', 'cash', 'multiple'])->nullable();
             $table->date('sending_date')->nullable();
             $table->date('revived_date')->nullable();
             $table->date('last_qualification_date')->nullable();
