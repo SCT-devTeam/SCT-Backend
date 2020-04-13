@@ -10,7 +10,20 @@ class QuoteController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            ''
+            'company_id'=>'required',
+            'customer_id'=>'required',
+            'qualification'=>'present',
+            'edition_date'=>'present',
+            'validity_delay_in_days'=>'present',
+            'payment_delay_in_days'=>'present',
+            'payment_terms'=>'present',
+            'payment_method'=>'present',
+            'down_payment_percentage'=>'present',
+            'notice'=>'present',
+            'accepting_conditions'=>'present',
+            'sending_date'=>'present',
+            'revived_date'=>'present',
+            'last_qualification_date'=>'present',
         ]);
         /** @var Quote $quote */
         $quote = Quote::create([
@@ -35,6 +48,24 @@ class QuoteController extends Controller
     }
     public function update(Request $request)
     {
+        $request->validate([
+            'id'=>'required',
+            'company_id'=>'required',
+            'customer_id'=>'required',
+            'qualification'=>'present',
+            'edition_date'=>'present',
+            'validity_delay_in_days'=>'present',
+            'payment_delay_in_days'=>'present',
+            'payment_terms'=>'present',
+            'payment_method'=>'present',
+            'down_payment_percentage'=>'present',
+            'notice'=>'present',
+            'accepting_conditions'=>'present',
+            'sending_date'=>'present',
+            'revived_date'=>'present',
+            'last_qualification_date'=>'present',
+        ]);
+
         $quote = Quote::find($request->id);
 
         $quote->company_id = $request->company_id;
@@ -59,6 +90,9 @@ class QuoteController extends Controller
 
     public function delete(Request $request)
     {
+        $request->validate([
+            'id'=>'required'
+        ]);
         $quote = Quote::find($request->id);
         $quote->delete();
         return response()->json(['status','Deletion ok'],200);
@@ -66,6 +100,10 @@ class QuoteController extends Controller
 
     public function getQuote(Request $request)
     {
+        $request->validate([
+            'customer_id'=>'required'
+        ]);
+
         $quotes = Quote::where([
             ['company_id','=',$request->user()->companies],
             ['customer_id','=',$request->customer_id]
