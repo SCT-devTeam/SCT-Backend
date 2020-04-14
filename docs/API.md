@@ -21,15 +21,18 @@
     - [updateContacts](#updatecontacts)
     - [getContact](#getcontact)
   - [Quotes](#quotes)
-    - [updateQuote](#updatequote)
+    - [allQuotes](#allquotes)
     - [quote](#quote)
+    - [updateQuote](#updatequote)
+  - [| last_qualification_date | Present | unspecified | datedate|  |](#lastqualificationdate--present--unspecified--datedate)
     - [createQuote](#createquote)
     - [deleteQuote](#deletequote)
   - [Invoices](#invoices)
+    - [allInvoices](#allinvoices)
+    - [Invoice](#invoice)
     - [createInvoice](#createinvoice)
     - [deleteInvoice](#deleteinvoice)
     - [updateInvoice](#updateinvoice)
-    - [Invoice](#invoice)
 
 
 &nbsp; <!-- break line -->
@@ -318,6 +321,34 @@
 
 ## Quotes
 
+### allQuotes
+
+> Description
+
+**URL** : `/api/allQuote`
+**Authentication required** : `true`
+**Method** : `POST`
+
+| Key | Required | Default | Type | Description |
+| --- | --- | --- | --- | --- |
+
+---
+
+### quote
+
+> Description
+
+**URL** : `/api/quote`
+**Authentication required** : `true`
+**Method** : `POST`
+
+| Key | Required | Default | Type | Description |
+| --- | --- | --- | --- | --- |
+| company | Required | unspecified | Integer |  |
+| customer_id | Required | unspecified | Integer |  |
+
+---
+
 ### updateQuote
 
 > Description
@@ -342,22 +373,6 @@
 | sending_date | Present | unspecified | date |  |
 | revived_date | Present | unspecified | date |  |
 | last_qualification_date | Present | unspecified | datedate|  |
-
----
-
-### quote
-
-> Description
-
-**URL** : `/api/quote`
-**Authentication required** : `true`
-**Method** : `POST`
-
-| Key | Required | Default | Type | Description |
-| --- | --- | --- | --- | --- |
-| company | Required | unspecified | Integer |  |
-| customer_id | Required | unspecified | Integer |  |
-
 ---
 
 ### createQuote
@@ -406,6 +421,34 @@
 
 ## Invoices
 
+### allInvoices
+
+> Description
+
+**URL** : `/api/allInvoice`
+**Authentication required** : `true`
+**Method** : `POST`
+
+| Key | Required | Default | Type | Description |
+| --- | --- | --- | --- | --- |
+
+---
+
+### Invoice
+
+> Description
+
+**URL** : `/api/invoice`
+**Authentication required** : `true`
+**Method** : `POST`
+
+| Key | Required | Default | Type | Description |
+| --- | --- | --- | --- | --- |
+| company | Required | unspecified | Integer |  |
+| customer_id | Required | unspecified | Integer |  |
+
+---
+
 ### createInvoice
 
 > Description
@@ -434,7 +477,7 @@
 
 ---
 
-### deleteInvoicedate
+### deleteInvoice
 
 > Description
 
@@ -473,20 +516,5 @@
 | chasing_date | Present | unspecified | date |  |
 | note | Present | unspecified | text |  |
 | original_quote | Required | unspecified | Integer |  |
-
----
-
-### Invoice
-
-> Description
-
-**URL** : `/api/invoice`
-**Authentication required** : `true`
-**Method** : `POST`
-
-| Key | Required | Default | Type | Description |
-| --- | --- | --- | --- | --- |
-| company | Required | unspecified | Integer |  |
-| customer_id | Required | unspecified | Integer |  |
 
 ---
