@@ -7,17 +7,21 @@
 
         <DropdownInput
             :options="['prospect', 'active', 'archived', 'deleted']"
+            @onInput="entity.status = $event"
             name="customer-status"
             placeholder="Customer Status"
             title="Customer Status"
+            :value="entity.status"
         >
         </DropdownInput>
 
         <DropdownInput
             :options="['individual', 'professional']"
+            @onInput="entity.type = $event"
             name="customer-type"
             placeholder="Customer Type"
             title="Customer Type"
+            :value="entity.type"
         >
         </DropdownInput>
 
@@ -103,7 +107,7 @@ import DropdownInput from "./Fileds/Themed/Inputs/DropdownInput";
 import BtnIcon from "./Buttons/BtnIcon";
 
 export default {
-    name: "ProfileCard",
+    name: "CustomerCard",
     components: {
         TextInput,
         TextFiledSCT,
@@ -114,18 +118,21 @@ export default {
         return {
             isEditionMode: false,
             entity: {
-                status: "Prospect",
+                status: "prospect",
+                type: "professional",
                 firstName: "John",
                 lastName: "Doe",
                 contacts: [
                     {
                         id: 1,
+                        type: "individual",
                         firstName: "John",
                         lastName: "Doe",
                         notes: "Here's some notes"
                     },
                     {
                         id: 2,
+                        type: "professional",
                         firstName: "Jan",
                         lastName: "Doe",
                         notes: "Silence is golden"

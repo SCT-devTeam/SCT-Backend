@@ -10,6 +10,7 @@
             name="gender"
             placeholder="Gender"
             title="Select the gender"
+            :value="user.gender"
         >
         </DropdownInput>
 
