@@ -41,6 +41,9 @@ class ContactController extends Controller
      */
     public function getContact(Request $request)
     {
+        $request->validate([
+            'id_customer'=>'required'
+        ]);
         $contacts = Contact::where('customer', '=', $request->id_customer)->get();
         return response()->json(['contacts', $contacts]);
     }
@@ -54,16 +57,16 @@ class ContactController extends Controller
 
         $request->validate([
             'id_contact' => 'required',
-            'gender'=>'requires',
-            'firstname'=>'requires',
-            'lastname'=>'requires',
-            'job'=>'requires',
-            'email'=>'requires',
-            'phone_mobile'=>'requires',
-            'phone_fix'=>'requires',
-            'phone_personnal'=>'requires',
-            'phone_fax'=>'requires',
-            'notes'=>'requires',
+            'gender'=>'present',
+            'firstname'=>'present',
+            'lastname'=>'present',
+            'job'=>'present',
+            'email'=>'present',
+            'phone_mobile'=>'present',
+            'phone_fix'=>'present',
+            'phone_personnal'=>'present',
+            'phone_fax'=>'present',
+            'notes'=>'present',
         ]);
 
         $contact = Contact::find($request->id_contact);
