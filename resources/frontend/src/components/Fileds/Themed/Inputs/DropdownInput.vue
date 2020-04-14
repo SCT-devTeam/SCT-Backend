@@ -48,8 +48,14 @@
                     @focusout="notActive"
                     @mouseover="hovered"
                     ref="input"
+                    v-model="currentValue"
+                    @click="$emit('onInput', $event.target.value)"
                 >
-                    <option :key="index" v-for="(option, index) in options">
+                    <option
+                        :key="index"
+                        :value="option"
+                        v-for="(option, index) in options"
+                    >
                         {{ option }}
                     </option>
                 </select>
@@ -100,6 +106,14 @@ import outlineInputMixin from "./mixins/outlineInputMixin";
 export default {
     name: "DropdownInput",
     mixins: [outlineInputMixin],
+    mounted() {
+        this.currentValue = this.value;
+    },
+    data() {
+        return {
+            currentValue: ""
+        };
+    },
     props: {
         options: {
             type: Array,
