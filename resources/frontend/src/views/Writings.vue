@@ -17,7 +17,7 @@
 
 <script>
 import SecondaryMenu from "../components/Navigations/SecondaryMenu";
-import WritingsTable from "../components/WritingsTable";
+import WritingsTable from "../components/Tables/WritingsTable";
 import Writing from "../components/modals/Writing";
 
 export default {

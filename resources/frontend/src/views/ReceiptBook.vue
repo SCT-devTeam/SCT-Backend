@@ -15,7 +15,7 @@
 
 <script>
 import SearchForm from "../components/Forms/SearchForm";
-import ReceiptTable from "../components/ReceiptTable";
+import ReceiptTable from "../components/Tables/ReceiptTable";
 import Receipt from "../components/modals/Receipt";
 
 export default {

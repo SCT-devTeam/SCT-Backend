@@ -2,8 +2,7 @@
     <div id="Customers-table">
         <span id="head">
             <p class="date">Date</p>
-            <p class="label">Entity</p>
-            <p class="company">Label</p>
+            <p class="company">Company</p>
             <p class="amount">Amount</p>
         </span>
         <div id="container">
@@ -34,8 +33,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "src/scss/colors";
-@import "src/scss/typography";
+@import 'src/scss/colors';
+@import 'src/scss/typography';
 
 div#Customers-table {
     display: flex;
