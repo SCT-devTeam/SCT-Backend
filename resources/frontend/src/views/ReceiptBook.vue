@@ -6,7 +6,7 @@
             class="table"
         ></ReceiptTable>
         <Receipt
-            :writingId="receiptEditIdforModal"
+            :receiptId="receiptEditIdforModal"
             @close="receiptEditIdforModal = null"
             v-if="receiptEditIdforModal"
         ></Receipt>

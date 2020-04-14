@@ -47,8 +47,6 @@
                             title="The debtor company"
                             v-model="item.price"
                         ></TransparentNumberInput>
-
-                        <!-- <input type="number" v-model="item.price" /> -->
                     </span>
                 </div>
 
@@ -74,7 +72,6 @@ export default {
     },
     mixins: [mixin],
     created() {
-        console.log(`item created ! (id: ${this.receiptId})`);
         this.getData(this.receiptId);
     },
     data() {
@@ -101,12 +98,7 @@ export default {
     },
     methods: {
         getData: function(receipt_id) {
-            console.log(
-                `getData of receipt n°:${receipt_id} (${typeof receipt_id})`
-            );
-            const receipt = this.$store.getters.getReceiptByID(receipt_id);
-            console.log(`Receive: ${receipt}`);
-            this.receipt = receipt;
+            this.receipt = this.$store.getters.getReceiptByID(receipt_id);
         }
     }
 };
