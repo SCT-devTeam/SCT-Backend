@@ -6,63 +6,79 @@
         />
 
         <DropdownInput
+            :options="['Unspecified', 'Woman', 'Man']"
             name="gender"
             placeholder="Gender"
             title="Select the gender"
-            :options="['Unspecified', 'Woman', 'Man']">
+            :value="user.gender"
+        >
         </DropdownInput>
 
         <div id="name">
-
             <TextInput
+                :isEditable="isEditionMode"
+                @onInput="user.firstname = $event"
                 name="firstname"
                 placeholder="FirstName"
                 title="FirstName"
-                :isEditable="isEditionMode"
-                v-model:value="user.firstname"
-                @onInput="user.firstname = $event">
+                v-model="user.firstname"
+            >
             </TextInput>
 
             <TextInput
+                :isEditable="isEditionMode"
+                @onInput="user.lastname = $event"
                 name="lastname"
                 placeholder="LastName"
                 title="LastName"
-                :isEditable="isEditionMode"
-                v-model:value="user.lastname"
-                @onInput="user.lastname = $event">
+                v-model="user.lastname"
+            >
             </TextInput>
         </div>
 
         <TextInput
+            :isEditable="isEditionMode"
+            @onInput="user.email = $event"
             name="email"
             placeholder="Email"
             title="Email"
-            :isEditable="isEditionMode"
-            v-model:value="user.email"
-            @onInput="user.email = $event">
+            v-model="user.email"
+        >
         </TextInput>
 
         <TextInput
+            :isEditable="isEditionMode"
+            @onInput="user.phone = $event"
             name="phone"
             placeholder="Mobile Phone"
             title="Mobile Phone"
-            :isEditable="isEditionMode"
-            v-model:value="user.phone"
-            @onInput="user.phone = $event">
+            v-model="user.phone"
+        >
         </TextInput>
 
-
-        <EditCircleBtnSCT
+        <BtnIcon
+            :icon-rotation="45"
+            :icon-size="10"
             @clicked="toggleMode"
+            bg-color="--colors-main"
             class="btn"
+            iconName="pencil_icon_blue"
+            name="Edit"
+            title="Enable edition"
             v-if="!isEditionMode"
-        ></EditCircleBtnSCT>
+            value="edit"
+        ></BtnIcon>
 
-        <ValidationCircleBtnSCT
+        <BtnIcon
             @clicked="toggleMode"
+            bg-color="--colors-main"
             class="btn"
+            iconName="tick_icon_blue"
+            name="Validate"
+            title="Disable edition"
             v-if="isEditionMode"
-        ></ValidationCircleBtnSCT>
+            value="validate"
+        ></BtnIcon>
 
         <button @click="logoutUser">Logout</button>
     </div>
@@ -71,8 +87,7 @@
 <script>
 import DropdownInput from "./Fileds/Themed/Inputs/DropdownInput";
 import TextInput from "./Fileds/Themed/Inputs/TextInput";
-import EditCircleBtnSCT from "./Buttons/EditCircleBtnSCT";
-import ValidationCircleBtnSCT from "./Buttons/ValidationCircleBtnSCT";
+import BtnIcon from "./Buttons/BtnIcon";
 import { mapMutations } from "vuex";
 
 export default {
@@ -80,8 +95,7 @@ export default {
     components: {
         DropdownInput,
         TextInput,
-        EditCircleBtnSCT,
-        ValidationCircleBtnSCT
+        BtnIcon
     },
     data() {
         return {

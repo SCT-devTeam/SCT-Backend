@@ -6,51 +6,57 @@
         />
 
         <DropdownInput
-            name="customer-status"
-            title="Customer Status"
-            placeholder="Customer Status"
             :options="['prospect', 'active', 'archived', 'deleted']"
+            @onInput="entity.status = $event"
+            name="customer-status"
+            placeholder="Customer Status"
+            title="Customer Status"
+            :value="entity.status"
         >
         </DropdownInput>
 
         <DropdownInput
-            name="customer-type"
-            title="Customer Type"
-            placeholder="Customer Type"
             :options="['individual', 'professional']"
+            @onInput="entity.type = $event"
+            name="customer-type"
+            placeholder="Customer Type"
+            title="Customer Type"
+            :value="entity.type"
         >
         </DropdownInput>
 
         <div id="name">
             <TextInput
-                name="firstname"
-                title="FirstName"
-                placeholder="FirstName"
                 :isEditable="isEditionMode"
-                v-model:value="entity.firstName"
-                @onInput="entity.firstName = $event">
+                @onInput="entity.firstName = $event"
+                name="firstname"
+                placeholder="FirstName"
+                title="FirstName"
+                v-model="entity.firstName"
+            >
             </TextInput>
 
             <TextInput
-                name="lastname"
-                title="LastName"
-                placeholder="LastName"
                 :isEditable="isEditionMode"
-                v-model:value="entity.lastName"
-                @onInput="entity.lastName = $event">
+                @onInput="entity.lastName = $event"
+                name="lastname"
+                placeholder="LastName"
+                title="LastName"
+                v-model="entity.lastName"
+            >
             </TextInput>
         </div>
 
         <p class="title">Contacts</p>
 
         <TextFiledSCT
-            :name="'Contact-' + contactFullname(contact)"
-            title="Click on it to view his card"
-            :value="contactFullname(contact)"
-            icon="arrow"
             :key="index"
+            :name="'Contact-' + contactFullname(contact)"
+            :value="contactFullname(contact)"
             @iconClicked="displayContact(contact.id)"
             class="filed"
+            icon="arrow_icon_blue"
+            title="Click on it to view his card"
             v-for="(contact, index) in entity.contacts"
         ></TextFiledSCT>
 
@@ -59,25 +65,38 @@
         <!-- TODO: replace it by text area -->
 
         <TextInput
-            name="notes"
-            title="Notes"
-            placeholder="Notes"
             :isEditable="isEditionMode"
-            v-model:value="entity.notes"
-            @onInput="entity.notes = $event">
+            @onInput="entity.notes = $event"
+            name="notes"
+            placeholder="Notes"
+            title="Notes"
+            v-model="entity.notes"
+        >
         </TextInput>
 
-        <EditCircleBtnSCT
+        <BtnIcon
+            :icon-rotation="45"
+            :icon-size="10"
             @clicked="toggleMode"
+            bg-color="--colors-main"
             class="btn"
+            iconName="pencil_icon_blue"
+            name="Edit"
+            title="Enable edition"
             v-if="!isEditionMode"
-        ></EditCircleBtnSCT>
+            value="edit"
+        ></BtnIcon>
 
-        <ValidationCircleBtnSCT
+        <BtnIcon
             @clicked="toggleMode"
+            bg-color="--colors-main"
             class="btn"
+            iconName="tick_icon_blue"
+            name="Validate"
+            title="Disable edition"
             v-if="isEditionMode"
-        ></ValidationCircleBtnSCT>
+            value="validate"
+        ></BtnIcon>
     </div>
 </template>
 
@@ -85,34 +104,35 @@
 import TextInput from "./Fileds/Themed/Inputs/TextInput";
 import TextFiledSCT from "./Fileds/Themed/Display/TextFiled";
 import DropdownInput from "./Fileds/Themed/Inputs/DropdownInput";
-import EditCircleBtnSCT from "./Buttons/EditCircleBtnSCT";
-import ValidationCircleBtnSCT from "./Buttons/ValidationCircleBtnSCT";
+import BtnIcon from "./Buttons/BtnIcon";
 
 export default {
-    name: "ProfileCard",
+    name: "CustomerCard",
     components: {
         TextInput,
         TextFiledSCT,
         DropdownInput,
-        EditCircleBtnSCT,
-        ValidationCircleBtnSCT
+        BtnIcon
     },
     data() {
         return {
             isEditionMode: false,
             entity: {
-                status: "Prospect",
+                status: "prospect",
+                type: "professional",
                 firstName: "John",
                 lastName: "Doe",
                 contacts: [
                     {
                         id: 1,
+                        type: "individual",
                         firstName: "John",
                         lastName: "Doe",
                         notes: "Here's some notes"
                     },
                     {
                         id: 2,
+                        type: "professional",
                         firstName: "Jan",
                         lastName: "Doe",
                         notes: "Silence is golden"
@@ -128,8 +148,8 @@ export default {
         toggleMode: function() {
             this.isEditionMode = !this.isEditionMode;
         },
-        contactFullname: function (contactObj) {
-            return contactObj.firstName + ' ' + contactObj.lastName;
+        contactFullname: function(contactObj) {
+            return `${contactObj.firstName} ${contactObj.lastName}`;
         }
     }
 };

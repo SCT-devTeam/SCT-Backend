@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const {join} = require("path");
+const { join } = require("path");
 
 module.exports = {
     devServer: {
@@ -25,6 +25,15 @@ module.exports = {
     // integrity: true,
 
     transpileDependencies: ["vuex-persist"],
+
+    // vue-cli 3 configuration for sass style import
+    // css: {
+    //     loaderOptions: {
+    //         scss: {
+    //             prependData: `@import "~@/variables.scss";`
+    //         }
+    //     }
+    // },
 
     // TODO: Fixe webpack configuration to keep the same result as without the configuration
     configureWebpack: {

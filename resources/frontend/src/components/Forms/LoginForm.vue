@@ -11,32 +11,35 @@
 
         <form @submit.prevent="submitForm" id="login-form__form" method="get">
             <TextInput
+                :isRequired="true"
+                @isValid="isValidEmail = $event"
+                @onInput="email = $event"
+                bg-color="white"
                 class="input"
                 name="email"
                 placeholder="Email"
                 title="Enter your email here"
                 type="email"
-                :isRequired="true"
-                v-model:value="email"
-                @onInput="email = $event"
-                @isValid="emailValid = $event"
+                v-model="email"
             >
             </TextInput>
 
             <TextInput
+                :isRequired="true"
+                @isValid="isValidPwd = $event"
+                @onInput="password = $event"
+                bg-color="white"
                 class="input"
                 name="password"
                 placeholder="Password"
                 title="Enter your password here"
                 type="password"
-                :isRequired="true"
-                v-model:value="password"
-                @onInput="password = $event"
-                @isValid="passwordValid = $event"
+                v-model="password"
             >
             </TextInput>
             <BtnSCT
                 :isDisabled="!isValidForm"
+                class="submit"
                 name="submit"
                 title="Submit the form"
                 type="submit"
@@ -47,8 +50,8 @@
 </template>
 
 <script>
-import {mapActions, mapMutations} from "vuex";
-import BtnSCT from "../../components/Buttons/BtnSCT";
+import { mapActions } from "vuex";
+import BtnSCT from "../Buttons/BtnText";
 import TextInput from "../Fileds/Themed/Inputs/TextInput";
 
 export default {
@@ -57,56 +60,35 @@ export default {
     data() {
         return {
             email: "",
-            emailValid: false,
+            isValidEmail: false,
             password: "",
-            passwordValid: false,
+            isValidPwd: false,
             error: ""
         };
     },
     computed: {
         isValidForm: function() {
-            return this.emailValid === true && this.passwordValid === true;
+            return this.isValidEmail === true && this.isValidPwd === true;
         }
     },
     methods: {
-        ...mapMutations({
-            set_token: "SET_TOKEN"
-        }),
-        ...mapActions({
-            fetchUserData: "fetchUser"
-        }),
-        submitForm: function() {
+        ...mapActions({ login: "loginUser" }),
+        submitForm: async function() {
             if (this.isValidForm) {
-                this.axios
-                    .post(
-                        "/api/airlock/login",
-                        {
-                            email: this.email,
-                            password: this.password,
-                            device_name: "Navigator"
-                        },
-                        {
-                            headers: {
-                                "Content-Type": "application/json",
-                                Accept: "application/json"
-                            }
-                        }
-                    )
-                    .then(({ data: { token } }) => {
-                        if (token) {
-                            this.set_token(token);
-                            this.fetchUserData();
-                            this.$router.replace({ name: "Dashboard" });
-                        }
-                    })
-                    .catch(reason => {
-                        const {
-                            response: {
-                                data: { error }
-                            }
-                        } = reason;
-                        this.error = error;
+                try {
+                    let loginResult = await this.login({
+                        email: this.email,
+                        password: this.password
                     });
+
+                    if (loginResult === true) {
+                        await this.$router.replace({ name: "Dashboard" });
+                    } else {
+                        this.error = `An error has occurred while login: ${loginResult}`;
+                    }
+                } catch (e) {
+                    this.error = e;
+                }
             } else {
                 this.error = "Please fix input errors";
             }
@@ -120,10 +102,13 @@ export default {
 @import "src/scss/typography";
 
 div#login-form {
-    max-width: 500px;
+    display: flex;
+    flex-direction: column;
 
-    padding: 20px;
-    padding-bottom: 30px;
+    height: fit-content;
+    width: fit-content;
+
+    padding: 50px 35px;
 
     position: relative;
 
@@ -131,7 +116,30 @@ div#login-form {
 
     background-color: $color__main;
 
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 2px 7px 2px rgba(0, 0, 0, 0.7);
+
+    > img {
+        align-self: center;
+
+        width: 50%;
+
+        margin-bottom: 50px;
+    }
+
+    > form#login-form__form {
+        display: flex;
+        flex-direction: column;
+
+        .input {
+            width: 400px;
+
+            margin: 10px 0;
+        }
+
+        > button.submit {
+            align-self: flex-end;
+        }
+    }
 
     &:after {
         content: "";
@@ -151,11 +159,5 @@ div#login-form {
         margin: 5px 0;
         color: $color__validation_no;
     }
-}
-
-.input {
-    width: 400px;
-
-    margin: 10px 0;
 }
 </style>

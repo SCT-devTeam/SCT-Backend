@@ -67,7 +67,7 @@ div#widget {
         > p#informations__indicator {
             font-family: $font__text;
             font-weight: bold;
-            font-size: 2em;
+            font-size: 2rem;
             color: $color__black;
         }
 
@@ -75,7 +75,7 @@ div#widget {
             margin-left: 20px;
 
             font-family: $font__text;
-            font-size: 1.5em;
+            font-size: 1.5rem;
             color: $color__black;
         }
     }

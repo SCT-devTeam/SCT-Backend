@@ -25,7 +25,7 @@
 
 <script>
 import SearchForm from "../../components/Forms/SearchForm";
-import CustomersTable from "../../components/CustomersTable";
+import CustomersTable from "../../components/Tables/CustomersTable";
 import CustomerProfileCard from "../../components/CustomerProfileCard";
 import ContactProfileCard from "../../components/ContactProfileCard";
 

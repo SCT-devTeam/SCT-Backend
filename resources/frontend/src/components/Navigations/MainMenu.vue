@@ -16,8 +16,8 @@
                     src="../../assets/icons/dashboard_icon_blue.png"
                     srcset="../../assets/icons/dashboard_icon_blue.svg"
                 />
-                <router-link :to="{ name: 'Dashboard' }" data-title="Dashboard"
-                    >Dashboard
+                <router-link :to="{ name: 'Dashboard' }" data-title="Dashboard">
+                    Dashboard
                 </router-link>
             </li>
             <li>
@@ -26,8 +26,8 @@
                     src="../../assets/icons/avatar_icon_blue.png"
                     srcset="../../assets/icons/avatar_icon_blue.svg"
                 />
-                <router-link :to="{ name: 'Customers' }" data-title="Customers"
-                    >Customers
+                <router-link :to="{ name: 'Customers' }" data-title="Customers">
+                    Customers
                 </router-link>
             </li>
             <li>
@@ -36,8 +36,8 @@
                     src="../../assets/icons/invoice_icon_blue.png"
                     srcset="../../assets/icons/invoice_icon_blue.svg"
                 />
-                <router-link :to="{ name: 'Writings' }" data-title="Writings"
-                    >Writings
+                <router-link :to="{ name: 'Writings' }" data-title="Writings">
+                    Writings
                 </router-link>
             </li>
             <li>
@@ -49,7 +49,8 @@
                 <router-link
                     :to="{ name: 'ReceiptBook' }"
                     data-title="Receipt book"
-                    >Receipt book
+                >
+                    Receipt book
                 </router-link>
             </li>
         </ul>
@@ -164,7 +165,7 @@ nav#Main-menu {
 
                     color: $color__black;
                     font-family: $font__text;
-                    font-size: 1.2em;
+                    font-size: 1.2rem;
                 }
 
                 &.router-link-exact-active:before {
