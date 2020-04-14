@@ -17,6 +17,7 @@ export default new Vuex.Store({
             token: null,
             firstname: null,
             lastname: null,
+            gender: null,
             email: null,
             phone: null,
             notes: null,
@@ -90,6 +91,7 @@ export default new Vuex.Store({
             return {
                 firstname: state.user.firstname || null,
                 lastname: state.user.lastname || null,
+                gender: state.user.gender || null,
                 email: state.user.email || null,
                 phone: state.user.phone || null,
                 notes: state.user.notes || null,
