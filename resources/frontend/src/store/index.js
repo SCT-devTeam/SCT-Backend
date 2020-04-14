@@ -28,58 +28,63 @@ export default new Vuex.Store({
         receipts: [
             {
                 id: 0,
+                date: "01/01/2020",
                 company: "Company",
-                customer: "Customer",
                 items: [
                     {
                         id: 0,
-                        label: "item label",
+                        label: "item 2",
                         quantity: 1,
                         price: 10
                     },
                     {
                         id: 1,
-                        label: "item label",
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
                         quantity: 3,
-                        price: 30
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
                     }
                 ]
             },
             {
                 id: 1,
+                date: "15/03/2020",
                 company: "Company",
-                customer: "Customer",
                 items: [
                     {
                         id: 0,
-                        label: "item label",
+                        label: "item 2",
                         quantity: 1,
                         price: 10
                     },
                     {
                         id: 1,
-                        label: "item label",
-                        quantity: 3,
-                        price: 30
-                    }
-                ]
-            },
-            {
-                id: 2,
-                company: "Company",
-                customer: "Customer",
-                items: [
-                    {
-                        id: 0,
-                        label: "item label",
+                        label: "item 2",
                         quantity: 1,
-                        price: 10
+                        price: 20
                     },
                     {
-                        id: 1,
-                        label: "item label",
+                        id: 2,
+                        label: "item 3",
                         quantity: 3,
-                        price: 30
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
                     }
                 ]
             }

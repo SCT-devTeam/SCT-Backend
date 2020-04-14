@@ -3,19 +3,19 @@
         <span id="head">
             <p class="date">Date</p>
             <p class="label">Entity</p>
-            <p class="entity">Label</p>
+            <p class="company">Label</p>
             <p class="amount">Amount</p>
         </span>
         <div id="container">
             <span
                 :key="index"
-                @click="itemClicked(index)"
+                @click="$emit('itemClicked', index)"
                 class="line"
                 v-for="(receipt, index) in this.receipts"
             >
                 <p class="date">{{ receipt.date }}</p>
-                <p class="label">{{ receipt.entity }}</p>
-                <p class="entity">{{ receipt.label }}</p>
+                <p class="label">{{ receipt.company }}</p>
+                <p class="company">{{ receipt.label }}</p>
                 <p class="amount">{{ receipt.amount }}</p>
             </span>
         </div>
@@ -24,112 +24,10 @@
 
 <script>
 export default {
-    entity: "CustomersTable",
-    data() {
-        return {
-            receipts: [
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                },
-                {
-                    date: "15/03/2020",
-                    entity: "John Doe",
-                    amount: "150,00€",
-                    label: "------"
-                }
-            ]
-        };
-    },
-    methods: {
-        itemClicked: function(receipt_id) {
-            this.$emit("itemClicked", receipt_id);
+    name: "CustomersTable",
+    computed: {
+        receipts() {
+            return this.$store.state.receipts;
         }
     }
 };
