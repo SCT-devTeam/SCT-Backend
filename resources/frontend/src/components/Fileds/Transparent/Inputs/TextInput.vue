@@ -4,7 +4,6 @@
     <label>
         <input
             :disabled="isDisabled"
-            :id="name"
             :name="name"
             :placeholder="filedPlaceholder"
             :readonly="isDisabled"
