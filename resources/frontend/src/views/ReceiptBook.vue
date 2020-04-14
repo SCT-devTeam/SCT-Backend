@@ -8,7 +8,7 @@
         <Receipt
             :receiptId="receiptEditIdforModal"
             @close="receiptEditIdforModal = null"
-            v-if="receiptEditIdforModal"
+            v-if="receiptEditIdforModal != null"
         ></Receipt>
     </div>
 </template>
