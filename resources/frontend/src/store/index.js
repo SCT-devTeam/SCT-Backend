@@ -21,7 +21,68 @@ export default new Vuex.Store({
             phone: null,
             notes: null,
             companies: null
-        }
+        },
+        customers: {},
+        writings: {},
+        receipts: [
+            {
+                id: 0,
+                company: "Company",
+                customer: "Customer",
+                items: [
+                    {
+                        id: 0,
+                        label: "item label",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item label",
+                        quantity: 3,
+                        price: 30
+                    }
+                ]
+            },
+            {
+                id: 1,
+                company: "Company",
+                customer: "Customer",
+                items: [
+                    {
+                        id: 0,
+                        label: "item label",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item label",
+                        quantity: 3,
+                        price: 30
+                    }
+                ]
+            },
+            {
+                id: 2,
+                company: "Company",
+                customer: "Customer",
+                items: [
+                    {
+                        id: 0,
+                        label: "item label",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item label",
+                        quantity: 3,
+                        price: 30
+                    }
+                ]
+            }
+        ]
     },
     getters: {
         isLoggedIn: state => !(state.user.token === null), // TODO: change this by an api call
@@ -35,7 +96,35 @@ export default new Vuex.Store({
                 companies: state.user.companies || null
             };
         },
-        getToken: state => state.user.token
+        getToken: state => state.user.token,
+        getReceiptByID: state => receipt_id =>
+            state.receipts.find(receipt => receipt.id === receipt_id)
+        // console.log("entered in vuex");
+        //
+        // const receipts = state.receipts;
+        //
+        // receipts.forEach(receipt => {
+        //     console.log(receipt.id + ' ' + receipt_id);
+        //
+        //     if (receipt.id === receipt_id) {
+        //         console.log(receipt);
+        //         return receipt;
+        //     } else {
+        //         console.log("ERROR");
+        //         return null;
+        //     }
+        // });
+
+        // for (const receipt of receipts) {
+        //     console.log(receipt);
+        //     if (receipt.id === receipt_id) {
+        //         console.log(receipt);
+        //         return receipt;
+        //     } else {
+        //         console.log("ERROR");
+        //         return null;
+        //     }
+        // }
     },
     mutations: {
         SET_TOKEN(state, token) {

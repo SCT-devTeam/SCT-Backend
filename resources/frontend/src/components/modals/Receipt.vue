@@ -1,255 +1,213 @@
 <template>
-    <div class="receipt_modal">
+    <div class="modal">
         <span @click="exit" class="background"></span>
-        <div class="receipt_modal__receipt" ref="receipt">
-            <label>
-                <input
+        <div class="modal__content" ref="receipt">
+            <div class="receipt">
+                <TextInput
+                    @onInput="receipt.company = $event"
                     class="receipt__company"
-                    type="text"
+                    name="debtor"
+                    placeholder="The debtor company"
+                    title="The debtor company"
                     v-model="receipt.company"
-                />
-            </label>
-            <div class="receipt__items-table">
-                <span class="table__head">
-                    <p class="label">Label</p>
-                    <p class="quantity">Quantity</p>
-                    <p class="price">Price</p>
-                </span>
-                <span
-                    :key="index"
-                    class="table__item"
-                    v-for="(item, index) in receipt.items"
                 >
-                    <label>
-                        <input class="label" type="text" v-model="item.label" />
-                    </label>
-                    <label>
-                        <input
+                </TextInput>
+
+                <div class="receipt__items-table">
+                    <span class="items-table__head">
+                        <p class="label">Label</p>
+                        <p class="quantity">Quantity</p>
+                        <p class="price">Price</p>
+                    </span>
+                    <span
+                        :key="index"
+                        class="items-table__item"
+                        v-for="(item, index) in receipt.items"
+                    >
+                        <TransparentTextInput
+                            @onInput="item.label = $event"
+                            class="label"
+                            name="item_label"
+                            title="The label of the item"
+                            v-model="item.label"
+                        ></TransparentTextInput>
+
+                        <TransparentNumberInput
+                            @onInput="item.quantity = $event"
                             class="quantity"
-                            type="number"
+                            name="item_quantity"
+                            title="The debtor company"
                             v-model="item.quantity"
-                        />
-                    </label>
-                    <label>
-                        <input
+                        ></TransparentNumberInput>
+
+                        <TransparentNumberInput
+                            @onInput="item.price = $event"
                             class="price"
-                            type="number"
+                            name="item_price"
+                            title="The debtor company"
                             v-model="item.price"
-                        />
-                    </label>
-                </span>
+                        ></TransparentNumberInput>
+
+                        <!-- <input type="number" v-model="item.price" /> -->
+                    </span>
+                </div>
+
+                <p class="total">{{ this.total }}</p>
             </div>
-            <p class="total">{{ this.total }}</p>
         </div>
-        <div></div>
     </div>
 </template>
 
 <script>
+import mixin from "./mixins/mixin";
+import ThemedTextInput from "../Fileds/Themed/Inputs/TextInput";
+import TransparentTextInput from "../Fileds/Transparent/Inputs/TextInput";
+import TransparentNumberInput from "../Fileds/Transparent/Inputs/NumberInput";
+
 export default {
-    // TODO: add TVA pourcentage
+    // TODO: add TVA percentage
     name: "receipt",
+    components: {
+        TextInput: ThemedTextInput,
+        TransparentTextInput,
+        TransparentNumberInput
+    },
+    mixins: [mixin],
+    created() {
+        console.log(`item created ! (id: ${this.receiptId})`);
+        this.getData(this.receiptId);
+    },
     data() {
         return {
-            receipt: {
-                company: "Company",
-                customer: "Customer",
-                items: [
-                    {
-                        id: 0,
-                        label: "item label",
-                        quantity: 1,
-                        price: 10
-                    },
-                    {
-                        id: 1,
-                        label: "item label",
-                        quantity: 3,
-                        price: 30
-                    }
-                ]
-            }
+            receipt: null
         };
     },
     props: {
-        receiptId: Number
+        receiptId: {
+            type: Number,
+            required: true
+        }
     },
     computed: {
         total() {
             let total = 0;
-            for (let itemIndex in this.receipt.items) {
-                total += Number(this.receipt.items[itemIndex].price);
-            }
+
+            this.receipt.items.forEach(item => {
+                total += Math.round(item.price * item.quantity * 100) / 100;
+            });
+
             return total;
         }
     },
     methods: {
-        exit() {
-            this.save();
-            this.$emit("close");
-        },
-        save() {
-            // TODO: API request
+        getData: function(receipt_id) {
+            console.log(
+                `getData of receipt n°:${receipt_id} (${typeof receipt_id})`
+            );
+            const receipt = this.$store.getters.getReceiptByID(receipt_id);
+            console.log(`Receive: ${receipt}`);
+            this.receipt = receipt;
         }
     }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "src/scss/colors";
-@import "src/scss/typography";
+@import "mixins/mixin";
 
-div.receipt_modal {
+div.receipt {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
 
-    padding: 20px 0;
+    width: 100%;
 
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
+    > .receipt__company {
+        align-self: center;
 
-    overflow-y: scroll;
+        width: 40%;
 
-    > span.background {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 17px;
-        z-index: -1;
-
-        background-color: rgba(0, 0, 0, 0.5);
+        margin-bottom: 5%;
     }
 
-    > div.receipt_modal__receipt {
+    > .receipt__items-table {
         display: flex;
         flex-direction: column;
+        justify-content: stretch;
 
-        min-height: 90%;
-        height: fit-content;
-        width: 50%;
+        align-self: center;
+        justify-self: center;
+
+        width: 90%;
 
         border-radius: 15px;
 
-        background-color: white;
+        background-color: $color__background;
 
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-
-        > input.receipt__company {
-            max-width: 35%;
-
-            margin: 50px;
-            padding: 7px;
-
-            border-radius: 15px;
-
-            background-color: #ececec;
-
-            white-space: pre-line;
-        }
-
-        > input.receipt__customer {
-            align-self: flex-end;
-
-            max-width: 35%;
-
-            margin: 50px;
-            padding: 7px;
-
-            border-radius: 15px;
-
-            background-color: #ececec;
-
-            white-space: pre-line;
-        }
-
-        > div.receipt__items-table {
+        > span {
             display: flex;
-            flex-direction: column;
-            justify-content: stretch;
+            justify-content: space-around;
 
-            align-self: center;
-            justify-self: center;
+            padding: 5px 25px;
 
-            width: 90%;
+            > p,
+            > label {
+                margin: 0 5px;
+            }
 
-            border-radius: 20px 20px 15px 15px;
+            > p.label,
+            > label.label {
+                flex: 5;
+            }
 
-            background-color: #fafafa;
+            > p.quantity,
+            > label.quantity {
+                flex: 0.7;
+                text-align: center;
+            }
 
-            > span {
-                display: flex;
-                justify-content: space-around;
+            > p.price,
+            > label.price {
+                flex: 0.7;
+                text-align: right;
+            }
 
-                padding: 5px 25px;
+            &.items-table__head {
+                border-radius: 15px 15px 0 0;
 
-                > p.label,
-                > input.label {
-                    flex: 5;
+                background-color: $color__main;
+
+                > p {
+                    margin: 5px;
+
+                    font-family: $font__heading;
+                    font-weight: bold;
+                    font-size: 1.2rem;
                 }
+            }
 
-                > p.quantity,
-                > input.quantity {
-                    flex: 0.7;
-                    text-align: center;
-                }
+            &.items-table__item {
+                margin-bottom: 10px;
+                background-color: rgba(236, 236, 236, 0.5);
 
-                > p.price,
-                > input.price {
-                    flex: 0.7;
-                    text-align: right;
-                }
-
-                &.table__head {
-                    border-radius: 15px 15px 0 0;
-
-                    background-color: $color__main;
-
-                    > p {
-                        margin: 5px 0;
-
-                        font-family: $font__heading;
-                        font-weight: bold;
-                        font-size: 1.2rem;
-                    }
-                }
-
-                &.table__item {
-                    margin-bottom: 10px;
-                    background-color: #ececec80;
-
-                    &:last-child {
-                        margin-bottom: 0;
-                        border-radius: 0 0 15px 15px;
-                    }
+                &:last-child {
+                    margin-bottom: 0;
+                    border-radius: 0 0 15px 15px;
                 }
             }
         }
+    }
 
-        > p.total {
-            align-self: flex-end;
-            margin-right: 50px;
-            padding: 7px;
+    > p.total {
+        align-self: flex-end;
+        margin-right: 50px;
+        padding: 7px;
 
-            border: 2px solid $color__secondary;
-            border-radius: 20px;
+        border: 2px solid $color__secondary;
+        border-radius: 20px;
 
-            background-color: #ececec;
-        }
-
-        > p.notice {
-            justify-self: flex-end;
-            align-self: center;
-
-            padding: 10px;
-
-            border-radius: 20px;
-            background-color: #ececec;
-        }
+        background-color: #ececec;
     }
 }
 </style>
