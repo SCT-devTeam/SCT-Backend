@@ -136,7 +136,10 @@ export default {
         }
     },
     methods: {
-        ...mapActions({ getContacts: "getContacts", saveCustomer: "saveCustomer" }),
+        ...mapActions({
+            getContacts: "getContacts",
+            saveCustomer: "saveCustomer"
+        }),
         displayContact: function(contact_id) {
             this.$emit("displayContact", contact_id);
         },
