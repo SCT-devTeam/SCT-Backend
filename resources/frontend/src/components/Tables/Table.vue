@@ -115,7 +115,9 @@ div.table {
 
     position: relative;
 
+    height: 100%;
     max-height: calc(100% - 130px);
+    width: 100%;
 
     padding-top: 60px;
 
