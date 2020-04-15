@@ -14,8 +14,8 @@
 
                 <DropdownInput
                     :options="selectableCustomers()"
-                    :value="writing.customer_id"
-                    @onInput="writing.customer_id = Number($event)"
+                    :value="writing.customer_id.toString()"
+                    @onInput="writing.customer_id = parseInt($event)"
                     name="customer"
                     placeholder="Customer"
                     title="Select the customer"
