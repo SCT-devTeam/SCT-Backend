@@ -27,7 +27,7 @@
         <Writing
             :writingId="writingEditIdforModal"
             @close="writingEditIdforModal = null"
-            v-if="writingEditIdforModal"
+            v-if="writingEditIdforModal != null"
         ></Writing>
     </div>
 </template>
