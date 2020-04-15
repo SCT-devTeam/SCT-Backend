@@ -11,10 +11,15 @@
                 :key="index"
                 class="line"
                 v-for="(customer, index) in this.customers"
+                @click="$emit('itemClicked', customer.id)"
             >
-                <p class="type">{{ customer.type }}</p>
-                <p class="name">{{ customer.name }}</p>
-                <p class="address">{{ customer.address }}</p>
+                <p class="type">{{ customer.customer_type }}</p>
+                <p class="name">{{ customer.firstname + customer.lastname }}</p>
+                <p class="address">
+                    {{
+                        customer.street_number + ' ' + ' ' + customer.street_name + ", " + customer.zipcode + ' '  + customer.city
+                    }}
+                </p>
                 <p class="status">{{ customer.status }}</p>
             </span>
         </div>
@@ -24,122 +29,32 @@
 <script>
 export default {
     name: "CustomersTable",
-    data() {
-        return {
-            customers: [
-                {
-                    id: 0,
-                    type: "Professional",
-                    name: "John Doe",
-                    address: "123 avenue of imagination, 46664 DREAM",
-                    status: "Prospect"
-                },
-                {
-                    type: "Professional",
-                    name: "John Doe",
-                    address: "123 avenue of imagination, 46664 DREAM",
-                    status: "Prospect"
-                },
-                {
-                    id: 1,
-                    type: "Professional",
-                    name: "John Doe",
-                    address: "123 avenue of imagination, 46664 DREAM",
-                    status: "Prospect"
-                },
-                {
-                    id: 2,
-                    type: "Professional",
-                    name: "John Doe",
-                    address: "123 avenue of imagination, 46664 DREAM",
-                    status: "Prospect"
-                },
-                {
-                    id: 3,
-                    type: "Professional",
-                    name: "John Doe",
-                    address: "123 avenue of imagination, 46664 DREAM",
-                    status: "Prospect"
-                },
-                {
-                    id: 4,
-                    type: "Professional",
-                    name: "John Doe",
-                    address: "123 avenue of imagination, 46664 DREAM",
-                    status: "Prospect"
-                },
-                {
-                    id: 5,
-                    type: "Professional",
-                    name: "John Doe",
-                    address: "123 avenue of imagination, 46664 DREAM",
-                    status: "Prospect"
-                },
-                {
-                    id: 6,
-                    type: "Professional",
-                    name: "John Doe",
-                    address: "123 avenue of imagination, 46664 DREAM",
-                    status: "Prospect"
-                },
-                {
-                    id: 7,
-                    type: "Professional",
-                    name: "John Doe",
-                    address: "123 avenue of imagination, 46664 DREAM",
-                    status: "Prospect"
-                },
-                {
-                    id: 7,
-                    type: "Professional",
-                    name: "John Doe",
-                    address: "123 avenue of imagination, 46664 DREAM",
-                    status: "Prospect"
-                },
-                {
-                    id: 8,
-                    type: "Professional",
-                    name: "John Doe",
-                    address: "123 avenue of imagination, 46664 DREAM",
-                    status: "Prospect"
-                },
-                {
-                    id: 9,
-                    type: "Professional",
-                    name: "John Doe",
-                    address: "123 avenue of imagination, 46664 DREAM",
-                    status: "Prospect"
-                },
-                {
-                    id: 10,
-                    type: "Professional",
-                    name: "John Doe",
-                    address: "123 avenue of imagination, 46664 DREAM",
-                    status: "Prospect"
-                },
-                {
-                    id: 11,
-                    type: "Professional",
-                    name: "John Doe",
-                    address: "123 avenue of imagination, 46664 DREAM",
-                    status: "Prospect"
-                },
-                {
-                    id: 12,
-                    type: "Professional",
-                    name: "John Doe",
-                    address: "123 avenue of imagination, 46664 DREAM",
-                    status: "Prospect"
-                },
-                {
-                    id: 13,
-                    type: "Professional",
-                    name: "John Doe",
-                    address: "123 avenue of imagination, 46664 DREAM",
-                    status: "Prospect"
-                }
-            ]
-        };
+    props: {
+        data: {
+            type: Array[Object],
+            required: true
+        },
+        statusFilter: String
+    },
+    computed: {
+        customers() {
+            let customers = [];
+
+            this.data.forEach(customer => {
+                if (
+                    this.statusFilter !== undefined &&
+                    customer.status === this.statusFilter
+                )
+                    customers.push(customer);
+                else if (
+                    this.statusFilter === undefined &&
+                    customer.status !== "prospect"
+                )
+                    customers.push(customer);
+            });
+
+            return customers;
+        }
     }
 };
 </script>

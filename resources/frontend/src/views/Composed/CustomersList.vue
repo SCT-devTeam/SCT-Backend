@@ -2,11 +2,15 @@
     <div id="customer-list">
         <div id="panel-1">
             <SearchForm id="Search-form"></SearchForm>
-            <CustomersTable></CustomersTable>
+            <CustomersTable
+                :data="this.$store.state.customers"
+                @itemClicked="customerToDisplay = $event"
+            ></CustomersTable>
         </div>
         <div id="panel-2">
             <div id="panel-2__container">
                 <CustomerProfileCard
+                    :customerId="customerToDisplay"
                     @displayContact="contactToDisplay = $event"
                 ></CustomerProfileCard>
                 <ContactProfileCard
@@ -39,6 +43,7 @@ export default {
     },
     data() {
         return {
+            customerToDisplay: null,
             contactToDisplay: null
         };
     }
