@@ -5,7 +5,7 @@
             @navigationChanged="viewDisplayed = $event"
         ></SecondaryMenu>
         <!--        <WritingsTable-->
-        <!--            @itemClicked="writingEditIdforModal = $event"-->
+        <!--            @itemClicked="selectedWriting = $event"-->
         <!--        ></WritingsTable>-->
         <TableSCT
             class="view__table"
@@ -22,13 +22,13 @@
                 street_name: 'Address',
                 status: 'Status'
             }"
-            @itemClicked="writingEditIdforModal = $event"
+            @itemClicked="selectedWriting = $event"
         ></TableSCT>
         <Writing
-            :writingId="writingEditIdforModal"
+            :writingId="selectedWriting"
             :writingType="viewDisplayed.toLowerCase()"
-            @close="writingEditIdforModal = null"
-            v-if="writingEditIdforModal != null"
+            @close="selectedWriting = null"
+            v-if="selectedWriting != null"
         ></Writing>
     </div>
 </template>
@@ -45,7 +45,7 @@ export default {
     data() {
         return {
             viewDisplayed: "Quotes",
-            writingEditIdforModal: null
+            selectedWriting: null
         };
     },
     computed: {
