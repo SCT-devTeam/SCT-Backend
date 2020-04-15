@@ -49,7 +49,7 @@
                     @mouseover="hovered"
                     ref="input"
                     v-model="currentValue"
-                    @click="$emit('onInput', $event.target.value)"
+                    @click="emitValue"
                 >
                     <option
                         :key="index"
@@ -138,6 +138,13 @@ export default {
 
                 return true;
             }
+        }
+    },
+    methods: {
+        emitValue(event) {
+            const value = event.target.value;
+            if (!isNaN(value)) this.$emit("onInput", parseInt(value));
+            else this.$emit("onInput", value);
         }
     }
 };
