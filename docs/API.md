@@ -24,7 +24,6 @@
     - [allQuotes](#allquotes)
     - [quote](#quote)
     - [updateQuote](#updatequote)
-  - [| last_qualification_date | Present | unspecified | datedate|  |](#lastqualificationdate--present--unspecified--datedate)
     - [createQuote](#createquote)
     - [deleteQuote](#deletequote)
   - [Invoices](#invoices)
@@ -373,6 +372,7 @@
 | sending_date | Present | unspecified | date |  |
 | revived_date | Present | unspecified | date |  |
 | last_qualification_date | Present | unspecified | datedate|  |
+
 ---
 
 ### createQuote
