@@ -18,7 +18,7 @@
                 date: 'Date',
                 customer_id: 'Customer',
                 status: 'Status',
-                amount: ['items', 'price']
+                amount: ['items', 'price', 'quantity']
             }"
             @itemClicked="selectedWriting = $event"
         ></TableSCT>
