@@ -23,15 +23,15 @@ export default new Vuex.Store({
             notes: null,
             companies: null
         },
-        company: null,
+        companies: null,
         customers: null,
         contacts: null,
         quotes: [
             {
                 id: 0,
                 date: "01/01/2020",
-                customer_id: 0,
-                company_id: 28,
+                customer_id: 28,
+                company_id: 22,
                 status: "paid",
                 items: [
                     {
@@ -435,7 +435,7 @@ export default new Vuex.Store({
             state.contacts = data;
         },
         SET_COMPANY(state, data) {
-            state.company = data;
+            state.companies = data;
         },
         SET_QUOTES(state, data) {
             state.quotes = data;
