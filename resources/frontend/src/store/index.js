@@ -396,6 +396,12 @@ export default new Vuex.Store({
             state.customers.filter(customer => customer.status === "prospect"),
         getCustomers: state =>
             state.customers.filter(customer => customer.status !== "prospect"),
+        getActiveCustomers: state =>
+            state.customers.filter(
+                customer =>
+                    customer.status !== "prospect" &&
+                    customer.status !== "deleted"
+            ),
         getQuotes: state => state.quotes,
         getInvoices: state => state.invoices,
         getCustomerByID: state => customer_id =>
