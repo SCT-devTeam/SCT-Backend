@@ -106,6 +106,8 @@ export default new Vuex.Store({
             };
         },
         getToken: state => state.user.token,
+        getCustomerByID: state => customer_id =>
+            state.customers.find(customer => customer.id === customer_id),
         getReceiptByID: state => receipt_id =>
             state.receipts.find(receipt => receipt.id === receipt_id)
         // console.log("entered in vuex");
