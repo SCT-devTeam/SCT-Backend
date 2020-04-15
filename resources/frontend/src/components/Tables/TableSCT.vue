@@ -108,9 +108,18 @@ export default {
             ) {
                 let amount = 0;
 
-                item[this.dataPropertyMapping.amount[0]].forEach(item => {
-                    amount += item[this.dataPropertyMapping.amount[1]];
-                });
+                if (this.dataPropertyMapping.amount[2]) {
+                    item[this.dataPropertyMapping.amount[0]].forEach(item => {
+                        amount += item[this.dataPropertyMapping.amount[1]] * item[this.dataPropertyMapping.amount[2]];
+                    });
+                } else {
+                    item[this.dataPropertyMapping.amount[0]].forEach(item => {
+                        amount += item[this.dataPropertyMapping.amount[1]];
+                    });
+                }
+
+                amount = Math.round(amount * 100) / 100;
+
                 returnedValues.push({
                     name: "Amount",
                     value: amount
