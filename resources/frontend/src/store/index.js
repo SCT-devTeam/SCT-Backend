@@ -255,7 +255,12 @@ export default new Vuex.Store({
                     console.error(reason);
                 });
         },
-        async getContacts({ commit }, id_customer) {
+        getContacts({ state }, id_customer) {
+            axios.defaults.headers.common = {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                Authorization: `Bearer ${state.user.token}`
+            };
             axios
                 .post("/api/contact", { id_customer: id_customer })
                 .then(data => {
@@ -265,7 +270,29 @@ export default new Vuex.Store({
                             data.message
                         );
                     }
-                    commit("SET_CONTACTS", data.data);
+                    return data.data;
+                })
+                .catch(reason => {
+                    console.error(reason);
+                });
+        },
+        saveCustomer({dispatch}, customerObj) {
+            axios.defaults.headers.common = {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                Authorization: `Bearer ${state.user.token}`
+            };
+            axios
+                .post("/api/updateCustomer", customerObj)
+                .then(data => {
+                    if (data.message) {
+                        console.error(
+                            "An error has occurred while fetching contacts data : ",
+                            data.message
+                        );
+                    }
+                    dispatch("fetchCustomers");
+                    return true;
                 })
                 .catch(reason => {
                     console.error(reason);
