@@ -323,6 +323,10 @@ export default new Vuex.Store({
             };
         },
         getToken: state => state.user.token,
+        getProspects: state =>
+            state.customers.filter(customer => customer.status === "prospect"),
+        getCustomers: state =>
+            state.customers.filter(customer => customer.status !== "prospect"),
         getCustomerByID: state => customer_id =>
             state.customers.find(customer => customer.id === customer_id),
         getReceiptByID: state => receipt_id =>
