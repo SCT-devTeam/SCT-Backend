@@ -1,29 +1,40 @@
 <template>
     <div id="Receipt-book">
-        <SearchForm></SearchForm>
-        <ReceiptTable
-            @itemClicked="receiptEditIdforModal = $event"
-            class="table"
-        ></ReceiptTable>
+        <SearchForm class="search-form"></SearchForm>
+
+        <TableSCT
+            :columns="[
+                { name: 'date', size: '1' },
+                { name: 'company', size: '1' },
+                { name: 'amount', size: '1' }
+            ]"
+            :data="this.$store.state.receipts"
+            :dataPropertyMapping="{
+                company: 'company',
+                date: 'date',
+                amount: ['items', 'price']
+            }"
+            @itemClicked="receiptForModal = $event"
+        ></TableSCT>
         <Receipt
-            :receiptId="receiptEditIdforModal"
-            @close="receiptEditIdforModal = null"
-            v-if="receiptEditIdforModal != null"
+            :receiptId="receiptForModal"
+            @close="receiptForModal = null"
+            v-if="receiptForModal != null"
         ></Receipt>
     </div>
 </template>
 
 <script>
 import SearchForm from "../components/Forms/SearchForm";
-import ReceiptTable from "../components/Tables/ReceiptTable";
 import Receipt from "../components/modals/Receipt";
+import TableSCT from "../components/Tables/Table";
 
 export default {
     name: "ReceiptBook",
-    components: { SearchForm, ReceiptTable, Receipt },
+    components: { SearchForm, Receipt, TableSCT },
     data() {
         return {
-            receiptEditIdforModal: null
+            receiptForModal: null
         };
     }
 };
@@ -39,7 +50,12 @@ div#Receipt-book {
 
     align-items: center;
 
+    > form.search-form {
+        margin-bottom: 50px;
+    }
+
     > div.table {
+        height: 100%;
         width: 100%;
     }
 }
