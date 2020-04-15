@@ -4,9 +4,7 @@
             :items="['Quotes', 'Invoices']"
             @navigationChanged="viewDisplayed = $event"
         ></SecondaryMenu>
-        <!--        <WritingsTable-->
-        <!--            @itemClicked="selectedWriting = $event"-->
-        <!--        ></WritingsTable>-->
+
         <TableSCT
             class="view__table"
             :columns="[
