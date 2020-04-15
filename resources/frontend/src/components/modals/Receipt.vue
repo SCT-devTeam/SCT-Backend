@@ -13,6 +13,7 @@
                 >
                 </TextInput>
 
+                <!-- TODO: extract this editable table into a component -->
                 <div class="receipt__items-table">
                     <span class="items-table__head">
                         <p class="label">Label</p>
