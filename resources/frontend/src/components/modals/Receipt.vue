@@ -1,7 +1,7 @@
 <template>
     <div class="modal">
         <span @click="exit" class="background"></span>
-        <div class="modal__content" ref="receipt">
+        <div class="modal__content">
             <div class="receipt">
                 <TextInput
                     @onInput="receipt.company = $event"
