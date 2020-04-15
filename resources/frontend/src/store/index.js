@@ -181,12 +181,12 @@ export default new Vuex.Store({
                             const token = response.data.token;
                             // Add check on commit
                             commit("SET_TOKEN", token);
+                            axios.defaults.headers.common = {
+                                "Content-Type": "application/json",
+                                Accept: "application/json",
+                                Authorization: `Bearer ${token}`
+                            };
                             dispatch("fetchUser", token);
-                            dispatch("fetchCompany");
-                            dispatch("fetchCustomers");
-                            dispatch("fetchContacts");
-                            // dispatch("fetchQuotes");
-                            dispatch("fetchInvoices");
 
                             resolve(true);
                         } else {
@@ -200,15 +200,9 @@ export default new Vuex.Store({
                     });
             });
         },
-        async fetchUser({ commit, state }) {
+        async fetchUser({ commit, state, dispatch }) {
             axios
-                .get("/api/me", {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Accept: "application/json",
-                        Authorization: `Bearer ${state.user.token}`
-                    }
-                })
+                .get("/api/me")
                 .then(data => {
                     if (data.message) {
                         console.error(
@@ -217,20 +211,19 @@ export default new Vuex.Store({
                         );
                     }
                     commit("SET_USER", data.data);
+                    console.log("company id: " + state.user.companies);
+                    dispatch("fetchCompany");
+                    dispatch("fetchCustomers");
+                    // dispatch("fetchQuotes");
+                    dispatch("fetchInvoices");
                 })
                 .catch(reason => {
                     console.error(reason);
                 });
         },
-        async fetchCompany({ commit, state }) {
+        async fetchCompany({ commit }) {
             axios
-                .get("/api/company", {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Accept: "application/json",
-                        Authorization: `Bearer ${state.user.token}`
-                    }
-                })
+                .get("/api/company")
                 .then(data => {
                     if (data.message) {
                         console.error(
@@ -238,7 +231,7 @@ export default new Vuex.Store({
                             data.message
                         );
                     }
-                    commit("SET_COMPANY", data.data[0]);
+                    commit("SET_COMPANY", data.data);
                 })
                 .catch(reason => {
                     console.error(reason);
@@ -246,16 +239,7 @@ export default new Vuex.Store({
         },
         async fetchCustomers({ commit, state }) {
             axios
-                .post("/api/customers", {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Accept: "application/json",
-                        Authorization: `Bearer ${state.user.token}`
-                    },
-                    data: {
-                        id_company: state.user.companies
-                    }
-                })
+                .post("/api/customers", { id_company: state.user.companies })
                 .then(data => {
                     if (data.message) {
                         console.error(
@@ -263,24 +247,15 @@ export default new Vuex.Store({
                             data.message
                         );
                     }
-                    commit("SET_CUSTOMERS", data.data);
+                    commit("SET_CUSTOMERS", data.data["cust"]);
                 })
                 .catch(reason => {
                     console.error(reason);
                 });
         },
-        async fetchContacts({ commit, state }) {
+        async getContacts({ commit }, id_customer) {
             axios
-                .post("/api/contact", {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Accept: "application/json",
-                        Authorization: `Bearer ${state.user.token}`
-                    },
-                    data: {
-                        id_company: state.user.companies
-                    }
-                })
+                .post("/api/contact", { id_customer: id_customer })
                 .then(data => {
                     if (data.message) {
                         console.error(
@@ -317,15 +292,9 @@ export default new Vuex.Store({
         //             console.error(reason);
         //         });
         // }
-        async fetchInvoices({ commit, state }) {
+        async fetchInvoices({ commit }) {
             axios
-                .get("/api/allInvoice", {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Accept: "application/json",
-                        Authorization: `Bearer ${state.user.token}`
-                    }
-                })
+                .get("/api/allInvoice" )
                 .then(data => {
                     if (data.message) {
                         console.error(
