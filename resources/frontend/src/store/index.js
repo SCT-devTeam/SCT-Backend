@@ -26,8 +26,76 @@ export default new Vuex.Store({
         company: null,
         customers: null,
         contacts: null,
-        quotes: null,
-        invoices: null,
+        quotes: [
+            {
+                id: 0,
+                date: "01/01/2020",
+                customer_id: "Customer id to get his name",
+                company_id: null,
+                status: "paid",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
+            }
+        ],
+        invoices: [
+            {
+                id: 0,
+                date: "01/01/2020",
+                customer_id: "Customer id to get his name",
+                company_id: null,
+                status: "paid",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
+            }
+        ],
         receipts: [
             {
                 id: 0,
@@ -443,7 +511,6 @@ export default new Vuex.Store({
                         );
                     }
                     commit("SET_USER", data.data);
-                    console.log("company id: " + state.user.companies);
                     dispatch("fetchCompany");
                     dispatch("fetchCustomers");
                     // dispatch("fetchQuotes");
