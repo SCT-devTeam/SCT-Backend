@@ -401,33 +401,13 @@ export default new Vuex.Store({
         getCustomerByID: state => customer_id =>
             state.customers.find(customer => customer.id === customer_id),
         getReceiptByID: state => receipt_id =>
-            state.receipts.find(receipt => receipt.id === receipt_id)
-        // console.log("entered in vuex");
-        //
-        // const receipts = state.receipts;
-        //
-        // receipts.forEach(receipt => {
-        //     console.log(receipt.id + ' ' + receipt_id);
-        //
-        //     if (receipt.id === receipt_id) {
-        //         console.log(receipt);
-        //         return receipt;
-        //     } else {
-        //         console.log("ERROR");
-        //         return null;
-        //     }
-        // });
-
-        // for (const receipt of receipts) {
-        //     console.log(receipt);
-        //     if (receipt.id === receipt_id) {
-        //         console.log(receipt);
-        //         return receipt;
-        //     } else {
-        //         console.log("ERROR");
-        //         return null;
-        //     }
-        // }
+            state.receipts.find(receipt => receipt.id === receipt_id),
+        getQuoteByID: state => quote_id =>
+            state.quotes.find(quote => quote.id === quote_id),
+        getInvoiceByID: state => invoice_id =>
+            state.invoices.find(invoice => invoice.id === invoice_id),
+        getCompanyByID: state => company_id =>
+            state.companies.find(company => company.id === company_id)
     },
     mutations: {
         SET_TOKEN(state, token) {
@@ -511,7 +491,7 @@ export default new Vuex.Store({
                         );
                     }
                     commit("SET_USER", data.data);
-                    dispatch("fetchCompany");
+                    dispatch("fetchCompanies");
                     dispatch("fetchCustomers");
                     // dispatch("fetchQuotes");
                     // dispatch("fetchInvoices");
@@ -520,7 +500,7 @@ export default new Vuex.Store({
                     console.error(reason);
                 });
         },
-        async fetchCompany({ commit }) {
+        async fetchCompanies({ commit }) {
             axios
                 .get("/api/company")
                 .then(data => {
@@ -530,7 +510,7 @@ export default new Vuex.Store({
                             data.message
                         );
                     }
-                    commit("SET_COMPANY", data.data.comp[0]);
+                    commit("SET_COMPANY", data.data.comp);
                 })
                 .catch(reason => {
                     console.error(reason);
