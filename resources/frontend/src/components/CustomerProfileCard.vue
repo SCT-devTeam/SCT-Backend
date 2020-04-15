@@ -17,32 +17,32 @@
 
         <DropdownInput
             :options="['individual', 'professional']"
-            @onInput="entity.type = $event"
+            @onInput="entity.customer_type = $event"
             name="customer-type"
             placeholder="Customer Type"
             title="Customer Type"
-            :value="entity.type"
+            :value="entity.customer_type"
         >
         </DropdownInput>
 
         <div id="name">
             <TextInput
-                :isEditable="isEditionMode"
-                @onInput="entity.firstName = $event"
+                :isDisabled="!isEditionMode"
+                @onInput="entity.firstname = $event"
                 name="firstname"
                 placeholder="FirstName"
                 title="FirstName"
-                v-model="entity.firstName"
+                v-model="entity.firstname"
             >
             </TextInput>
 
             <TextInput
-                :isEditable="isEditionMode"
-                @onInput="entity.lastName = $event"
+                :isDisabled="!isEditionMode"
+                @onInput="entity.lastname = $event"
                 name="lastname"
                 placeholder="LastName"
                 title="LastName"
-                v-model="entity.lastName"
+                v-model="entity.lastname"
             >
             </TextInput>
         </div>
@@ -57,7 +57,7 @@
             class="filed"
             icon="arrow_icon_blue"
             title="Click on it to view his card"
-            v-for="(contact, index) in entity.contacts"
+            v-for="(contact, index) in contacts"
         ></TextFiledSCT>
 
         <p class="title">Notes</p>
@@ -65,7 +65,7 @@
         <!-- TODO: replace it by text area -->
 
         <TextInput
-            :isEditable="isEditionMode"
+            :isDisabled="!isEditionMode"
             @onInput="entity.notes = $event"
             name="notes"
             placeholder="Notes"
@@ -105,6 +105,7 @@ import TextInput from "./Fileds/Themed/Inputs/TextInput";
 import TextFiledSCT from "./Fileds/Themed/Display/TextFiled";
 import DropdownInput from "./Fileds/Themed/Inputs/DropdownInput";
 import BtnIcon from "./Buttons/BtnIcon";
+import { mapActions } from "vuex";
 
 export default {
     name: "CustomerCard",
@@ -116,40 +117,51 @@ export default {
     },
     data() {
         return {
-            isEditionMode: false,
-            entity: {
-                status: "prospect",
-                type: "professional",
-                firstName: "John",
-                lastName: "Doe",
-                contacts: [
-                    {
-                        id: 1,
-                        type: "individual",
-                        firstName: "John",
-                        lastName: "Doe",
-                        notes: "Here's some notes"
-                    },
-                    {
-                        id: 2,
-                        type: "professional",
-                        firstName: "Jan",
-                        lastName: "Doe",
-                        notes: "Silence is golden"
-                    }
-                ]
-            }
+            isEditionMode: false
         };
     },
+    props: {
+        customerId: Number
+    },
+    computed: {
+        entity() {
+            return this.$store.getters.getCustomerByID(this.customerId);
+        },
+        contacts() {
+            return this.getContacts(this.customerId);
+        }
+    },
     methods: {
+        ...mapActions({ getContacts: "getContacts", saveCustomer: "saveCustomer" }),
         displayContact: function(contact_id) {
             this.$emit("displayContact", contact_id);
         },
         toggleMode: function() {
             this.isEditionMode = !this.isEditionMode;
+            if (this.isEditionMode) this.save();
         },
         contactFullname: function(contactObj) {
-            return `${contactObj.firstName} ${contactObj.lastName}`;
+            return `${contactObj.firstname} ${contactObj.lastname}`;
+        },
+        save() {
+            this.saveCustomer({
+                id: this.entity.id,
+                customer_type: "",
+                status: "",
+                meeting_date: "",
+                company_name: "",
+                siret: "",
+                tva_number: "",
+                firstname: "",
+                lastname: "",
+                street_number: "",
+                street_name: "",
+                zipcode: "",
+                city: "",
+                note: "",
+                default_payment_method: "",
+                company: ""
+            });
         }
     }
 };

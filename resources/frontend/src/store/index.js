@@ -23,8 +23,10 @@ export default new Vuex.Store({
             notes: null,
             companies: null
         },
-        customers: {},
-        writings: {},
+        company: null,
+        customers: null,
+        contacts: null,
+        writings: null,
         receipts: [
             {
                 id: 0,
@@ -321,6 +323,8 @@ export default new Vuex.Store({
             };
         },
         getToken: state => state.user.token,
+        getCustomerByID: state => customer_id =>
+            state.customers.find(customer => customer.id === customer_id),
         getReceiptByID: state => receipt_id =>
             state.receipts.find(receipt => receipt.id === receipt_id)
         // console.log("entered in vuex");
@@ -358,9 +362,19 @@ export default new Vuex.Store({
             state.user.firstname = userData.firstname || null;
             state.user.lastname = userData.lastname || null;
             state.user.email = userData.email || null;
+            state.user.gender = userData.gender || null;
             state.user.phone = userData.phone || null;
             state.user.notes = userData.notes || null;
             state.user.companies = userData.companies || null;
+        },
+        SET_CUSTOMERS(state, data) {
+            state.customers = data;
+        },
+        SET_CONTACTS(state, data) {
+            state.contacts = data;
+        },
+        SET_COMPANY(state, data) {
+            state.company = data;
         }
     },
     actions: {
@@ -384,7 +398,13 @@ export default new Vuex.Store({
                     .then(response => {
                         if (response.status === 200) {
                             const token = response.data.token;
+                            // Add check on commit
                             commit("SET_TOKEN", token);
+                            axios.defaults.headers.common = {
+                                "Content-Type": "application/json",
+                                Accept: "application/json",
+                                Authorization: `Bearer ${token}`
+                            };
                             dispatch("fetchUser", token);
 
                             resolve(true);
@@ -399,15 +419,9 @@ export default new Vuex.Store({
                     });
             });
         },
-        async fetchUser({ commit, state }) {
+        async fetchUser({ commit, state, dispatch }) {
             axios
-                .get("/api/me", {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Accept: "application/json",
-                        Authorization: `Bearer ${state.user.token}`
-                    }
-                })
+                .get("/api/me")
                 .then(data => {
                     if (data.message) {
                         console.error(
@@ -416,6 +430,125 @@ export default new Vuex.Store({
                         );
                     }
                     commit("SET_USER", data.data);
+                    console.log("company id: " + state.user.companies);
+                    dispatch("fetchCompany");
+                    dispatch("fetchCustomers");
+                    // dispatch("fetchQuotes");
+                    dispatch("fetchInvoices");
+                })
+                .catch(reason => {
+                    console.error(reason);
+                });
+        },
+        async fetchCompany({ commit }) {
+            axios
+                .get("/api/company")
+                .then(data => {
+                    if (data.message) {
+                        console.error(
+                            "An error has occurred while fetching customers data : ",
+                            data.message
+                        );
+                    }
+                    commit("SET_COMPANY", data.data);
+                })
+                .catch(reason => {
+                    console.error(reason);
+                });
+        },
+        async fetchCustomers({ commit, state }) {
+            axios
+                .post("/api/customers", { id_company: state.user.companies })
+                .then(data => {
+                    if (data.message) {
+                        console.error(
+                            "An error has occurred while fetching customers data : ",
+                            data.message
+                        );
+                    }
+                    commit("SET_CUSTOMERS", data.data["cust"]);
+                })
+                .catch(reason => {
+                    console.error(reason);
+                });
+        },
+        getContacts({ state }, id_customer) {
+            axios.defaults.headers.common = {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                Authorization: `Bearer ${state.user.token}`
+            };
+            axios
+                .post("/api/contact", { id_customer: id_customer })
+                .then(data => {
+                    if (data.message) {
+                        console.error(
+                            "An error has occurred while fetching contacts data : ",
+                            data.message
+                        );
+                    }
+                    return data.data;
+                })
+                .catch(reason => {
+                    console.error(reason);
+                });
+        },
+        saveCustomer({dispatch}, customerObj) {
+            axios.defaults.headers.common = {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                Authorization: `Bearer ${state.user.token}`
+            };
+            axios
+                .post("/api/updateCustomer", customerObj)
+                .then(data => {
+                    if (data.message) {
+                        console.error(
+                            "An error has occurred while fetching contacts data : ",
+                            data.message
+                        );
+                    }
+                    dispatch("fetchCustomers");
+                    return true;
+                })
+                .catch(reason => {
+                    console.error(reason);
+                });
+        },
+        // TODO: FIX: Waiting API fix : route return an empty array on get & post doesn't work
+        // async fetchQuotes({ commit, state }) {
+        //     axios
+        //         .post("/api/allQuote", {
+        //             headers: {
+        //                 "Content-Type": "application/json",
+        //                 Accept: "application/json",
+        //                 Authorization: `Bearer ${state.user.token}`
+        //             }
+        //         })
+        //         .then(data => {
+        //             if (data.message) {
+        //                 console.error(
+        //                     "An error has occurred while fetching customers data : ",
+        //                     data.message
+        //                 );
+        //             }
+        //             commit("SET_CUSTOMERS", data.data);
+        //         })
+        //         .catch(reason => {
+        //             console.error(reason);
+        //         });
+        // }
+        async fetchInvoices({ commit }) {
+            axios
+                .get("/api/allInvoice" )
+                .then(data => {
+                    if (data.message) {
+                        console.error(
+                            "An error has occurred while fetching contacts data : ",
+                            data.message
+                        );
+                    }
+                    commit("SET_CONTACTS", data.data.invoices);
                 })
                 .catch(reason => {
                     console.error(reason);

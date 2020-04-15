@@ -2,7 +2,10 @@
     <div id="prospect-list">
         <div id="panel-1">
             <SearchForm id="Search-form"></SearchForm>
-            <CustomersTable></CustomersTable>
+            <CustomersTable
+                :data="this.$store.state.customers"
+                statusFilter="prospect"
+            ></CustomersTable>
         </div>
         <div id="panel-2">
             <div id="panel-2__container">

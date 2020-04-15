@@ -15,7 +15,7 @@ class CreateTableEntreprise extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('legal_form', ['Micro-entreprise', 'SA', 'SAS', 'SARL', 'AE', 'EI', 'EIRL', 'EURL', 'SASU']);
+            $table->enum('legal_form', ['AE_FR','EI_FR','EIRL_FR','EURL_FR','SA_FR','SAS_FR','SASU_FR','SARL_FR']);
             $table->string('name');
             $table->integer('siret')->nullable();
             $table->string('email');
@@ -31,7 +31,7 @@ class CreateTableEntreprise extends Migration
             $table->smallInteger('default_revive_delay_in_days')->nullable();
             $table->smallInteger('default_payment_delay_in_days')->nullable();
             $table->string('default_payment_terms')->nullable();
-            $table->enum('default_payment_method', ['credit_cardbank_transfer', 'bank_check', 'cash', 'multiple->$this->nullable()'])->nullable();
+            $table->enum('default_payment_method', ['credit_card','bank_transfer', 'bank_check', 'cash', 'multiple'])->nullable();
             $table->integer('default_down_payment_percentage')->nullable();
             $table->smallInteger('default_quote_validity_delay_in_days')->nullable();
             $table->string('default_quote_accepting_conditions')->nullable();
