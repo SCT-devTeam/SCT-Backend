@@ -52,7 +52,7 @@ export default {
             if (this.viewDisplayed === "Quotes")
                 return this.$store.getters.getQuotes;
             else if (this.viewDisplayed === "Invoices")
-                return this.$store.getters.getInvoicies;
+                return this.$store.getters.getInvoices;
             else
                 console.error("An error has occur ed while trying to set data");
             return null;
