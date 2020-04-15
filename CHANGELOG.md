@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Implement ignored API routes
 - Implement QR Code generation for mobile connexion
 - Create API tests
+- Add more errors on bad api call (like a GET on POST method, return "method unavailable")
 
 ### Changed
 
