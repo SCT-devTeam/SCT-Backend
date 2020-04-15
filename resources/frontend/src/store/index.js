@@ -31,7 +31,7 @@ export default new Vuex.Store({
                 id: 0,
                 date: "01/01/2020",
                 customer_id: "Customer id to get his name",
-                company_id: null,
+                company_id: 1,
                 status: "paid",
                 items: [
                     {
@@ -66,8 +66,8 @@ export default new Vuex.Store({
                 id: 0,
                 date: "01/01/2020",
                 customer_id: "Customer id to get his name",
-                company_id: null,
-                status: "paid",
+                company_id: 1,
+                status: "draft",
                 items: [
                     {
                         id: 0,
@@ -500,7 +500,7 @@ export default new Vuex.Store({
                     });
             });
         },
-        async fetchUser({ commit, state, dispatch }) {
+        async fetchUser({ commit, dispatch }) {
             axios
                 .get("/api/me")
                 .then(data => {
@@ -514,7 +514,7 @@ export default new Vuex.Store({
                     dispatch("fetchCompany");
                     dispatch("fetchCustomers");
                     // dispatch("fetchQuotes");
-                    dispatch("fetchInvoices");
+                    // dispatch("fetchInvoices");
                 })
                 .catch(reason => {
                     console.error(reason);
@@ -573,7 +573,7 @@ export default new Vuex.Store({
                     console.error(reason);
                 });
         },
-        saveCustomer({ dispatch }, customerObj) {
+        saveCustomer({ state, dispatch }, customerObj) {
             axios.defaults.headers.common = {
                 "Content-Type": "application/json",
                 Accept: "application/json",
