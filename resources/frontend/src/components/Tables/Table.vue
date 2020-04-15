@@ -21,7 +21,7 @@
                     :style="{ flex: columnSize(index) }"
                     v-for="(column, index) in itemColumns(item)"
                 >
-                    {{ column }}
+                    {{ column.value }}
                 </p>
             </span>
         </div>
@@ -75,15 +75,30 @@ export default {
         },
         itemColumns(item) {
             let itemColumn = [];
+            let returnedValues = [];
 
             // For each property of the item
             for (const property in item) {
                 // Check if this property is mappable with a column
                 for (const propertyToBind in this.dataPropertyMapping) {
                     if (property === propertyToBind)
-                        itemColumn.push(item[property]);
+                        itemColumn.push({
+                            name: this.dataPropertyMapping[propertyToBind],
+                            value: item[property]
+                        });
                 }
             }
+
+            this.columns.forEach(col => {
+                let found = false;
+                itemColumn = itemColumn.filter(item => {
+                    if (!found && item.name === col.name) {
+                        returnedValues.push(item);
+                        found = true;
+                        return false;
+                    } else return true;
+                });
+            });
 
             if (
                 Object.prototype.hasOwnProperty.call(
@@ -96,10 +111,13 @@ export default {
                 item[this.dataPropertyMapping.amount[0]].forEach(item => {
                     amount += item[this.dataPropertyMapping.amount[1]];
                 });
-                itemColumn.push(amount);
+                returnedValues.push({
+                    name: "Amount",
+                    value: amount
+                });
             }
 
-            return itemColumn;
+            return returnedValues;
         }
     }
 };
