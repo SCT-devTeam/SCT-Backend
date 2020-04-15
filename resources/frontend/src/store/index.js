@@ -65,7 +65,7 @@ export default new Vuex.Store({
             {
                 id: 0,
                 date: "01/01/2020",
-                customer_id: "Customer id to get his name",
+                customer_id: 28,
                 company_id: 1,
                 status: "draft",
                 items: [
