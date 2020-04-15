@@ -448,30 +448,16 @@ export default new Vuex.Store({
         loginUser({ commit, dispatch }, { email, password }) {
             return new Promise((resolve, reject) => {
                 axios
-                    .post(
-                        "/api/airlock/login",
-                        {
-                            email: email,
-                            password: password,
-                            device_name: "Navigator"
-                        },
-                        {
-                            headers: {
-                                "Content-Type": "application/json",
-                                Accept: "application/json"
-                            }
-                        }
-                    )
+                    .post("/api/airlock/login", {
+                        email: email,
+                        password: password,
+                        device_name: "Navigator"
+                    })
                     .then(response => {
                         if (response.status === 200) {
                             const token = response.data.token;
                             // Add check on commit
                             commit("SET_TOKEN", token);
-                            axios.defaults.headers.common = {
-                                "Content-Type": "application/json",
-                                Accept: "application/json",
-                                Authorization: `Bearer ${token}`
-                            };
                             dispatch("fetchUser", token);
 
                             resolve(true);
@@ -486,9 +472,13 @@ export default new Vuex.Store({
                     });
             });
         },
-        async fetchUser({ commit, dispatch }) {
+        async fetchUser({ getter, commit, dispatch }) {
             axios
-                .get("/api/me")
+                .get("/api/me", {
+                    headers: {
+                        Authorization: getter.token
+                    }
+                })
                 .then(data => {
                     if (data.message) {
                         console.error(
@@ -506,9 +496,13 @@ export default new Vuex.Store({
                     console.error(reason);
                 });
         },
-        async fetchCompanies({ commit }) {
+        async fetchCompanies({ getter, commit }) {
             axios
-                .get("/api/company")
+                .get("/api/company", {
+                    headers: {
+                        Authorization: getter.token
+                    }
+                })
                 .then(data => {
                     if (data.message) {
                         console.error(
@@ -522,9 +516,17 @@ export default new Vuex.Store({
                     console.error(reason);
                 });
         },
-        async fetchCustomers({ commit, state }) {
+        async fetchCustomers({ getter, commit, state }) {
             axios
-                .post("/api/customers", { id_company: state.user.companies })
+                .post(
+                    "/api/customers",
+                    { id_company: state.user.companies },
+                    {
+                        headers: {
+                            Authorization: getter.token
+                        }
+                    }
+                )
                 .then(data => {
                     if (data.message) {
                         console.error(
@@ -538,14 +540,17 @@ export default new Vuex.Store({
                     console.error(reason);
                 });
         },
-        getContacts({ state }, id_customer) {
-            axios.defaults.headers.common = {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-                Authorization: `Bearer ${state.user.token}`
-            };
+        getContacts({ getter }, id_customer) {
             axios
-                .post("/api/contact", { id_customer: id_customer })
+                .post(
+                    "/api/contact",
+                    { id_customer: id_customer },
+                    {
+                        headers: {
+                            Authorization: getter.token
+                        }
+                    }
+                )
                 .then(data => {
                     if (data.message) {
                         console.error(
@@ -559,14 +564,13 @@ export default new Vuex.Store({
                     console.error(reason);
                 });
         },
-        saveCustomer({ state, dispatch }, customerObj) {
-            axios.defaults.headers.common = {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-                Authorization: `Bearer ${state.user.token}`
-            };
+        saveCustomer({ getter, dispatch }, customerObj) {
             axios
-                .post("/api/updateCustomer", customerObj)
+                .post("/api/updateCustomer", customerObj, {
+                    headers: {
+                        Authorization: getter.token
+                    }
+                })
                 .then(data => {
                     if (data.message) {
                         console.error(
@@ -582,32 +586,38 @@ export default new Vuex.Store({
                 });
         },
         // TODO: FIX: Waiting API fix : route return an empty array on get & post doesn't work
-        // async fetchQuotes({ commit, state }) {
-        //     axios
-        //         .post("/api/allQuote", {
-        //             headers: {
-        //                 "Content-Type": "application/json",
-        //                 Accept: "application/json",
-        //                 Authorization: `Bearer ${state.user.token}`
-        //             }
-        //         })
-        //         .then(data => {
-        //             if (data.message) {
-        //                 console.error(
-        //                     "An error has occurred while fetching customers data : ",
-        //                     data.message
-        //                 );
-        //             }
-        //             commit("SET_CUSTOMERS", data.data);
-        //         })
-        //         .catch(reason => {
-        //             console.error(reason);
-        //         });
-        // }
-        async fetchInvoices({ commit }) {
+        async fetchQuotes({ getter, commit }) {
+            axios
+                .post(
+                    "/api/allQuote",
+                    {},
+                    {
+                        headers: {
+                            Authorization: getter.token
+                        }
+                    }
+                )
+                .then(data => {
+                    if (data.message) {
+                        console.error(
+                            "An error has occurred while fetching customers data : ",
+                            data.message
+                        );
+                    }
+                    commit("SET_CUSTOMERS", data.data);
+                })
+                .catch(reason => {
+                    console.error(reason);
+                });
+        },
+        async fetchInvoices({ getter, commit }) {
             // TODO: FIX: routes doesn't work !
             axios
-                .get("/api/allInvoice")
+                .get("/api/allInvoice", {
+                    headers: {
+                        Authorization: getter.token
+                    }
+                })
                 .then(data => {
                     if (data.message) {
                         console.error(
@@ -619,6 +629,31 @@ export default new Vuex.Store({
                 })
                 .catch(reason => {
                     console.error(reason);
+                });
+        },
+        async updateQuote({ getter, dispatch }, quote) {
+            axios
+                .post(
+                    "/api/updateQuote",
+                    {},
+                    {
+                        headers: {
+                            Authorization: getter.token
+                        }
+                    }
+                )
+                .then(data => {
+                    if (data.message) {
+                        console.error(
+                            `An error has occurred while updating quote n°${quote.id} data : ${data.message}`
+                        );
+                    }
+                    dispatch("fetchQuotes");
+                })
+                .catch(reason => {
+                    console.error(
+                        `An error has occurred while updating quote n°${quote.id} data : ${reason}`
+                    );
                 });
         }
     },
