@@ -28,7 +28,7 @@ class CreateTableClient extends Migration
             $table->integer('zipcode')->nullable();
             $table->string('city')->nullable();
             $table->string('note', 300)->nullable();
-            $table->enum('default_payment_method', ['credit_cardbank_transfer', 'bank_check', 'cash', 'multiple'])->nullable();
+            $table->enum('default_payment_method', ['credit_card','bank_transfer', 'bank_check', 'cash', 'multiple'])->nullable();
             $table->unsignedBigInteger('company');
 
 

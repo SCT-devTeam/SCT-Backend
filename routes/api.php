@@ -24,14 +24,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('logout', 'API\AuthController@logout');
     Route::post('/register', 'AuthController@register');
 
+    Route::get('/company', 'CompanyController@selectCompany');
+    Route::post('/createCompany', 'CompanyController@create');
+    //Route::post('/deleteCompany', 'CompanyController@delete');
+
     Route::post('/customers', 'CustomerController@getCustomerAll');
     Route::post('/createCustomer', 'CustomerController@create');
     Route::post('/deleteCustomer', 'CustomerController@delete');
     Route::post('/updateCustomer', 'CustomerController@update');
-
-    Route::get('/company', 'CompanyController@selectCompany');
-    Route::post('/createCompany', 'CompanyController@create');
-    Route::post('/deleteCompany', 'CompanyController@delete');
 
     Route::post('/createContact', 'ContactController@create');
     Route::post('/contact', 'ContactController@getContact');
@@ -42,11 +42,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/createInvoice', 'InvoiceController@create');
     Route::post('/updateInvoice', 'InvoiceController@update');
     Route::post('/deleteInvoice', 'InvoiceController@delete');
+    Route::get('/allInvoice', 'InvoiceController@getAllInvoice');
 
     Route::post('/quote', 'QuoteController@getquote');
     Route::post('/createQuote', 'QuoteController@create');
     Route::post('/updateQuote', 'QuoteController@update');
     Route::post('/deleteQuote', 'QuoteController@delete');
+    Route::get('/allQuote', 'QuoteController@getAllQuote');
 
 });
 

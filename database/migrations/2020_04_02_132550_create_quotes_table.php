@@ -22,7 +22,7 @@ class CreateQuotesTable extends Migration
             $table->smallInteger('validity_delay_in_days')->nullable();
             $table->smallInteger('payment_delay_in_days')->nullable();
             $table->string('payment_terms')->nullable();
-            $table->enum('payment_method', ['credit_cardbank_transfer', 'bank_check', 'cash', 'multiple'])->nullable();
+            $table->enum('payment_method', ['credit_card','bank_transfer', 'bank_check', 'cash', 'multiple'])->nullable();
             $table->integer('down_payment_percentage')->nullable();
             $table->string('notice')->nullable();
             $table->string('accepting_conditions')->nullable();
