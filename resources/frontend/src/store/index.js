@@ -530,7 +530,7 @@ export default new Vuex.Store({
                             data.message
                         );
                     }
-                    commit("SET_COMPANY", data.data);
+                    commit("SET_COMPANY", data.data.comp[0]);
                 })
                 .catch(reason => {
                     console.error(reason);
