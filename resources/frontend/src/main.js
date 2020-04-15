@@ -16,6 +16,13 @@ if (typeof baseURL !== "undefined") {
     Vue.axios.defaults.baseURL = baseURL;
 }
 
+let headers = {
+    "Content-Type": "application/json",
+    Accept: "application/json"
+};
+
+Vue.axios.defaults.headers.common = headers;
+
 Vue.config.productionTip = false;
 
 // TODO: export the snippet to a separated file
