@@ -53,10 +53,10 @@
                 >
                     <option
                         :key="index"
-                        :value="option"
+                        :value="option.value"
                         v-for="(option, index) in options"
                     >
-                        {{ option }}
+                        {{ option.name }}
                     </option>
                 </select>
             </div>
@@ -116,8 +116,28 @@ export default {
     },
     props: {
         options: {
-            type: Array,
-            required: true
+            type: Array[Object],
+            required: true,
+            validator: function(value) {
+                if (!Array.isArray(value)) {
+                    return false;
+                }
+
+                for (const objIndex in value) {
+                    if (
+                        // eslint-disable-next-line
+                        !Object.prototype.hasOwnProperty.call(value[objIndex], "name") ||
+                        // eslint-disable-next-line
+                        !Object.prototype.hasOwnProperty.call(value[objIndex], "value")
+                    ) {
+                        // TODO: return validation error explanation
+
+                        return false;
+                    }
+                }
+
+                return true;
+            }
         }
     }
 };
