@@ -26,6 +26,7 @@
         ></TableSCT>
         <Writing
             :writingId="writingEditIdforModal"
+            :writingType="viewDisplayed.toLowerCase()"
             @close="writingEditIdforModal = null"
             v-if="writingEditIdforModal != null"
         ></Writing>
