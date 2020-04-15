@@ -26,7 +26,8 @@ export default new Vuex.Store({
         company: null,
         customers: null,
         contacts: null,
-        writings: null,
+        quotes: null,
+        invoices: null,
         receipts: [
             {
                 id: 0,
@@ -327,6 +328,8 @@ export default new Vuex.Store({
             state.customers.filter(customer => customer.status === "prospect"),
         getCustomers: state =>
             state.customers.filter(customer => customer.status !== "prospect"),
+        getQuotes: state => state.quotes,
+        getInvoices: state => state.invoices,
         getCustomerByID: state => customer_id =>
             state.customers.find(customer => customer.id === customer_id),
         getReceiptByID: state => receipt_id =>
@@ -379,6 +382,12 @@ export default new Vuex.Store({
         },
         SET_COMPANY(state, data) {
             state.company = data;
+        },
+        SET_QUOTES(state, data) {
+            state.quotes = data;
+        },
+        SET_INVOICES(state, data) {
+            state.invoices = data;
         }
     },
     actions: {
@@ -497,7 +506,7 @@ export default new Vuex.Store({
                     console.error(reason);
                 });
         },
-        saveCustomer({dispatch}, customerObj) {
+        saveCustomer({ dispatch }, customerObj) {
             axios.defaults.headers.common = {
                 "Content-Type": "application/json",
                 Accept: "application/json",
@@ -543,8 +552,9 @@ export default new Vuex.Store({
         //         });
         // }
         async fetchInvoices({ commit }) {
+            // TODO: FIX: routes doesn't work !
             axios
-                .get("/api/allInvoice" )
+                .get("/api/allInvoice")
                 .then(data => {
                     if (data.message) {
                         console.error(
@@ -552,7 +562,7 @@ export default new Vuex.Store({
                             data.message
                         );
                     }
-                    commit("SET_CONTACTS", data.data.invoices);
+                    commit("SET_INVOICES", data.data.invoices);
                 })
                 .catch(reason => {
                     console.error(reason);
