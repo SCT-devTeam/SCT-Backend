@@ -30,7 +30,7 @@ import CustomerProfileCard from "../../components/CustomerProfileCard";
 import ContactProfileCard from "../../components/ContactProfileCard";
 
 export default {
-    name: "PustomersList",
+    name: "CustomersList",
     components: {
         SearchForm,
         CustomersTable,
