@@ -87,6 +87,223 @@ export default new Vuex.Store({
                         price: 0.75
                     }
                 ]
+            },
+            {
+                id: 2,
+                date: "15/03/2020",
+                company: "Company",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
+            },
+            {
+                id: 3,
+                date: "15/03/2020",
+                company: "Company",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
+            },
+            {
+                id: 4,
+                date: "15/03/2020",
+                company: "Company",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
+            },
+            {
+                id: 5,
+                date: "15/03/2020",
+                company: "Company",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
+            },
+            {
+                id: 6,
+                date: "15/03/2020",
+                company: "Company",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
+            },
+            {
+                id: 7,
+                date: "15/03/2020",
+                company: "Company",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
+            },
+            {
+                id: 8,
+                date: "15/03/2020",
+                company: "Company",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
             }
         ]
     },
