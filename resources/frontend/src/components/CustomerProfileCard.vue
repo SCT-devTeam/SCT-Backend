@@ -108,6 +108,7 @@ import BtnIcon from "./Buttons/BtnIcon";
 import { mapActions } from "vuex";
 
 export default {
+    // TODO: add v-if on all item, to only display the shape of the card when the component haven't any data
     name: "CustomerCard",
     components: {
         TextInput,
@@ -121,7 +122,10 @@ export default {
         };
     },
     props: {
-        customerId: Number
+        customerId: {
+            type: Number,
+            required: true
+        }
     },
     computed: {
         entity() {
