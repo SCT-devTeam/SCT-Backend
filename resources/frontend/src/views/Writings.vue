@@ -15,10 +15,10 @@
             ]"
             :data="data"
             :dataPropertyMapping="{
-                customer_type: 'Type',
-                lastname: 'Name',
-                street_name: 'Address',
-                status: 'Status'
+                date: 'Date',
+                customer_id: 'Customer',
+                status: 'Status',
+                amount: ['items', 'price']
             }"
             @itemClicked="selectedWriting = $event"
         ></TableSCT>
@@ -48,6 +48,7 @@ export default {
     },
     computed: {
         data() {
+            // TODO: reconstruct data by replacing customer_id by his fullname
             if (this.viewDisplayed === "Quotes")
                 return this.$store.getters.getQuotes;
             else if (this.viewDisplayed === "Invoices")
