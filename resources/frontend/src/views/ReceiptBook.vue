@@ -27,7 +27,7 @@
 <script>
 import SearchForm from "../components/Forms/SearchForm";
 import Receipt from "../components/modals/Receipt";
-import TableSCT from "../components/Tables/Table";
+import TableSCT from "../components/Tables/TableSCT";
 
 export default {
     name: "ReceiptBook",
