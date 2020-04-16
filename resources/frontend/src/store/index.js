@@ -741,17 +741,11 @@ export default new Vuex.Store({
                         // noinspection JSUnresolvedVariable
                         if (response.message) {
                             console.error(
-                                `An error has occurred while fetching user response : ${response.message}`
+                                "[vuex: loginUser] An error has occurred while fetching user"
                             );
                             reject(response.message);
-                        } else {
-                            console.error(
-                                `An error has occurred while login: ${response}`
-                            );
-                            reject(
-                                `An error has occurred, code: ${response.status}`
-                            );
                         }
+
                         commit("SET_USER", response.data);
 
                         resolve(true);
