@@ -707,8 +707,9 @@ export default new Vuex.Store({
                             const token = response.data.token;
                             // TODO: Add check on commit, if fail; throw an error
                             commit("SET_TOKEN", token);
-                            dispatch("fetchUser");
-                            dispatch("fetchData");
+                            dispatch("fetchUser").then(() => {
+                                dispatch("fetchData");
+                            });
 
                             resolve(true);
                         } else {
