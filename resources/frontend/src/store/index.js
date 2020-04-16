@@ -23,10 +23,79 @@ export default new Vuex.Store({
             notes: null,
             companies: null
         },
-        company: null,
+        companies: null,
         customers: null,
         contacts: null,
-        writings: null,
+        quotes: [
+            {
+                id: 0,
+                date: "01/01/2020",
+                customer_id: 28,
+                company_id: 22,
+                status: "paid",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
+            }
+        ],
+        invoices: [
+            {
+                id: 0,
+                date: "01/01/2020",
+                customer_id: 28,
+                company_id: 1,
+                status: "draft",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
+            }
+        ],
         receipts: [
             {
                 id: 0,
@@ -89,6 +158,223 @@ export default new Vuex.Store({
                         price: 0.75
                     }
                 ]
+            },
+            {
+                id: 2,
+                date: "15/03/2020",
+                company: "Company",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
+            },
+            {
+                id: 3,
+                date: "15/03/2020",
+                company: "Company",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
+            },
+            {
+                id: 4,
+                date: "15/03/2020",
+                company: "Company",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
+            },
+            {
+                id: 5,
+                date: "15/03/2020",
+                company: "Company",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
+            },
+            {
+                id: 6,
+                date: "15/03/2020",
+                company: "Company",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
+            },
+            {
+                id: 7,
+                date: "15/03/2020",
+                company: "Company",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
+            },
+            {
+                id: 8,
+                date: "15/03/2020",
+                company: "Company",
+                items: [
+                    {
+                        id: 0,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 10
+                    },
+                    {
+                        id: 1,
+                        label: "item 2",
+                        quantity: 1,
+                        price: 20
+                    },
+                    {
+                        id: 2,
+                        label: "item 3",
+                        quantity: 3,
+                        price: 15
+                    },
+                    {
+                        id: 3,
+                        label: "item 4",
+                        quantity: 2,
+                        price: 0.75
+                    }
+                ]
             }
         ]
     },
@@ -106,36 +392,28 @@ export default new Vuex.Store({
             };
         },
         getToken: state => state.user.token,
+        getProspects: state =>
+            state.customers.filter(customer => customer.status === "prospect"),
+        getCustomers: state =>
+            state.customers.filter(customer => customer.status !== "prospect"),
+        getActiveCustomers: state =>
+            state.customers.filter(
+                customer =>
+                    customer.status !== "prospect" &&
+                    customer.status !== "deleted"
+            ),
+        getQuotes: state => state.quotes,
+        getInvoices: state => state.invoices,
         getCustomerByID: state => customer_id =>
             state.customers.find(customer => customer.id === customer_id),
         getReceiptByID: state => receipt_id =>
-            state.receipts.find(receipt => receipt.id === receipt_id)
-        // console.log("entered in vuex");
-        //
-        // const receipts = state.receipts;
-        //
-        // receipts.forEach(receipt => {
-        //     console.log(receipt.id + ' ' + receipt_id);
-        //
-        //     if (receipt.id === receipt_id) {
-        //         console.log(receipt);
-        //         return receipt;
-        //     } else {
-        //         console.log("ERROR");
-        //         return null;
-        //     }
-        // });
-
-        // for (const receipt of receipts) {
-        //     console.log(receipt);
-        //     if (receipt.id === receipt_id) {
-        //         console.log(receipt);
-        //         return receipt;
-        //     } else {
-        //         console.log("ERROR");
-        //         return null;
-        //     }
-        // }
+            state.receipts.find(receipt => receipt.id === receipt_id),
+        getQuoteByID: state => quote_id =>
+            state.quotes.find(quote => quote.id === quote_id),
+        getInvoiceByID: state => invoice_id =>
+            state.invoices.find(invoice => invoice.id === invoice_id),
+        getCompanyByID: state => company_id =>
+            state.companies.find(company => company.id === company_id)
     },
     mutations: {
         SET_TOKEN(state, token) {
@@ -157,38 +435,30 @@ export default new Vuex.Store({
             state.contacts = data;
         },
         SET_COMPANY(state, data) {
-            state.company = data;
+            state.companies = data;
+        },
+        SET_QUOTES(state, data) {
+            state.quotes = data;
+        },
+        SET_INVOICES(state, data) {
+            state.invoices = data;
         }
     },
     actions: {
         loginUser({ commit, dispatch }, { email, password }) {
             return new Promise((resolve, reject) => {
                 axios
-                    .post(
-                        "/api/airlock/login",
-                        {
-                            email: email,
-                            password: password,
-                            device_name: "Navigator"
-                        },
-                        {
-                            headers: {
-                                "Content-Type": "application/json",
-                                Accept: "application/json"
-                            }
-                        }
-                    )
+                    .post("/api/airlock/login", {
+                        email: email,
+                        password: password,
+                        device_name: "Navigator"
+                    })
                     .then(response => {
                         if (response.status === 200) {
                             const token = response.data.token;
                             // Add check on commit
                             commit("SET_TOKEN", token);
-                            axios.defaults.headers.common = {
-                                "Content-Type": "application/json",
-                                Accept: "application/json",
-                                Authorization: `Bearer ${token}`
-                            };
-                            dispatch("fetchUser", token);
+                            // dispatch("fetchUser", token);
 
                             resolve(true);
                         } else {
@@ -202,140 +472,227 @@ export default new Vuex.Store({
                     });
             });
         },
-        async fetchUser({ commit, state, dispatch }) {
-            axios
-                .get("/api/me")
-                .then(data => {
-                    if (data.message) {
-                        console.error(
-                            "An error has occurred while fetching user data : ",
-                            data.message
-                        );
-                    }
-                    commit("SET_USER", data.data);
-                    console.log("company id: " + state.user.companies);
-                    dispatch("fetchCompany");
-                    dispatch("fetchCustomers");
-                    // dispatch("fetchQuotes");
-                    dispatch("fetchInvoices");
-                })
-                .catch(reason => {
-                    console.error(reason);
-                });
+        async fetchUser({ getter, commit, dispatch }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .get("/api/me", {
+                        headers: {
+                            Authorization: getter.token
+                        }
+                    })
+                    .then(data => {
+                        if (data.message) {
+                            console.error(
+                                "An error has occurred while fetching user data : ",
+                                data.message
+                            );
+                            reject(data.message);
+                        }
+                        commit("SET_USER", data.data);
+                        dispatch("fetchCompanies");
+                        dispatch("fetchCustomers");
+                        // dispatch("fetchQuotes");
+                        // dispatch("fetchInvoices");
+                        resolve(true);
+                    })
+                    .catch(reason => {
+                        console.error(reason);
+                        reject(reason);
+                    });
+            });
         },
-        async fetchCompany({ commit }) {
-            axios
-                .get("/api/company")
-                .then(data => {
-                    if (data.message) {
-                        console.error(
-                            "An error has occurred while fetching customers data : ",
-                            data.message
-                        );
-                    }
-                    commit("SET_COMPANY", data.data);
-                })
-                .catch(reason => {
-                    console.error(reason);
-                });
+        async fetchCompanies({ getter, commit }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .get("/api/company", {
+                        headers: {
+                            Authorization: getter.token
+                        }
+                    })
+                    .then(data => {
+                        if (data.message) {
+                            console.error(
+                                "An error has occurred while fetching customers data : ",
+
+                                data.message
+                            );
+                            reject(data.message);
+                        }
+                        commit("SET_COMPANY", data.data.comp);
+                        resolve(true);
+                    })
+                    .catch(reason => {
+                        console.error(reason);
+                        reject(reason);
+                    });
+            });
         },
-        async fetchCustomers({ commit, state }) {
-            axios
-                .post("/api/customers", { id_company: state.user.companies })
-                .then(data => {
-                    if (data.message) {
-                        console.error(
-                            "An error has occurred while fetching customers data : ",
-                            data.message
-                        );
-                    }
-                    commit("SET_CUSTOMERS", data.data["cust"]);
-                })
-                .catch(reason => {
-                    console.error(reason);
-                });
+        async fetchCustomers({ getter, commit, state }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post(
+                        "/api/customers",
+                        { id_company: state.user.companies },
+                        {
+                            headers: {
+                                Authorization: getter.token
+                            }
+                        }
+                    )
+                    .then(data => {
+                        if (data.message) {
+                            console.error(
+                                "An error has occurred while fetching customers data : ",
+                                data.message
+                            );
+                            reject(data.message);
+                        }
+                        commit("SET_CUSTOMERS", data.data["cust"]);
+                        resolve(true);
+                    })
+                    .catch(reason => {
+                        console.error(reason);
+                        reject(reason);
+                    });
+            });
         },
-        getContacts({ state }, id_customer) {
-            axios.defaults.headers.common = {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-                Authorization: `Bearer ${state.user.token}`
-            };
-            axios
-                .post("/api/contact", { id_customer: id_customer })
-                .then(data => {
-                    if (data.message) {
-                        console.error(
-                            "An error has occurred while fetching contacts data : ",
-                            data.message
-                        );
-                    }
-                    return data.data;
-                })
-                .catch(reason => {
-                    console.error(reason);
-                });
+        getContacts({ getter }, id_customer) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post(
+                        "/api/contact",
+                        { id_customer: id_customer },
+                        {
+                            headers: {
+                                Authorization: getter.token
+                            }
+                        }
+                    )
+                    .then(data => {
+                        if (data.message) {
+                            console.error(
+                                "An error has occurred while fetching contacts data : ",
+                                data.message
+                            );
+                            reject(data.message);
+                        }
+                        resolve(data.data);
+                    })
+                    .catch(reason => {
+                        console.error(reason);
+                        reject(reason);
+                    });
+            });
         },
-        saveCustomer({dispatch}, customerObj) {
-            axios.defaults.headers.common = {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-                Authorization: `Bearer ${state.user.token}`
-            };
-            axios
-                .post("/api/updateCustomer", customerObj)
-                .then(data => {
-                    if (data.message) {
-                        console.error(
-                            "An error has occurred while fetching contacts data : ",
-                            data.message
-                        );
-                    }
-                    dispatch("fetchCustomers");
-                    return true;
-                })
-                .catch(reason => {
-                    console.error(reason);
-                });
+        saveCustomer({ getter, dispatch }, customerObj) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/updateCustomer", customerObj, {
+                        headers: {
+                            Authorization: getter.token
+                        }
+                    })
+                    .then(data => {
+                        if (data.message) {
+                            console.error(
+                                "An error has occurred while fetching contacts data : ",
+                                data.message
+                            );
+                            reject(data.message);
+                        }
+                        dispatch("fetchCustomers");
+                        resolve(true);
+                    })
+                    .catch(reason => {
+                        console.error(reason);
+                        reject(reason);
+                    });
+            });
         },
         // TODO: FIX: Waiting API fix : route return an empty array on get & post doesn't work
-        // async fetchQuotes({ commit, state }) {
-        //     axios
-        //         .post("/api/allQuote", {
-        //             headers: {
-        //                 "Content-Type": "application/json",
-        //                 Accept: "application/json",
-        //                 Authorization: `Bearer ${state.user.token}`
-        //             }
-        //         })
-        //         .then(data => {
-        //             if (data.message) {
-        //                 console.error(
-        //                     "An error has occurred while fetching customers data : ",
-        //                     data.message
-        //                 );
-        //             }
-        //             commit("SET_CUSTOMERS", data.data);
-        //         })
-        //         .catch(reason => {
-        //             console.error(reason);
-        //         });
-        // }
-        async fetchInvoices({ commit }) {
-            axios
-                .get("/api/allInvoice" )
-                .then(data => {
-                    if (data.message) {
+        async fetchQuotes({ getter, commit }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post(
+                        "/api/allQuote",
+                        {},
+                        {
+                            headers: {
+                                Authorization: getter.token
+                            }
+                        }
+                    )
+                    .then(data => {
+                        if (data.message) {
+                            console.error(
+                                "An error has occurred while fetching customers data : ",
+                                data.message
+                            );
+                            reject(data.message);
+                        }
+                        commit("SET_CUSTOMERS", data.data);
+                        resolve(true);
+                    })
+                    .catch(reason => {
+                        console.error(reason);
+                        reject(reason);
+                    });
+            });
+        },
+        async fetchInvoices({ getter, commit }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .get("/api/allInvoice", {
+                        headers: {
+                            Authorization: getter.token
+                        }
+                    })
+                    .then(data => {
+                        if (data.message) {
+                            console.error(
+                                "An error has occurred while fetching contacts data : ",
+                                data.message
+                            );
+                            reject(data.message);
+                        }
+                        commit("SET_INVOICES", data.data.invoices);
+                        resolve(true);
+                    })
+                    .catch(reason => {
+                        console.error(reason);
+                        reject(reason);
+                    });
+            });
+        },
+        async updateQuote({ getter, dispatch }, quote) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post(
+                        "/api/updateQuote",
+                        {},
+                        {
+                            headers: {
+                                Authorization: getter.token
+                            }
+                        }
+                    )
+                    .then(data => {
+                        if (data.message) {
+                            console.error(
+                                `An error has occurred while updating quote n°${quote.id} data : ${data.message}`
+                            );
+                            reject(data.message);
+                        }
+                        dispatch("fetchQuotes");
+                        resolve(true);
+                    })
+                    .catch(reason => {
                         console.error(
-                            "An error has occurred while fetching contacts data : ",
-                            data.message
+                            `An error has occurred while updating quote n°${quote.id} data : ${reason}`
                         );
-                    }
-                    commit("SET_CONTACTS", data.data.invoices);
-                })
-                .catch(reason => {
-                    console.error(reason);
-                });
+                        reject(reason);
+                    });
+            });
         }
     },
     modules: {},
