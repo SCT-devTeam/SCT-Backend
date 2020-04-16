@@ -693,6 +693,7 @@ export default new Vuex.Store({
         }
     },
     actions: {
+        // TODO: set name to requests (for network tab in devtools)
         loginUser({ commit, dispatch }, { email, password }) {
             return new Promise((resolve, reject) => {
                 axios
