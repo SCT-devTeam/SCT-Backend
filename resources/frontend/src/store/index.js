@@ -322,7 +322,7 @@ export default new Vuex.Store({
                         }
                     })
                     .catch(error => {
-                        console.error(error);
+                        console.error(`[vuex: loginUser] ${error}`);
                         reject(error);
                     });
             });
@@ -333,8 +333,10 @@ export default new Vuex.Store({
             dispatch("fetchCustomers");
             dispatch("fetchQuotes");
             dispatch("fetchInvoices");
+            // TODO: add a fetching indicator
             // TODO: add fetchReceipts
         },
+
         fetchUser({ commit }) {
             return new Promise((resolve, reject) => {
                 axios
@@ -354,11 +356,12 @@ export default new Vuex.Store({
                         resolve(true);
                     })
                     .catch(reason => {
-                        console.error(reason);
+                        console.error(`[vuex: loginUser] ${reason}`);
                         reject(reason);
                     });
             });
         },
+
         fetchCompanies({ commit }) {
             return new Promise((resolve, reject) => {
                 axios
@@ -367,7 +370,7 @@ export default new Vuex.Store({
                         // noinspection JSUnresolvedVariable
                         if (response.message) {
                             console.error(
-                                "[vuex: loginUser] An error has occurred while fetching user"
+                                "[vuex: fetchCompanies] An error has occurred while fetching companies"
                             );
                             reject(response.message);
                         }
@@ -375,11 +378,12 @@ export default new Vuex.Store({
                         resolve(true);
                     })
                     .catch(reason => {
-                        console.error(reason);
+                        console.error(`[vuex: fetchCompanies]${reason}`);
                         reject(reason);
                     });
             });
         },
+
         fetchCustomers({ commit, state }) {
             return new Promise((resolve, reject) => {
                 axios
@@ -390,37 +394,15 @@ export default new Vuex.Store({
                         // noinspection JSUnresolvedVariable
                         if (response.message) {
                             console.error(
-                                "An error has occurred while fetching customers response : ",
-                                response.message
+                                `[vuex: fetchCustomers] An error has occurred while fetching customers ${response.message}`
                             );
                             reject(response.message);
                         }
-                        commit("SET_CUSTOMERS", response.data["cust"]);
+                        commit("SET_CUSTOMERS", response.data);
                         resolve(true);
                     })
                     .catch(reason => {
-                        console.error(reason);
-                        reject(reason);
-                    });
-            });
-        },
-        getContacts(_, id_customer) {
-            return new Promise((resolve, reject) => {
-                axios
-                    .post("/api/contact", { id_customer: id_customer })
-                    .then(response => {
-                        // noinspection JSUnresolvedVariable
-                        if (response.message) {
-                            console.error(
-                                "An error has occurred while fetching contacts response : ",
-                                response.message
-                            );
-                            reject(response.message);
-                        }
-                        resolve(response.data);
-                    })
-                    .catch(reason => {
-                        console.error(reason);
+                        console.error(`[vuex: fetchCustomers] ${reason}`);
                         reject(reason);
                     });
             });
@@ -433,8 +415,7 @@ export default new Vuex.Store({
                         // noinspection JSUnresolvedVariable
                         if (response.message) {
                             console.error(
-                                "An error has occurred while fetching contacts data : ",
-                                response.message
+                                `[vuex: saveCustomer] An error has occurred while send customer : ${response.message}`
                             );
                             reject(response.message);
                         }
@@ -442,12 +423,34 @@ export default new Vuex.Store({
                         resolve(true);
                     })
                     .catch(reason => {
-                        console.error(reason);
+                        console.error(`[vuex: saveCustomer] ${reason}`);
                         reject(reason);
                     });
             });
         },
-        // TODO: FIX: Waiting API fix : route return an empty array on get & post doesn't work
+
+        getContacts(_, id_customer) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/contact", { id_customer: id_customer })
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            console.error(
+                                `[vuex: getContacts] An error has occurred while getting contacts for the customer ${id_customer}`,
+                                response.message
+                            );
+                            reject(response.message);
+                        }
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        console.error(`[vuex: getContacts] ${reason}`);
+                        reject(reason);
+                    });
+            });
+        },
+
         fetchQuotes({ commit }) {
             return new Promise((resolve, reject) => {
                 axios
@@ -456,8 +459,7 @@ export default new Vuex.Store({
                         // noinspection JSUnresolvedVariable
                         if (response.message) {
                             console.error(
-                                "An error has occurred while fetching customers data : ",
-                                response.message
+                                `[vuex: fetchQuotes] An error has occurred while fetching quotes : ${response.message}`
                             );
                             reject(response.message);
                         }
@@ -465,7 +467,7 @@ export default new Vuex.Store({
                         resolve(true);
                     })
                     .catch(reason => {
-                        console.error(reason);
+                        console.error(`[vuex: fetchQuotes] ${reason}`);
                         reject(reason);
                     });
             });
@@ -478,8 +480,7 @@ export default new Vuex.Store({
                         // noinspection JSUnresolvedVariable
                         if (response.message) {
                             console.error(
-                                "An error has occurred while fetching contacts data : ",
-                                response.message
+                                `[vuex: fetchInvoices] An error has occurred while fetching invoices : ${response.message}`
                             );
                             reject(response.message);
                         }
@@ -487,7 +488,7 @@ export default new Vuex.Store({
                         resolve(true);
                     })
                     .catch(reason => {
-                        console.error(reason);
+                        console.error(`[vuex: fetchInvoices] ${reason}`);
                         reject(reason);
                     });
             });
@@ -500,7 +501,7 @@ export default new Vuex.Store({
                         // noinspection JSUnresolvedVariable
                         if (response.message) {
                             console.error(
-                                `An error has occurred while updating quote n°${quote.id} data : ${response.message}`
+                                `[vuex: updateQuote] An error has occurred while updating quote n°${quote.id} : ${response.message}`
                             );
                             reject(response.message);
                         }
@@ -508,9 +509,7 @@ export default new Vuex.Store({
                         resolve(true);
                     })
                     .catch(reason => {
-                        console.error(
-                            `An error has occurred while updating quote n°${quote.id} data : ${reason}`
-                        );
+                        console.error(`[vuex: updateQuote] ${reason}`);
                         reject(reason);
                     });
             });
