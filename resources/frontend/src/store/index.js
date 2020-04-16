@@ -737,7 +737,7 @@ export default new Vuex.Store({
                 axios
                     .get("/api/me")
                     .then(response => {
-                        // TODO: FIX: this eslint error
+                        // TODO: FIX: this eslint error in all actions
                         // noinspection JSUnresolvedVariable
                         if (response.message) {
                             console.error(
@@ -760,17 +760,15 @@ export default new Vuex.Store({
             return new Promise((resolve, reject) => {
                 axios
                     .get("/api/company")
-                    .then(data => {
+                    .then(response => {
                         // noinspection JSUnresolvedVariable
-                        if (data.message) {
+                        if (response.message) {
                             console.error(
-                                "An error has occurred while fetching customers data : ",
-
-                                data.message
+                                "[vuex: loginUser] An error has occurred while fetching user"
                             );
-                            reject(data.message);
+                            reject(response.message);
                         }
-                        commit("SET_COMPANIES", data.data.comp);
+                        commit("SET_COMPANIES", response.data);
                         resolve(true);
                     })
                     .catch(reason => {
@@ -785,16 +783,16 @@ export default new Vuex.Store({
                     .post("/api/customers", {
                         id_company: state.user.companies
                     })
-                    .then(data => {
+                    .then(response => {
                         // noinspection JSUnresolvedVariable
-                        if (data.message) {
+                        if (response.message) {
                             console.error(
-                                "An error has occurred while fetching customers data : ",
-                                data.message
+                                "An error has occurred while fetching customers response : ",
+                                response.message
                             );
-                            reject(data.message);
+                            reject(response.message);
                         }
-                        commit("SET_CUSTOMERS", data.data["cust"]);
+                        commit("SET_CUSTOMERS", response.data["cust"]);
                         resolve(true);
                     })
                     .catch(reason => {
@@ -807,16 +805,16 @@ export default new Vuex.Store({
             return new Promise((resolve, reject) => {
                 axios
                     .post("/api/contact", { id_customer: id_customer })
-                    .then(data => {
+                    .then(response => {
                         // noinspection JSUnresolvedVariable
-                        if (data.message) {
+                        if (response.message) {
                             console.error(
-                                "An error has occurred while fetching contacts data : ",
-                                data.message
+                                "An error has occurred while fetching contacts response : ",
+                                response.message
                             );
-                            reject(data.message);
+                            reject(response.message);
                         }
-                        resolve(data.data);
+                        resolve(response.data);
                     })
                     .catch(reason => {
                         console.error(reason);
@@ -828,14 +826,14 @@ export default new Vuex.Store({
             return new Promise((resolve, reject) => {
                 axios
                     .post("/api/updateCustomer", customerObj)
-                    .then(data => {
+                    .then(response => {
                         // noinspection JSUnresolvedVariable
-                        if (data.message) {
+                        if (response.message) {
                             console.error(
                                 "An error has occurred while fetching contacts data : ",
-                                data.message
+                                response.message
                             );
-                            reject(data.message);
+                            reject(response.message);
                         }
                         dispatch("fetchCustomers");
                         resolve(true);
@@ -851,16 +849,16 @@ export default new Vuex.Store({
             return new Promise((resolve, reject) => {
                 axios
                     .post("/api/allQuote")
-                    .then(data => {
+                    .then(response => {
                         // noinspection JSUnresolvedVariable
-                        if (data.message) {
+                        if (response.message) {
                             console.error(
                                 "An error has occurred while fetching customers data : ",
-                                data.message
+                                response.message
                             );
-                            reject(data.message);
+                            reject(response.message);
                         }
-                        commit("SET_CUSTOMERS", data.data);
+                        commit("SET_CUSTOMERS", response.data);
                         resolve(true);
                     })
                     .catch(reason => {
@@ -873,16 +871,16 @@ export default new Vuex.Store({
             return new Promise((resolve, reject) => {
                 axios
                     .get("/api/allInvoice")
-                    .then(data => {
+                    .then(response => {
                         // noinspection JSUnresolvedVariable
-                        if (data.message) {
+                        if (response.message) {
                             console.error(
                                 "An error has occurred while fetching contacts data : ",
-                                data.message
+                                response.message
                             );
-                            reject(data.message);
+                            reject(response.message);
                         }
-                        commit("SET_INVOICES", data.data.invoices);
+                        commit("SET_INVOICES", response.data.invoices);
                         resolve(true);
                     })
                     .catch(reason => {
@@ -895,13 +893,13 @@ export default new Vuex.Store({
             return new Promise((resolve, reject) => {
                 axios
                     .post("/api/updateQuote")
-                    .then(data => {
+                    .then(response => {
                         // noinspection JSUnresolvedVariable
-                        if (data.message) {
+                        if (response.message) {
                             console.error(
-                                `An error has occurred while updating quote n°${quote.id} data : ${data.message}`
+                                `An error has occurred while updating quote n°${quote.id} data : ${response.message}`
                             );
-                            reject(data.message);
+                            reject(response.message);
                         }
                         dispatch("fetchQuotes");
                         resolve(true);
