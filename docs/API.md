@@ -326,7 +326,7 @@
 
 **URL** : `/api/allQuote`
 **Authentication required** : `true`
-**Method** : `POST`
+**Method** : `GET`
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
@@ -427,7 +427,7 @@
 
 **URL** : `/api/allInvoice`
 **Authentication required** : `true`
-**Method** : `POST`
+**Method** : `GET`
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
