@@ -45,7 +45,7 @@ class InvoiceController extends Controller
             'original_quote' => $request->original_quote,
         ]);
 
-        return response()->json(['invoice', $invoice], 200);
+        return response()->json($invoice, 200);
 
     }
 
@@ -90,7 +90,7 @@ class InvoiceController extends Controller
 
         $invoice->save();
 
-        return response()->json(['invoice', $invoice], 200);
+        return response()->json($invoice, 200);
     }
 
     public function delete(Request $request)
@@ -113,13 +113,13 @@ class InvoiceController extends Controller
             ['customer_id', '=', $request->customer_id]
         ])->get();
 
-        return response()->json(['invoices' => $invoices]);
+        return response()->json($invoices);
     }
 
     public function getAllInvoice (Request $request)
     {
         $invoices = Invoice::where('company_id', '=', $request->user()->companies)->get();
-        return response()->json(['invoices'=>$invoices]);
+        return response()->json($invoices);
     }
 
 }
