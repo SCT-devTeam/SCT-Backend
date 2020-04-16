@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Create API tests
 - Add more errors on bad api call (like a GET on POST method, return "method unavailable")
 - Improve invoice qualifications
+- Rename `chasing_date` by `cashing_date` in `Invoicies` table
 
 ### Changed
 
