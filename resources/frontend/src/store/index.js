@@ -710,12 +710,18 @@ export default new Vuex.Store({
 
                             resolve(true);
                         } else {
+                            console.error(
+                                `An error has occurred while login: ${response}`
+                            );
                             reject(
                                 `An error has occurred, code: ${response.status}`
                             );
                         }
                     })
                     .catch(error => {
+                        console.error(
+                            `An error has occurred while login: ${error}`
+                        );
                         reject(error);
                     });
             });

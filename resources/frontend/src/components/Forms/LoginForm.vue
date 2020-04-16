@@ -87,7 +87,7 @@ export default {
                         this.error = `An error has occurred while login: ${loginResult}`;
                     }
                 } catch (e) {
-                    this.error = e;
+                    this.error = e; // TODO: rewrite error (ex: 422 => "bad logins")
                 }
             } else {
                 this.error = "Please fix input errors";
