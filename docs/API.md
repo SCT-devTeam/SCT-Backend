@@ -173,7 +173,7 @@
 | --- | --- | --- | --- | --- |
 | customer_type | Present | unspecified | enum('individual', 'professional') |  |
 | status | Present | unspecified | text |  |
-| meeting_date | Present | unspecified | date |  |
+| meeting_date | Present | unspecified | Date |  |
 | company_name | Present | unspecified | text |  |
 | siret | Present | unspecified | Integer |  |
 | tva_number | Present | unspecified | Integer |  |
@@ -202,7 +202,7 @@
 | id | Required | unspecified | Integer |  |
 | customer_type | Present | unspecified | text |  |
 | status | Present | unspecified | text |  |
-| meeting_date | Present | unspecified | date |  |
+| meeting_date | Present | unspecified | Date |  |
 | company_name | Present | unspecified | text |  |
 | siret | Present | unspecified | Integer |  |
 | tva_number | Present | unspecified | Integer |  |
@@ -361,7 +361,7 @@
 | company_id | Required | unspecified | Integer |  |
 | customer_id | Required | unspecified | Integer |  |
 | qualification | Present | unspecified | enum('draft', 'edited', 'awaiting_approuval', 'revived', 'accepted', 'declined', 'discontinued') |  |
-| ediition_date | Present | unspecified | Integer |  |
+| ediition_date | Present | unspecified | Date |  |
 | validity_delay_in_days | Present | unspecified | Integer |  |
 | payment_delay_in_days | Present | unspecified | Integer |  |
 | payment_terms | Present | unspecified | text |  |
@@ -369,9 +369,9 @@
 | down_payment_percentage | Present | unspecified | Integer |  |
 | notice | Present | unspecified | text |  |
 | accepting_conditions | Present | unspecified | text |  |
-| sending_date | Present | unspecified | date |  |
-| revived_date | Present | unspecified | date |  |
-| last_qualification_date | Present | unspecified | datedate|  |
+| sending_date | Present | unspecified | Date |  |
+| revived_date | Present | unspecified | Date |  |
+| last_qualification_date | Present | unspecified | Date|  |
 
 ---
 
@@ -388,7 +388,7 @@
 | company_id | Required | unspecified | Integer |  |
 | customer_id | Required | unspecified | Integer |  |
 | qualification | Present | unspecified | enum('draft', 'edited', 'awaiting_approuval', 'revived', 'accepted', 'declined', 'discontinued') |  |
-| ediition_date | Present | unspecified | Integer |  |
+| ediition_date | Present | unspecified | Date |  |
 | validity_delay_in_days | Present | unspecified | Integer |  |
 | payment_delay_in_days | Present | unspecified | Integer |  |
 | payment_terms | Present | unspecified | text |  |
@@ -396,9 +396,9 @@
 | down_payment_percentage | Present | unspecified | Integer |  |
 | notice | Present | unspecified | text |  |
 | accepting_conditions | Present | unspecified | text |  |
-| sending_date | Present | unspecified | date |  |
-| revived_date | Present | unspecified | date |  |
-| last_qualification_date | Present | unspecified | date |  |
+| sending_date | Present | unspecified | Date |  |
+| revived_date | Present | unspecified | Date |  |
+| last_qualification_date | Present | unspecified | Date |  |
 
 ---
 
@@ -462,16 +462,16 @@
 | company_id | Required | unspecified | Integer |  |
 | customer_id | Required | unspecified | Integer |  |
 | qualification | Present | unspecified | enum('draft', 'edited', 'awaiting_approuval', 'revived', 'accepted', 'declined', 'discontinued') |  |
-| edition_date | Present | unspecified | date |  |
-| payment_date | Present | unspecified | date |  |
+| edition_date | Present | unspecified | Date |  |
+| payment_date | Present | unspecified | Date |  |
 | payment_delay_in_days | Present | unspecified | Integer |  |
 | payment_terms | Present | unspecified | text |  |
 | notice | Present | unspecified | text |  |
 | payment_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
-| sending_date | Present | unspecified | date |  |
-| revived_date | Present | unspecified | date |  |
-| last_qualification_date | Present | unspecified | date |  |
-| chasing_date | Present | unspecified | date |  |
+| sending_date | Present | unspecified | Date |  |
+| revived_date | Present | unspecified | Date |  |
+| last_qualification_date | Present | unspecified | Date |  |
+| chasing_date | Present | unspecified | Date |  |
 | note | Present | unspecified | text |  |
 | original_quote | Required | unspecified | Integer |  |
 
@@ -504,16 +504,16 @@
 | company_id | Required | unspecified | Integer |  |
 | customer_id | Required | unspecified | Integer |  |
 | qualification | Present | unspecified | enum('draft', 'edited', 'awaiting_approuval', 'revived', 'accepted', 'declined', 'discontinued') |  |
-| edition_date | Present | unspecified | date |  |
-| payment_date | Present | unspecified | date |  |
+| edition_date | Present | unspecified | Date |  |
+| payment_date | Present | unspecified | Date |  |
 | payment_delay_in_days | Present | unspecified | Integer |  |
 | payment_terms | Present | unspecified | text |  |
 | notice | Present | unspecified | text |  |
 | payment_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
-| sending_date | Present | unspecified | date |  |
-| revived_date | Present | unspecified | date |  |
-| last_qualification_date | Present | unspecified | date |  |
-| chasing_date | Present | unspecified | date |  |
+| sending_date | Present | unspecified | Date |  |
+| revived_date | Present | unspecified | Date |  |
+| last_qualification_date | Present | unspecified | Date |  |
+| chasing_date | Present | unspecified | Date |  |
 | note | Present | unspecified | text |  |
 | original_quote | Required | unspecified | Integer |  |
 
