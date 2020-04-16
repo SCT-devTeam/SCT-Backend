@@ -17,7 +17,14 @@
                 <p class="name">{{ customer.firstname + customer.lastname }}</p>
                 <p class="address">
                     {{
-                        customer.street_number + ' ' + ' ' + customer.street_name + ", " + customer.zipcode + ' '  + customer.city
+                        customer.street_number +
+                            " " +
+                            " " +
+                            customer.street_name +
+                            ", " +
+                            customer.zipcode +
+                            " " +
+                            customer.city
                     }}
                 </p>
                 <p class="status">{{ customer.status }}</p>
