@@ -305,8 +305,10 @@ export default new Vuex.Store({
                     .then(response => {
                         if (response.status === 200) {
                             const token = response.data.token;
+
                             // TODO: Add check on commit, if fail; throw an error
                             commit("SET_TOKEN", token);
+
                             dispatch("fetchUser").then(() => {
                                 dispatch("fetchData");
                             });
@@ -530,7 +532,9 @@ export default new Vuex.Store({
                         if (response.message) {
                             reject(response.message);
                         }
+
                         commit("SET_QUOTES", response.data);
+
                         resolve(true);
                     })
                     .catch(reason => {
@@ -603,16 +607,14 @@ export default new Vuex.Store({
                     .then(response => {
                         // noinspection JSUnresolvedVariable
                         if (response.message) {
-                            console.error(
-                                `[vuex: fetchInvoices] An error has occurred while fetching invoices : ${response.message}`
-                            );
                             reject(response.message);
                         }
-                        commit("SET_INVOICES", response.data.invoices);
+
+                        commit("SET_INVOICES", response.data);
+
                         resolve(true);
                     })
                     .catch(reason => {
-                        console.error(`[vuex: fetchInvoices] ${reason}`);
                         reject(reason);
                     });
             });
