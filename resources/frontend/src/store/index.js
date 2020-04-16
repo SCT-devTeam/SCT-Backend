@@ -383,6 +383,7 @@ export default new Vuex.Store({
                     });
             });
         },
+        // TODO: Implement insertCompany
 
         fetchCustomers({ commit, state }) {
             return new Promise((resolve, reject) => {
@@ -428,6 +429,8 @@ export default new Vuex.Store({
                     });
             });
         },
+        // TODO: Implement createCustomer
+        // TODO: Implement deleteCustomer
 
         getContacts(_, id_customer) {
             return new Promise((resolve, reject) => {
@@ -450,6 +453,9 @@ export default new Vuex.Store({
                     });
             });
         },
+        // TODO: Implement updateCcontact
+        // TODO: Implement createContact
+        // TODO: Implement deleteContact
 
         fetchQuotes({ commit }) {
             return new Promise((resolve, reject) => {
@@ -468,27 +474,6 @@ export default new Vuex.Store({
                     })
                     .catch(reason => {
                         console.error(`[vuex: fetchQuotes] ${reason}`);
-                        reject(reason);
-                    });
-            });
-        },
-        fetchInvoices({ commit }) {
-            return new Promise((resolve, reject) => {
-                axios
-                    .get("/api/allInvoice")
-                    .then(response => {
-                        // noinspection JSUnresolvedVariable
-                        if (response.message) {
-                            console.error(
-                                `[vuex: fetchInvoices] An error has occurred while fetching invoices : ${response.message}`
-                            );
-                            reject(response.message);
-                        }
-                        commit("SET_INVOICES", response.data.invoices);
-                        resolve(true);
-                    })
-                    .catch(reason => {
-                        console.error(`[vuex: fetchInvoices] ${reason}`);
                         reject(reason);
                     });
             });
@@ -513,7 +498,34 @@ export default new Vuex.Store({
                         reject(reason);
                     });
             });
+        },
+        // TODO: Implement createQuote
+        // TODO: Implement deleteQuote
+
+        fetchInvoices({ commit }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .get("/api/allInvoice")
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            console.error(
+                                `[vuex: fetchInvoices] An error has occurred while fetching invoices : ${response.message}`
+                            );
+                            reject(response.message);
+                        }
+                        commit("SET_INVOICES", response.data.invoices);
+                        resolve(true);
+                    })
+                    .catch(reason => {
+                        console.error(`[vuex: fetchInvoices] ${reason}`);
+                        reject(reason);
+                    });
+            });
         }
+        // TODO: Implement createInvoice
+        // TODO: Implement updateInvoice
+        // TODO: Implement deleteInvoice
     },
     modules: {},
     plugins: [vuexPersist.plugin]
