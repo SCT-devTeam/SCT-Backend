@@ -418,6 +418,7 @@ export default new Vuex.Store({
     mutations: {
         SET_TOKEN(state, token) {
             state.user.token = token || null;
+            axios.defaults.headers.common.Authorization = `Bearer ${token}`;
         },
         SET_USER(state, userData) {
             state.user.firstname = userData.firstname || null;
@@ -472,14 +473,10 @@ export default new Vuex.Store({
                     });
             });
         },
-        async fetchUser({ getter, commit, dispatch }) {
+        async fetchUser({ commit, dispatch }) {
             return new Promise((resolve, reject) => {
                 axios
-                    .get("/api/me", {
-                        headers: {
-                            Authorization: getter.token
-                        }
-                    })
+                    .get("/api/me")
                     .then(data => {
                         if (data.message) {
                             console.error(
@@ -501,14 +498,10 @@ export default new Vuex.Store({
                     });
             });
         },
-        async fetchCompanies({ getter, commit }) {
+        async fetchCompanies({ commit }) {
             return new Promise((resolve, reject) => {
                 axios
-                    .get("/api/company", {
-                        headers: {
-                            Authorization: getter.token
-                        }
-                    })
+                    .get("/api/company")
                     .then(data => {
                         if (data.message) {
                             console.error(
@@ -527,18 +520,12 @@ export default new Vuex.Store({
                     });
             });
         },
-        async fetchCustomers({ getter, commit, state }) {
+        async fetchCustomers({ commit, state }) {
             return new Promise((resolve, reject) => {
                 axios
-                    .post(
-                        "/api/customers",
-                        { id_company: state.user.companies },
-                        {
-                            headers: {
-                                Authorization: getter.token
-                            }
-                        }
-                    )
+                    .post("/api/customers", {
+                        id_company: state.user.companies
+                    })
                     .then(data => {
                         if (data.message) {
                             console.error(
@@ -556,18 +543,10 @@ export default new Vuex.Store({
                     });
             });
         },
-        getContacts({ getter }, id_customer) {
+        getContacts({}, id_customer) {
             return new Promise((resolve, reject) => {
                 axios
-                    .post(
-                        "/api/contact",
-                        { id_customer: id_customer },
-                        {
-                            headers: {
-                                Authorization: getter.token
-                            }
-                        }
-                    )
+                    .post("/api/contact", { id_customer: id_customer })
                     .then(data => {
                         if (data.message) {
                             console.error(
@@ -584,14 +563,10 @@ export default new Vuex.Store({
                     });
             });
         },
-        saveCustomer({ getter, dispatch }, customerObj) {
+        saveCustomer({ dispatch }, customerObj) {
             return new Promise((resolve, reject) => {
                 axios
-                    .post("/api/updateCustomer", customerObj, {
-                        headers: {
-                            Authorization: getter.token
-                        }
-                    })
+                    .post("/api/updateCustomer", customerObj)
                     .then(data => {
                         if (data.message) {
                             console.error(
@@ -610,18 +585,10 @@ export default new Vuex.Store({
             });
         },
         // TODO: FIX: Waiting API fix : route return an empty array on get & post doesn't work
-        async fetchQuotes({ getter, commit }) {
+        async fetchQuotes({ commit }) {
             return new Promise((resolve, reject) => {
                 axios
-                    .post(
-                        "/api/allQuote",
-                        {},
-                        {
-                            headers: {
-                                Authorization: getter.token
-                            }
-                        }
-                    )
+                    .post("/api/allQuote")
                     .then(data => {
                         if (data.message) {
                             console.error(
@@ -642,11 +609,7 @@ export default new Vuex.Store({
         async fetchInvoices({ getter, commit }) {
             return new Promise((resolve, reject) => {
                 axios
-                    .get("/api/allInvoice", {
-                        headers: {
-                            Authorization: getter.token
-                        }
-                    })
+                    .get("/api/allInvoice")
                     .then(data => {
                         if (data.message) {
                             console.error(
@@ -664,18 +627,10 @@ export default new Vuex.Store({
                     });
             });
         },
-        async updateQuote({ getter, dispatch }, quote) {
+        async updateQuote({ dispatch }, quote) {
             return new Promise((resolve, reject) => {
                 axios
-                    .post(
-                        "/api/updateQuote",
-                        {},
-                        {
-                            headers: {
-                                Authorization: getter.token
-                            }
-                        }
-                    )
+                    .post("/api/updateQuote")
                     .then(data => {
                         if (data.message) {
                             console.error(
