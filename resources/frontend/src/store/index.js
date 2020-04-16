@@ -729,8 +729,8 @@ export default new Vuex.Store({
             // TODO: add promise to return true if all request are done without error else return it
             dispatch("fetchCompanies");
             dispatch("fetchCustomers");
-            // dispatch("fetchQuotes");
-            // dispatch("fetchInvoices");
+            dispatch("fetchQuotes");
+            dispatch("fetchInvoices");
             // TODO: add fetchReceipts
         },
         fetchUser({ commit }) {
