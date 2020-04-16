@@ -849,7 +849,7 @@ export default new Vuex.Store({
         fetchQuotes({ commit }) {
             return new Promise((resolve, reject) => {
                 axios
-                    .post("/api/allQuote")
+                    .get("/api/allQuote")
                     .then(response => {
                         // noinspection JSUnresolvedVariable
                         if (response.message) {
@@ -859,7 +859,7 @@ export default new Vuex.Store({
                             );
                             reject(response.message);
                         }
-                        commit("SET_CUSTOMERS", response.data);
+                        commit("SET_QUOTES", response.data);
                         resolve(true);
                     })
                     .catch(reason => {
