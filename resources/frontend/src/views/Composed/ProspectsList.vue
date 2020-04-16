@@ -5,12 +5,15 @@
             <CustomersTable
                 :data="this.$store.state.customers"
                 statusFilter="prospect"
+                @itemClicked="customerToDisplay = $event"
             ></CustomersTable>
         </div>
         <div id="panel-2">
             <div id="panel-2__container">
                 <CustomerProfileCard
+                    :customerId="customerToDisplay"
                     @displayContact="contactToDisplay = $event"
+                    v-if="this.customerToDisplay != null"
                 ></CustomerProfileCard>
                 <ContactProfileCard
                     class="panel-2__container__contact"
@@ -42,6 +45,7 @@ export default {
     },
     data() {
         return {
+            customerToDisplay: null,
             contactToDisplay: null
         };
     }
