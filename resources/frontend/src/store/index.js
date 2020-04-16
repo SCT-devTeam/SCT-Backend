@@ -329,7 +329,7 @@ export default new Vuex.Store({
             dispatch("fetchCustomers");
             dispatch("fetchQuotes");
             dispatch("fetchInvoices");
-            // TODO: add a fetching indicator
+            // TODO: add a fetching indicator (FIX: error on display data if the user go too clickly in views)
             // TODO: add fetchReceipts
         },
 
