@@ -361,7 +361,7 @@
 | company_id | Required | unspecified | Integer |  |
 | customer_id | Required | unspecified | Integer |  |
 | qualification | Present | unspecified | enum('draft', 'edited', 'awaiting_approuval', 'revived', 'accepted', 'declined', 'discontinued') |  |
-| ediition_date | Present | unspecified | Date |  |
+| edition_date | Present | unspecified | Date |  |
 | validity_delay_in_days | Present | unspecified | Integer |  |
 | payment_delay_in_days | Present | unspecified | Integer |  |
 | payment_terms | Present | unspecified | text |  |
@@ -388,7 +388,7 @@
 | company_id | Required | unspecified | Integer |  |
 | customer_id | Required | unspecified | Integer |  |
 | qualification | Present | unspecified | enum('draft', 'edited', 'awaiting_approuval', 'revived', 'accepted', 'declined', 'discontinued') |  |
-| ediition_date | Present | unspecified | Date |  |
+| edition_date | Present | unspecified | Date |  |
 | validity_delay_in_days | Present | unspecified | Integer |  |
 | payment_delay_in_days | Present | unspecified | Integer |  |
 | payment_terms | Present | unspecified | text |  |
