@@ -25,7 +25,6 @@ export default new Vuex.Store({
         },
         companies: null,
         customers: null,
-        contacts: null,
         quotes: null,
         invoices: null,
         receipts: [
@@ -246,7 +245,6 @@ export default new Vuex.Store({
             ),
         getCustomerByID: state => customer_id =>
             state.customers.find(customer => customer.id === customer_id),
-        getContacts: state => state.contacts,
         getCustomerContacts: state => customer_id =>
             state.contacts.find(contact => contact.id_customer === customer_id),
         getContactByID: state => contact_id =>
