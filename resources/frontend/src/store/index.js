@@ -313,14 +313,10 @@ export default new Vuex.Store({
 
                             resolve(true);
                         } else {
-                            console.error(
-                                `[vuex: loginUser] An error has occurred while login: ${response}`
-                            );
                             reject(response.status);
                         }
                     })
                     .catch(error => {
-                        console.error(`[vuex: loginUser] ${error}`);
                         reject(error);
                     });
             });
@@ -343,9 +339,6 @@ export default new Vuex.Store({
                         // TODO: FIX: this eslint error in all actions
                         // noinspection JSUnresolvedVariable
                         if (response.message) {
-                            console.error(
-                                "[vuex: loginUser] An error has occurred while fetching user"
-                            );
                             reject(response.message);
                         }
 
@@ -354,7 +347,6 @@ export default new Vuex.Store({
                         resolve(true);
                     })
                     .catch(reason => {
-                        console.error(`[vuex: loginUser] ${reason}`);
                         reject(reason);
                     });
             });
@@ -367,16 +359,14 @@ export default new Vuex.Store({
                     .then(response => {
                         // noinspection JSUnresolvedVariable
                         if (response.message) {
-                            console.error(
-                                "[vuex: fetchCompanies] An error has occurred while fetching companies"
-                            );
                             reject(response.message);
                         }
+
                         commit("SET_COMPANIES", response.data);
+
                         resolve(true);
                     })
                     .catch(reason => {
-                        console.error(`[vuex: fetchCompanies]${reason}`);
                         reject(reason);
                     });
             });
@@ -392,68 +382,144 @@ export default new Vuex.Store({
                     .then(response => {
                         // noinspection JSUnresolvedVariable
                         if (response.message) {
-                            console.error(
-                                `[vuex: fetchCustomers] An error has occurred while fetching customers ${response.message}`
-                            );
                             reject(response.message);
                         }
+
                         commit("SET_CUSTOMERS", response.data);
+
                         resolve(true);
                     })
                     .catch(reason => {
-                        console.error(`[vuex: fetchCustomers] ${reason}`);
                         reject(reason);
                     });
             });
         },
-        saveCustomer({ dispatch }, customerObj) {
+        createCustomer({ dispatch }, customerObj) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/createCustomer", customerObj)
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        dispatch("fetchCustomers");
+
+                        resolve(true);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        updateCustomer({ dispatch }, customerObj) {
             return new Promise((resolve, reject) => {
                 axios
                     .post("/api/updateCustomer", customerObj)
                     .then(response => {
                         // noinspection JSUnresolvedVariable
                         if (response.message) {
-                            console.error(
-                                `[vuex: saveCustomer] An error has occurred while send customer : ${response.message}`
-                            );
                             reject(response.message);
                         }
+
                         dispatch("fetchCustomers");
+
                         resolve(true);
                     })
                     .catch(reason => {
-                        console.error(`[vuex: saveCustomer] ${reason}`);
                         reject(reason);
                     });
             });
         },
-        // TODO: Implement createCustomer
-        // TODO: Implement deleteCustomer
-
-        getContacts(_, id_customer) {
+        deleteCustomer({ dispatch }, customer_id) {
             return new Promise((resolve, reject) => {
                 axios
-                    .post("/api/contact", { id_customer: id_customer })
+                    .post("/api/deleteCustomer", { id: customer_id })
                     .then(response => {
                         // noinspection JSUnresolvedVariable
                         if (response.message) {
-                            console.error(
-                                `[vuex: getContacts] An error has occurred while getting contacts for the customer ${id_customer}`,
-                                response.message
-                            );
                             reject(response.message);
                         }
-                        resolve(response.data);
+
+                        dispatch("fetchCustomers");
+
+                        resolve(true);
                     })
                     .catch(reason => {
-                        console.error(`[vuex: getContacts] ${reason}`);
                         reject(reason);
                     });
             });
         },
-        // TODO: Implement updateCcontact
-        // TODO: Implement createContact
-        // TODO: Implement deleteContact
+
+        getContacts(_, customer_id) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/contact", { id_customer: customer_id })
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        createContact(_, contactObj) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/createContact", contactObj)
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        updateContact(_, contactObj) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/updateContact", contactObj)
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        deleteContact(_, contact_id) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/contact", { id_contact: contact_id })
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
 
         fetchQuotes({ commit }) {
             return new Promise((resolve, reject) => {
@@ -462,43 +528,73 @@ export default new Vuex.Store({
                     .then(response => {
                         // noinspection JSUnresolvedVariable
                         if (response.message) {
-                            console.error(
-                                `[vuex: fetchQuotes] An error has occurred while fetching quotes : ${response.message}`
-                            );
                             reject(response.message);
                         }
                         commit("SET_QUOTES", response.data);
                         resolve(true);
                     })
                     .catch(reason => {
-                        console.error(`[vuex: fetchQuotes] ${reason}`);
                         reject(reason);
                     });
             });
         },
-        updateQuote({ dispatch }, quote) {
+        createQuote({ dispatch }, quoteObj) {
             return new Promise((resolve, reject) => {
                 axios
-                    .post("/api/updateQuote")
+                    .post("/api/createQuote", quoteObj)
                     .then(response => {
                         // noinspection JSUnresolvedVariable
                         if (response.message) {
-                            console.error(
-                                `[vuex: updateQuote] An error has occurred while updating quote n°${quote.id} : ${response.message}`
-                            );
                             reject(response.message);
                         }
+
                         dispatch("fetchQuotes");
+
                         resolve(true);
                     })
                     .catch(reason => {
-                        console.error(`[vuex: updateQuote] ${reason}`);
                         reject(reason);
                     });
             });
         },
-        // TODO: Implement createQuote
-        // TODO: Implement deleteQuote
+        updateQuote({ dispatch }, quoteObj) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/updateQuote", quoteObj)
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        dispatch("fetchQuotes");
+
+                        resolve(true);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        deleteQuote({ dispatch }, quote_id) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/updateQuote", { id: quote_id })
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        dispatch("fetchQuotes");
+
+                        resolve(true);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
 
         fetchInvoices({ commit }) {
             return new Promise((resolve, reject) => {
@@ -520,10 +616,64 @@ export default new Vuex.Store({
                         reject(reason);
                     });
             });
+        },
+        createInvoice({ dispatch }, invoiceObj) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/createInvoice", invoiceObj)
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        dispatch("fetchInvoices");
+
+                        resolve(true);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        updateInvoice({ dispatch }, invoiceObj) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/updateInvoice", invoiceObj)
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        dispatch("fetchQuotes");
+
+                        resolve(true);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        deleteInvoice({ dispatch }, invoice_id) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/updateQuote", { id: invoice_id })
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        dispatch("fetchQuotes");
+
+                        resolve(true);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
         }
-        // TODO: Implement createInvoice
-        // TODO: Implement updateInvoice
-        // TODO: Implement deleteInvoice
     },
     modules: {},
     plugins: [vuexPersist.plugin]
