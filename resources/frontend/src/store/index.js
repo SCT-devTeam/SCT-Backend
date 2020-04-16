@@ -629,6 +629,9 @@ export default new Vuex.Store({
             };
         },
         getToken: state => state.user.token,
+        getCompanies: state => state.companies,
+        getCompanyByID: state => company_id =>
+            state.companies.find(company => company.id === company_id),
         getProspects: state =>
             state.customers.filter(customer => customer.status === "prospect"),
         getCustomers: state =>
@@ -639,18 +642,22 @@ export default new Vuex.Store({
                     customer.status !== "prospect" &&
                     customer.status !== "deleted"
             ),
-        getQuotes: state => state.quotes,
-        getInvoices: state => state.invoices,
         getCustomerByID: state => customer_id =>
             state.customers.find(customer => customer.id === customer_id),
-        getReceiptByID: state => receipt_id =>
-            state.receipts.find(receipt => receipt.id === receipt_id),
+        getContacts: state => state.contacts,
+        getCustomerContacts: state => customer_id =>
+            state.contacts.find(contact => contact.id_customer === customer_id),
+        getContactByID: state => contact_id =>
+            state.contacts.find(contact => contact.id === contact_id),
+        getQuotes: state => state.quotes,
         getQuoteByID: state => quote_id =>
             state.quotes.find(quote => quote.id === quote_id),
+        getInvoices: state => state.invoices,
         getInvoiceByID: state => invoice_id =>
             state.invoices.find(invoice => invoice.id === invoice_id),
-        getCompanyByID: state => company_id =>
-            state.companies.find(company => company.id === company_id)
+        getReceipts: state => state.receipts,
+        getReceiptByID: state => receipt_id =>
+            state.receipts.find(receipt => receipt.id === receipt_id)
     },
     mutations: {
         SET_TOKEN(state, token) {
