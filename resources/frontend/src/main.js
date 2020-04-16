@@ -7,6 +7,7 @@ import VueAxios from "vue-axios";
 
 Vue.use(VueAxios, axios);
 
+// TODO: add env var for baseURL
 const baseURL =
     window.location.hostname === "localhost"
         ? "http://localhost:8000"
