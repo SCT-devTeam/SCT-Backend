@@ -705,11 +705,45 @@ export default new Vuex.Store({
                     .then(response => {
                         if (response.status === 200) {
                             const token = response.data.token;
-                            // Add check on commit
+                            // TODO: Add check on commit, if fail; throw an error
                             commit("SET_TOKEN", token);
-                            dispatch("fetchUser", token);
+                            dispatch("fetchUser");
+                            dispatch("fetchData");
 
                             resolve(true);
+                        } else {
+                            console.error(
+                                `[vuex: loginUser] An error has occurred while login: ${response}`
+                            );
+                            reject(response.status);
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        reject(error);
+                    });
+            });
+        },
+        fetchData({ dispatch }) {
+            // TODO: add promise to return true if all request are done without error else return it
+            dispatch("fetchCompanies");
+            dispatch("fetchCustomers");
+            // dispatch("fetchQuotes");
+            // dispatch("fetchInvoices");
+            // TODO: add fetchReceipts
+        },
+        fetchUser({ commit }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .get("/api/me")
+                    .then(response => {
+                        // TODO: FIX: this eslint error
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            console.error(
+                                `An error has occurred while fetching user response : ${response.message}`
+                            );
+                            reject(response.message);
                         } else {
                             console.error(
                                 `An error has occurred while login: ${response}`
@@ -718,33 +752,8 @@ export default new Vuex.Store({
                                 `An error has occurred, code: ${response.status}`
                             );
                         }
-                    })
-                    .catch(error => {
-                        console.error(
-                            `An error has occurred while login: ${error}`
-                        );
-                        reject(error);
-                    });
-            });
-        },
-        fetchUser({ commit, dispatch }) {
-            return new Promise((resolve, reject) => {
-                axios
-                    .get("/api/me")
-                    .then(data => {
-                        // noinspection JSUnresolvedVariable
-                        if (data.message) {
-                            console.error(
-                                "An error has occurred while fetching user data : ",
-                                data.message
-                            );
-                            reject(data.message);
-                        }
-                        commit("SET_USER", data.data);
-                        dispatch("fetchCompanies");
-                        dispatch("fetchCustomers");
-                        // dispatch("fetchQuotes");
-                        // dispatch("fetchInvoices");
+                        commit("SET_USER", response.data);
+
                         resolve(true);
                     })
                     .catch(reason => {
