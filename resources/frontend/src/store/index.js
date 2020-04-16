@@ -664,14 +664,17 @@ export default new Vuex.Store({
             state.user.token = token || null;
             axios.defaults.headers.common.Authorization = `Bearer ${token}`;
         },
-        SET_USER(state, userData) {
-            state.user.firstname = userData.firstname || null;
-            state.user.lastname = userData.lastname || null;
-            state.user.email = userData.email || null;
-            state.user.gender = userData.gender || null;
-            state.user.phone = userData.phone || null;
-            state.user.notes = userData.notes || null;
-            state.user.companies = userData.companies || null;
+        SET_USER(state, data) {
+            state.user.firstname = data.firstname || null;
+            state.user.lastname = data.lastname || null;
+            state.user.email = data.email || null;
+            state.user.gender = data.gender || null;
+            state.user.phone = data.phone || null;
+            state.user.notes = data.notes || null;
+            state.user.companies = data.companies || null;
+        },
+        SET_COMPANIES(state, data) {
+            state.companies = data;
         },
         SET_CUSTOMERS(state, data) {
             state.customers = data;
@@ -679,14 +682,14 @@ export default new Vuex.Store({
         SET_CONTACTS(state, data) {
             state.contacts = data;
         },
-        SET_COMPANY(state, data) {
-            state.companies = data;
-        },
         SET_QUOTES(state, data) {
             state.quotes = data;
         },
         SET_INVOICES(state, data) {
             state.invoices = data;
+        },
+        SET_RECEIPTS(state, data) {
+            state.receipts = data;
         }
     },
     actions: {
@@ -757,7 +760,7 @@ export default new Vuex.Store({
                             );
                             reject(data.message);
                         }
-                        commit("SET_COMPANY", data.data.comp);
+                        commit("SET_COMPANIES", data.data.comp);
                         resolve(true);
                     })
                     .catch(reason => {
