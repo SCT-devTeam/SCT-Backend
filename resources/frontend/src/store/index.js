@@ -329,7 +329,7 @@ export default new Vuex.Store({
                                 dispatch("fetchData");
                             });
 
-                            resolve(true);
+                            resolve(response.data);
                         } else {
                             reject(response.status);
                         }
@@ -350,7 +350,7 @@ export default new Vuex.Store({
                             commit("REMOVE_USER");
                             // TODO: create all REMOVE commit for all entities & create an action to use them all
 
-                            resolve(true);
+                            resolve(response.data);
                         } else {
                             reject(response.status);
                         }
@@ -384,7 +384,7 @@ export default new Vuex.Store({
 
                         commit("SET_USER", response.data);
 
-                        resolve(true);
+                        resolve(response.data);
                     })
                     .catch(reason => {
                         reject(reason);
@@ -404,7 +404,7 @@ export default new Vuex.Store({
 
                         commit("SET_COMPANIES", response.data);
 
-                        resolve(true);
+                        resolve(response.data);
                     })
                     .catch(reason => {
                         reject(reason);
@@ -427,7 +427,7 @@ export default new Vuex.Store({
 
                         commit("SET_CUSTOMERS", response.data);
 
-                        resolve(true);
+                        resolve(response.data);
                     })
                     .catch(reason => {
                         reject(reason);
@@ -446,7 +446,7 @@ export default new Vuex.Store({
 
                         dispatch("fetchCustomers");
 
-                        resolve(true);
+                        resolve(response.data);
                     })
                     .catch(reason => {
                         reject(reason);
@@ -465,7 +465,7 @@ export default new Vuex.Store({
 
                         dispatch("fetchCustomers");
 
-                        resolve(true);
+                        resolve(response.data);
                     })
                     .catch(reason => {
                         reject(reason);
@@ -484,7 +484,7 @@ export default new Vuex.Store({
 
                         dispatch("fetchCustomers");
 
-                        resolve(true);
+                        resolve(response.data);
                     })
                     .catch(reason => {
                         reject(reason);
@@ -506,7 +506,7 @@ export default new Vuex.Store({
 
                         commit("SET_CONTACTS", response.data);
 
-                        resolve(true);
+                        resolve(response.data);
                     })
                     .catch(reason => {
                         reject(reason);
@@ -594,7 +594,7 @@ export default new Vuex.Store({
 
                         commit("SET_QUOTES", response.data);
 
-                        resolve(true);
+                        resolve(response.data);
                     })
                     .catch(reason => {
                         reject(reason);
@@ -613,7 +613,7 @@ export default new Vuex.Store({
 
                         dispatch("fetchQuotes");
 
-                        resolve(true);
+                        resolve(response.data);
                     })
                     .catch(reason => {
                         reject(reason);
@@ -632,7 +632,7 @@ export default new Vuex.Store({
 
                         dispatch("fetchQuotes");
 
-                        resolve(true);
+                        resolve(response.data);
                     })
                     .catch(reason => {
                         reject(reason);
@@ -651,7 +651,7 @@ export default new Vuex.Store({
 
                         dispatch("fetchQuotes");
 
-                        resolve(true);
+                        resolve(response.data);
                     })
                     .catch(reason => {
                         reject(reason);
@@ -671,7 +671,7 @@ export default new Vuex.Store({
 
                         commit("SET_INVOICES", response.data);
 
-                        resolve(true);
+                        resolve(response.data);
                     })
                     .catch(reason => {
                         reject(reason);
@@ -690,7 +690,7 @@ export default new Vuex.Store({
 
                         dispatch("fetchInvoices");
 
-                        resolve(true);
+                        resolve(response.data);
                     })
                     .catch(reason => {
                         reject(reason);
@@ -709,7 +709,7 @@ export default new Vuex.Store({
 
                         dispatch("fetchQuotes");
 
-                        resolve(true);
+                        resolve(response.data);
                     })
                     .catch(reason => {
                         reject(reason);
@@ -728,7 +728,7 @@ export default new Vuex.Store({
 
                         dispatch("fetchQuotes");
 
-                        resolve(true);
+                        resolve(response.data);
                     })
                     .catch(reason => {
                         reject(reason);
