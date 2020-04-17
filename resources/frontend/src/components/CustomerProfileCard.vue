@@ -194,12 +194,12 @@ export default {
         },
         save() {
             if (Object.prototype.hasOwnProperty.call(this.customerData, "id"))
-                this.saveCustomer(this.customerData).then(newCustomer => {
-                    console.log(newCustomer);
-                    this.customerId = newCustomer.id;
+                this.saveCustomer(this.customerData);
+            else
+                this.createCustomer(this.customerData).then(newCustomer => {
+                    this.customerData = newCustomer;
                     this.isEditionMode = true;
                 });
-            else this.createCustomer(this.customerData);
         }
     },
     watch: {
