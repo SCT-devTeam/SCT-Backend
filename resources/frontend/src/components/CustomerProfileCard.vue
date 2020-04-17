@@ -164,20 +164,20 @@ export default {
         },
         createNewCustomer() {
             this.customerData = {
-                customer_type: "",
+                customer_type: null,
                 status: "",
                 meeting_date: "",
                 company_name: "",
-                siret: "",
-                tva_number: "",
+                siret: null,
+                tva_number: null,
                 firstname: "",
                 lastname: "",
-                street_number: "",
+                street_number: null,
                 street_name: "",
-                zipcode: "",
+                zipcode: null,
                 city: "",
                 note: "",
-                default_payment_method: "",
+                default_payment_method: null,
                 company: this.$store.getters.getActiveCompany
             };
             this.isEditionMode = true;
