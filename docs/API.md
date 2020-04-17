@@ -185,7 +185,7 @@
 | zipcode | Present | unspecified | Integer |  |
 | city | Present | unspecified | text |  |
 | note | Present | unspecified | text |  |
-| default_payement_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
+| default_payment_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
 | company | Required | unspecified | Integer |  |
 
 ---
