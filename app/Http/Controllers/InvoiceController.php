@@ -121,11 +121,4 @@ class InvoiceController extends Controller
         $invoices = Invoice::where('company_id', '=', $request->user()->companies)->get();
         return response()->json($invoices);
     }
-
-    public function getAllInvoice (Request $request)
-    {
-        $invoices = Invoice::where('company_id', '=', $request->user()->companies)->get();
-        return response()->json(['invoices'=>$invoices]);
-    }
-
 }
