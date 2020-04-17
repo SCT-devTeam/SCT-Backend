@@ -12,7 +12,6 @@
                 <CustomerProfileCard
                     :customerId="customerToDisplay"
                     @displayContact="contactToDisplay = $event"
-                    v-if="this.customerToDisplay != null"
                 ></CustomerProfileCard>
                 <ContactProfileCard
                     class="panel-2__container__contact"
