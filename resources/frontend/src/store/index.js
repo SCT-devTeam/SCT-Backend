@@ -262,7 +262,12 @@ export default new Vuex.Store({
     mutations: {
         SET_TOKEN(state, token) {
             state.user.token = token || null;
-            axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+            token
+                ? (axios.defaults.headers.common.Authorization = `Bearer ${token}`)
+                : null;
+        },
+        REMOVE_TOKEN(state) {
+            state.user.token = null;
         },
         SET_USER(state, data) {
             state.user.firstname = data.firstname || null;
@@ -272,6 +277,15 @@ export default new Vuex.Store({
             state.user.phone = data.phone || null;
             state.user.notes = data.notes || null;
             state.user.companies = data.companies || null;
+        },
+        REMOVE_USER(state) {
+            state.user.firstname = null;
+            state.user.lastname = null;
+            state.user.email = null;
+            state.user.gender = null;
+            state.user.phone = null;
+            state.user.notes = null;
+            state.user.companies = null;
         },
         SET_COMPANIES(state, data) {
             state.companies = data;
@@ -312,6 +326,27 @@ export default new Vuex.Store({
                             dispatch("fetchUser").then(() => {
                                 dispatch("fetchData");
                             });
+
+                            resolve(true);
+                        } else {
+                            reject(response.status);
+                        }
+                    })
+                    .catch(error => {
+                        reject(error);
+                    });
+            });
+        },
+        logoutUser({ commit }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .get("/api/logout")
+                    .then(response => {
+                        if (response.status === 200) {
+                            // TODO: Add check on commit, if fail; throw an error
+                            commit("REMOVE_TOKEN");
+                            commit("REMOVE_USER");
+                            // TODO: create all REMOVE commit for all entities & create an action to use them all
 
                             resolve(true);
                         } else {

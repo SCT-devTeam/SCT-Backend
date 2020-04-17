@@ -5,21 +5,16 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-
+import { mapActions } from "vuex";
+// TODO: replace this all view to directly logout action
 export default {
     name: "Logout",
     methods: {
-        ...mapMutations({
-            set_token: "SET_TOKEN",
-            set_user: "SET_USER"
-        }),
+        ...mapActions({ logout: "logoutUser" }),
         logoutUser() {
-            // TODO: Extract logout in a vuex action & mutation
-            // add deletation of the default authorization header of axios : delete axios.defaults.headers.Authorization;
-            this.set_token(null);
-            this.set_user({});
-            this.$router.push({ name: "Login" });
+            this.logout().then(() => {
+                this.$router.push({ name: "Login" });
+            });
         }
     }
 };
