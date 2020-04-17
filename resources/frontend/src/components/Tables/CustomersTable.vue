@@ -28,12 +28,20 @@
                     }}
                 </p>
                 <p class="status">{{ customer.status }}</p>
+                <img
+                    class="delete-icon"
+                    src="../../assets/icons/cross_icon_red.png"
+                    alt="cross to delete customer"
+                    title="delete"
+                    @click.stop="deleteCustomer(customer.id)"
+                />
             </span>
         </div>
     </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
     name: "CustomersTable",
     props: {
@@ -62,6 +70,12 @@ export default {
 
             return customers;
         }
+    },
+    methods: {
+        ...mapActions({ deleteCustomerAction: "deleteCustomer" }),
+        deleteCustomer(customer_id) {
+            this.deleteCustomerAction(customer_id);
+        }
     }
 };
 </script>
@@ -89,6 +103,8 @@ div#Customers-table {
     span {
         display: flex;
         align-items: center;
+
+        position: relative;
 
         max-width: 100%;
 
@@ -157,5 +173,16 @@ div#Customers-table {
             }
         }
     }
+}
+
+img.delete-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+
+    height: 40%;
+
+    cursor: pointer;
 }
 </style>
