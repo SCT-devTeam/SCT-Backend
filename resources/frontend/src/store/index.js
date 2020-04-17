@@ -232,6 +232,7 @@ export default new Vuex.Store({
         },
         getToken: state => state.user.token,
         getCompanies: state => state.companies,
+        getActiveCompany: state => state.user.companies,
         getCompanyByID: state => company_id =>
             state.companies.find(company => company.id === company_id),
         getProspects: state =>
