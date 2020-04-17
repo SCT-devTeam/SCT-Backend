@@ -7,42 +7,44 @@
 
         <DropdownInput
             :options="['prospect', 'active', 'archived', 'deleted']"
-            @onInput="entity.status = $event"
+            :isDisabled="!isEditionMode"
+            @onInput="customerData.status = $event"
             name="customer-status"
             placeholder="Customer Status"
             title="Customer Status"
-            :value="entity.status"
+            :value="customerData.status"
         >
         </DropdownInput>
 
         <DropdownInput
             :options="['individual', 'professional']"
-            @onInput="entity.customer_type = $event"
+            :isDisabled="!isEditionMode"
+            @onInput="customerData.customer_type = $event"
             name="customer-type"
             placeholder="Customer Type"
             title="Customer Type"
-            :value="entity.customer_type"
+            :value="customerData.customer_type"
         >
         </DropdownInput>
 
         <div id="name">
             <TextInput
                 :isDisabled="!isEditionMode"
-                @onInput="entity.firstname = $event"
+                @onInput="customerData.firstname = $event"
                 name="firstname"
                 placeholder="FirstName"
                 title="FirstName"
-                v-model="entity.firstname"
+                v-model="customerData.firstname"
             >
             </TextInput>
 
             <TextInput
                 :isDisabled="!isEditionMode"
-                @onInput="entity.lastname = $event"
+                @onInput="customerData.lastname = $event"
                 name="lastname"
                 placeholder="LastName"
                 title="LastName"
-                v-model="entity.lastname"
+                v-model="customerData.lastname"
             >
             </TextInput>
         </div>
@@ -57,7 +59,7 @@
             class="filed"
             icon="arrow_icon_blue"
             title="Click on it to view his card"
-            v-for="(contact, index) in contacts"
+            v-for="(contact, index) in customerContacts"
         ></TextFiledSCT>
 
         <p class="title">Notes</p>
@@ -66,11 +68,11 @@
 
         <TextInput
             :isDisabled="!isEditionMode"
-            @onInput="entity.notes = $event"
+            @onInput="customerData.notes = $event"
             name="notes"
             placeholder="Notes"
             title="Notes"
-            v-model="entity.notes"
+            v-model="customerData.notes"
         >
         </TextInput>
 
@@ -109,6 +111,12 @@ import { mapActions } from "vuex";
 
 export default {
     name: "CustomerCard",
+    created() {
+        // eslint-disable-next-line
+        this.customerData = JSON.parse ( JSON.stringify ( this.$store.getters.getCustomerByID(this.customerId)) );
+        // eslint-disable-next-line
+        this.customerContacts = JSON.parse ( JSON.stringify ( this.$store.getters.getCustomerContacts(this.customerId)) );
+    },
     components: {
         TextInput,
         TextFiledSCT,
@@ -117,53 +125,30 @@ export default {
     },
     data() {
         return {
-            isEditionMode: false
+            isEditionMode: false,
+            customerData: null,
+            customerContacts: null
         };
     },
     props: {
         customerId: Number
     },
-    computed: {
-        entity() {
-            return this.$store.getters.getCustomerByID(this.customerId);
-        },
-        contacts() {
-            return this.$store.getters.getCustomerContacts(this.customerId);
-        }
-    },
     methods: {
         ...mapActions({
-            saveCustomer: "saveCustomer"
+            saveCustomer: "updateCustomer"
         }),
         displayContact: function(contact_id) {
             this.$emit("displayContact", contact_id);
         },
         toggleMode: function() {
-            this.isEditionMode = !this.isEditionMode;
             if (this.isEditionMode) this.save();
+            this.isEditionMode = !this.isEditionMode;
         },
         contactFullname: function(contactObj) {
             return `${contactObj.firstname} ${contactObj.lastname}`;
         },
         save() {
-            this.saveCustomer({
-                id: this.entity.id,
-                customer_type: "",
-                status: "",
-                meeting_date: "",
-                company_name: "",
-                siret: "",
-                tva_number: "",
-                firstname: "",
-                lastname: "",
-                street_number: "",
-                street_name: "",
-                zipcode: "",
-                city: "",
-                note: "",
-                default_payment_method: "",
-                company: ""
-            });
+            this.saveCustomer(this.customerData);
         }
     }
 };
