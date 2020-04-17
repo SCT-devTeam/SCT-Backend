@@ -128,12 +128,11 @@ export default {
             return this.$store.getters.getCustomerByID(this.customerId);
         },
         contacts() {
-            return this.getContacts(this.customerId);
+            return this.$store.getters.getCustomerContacts(this.customerId);
         }
     },
     methods: {
         ...mapActions({
-            getContacts: "getContacts",
             saveCustomer: "saveCustomer"
         }),
         displayContact: function(contact_id) {
