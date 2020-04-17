@@ -16,6 +16,7 @@
     - [updateCustomer](#updatecustomer)
     - [deleteCustomer](#deletecustomer)
   - [Contact](#contact)
+    - [allContact](#allcontact)
     - [getContact](#getcontact)
     - [createContact](#createcontact)
     - [updateContacts](#updatecontacts)
@@ -237,6 +238,20 @@
 
 
 ## Contact
+
+### allContact
+
+> Description
+
+**URL** : `/api/allContact`
+**Authentication required** : `true`
+**Method** : `POST`
+
+| Key | Required | Default | Type | Description |
+| --- | --- | --- | --- | --- |
+| id_company | Required | unspecified | Integer |  |
+
+---
 
 ### getContact
 
