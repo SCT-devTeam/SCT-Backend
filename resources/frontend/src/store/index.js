@@ -25,6 +25,7 @@ export default new Vuex.Store({
         },
         companies: null,
         customers: null,
+        contacts: null,
         quotes: null,
         invoices: null,
         receipts: [
@@ -246,7 +247,7 @@ export default new Vuex.Store({
         getCustomerByID: state => customer_id =>
             state.customers.find(customer => customer.id === customer_id),
         getCustomerContacts: state => customer_id =>
-            state.contacts.find(contact => contact.id_customer === customer_id),
+            state.contacts.filter(contact => contact.customer === customer_id),
         getContactByID: state => contact_id =>
             state.contacts.find(contact => contact.id === contact_id),
         getQuotes: state => state.quotes,
@@ -362,6 +363,7 @@ export default new Vuex.Store({
             // TODO: add promise to return true if all request are done without error else return it
             dispatch("fetchCompanies");
             dispatch("fetchCustomers");
+            dispatch("fetchContacts");
             dispatch("fetchQuotes");
             dispatch("fetchInvoices");
             // TODO: add a fetching indicator (FIX: error on display data if the user go too clickly in views)
@@ -489,6 +491,27 @@ export default new Vuex.Store({
             });
         },
 
+        fetchContacts({ state, commit }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/allContact", {
+                        id_company: state.user.companies
+                    })
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        commit("SET_CONTACTS", response.data);
+
+                        resolve(true);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
         getContacts(_, customer_id) {
             return new Promise((resolve, reject) => {
                 axios
