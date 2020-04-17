@@ -77,7 +77,7 @@
             name="notes"
             placeholder="Notes"
             title="Notes"
-            v-model="customerData.notes"
+            v-model="customerData.note"
             v-if="customerData != null"
         >
         </TextInput>
