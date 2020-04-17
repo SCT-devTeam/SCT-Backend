@@ -13,6 +13,7 @@
             placeholder="Customer Status"
             title="Customer Status"
             :value="customerData.status"
+            v-if="customerData != null"
         >
         </DropdownInput>
 
@@ -24,6 +25,7 @@
             placeholder="Customer Type"
             title="Customer Type"
             :value="customerData.customer_type"
+            v-if="customerData != null"
         >
         </DropdownInput>
 
@@ -35,6 +37,7 @@
                 placeholder="FirstName"
                 title="FirstName"
                 v-model="customerData.firstname"
+                v-if="customerData != null"
             >
             </TextInput>
 
@@ -45,6 +48,7 @@
                 placeholder="LastName"
                 title="LastName"
                 v-model="customerData.lastname"
+                v-if="customerData != null"
             >
             </TextInput>
         </div>
@@ -60,6 +64,7 @@
             icon="arrow_icon_blue"
             title="Click on it to view his card"
             v-for="(contact, index) in customerContacts"
+            v-if="customerData != null"
         ></TextFiledSCT>
 
         <p class="title">Notes</p>
@@ -73,6 +78,7 @@
             placeholder="Notes"
             title="Notes"
             v-model="customerData.notes"
+            v-if="customerData != null"
         >
         </TextInput>
 
@@ -85,7 +91,7 @@
             iconName="pencil_icon_blue"
             name="Edit"
             title="Enable edition"
-            v-if="!isEditionMode"
+            v-if="!isEditionMode && this.customerData != null"
             value="edit"
         ></BtnIcon>
 
@@ -96,8 +102,18 @@
             iconName="tick_icon_blue"
             name="Validate"
             title="Disable edition"
-            v-if="isEditionMode"
+            v-if="isEditionMode && this.customerData != null"
             value="validate"
+        ></BtnIcon>
+
+        <BtnIcon
+            @clicked="createNewCustomer"
+            class="btn-add"
+            bg-color="--colors-main"
+            iconName="plus_icon_white"
+            name="new"
+            title="Create new customer"
+            value=""
         ></BtnIcon>
     </div>
 </template>
@@ -112,10 +128,9 @@ import { mapActions } from "vuex";
 export default {
     name: "CustomerCard",
     created() {
-        // eslint-disable-next-line
-        this.customerData = JSON.parse ( JSON.stringify ( this.$store.getters.getCustomerByID(this.customerId)) );
-        // eslint-disable-next-line
-        this.customerContacts = JSON.parse ( JSON.stringify ( this.$store.getters.getCustomerContacts(this.customerId)) );
+        if (this.customerId != null) {
+            this.fetchCustomerData();
+        }
     },
     components: {
         TextInput,
@@ -131,12 +146,42 @@ export default {
         };
     },
     props: {
-        customerId: Number
+        customerId: {
+            type: Number,
+            default: null
+        }
     },
     methods: {
         ...mapActions({
-            saveCustomer: "updateCustomer"
+            saveCustomer: "updateCustomer",
+            createCustomer: "createCustomer"
         }),
+        fetchCustomerData() {
+            // eslint-disable-next-line
+            this.customerData = JSON.parse ( JSON.stringify ( this.$store.getters.getCustomerByID(this.customerId)) );
+            // eslint-disable-next-line
+            this.customerContacts = JSON.parse ( JSON.stringify ( this.$store.getters.getCustomerContacts(this.customerId)) );
+        },
+        createNewCustomer() {
+            this.customerData = {
+                customer_type: "",
+                status: "",
+                meeting_date: "",
+                company_name: "",
+                siret: "",
+                tva_number: "",
+                firstname: "",
+                lastname: "",
+                street_number: "",
+                street_name: "",
+                zipcode: "",
+                city: "",
+                note: "",
+                default_payment_method: "",
+                company: this.$store.getters.getActiveCompany
+            };
+            this.isEditionMode = true;
+        },
         displayContact: function(contact_id) {
             this.$emit("displayContact", contact_id);
         },
@@ -148,7 +193,18 @@ export default {
             return `${contactObj.firstname} ${contactObj.lastname}`;
         },
         save() {
-            this.saveCustomer(this.customerData);
+            if (Object.prototype.hasOwnProperty.call(this.customerData, "id"))
+                this.saveCustomer(this.customerData).then(newCustomer => {
+                    console.log(newCustomer);
+                    this.customerId = newCustomer.id;
+                    this.isEditionMode = true;
+                });
+            else this.createCustomer(this.customerData);
+        }
+    },
+    watch: {
+        customerId() {
+            this.fetchCustomerData();
         }
     }
 };
