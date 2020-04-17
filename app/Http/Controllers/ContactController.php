@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ContactController extends Controller
 {
@@ -100,5 +101,21 @@ class ContactController extends Controller
         $contact->delete();
 
         return response()->json(['status', 'Deletion ok'], 200);
+    }
+
+    public function allContacts(Request $request)
+    {
+        $request->validate(
+            ['id_company'=>'required']
+        );
+
+        $contacts =DB::table('contacts')
+            ->join('customers','contacts.customer','=','customer.id')
+            ->join('companies','customers.company','=','company.id')
+            ->get();
+
+
+//        $contacts = Contact::all()
+//            ->join('customers','contacts.customer','=','customer.id')
     }
 }
