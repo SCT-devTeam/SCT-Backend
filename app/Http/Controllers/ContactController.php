@@ -110,12 +110,13 @@ class ContactController extends Controller
         );
 
         $contacts =DB::table('contacts')
-            ->join('customers','contacts.customer','=','customer.id')
-            ->join('companies','customers.company','=','company.id')
+            ->join('customers','contacts.customer','=','customers.id')
+            ->join('companies','customers.company','=','companies.id')
+            ->where('companies.id','=',$request->id_company)
+            ->select('contacts.*')
             ->get();
 
+        return response()->json($contacts);
 
-//        $contacts = Contact::all()
-//            ->join('customers','contacts.customer','=','customer.id')
     }
 }
