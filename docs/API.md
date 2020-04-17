@@ -181,7 +181,7 @@
 | firstname | Present | unspecified | text |  |
 | lastname | Present | unspecified | text |  |
 | street_number | Present | unspecified | Integer |  |
-| stret_name | Present | unspecified | text |  |
+| street_name | Present | unspecified | text |  |
 | zipcode | Present | unspecified | Integer |  |
 | city | Present | unspecified | text |  |
 | note | Present | unspecified | text |  |
