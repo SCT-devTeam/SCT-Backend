@@ -18,7 +18,6 @@ if (typeof baseURL !== "undefined") {
 }
 
 (async function() {
-    console.warn("Restoring the store !");
     await store.restored;
     if (store.state.user.token != null) {
         axios.defaults.headers.common[
