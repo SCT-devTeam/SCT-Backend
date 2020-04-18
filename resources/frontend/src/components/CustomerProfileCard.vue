@@ -1,5 +1,5 @@
 <template>
-    <div id="profile-card">
+    <form id="profile-card">
         <img
             alt="Picture of the customer"
             src="../assets/Artboards_Diversity_Avatars_by_Netguru-29.png"
@@ -106,9 +106,10 @@
             class="btn"
             iconName="tick_icon_blue"
             name="Validate"
-            title="Disable edition"
+            title="Save the customer"
             v-if="isEditionMode && this.customerData != null"
-            value="validate"
+            value="submit"
+            type="submit"
         ></BtnIcon>
 
         <BtnIcon
@@ -120,7 +121,9 @@
             title="Create new customer"
             value=""
         ></BtnIcon>
-    </div>
+
+        <p v-if="this.error != null">{{ this.error }}</p>
+    </form>
 </template>
 
 <script>
@@ -147,7 +150,8 @@ export default {
         return {
             isEditionMode: false,
             customerData: null,
-            customerContacts: null
+            customerContacts: null,
+            error: null
         };
     },
     props: {
@@ -191,8 +195,19 @@ export default {
             this.$emit("displayContact", contact_id);
         },
         toggleMode: function() {
-            if (this.isEditionMode) this.save();
-            this.isEditionMode = !this.isEditionMode;
+            if (this.isEditionMode) {
+                if (
+                    this.customerData.firstname !== "" &&
+                    this.customerData.lastname !== "" &&
+                    this.customerData.status !== ""
+                ) {
+                    this.error = null;
+                    this.isEditionMode = !this.isEditionMode;
+                    this.save();
+                } else {
+                    this.error = "Please fill required inputs";
+                }
+            }
         },
         contactFullname: function(contactObj) {
             return `${contactObj.firstname} ${contactObj.lastname}`;
@@ -219,7 +234,7 @@ export default {
 @import "src/scss/colors";
 @import "src/scss/typography";
 
-div#profile-card {
+form#profile-card {
     display: flex;
     flex-direction: column;
     align-items: center;
