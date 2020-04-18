@@ -2,11 +2,16 @@
     <div id="prospect-list">
         <div id="panel-1">
             <SearchForm id="Search-form"></SearchForm>
-            <CustomersTable></CustomersTable>
+            <CustomersTable
+                :data="this.$store.state.customers"
+                statusFilter="prospect"
+                @itemClicked="customerToDisplay = $event"
+            ></CustomersTable>
         </div>
         <div id="panel-2">
             <div id="panel-2__container">
                 <CustomerProfileCard
+                    :customerId="customerToDisplay"
                     @displayContact="contactToDisplay = $event"
                 ></CustomerProfileCard>
                 <ContactProfileCard
@@ -25,7 +30,7 @@
 
 <script>
 import SearchForm from "../../components/Forms/SearchForm";
-import CustomersTable from "../../components/CustomersTable";
+import CustomersTable from "../../components/Tables/CustomersTable";
 import CustomerProfileCard from "../../components/CustomerProfileCard";
 import ContactProfileCard from "../../components/ContactProfileCard";
 
@@ -39,6 +44,7 @@ export default {
     },
     data() {
         return {
+            customerToDisplay: null,
             contactToDisplay: null
         };
     }

@@ -14,15 +14,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Implement ignored API routes
+- Implement companies ignored API routes
 - Implement QR Code generation for mobile connexion
 - Create API tests
+- Add more errors on bad api call (like a GET on POST method, return "method unavailable")
+- Improve invoice qualifications
+- Rename `chasing_date` by `cashing_date` in `Invoicies` table
+- Fix map import of vuex (READ: <https://stackoverflow.com/questions/52773324/are-vuex-mapgetters-even-worth-using#answer-52795538>)
 
 ### Changed
 
 - Refactor dashboard widget
     - add icon property
     - extract logic & style into mixins
+
+
+&nbsp; <!-- break line -->
+
+
+
+## [1.1.0a] - 2020-04-18
+
+### Added
+
+- All necessary API routes
+
+
+## Changed
+
+- Customer CRUD now works !
 
 
 &nbsp; <!-- break line -->

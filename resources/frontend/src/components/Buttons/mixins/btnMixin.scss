@@ -1,0 +1,53 @@
+@import "src/scss/colors";
+@import "src/scss/typography";
+
+button {
+    min-height: 2rem;
+    height: fit-content;
+    min-width: 2rem;
+    width: fit-content;
+
+    padding: 5px 10px;
+
+    position: relative;
+
+    border: 2px solid #fff;
+    border-radius: 20000000px;
+
+    background-color: $color__secondary;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+
+    font-family: $font__heading;
+    color: #fff;
+
+    cursor: pointer;
+
+    outline: none;
+
+    &:focus {
+        background-color: $color__action_active !important;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    &.disabled {
+        cursor: not-allowed;
+        background-color: $color__secondary;
+
+        &:focus {
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            top: -2px;
+            bottom: -2px;
+            left: -2px;
+            right: -2px;
+
+            border-radius: 20px;
+
+            background-color: #{$color__inactive_subtitle}55;
+        }
+    }
+}

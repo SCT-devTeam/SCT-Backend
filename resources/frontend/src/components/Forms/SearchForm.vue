@@ -1,24 +1,36 @@
 <template>
     <form @submit.prevent="submitForm" id="Search-form" method="get">
         <TextInput
+            :enableValidation="false"
+            @onInput="query = $event"
             class="search-input"
             name="search"
-            title="Search"
             placeholder="Search"
-            v-model:value="query"
-            @onInput="query = $event">
+            title="Search"
+            v-model="query"
+        >
         </TextInput>
-        <SearchCircleBtnSCT :isDisabled="!isFilled"></SearchCircleBtnSCT>
+
+        <BtnIcon
+            :isDisabled="!isFilled"
+            @clicked="$emit('search')"
+            class="btn"
+            bg-color="--colors-secondary-principal"
+            iconName="search_icon_white"
+            name="Search"
+            title="Start search"
+            value="search"
+        ></BtnIcon>
     </form>
 </template>
 
 <script>
 import TextInput from "../Fileds/Themed/Inputs/TextInput";
-import SearchCircleBtnSCT from "../Buttons/SearchCircleBtnSCT";
+import BtnIcon from "../Buttons/BtnIcon";
 
 export default {
     name: "SearchForm",
-    components: { TextInput, SearchCircleBtnSCT },
+    components: { TextInput, BtnIcon },
     data() {
         return {
             query: ""
@@ -42,9 +54,19 @@ export default {
 <style lang="scss" scoped>
 form#Search-form {
     display: flex;
+    align-items: center;
 
     > .search-input {
         width: 90%;
+    }
+
+    > .btn {
+        height: 3rem;
+        max-height: 100%;
+        width: 3rem;
+        max-width: 100%;
+
+        margin-left: 25px;
     }
 }
 </style>

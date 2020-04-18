@@ -5,19 +5,16 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-
+import { mapActions } from "vuex";
+// TODO: replace this all view to directly logout action
 export default {
     name: "Logout",
     methods: {
-        ...mapMutations({
-            set_token: "SET_TOKEN",
-            set_user: "SET_USER"
-        }),
+        ...mapActions({ logout: "logoutUser" }),
         logoutUser() {
-            this.set_token(null);
-            this.set_user({});
-            this.$router.push({ name: "Login" });
+            this.logout().then(() => {
+                this.$router.push({ name: "Login" });
+            });
         }
     }
 };

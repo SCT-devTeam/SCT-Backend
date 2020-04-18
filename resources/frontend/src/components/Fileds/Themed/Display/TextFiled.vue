@@ -10,22 +10,23 @@
                 }"
                 @mouseover="hovered"
                 ref="label"
-            >{{ fieldLabel }}</label>
+                >{{ fieldLabel }}</label
+            >
 
             <span
-                class="outline-top"
                 :style="{
-                    left: topLineOffset + 'px',
+                    left: `${topLineOffset}px`,
                     'background-color': outlineColor
                 }"
                 @mouseover="hovered"
+                class="outline-top"
             ></span>
 
             <div
+                :style="{ '--inputBgColor': filedBgColor }"
                 class="input-container"
-                :style="{ '--inputBgColor': inputBgColor }"
             >
-                <p ref="input" style="margin: 0">{{ this.value }}</p>
+                <p :id="name" ref="input" style="margin: 0">{{ this.value }}</p>
             </div>
 
             <span
@@ -45,7 +46,7 @@
                     fill="none"
                     stroke-width="2"
                     transform="translate(-1251.006 -648)"
-                />
+                ></path>
             </svg>
 
             <svg
@@ -59,7 +60,7 @@
                     fill="none"
                     stroke-width="2"
                     transform="translate(-1251.006 -648)"
-                />
+                ></path>
             </svg>
 
             <img
@@ -78,25 +79,21 @@
 <script>
 // Change input by stylise vuetify input : https://vuetifyjs.com/en/components/text-fields/#text-fields
 // TODO: Separate share logic in multiple files
-import {outlineInputMixin} from "../Inputs/mixins/outlineInputMixin";
+import outlineInputMixin from "../Inputs/mixins/outlineInputMixin";
 
 export default {
     name: "TextSCT",
     mixins: [outlineInputMixin],
     props: {
         icon: String,
-        value: String,
+        value: String
     },
     computed: {
         imgSrcPath() {
-            return require("../../../../assets/icons/" +
-                this.icon +
-                "_icon_blue.png");
+            return require(`../../../../assets/icons/${this.icon}.png`);
         },
         imgSrcsetPath() {
-            return require("../../../../assets/icons/" +
-                this.icon +
-                "_icon_blue.svg");
+            return require(`../../../../assets/icons/${this.icon}.svg`);
         }
     },
     methods: {
@@ -108,17 +105,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../mixins/outlinedFiledsMixin';
-    img.filed-icon {
-        position: absolute;
-        right: 5px;
-        top: 50%;
-        transform: translateY(-50%);
+@import "../mixins/outlinedFiledsMixin";
+img.filed-icon {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
 
-        height: 80%;
+    height: 80%;
 
-        z-index: 1;
+    z-index: 1;
 
-        cursor: pointer;
-    }
+    cursor: pointer;
+}
 </style>
