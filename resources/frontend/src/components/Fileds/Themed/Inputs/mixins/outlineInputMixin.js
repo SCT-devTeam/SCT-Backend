@@ -1,4 +1,4 @@
-export const outlineInputMixin = {
+export default {
     data() {
         return {
             error: "",
@@ -32,21 +32,24 @@ export const outlineInputMixin = {
             type: Boolean,
             default: false
             // TODO: fix required markup to the correct HTML5 syntax
+        },
+        enableValidation: {
+            type: Boolean,
+            default: true
         }
     },
     computed: {
-        inputPlaceholder() {
+        filedPlaceholder() {
             if (this.placeholder !== undefined) return this.placeholder;
             else return this.name;
         },
-        inputBgColor() {
-            if (this.bgColor.startsWith("--"))
-                return "var(" + this.bgColor + ")";
+        filedBgColor() {
+            if (this.bgColor.startsWith("--")) return `var(${this.bgColor})`;
             else return this.bgColor;
         },
         fieldLabel() {
             if (this.label !== undefined) return this.label;
-            else return this.inputPlaceholder;
+            else return this.filedPlaceholder;
         },
         isFilled() {
             return !!this.value;

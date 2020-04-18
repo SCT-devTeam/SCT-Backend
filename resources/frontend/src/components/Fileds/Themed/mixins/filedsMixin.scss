@@ -51,7 +51,7 @@ div.container {
                 box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 
                 font-family: $font__text;
-                font-size: 1em;
+                font-size: 1rem;
                 color: $color__black;
 
                 outline: none;
@@ -87,7 +87,7 @@ div.container {
     }
 
     > p.error {
-        min-height: 1em;
+        min-height: 1rem;
         min-width: 100%;
 
         margin: 5px 0 0 5px;

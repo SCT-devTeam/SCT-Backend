@@ -2,7 +2,7 @@
 <!--<TextInput-->
 <!--    name="TextInput"-->
 <!--    title="TextInput"-->
-<!--    v-model:value="value"-->
+<!--    v-model="value"-->
 <!--    @onInput="value = $event">-->
 <!--</TextInput>-->
 
@@ -19,35 +19,39 @@
                 }"
                 @mouseover="hovered"
                 ref="label"
-                >{{ fieldLabel }}</label>
+            >
+                {{ fieldLabel }}
+            </label>
             <span
-                class="outline-top"
                 :style="{
-                    left: topLineOffset + 'px',
+                    left: `${topLineOffset}px`,
                     'background-color': outlineColor
                 }"
                 @mouseover="hovered"
+                class="outline-top"
             ></span>
 
             <div
+                :style="{ '--inputBgColor': filedBgColor }"
                 class="input-container"
-                :style="{ '--inputBgColor': inputBgColor }"
             >
                 <!-- TODO: implement all attributes -->
+                <!--suppress HtmlFormInputWithoutLabel -->
                 <input
+                    :disabled="isDisabled"
+                    :id="name"
                     :name="name"
-                    :placeholder="inputPlaceholder"
+                    :placeholder="filedPlaceholder"
+                    :readonly="isDisabled"
                     :required="isRequired"
                     :title="title"
+                    :type="type"
                     :value="value"
                     @focusin="active"
                     @focusout="notActive"
                     @input="onInput"
                     @mouseover="hovered"
-                    :disabled="isDisabled"
                     ref="input"
-                    :type="type"
-                    :readonly="isDisabled"
                 />
             </div>
             <span
@@ -67,7 +71,7 @@
                     fill="none"
                     stroke-width="2"
                     transform="translate(-1251.006 -648)"
-                />
+                ></path>
             </svg>
 
             <svg
@@ -81,10 +85,10 @@
                     fill="none"
                     stroke-width="2"
                     transform="translate(-1251.006 -648)"
-                />
+                ></path>
             </svg>
         </div>
-        <p class="error">{{ error }}</p>
+        <p class="error" v-if="this.enableValidation">{{ error }}</p>
     </div>
 </template>
 
@@ -92,10 +96,10 @@
 // Change inputs by stylise vuetify inputs : https://vuetifyjs.com/en/components/text-fields/#text-fields
 import { emailValidator } from "../../utils/emailValidator";
 import { passwordValidator } from "../../utils/passwordValidator";
-import { outlineInputMixin } from "./mixins/outlineInputMixin";
+import outlineInputMixin from "./mixins/outlineInputMixin";
 
 export default {
-    name: "TextSCT",
+    name: "TextInput",
     mixins: [outlineInputMixin],
     props: {
         type: {
@@ -108,7 +112,7 @@ export default {
     methods: {
         notActive() {
             this.isActive = false;
-            this.checkInput();
+            if (this.enableValidation) this.checkInput();
         },
         checkInput() {
             // Check if empty
@@ -160,5 +164,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "src/components/Fileds/Themed/Inputs/mixins/outlineInputMixin";
+@import "./mixins/outlineInputMixin";
 </style>

@@ -18,44 +18,53 @@
                 }"
                 @mouseover="hovered"
                 ref="label"
-                >{{ fieldLabel }}</label
             >
+                {{ fieldLabel }}
+            </label>
             <span
-                class="outline-top"
                 :style="{
-                    left: topLineOffset + 'px',
+                    left: `${topLineOffset}px`,
                     'background-color': outlineColor
                 }"
                 @mouseover="hovered"
+                class="outline-top"
             ></span>
 
             <div
+                :style="{ '--inputBgColor': filedBgColor }"
                 class="input-container"
-                :style="{ '--inputBgColor': inputBgColor }"
             >
                 <!-- TODO: implement all attributes -->
+                <!--suppress HtmlFormInputWithoutLabel -->
                 <select
+                    :disabled="isDisabled"
+                    :id="name"
                     :name="name"
-                    :placeholder="inputPlaceholder"
+                    :placeholder="filedPlaceholder"
+                    :readonly="isDisabled"
                     :required="isRequired"
                     :title="title"
                     @focusin="active"
                     @focusout="notActive"
                     @mouseover="hovered"
-                    :disabled="isDisabled"
                     ref="input"
-                    :readonly="isDisabled"
+                    v-model="currentValue"
+                    @click="$emit('onInput', $event.target.value)"
                 >
-                    <option :key="index" v-for="(option, index) in options"
-                        >{{ option }}
+                    <option
+                        :key="index"
+                        :value="option"
+                        v-for="(option, index) in options"
+                    >
+                        {{ option }}
                     </option>
                 </select>
             </div>
 
             <span
-                class="outline-bot"
                 :style="{ 'background-color': outlineColor }"
                 @mouseover="hovered"
+                class="outline-bot"
             ></span>
 
             <svg
@@ -69,7 +78,7 @@
                     fill="none"
                     stroke-width="2"
                     transform="translate(-1251.006 -648)"
-                />
+                ></path>
             </svg>
 
             <svg
@@ -83,7 +92,7 @@
                     fill="none"
                     stroke-width="2"
                     transform="translate(-1251.006 -648)"
-                />
+                ></path>
             </svg>
         </div>
     </div>
@@ -92,11 +101,19 @@
 <script>
 // Change inputs by stylise vuetify inputs : https://vuetifyjs.com/en/components/text-fields/#text-fields
 // TODO: refactor it based on TextSCT input
-import { outlineInputMixin } from "./mixins/outlineInputMixin";
+import outlineInputMixin from "./mixins/outlineInputMixin";
 
 export default {
     name: "DropdownInput",
     mixins: [outlineInputMixin],
+    mounted() {
+        this.currentValue = this.value;
+    },
+    data() {
+        return {
+            currentValue: ""
+        };
+    },
     props: {
         options: {
             type: Array,

@@ -24,6 +24,7 @@ export default {
 
 <!-- TODO: add auto import of sass files -->
 <style lang="scss">
+/* TODO: load style with vue-cli plugin :https://github.com/nguyenvanduocit/vue-cli-plugin-style-resources-loader or https://cli.vuejs.org/guide/css.html#passing-options-to-pre-processor-loaders*/
 @import "src/scss/normalize.scss";
 @import "src/scss/colors";
 @import "src/scss/typography";

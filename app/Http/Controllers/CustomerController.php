@@ -47,7 +47,7 @@ class CustomerController extends Controller
             'default_payment_method' => $request->default_payment_method,
             'company' => $companie->id
         ]);
-        return response()->json(['customer' => $customer]);
+        return response()->json($customer);
     }
 
     public function update(Request $request)
@@ -91,7 +91,7 @@ class CustomerController extends Controller
 
         $customer->save();
 
-        return response()->json(['customer',$customer]);
+        return response()->json($customer);
     }
 
     public function getCustomerAll(Request $request)
@@ -101,7 +101,7 @@ class CustomerController extends Controller
         ]);
 
         $customers = Customer::where('company', '=', $request->id_company)->get();
-        return response()->json(['cust' => $customers]);
+        return response()->json($customers);
     }
 
     public function delete(Request $request)

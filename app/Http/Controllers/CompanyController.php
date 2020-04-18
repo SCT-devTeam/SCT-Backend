@@ -103,7 +103,7 @@ class CompanyController extends Controller
         $company->notes = $request->notes;
 
         $company->save();
-        return response()->json(['company' => $company], 200);
+        return response()->json($company, 200);
 
     }
 
@@ -111,6 +111,6 @@ class CompanyController extends Controller
     {
         $idcompany = $request->user()->companies;
         $company = Company::where('id', '=', $idcompany)->get();
-        return response()->json(['comp' => $company]);
+        return response()->json($company);
     }
 }
