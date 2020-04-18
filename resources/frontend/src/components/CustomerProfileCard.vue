@@ -1,5 +1,5 @@
 <template>
-    <form id="profile-card">
+    <form id="profile-card" @submit.prevent="toggleMode">
         <img
             alt="Picture of the customer"
             src="../assets/Artboards_Diversity_Avatars_by_Netguru-29.png"
@@ -101,7 +101,6 @@
         ></BtnIcon>
 
         <BtnIcon
-            @clicked="toggleMode"
             bg-color="--colors-main"
             class="btn"
             iconName="tick_icon_blue"
