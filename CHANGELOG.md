@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Implement companies ignored API routes
 - Implement QR Code generation for mobile connexion
+- Create API tests
+- Add more errors on bad api call (like a GET on POST method, return "method unavailable")
+- Improve invoice qualifications
+- Rename `chasing_date` by `cashing_date` in `Invoicies` table
 - Fix map import of vuex (READ: <https://stackoverflow.com/questions/52773324/are-vuex-mapgetters-even-worth-using#answer-52795538>)
 
 ### Changed
