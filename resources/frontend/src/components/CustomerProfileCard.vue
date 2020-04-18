@@ -224,6 +224,8 @@ div#profile-card {
     flex-direction: column;
     align-items: center;
 
+    width: 100%;
+
     padding: 10px;
 
     border-radius: 15px;
