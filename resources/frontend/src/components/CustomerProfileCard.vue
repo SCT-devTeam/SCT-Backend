@@ -1,48 +1,59 @@
 <template>
-    <div id="profile-card">
+    <form id="profile-card" @submit.prevent="">
         <img
             alt="Picture of the customer"
             src="../assets/Artboards_Diversity_Avatars_by_Netguru-29.png"
         />
 
+        <!-- TODO: FIX: reset the dropdown on new customer object -->
         <DropdownInput
             :options="['prospect', 'active', 'archived', 'deleted']"
-            @onInput="entity.status = $event"
+            :isDisabled="!isEditionMode"
+            @onInput="customerData.status = $event"
             name="customer-status"
             placeholder="Customer Status"
+            :isRequired="true"
             title="Customer Status"
-            :value="entity.status"
+            :value="customerData.status"
+            v-if="customerData != null"
         >
         </DropdownInput>
 
         <DropdownInput
             :options="['individual', 'professional']"
-            @onInput="entity.customer_type = $event"
+            :isDisabled="!isEditionMode"
+            @onInput="customerData.customer_type = $event"
             name="customer-type"
             placeholder="Customer Type"
+            :isRequired="true"
             title="Customer Type"
-            :value="entity.customer_type"
+            :value="customerData.customer_type"
+            v-if="customerData != null"
         >
         </DropdownInput>
 
         <div id="name">
             <TextInput
                 :isDisabled="!isEditionMode"
-                @onInput="entity.firstname = $event"
+                @onInput="customerData.firstname = $event"
                 name="firstname"
                 placeholder="FirstName"
+                :isRequired="true"
                 title="FirstName"
-                v-model="entity.firstname"
+                v-model="customerData.firstname"
+                v-if="customerData != null"
             >
             </TextInput>
 
             <TextInput
                 :isDisabled="!isEditionMode"
-                @onInput="entity.lastname = $event"
+                @onInput="customerData.lastname = $event"
                 name="lastname"
                 placeholder="LastName"
+                :isRequired="true"
                 title="LastName"
-                v-model="entity.lastname"
+                v-model="customerData.lastname"
+                v-if="customerData != null"
             >
             </TextInput>
         </div>
@@ -57,7 +68,8 @@
             class="filed"
             icon="arrow_icon_blue"
             title="Click on it to view his card"
-            v-for="(contact, index) in contacts"
+            v-for="(contact, index) in customerContacts"
+            v-if="customerData != null"
         ></TextFiledSCT>
 
         <p class="title">Notes</p>
@@ -66,38 +78,52 @@
 
         <TextInput
             :isDisabled="!isEditionMode"
-            @onInput="entity.notes = $event"
+            @onInput="customerData.notes = $event"
             name="notes"
             placeholder="Notes"
             title="Notes"
-            v-model="entity.notes"
+            v-model="customerData.note"
+            v-if="customerData != null"
         >
         </TextInput>
 
         <BtnIcon
             :icon-rotation="45"
             :icon-size="10"
-            @clicked="toggleMode"
+            @clicked="isEditionMode = true"
             bg-color="--colors-main"
             class="btn"
             iconName="pencil_icon_blue"
             name="Edit"
             title="Enable edition"
-            v-if="!isEditionMode"
+            v-if="!isEditionMode && this.customerData != null"
             value="edit"
         ></BtnIcon>
 
         <BtnIcon
-            @clicked="toggleMode"
             bg-color="--colors-main"
             class="btn"
             iconName="tick_icon_blue"
             name="Validate"
-            title="Disable edition"
-            v-if="isEditionMode"
-            value="validate"
+            title="Save the customer"
+            v-if="isEditionMode && this.customerData != null"
+            value="submit"
+            type="submit"
+            @clicked="save"
         ></BtnIcon>
-    </div>
+
+        <BtnIcon
+            @clicked="createNewCustomer"
+            class="btn-add"
+            bg-color="--colors-main"
+            iconName="plus_icon_white"
+            name="new"
+            title="Create new customer"
+            value=""
+        ></BtnIcon>
+
+        <p v-if="this.error != null">{{ this.error }}</p>
+    </form>
 </template>
 
 <script>
@@ -108,8 +134,12 @@ import BtnIcon from "./Buttons/BtnIcon";
 import { mapActions } from "vuex";
 
 export default {
-    // TODO: add v-if on all item, to only display the shape of the card when the component haven't any data
     name: "CustomerCard",
+    created() {
+        if (this.customerId != null) {
+            this.fetchCustomerData();
+        }
+    },
     components: {
         TextInput,
         TextFiledSCT,
@@ -118,57 +148,88 @@ export default {
     },
     data() {
         return {
-            isEditionMode: false
+            isEditionMode: false,
+            customerData: null,
+            customerContacts: null,
+            error: null
         };
     },
     props: {
         customerId: {
             type: Number,
-            required: true
-        }
-    },
-    computed: {
-        entity() {
-            return this.$store.getters.getCustomerByID(this.customerId);
-        },
-        contacts() {
-            return this.getContacts(this.customerId);
+            default: null
         }
     },
     methods: {
         ...mapActions({
-            getContacts: "getContacts",
-            saveCustomer: "saveCustomer"
+            saveCustomer: "updateCustomer",
+            createCustomer: "createCustomer"
         }),
+        fetchCustomerData() {
+            // eslint-disable-next-line
+            this.customerData = JSON.parse ( JSON.stringify ( this.$store.getters.getCustomerByID(this.customerId)) );
+            // eslint-disable-next-line
+            this.customerContacts = JSON.parse ( JSON.stringify ( this.$store.getters.getCustomerContacts(this.customerId)) );
+        },
+        createNewCustomer() {
+            this.customerData = {
+                customer_type: null,
+                status: "",
+                meeting_date: "",
+                company_name: "",
+                siret: null,
+                tva_number: null,
+                firstname: "",
+                lastname: "",
+                street_number: null,
+                street_name: "",
+                zipcode: null,
+                city: "",
+                note: "",
+                default_payment_method: null,
+                company: this.$store.getters.getActiveCompany
+            };
+            this.isEditionMode = true;
+        },
         displayContact: function(contact_id) {
             this.$emit("displayContact", contact_id);
-        },
-        toggleMode: function() {
-            this.isEditionMode = !this.isEditionMode;
-            if (this.isEditionMode) this.save();
         },
         contactFullname: function(contactObj) {
             return `${contactObj.firstname} ${contactObj.lastname}`;
         },
+        toggleMode() {
+            this.isEditionMode = !this.isEditionMode;
+        },
         save() {
-            this.saveCustomer({
-                id: this.entity.id,
-                customer_type: "",
-                status: "",
-                meeting_date: "",
-                company_name: "",
-                siret: "",
-                tva_number: "",
-                firstname: "",
-                lastname: "",
-                street_number: "",
-                street_name: "",
-                zipcode: "",
-                city: "",
-                note: "",
-                default_payment_method: "",
-                company: ""
-            });
+            if (
+                this.isEditionMode &&
+                this.customerData.firstname !== "" &&
+                this.customerData.lastname !== "" &&
+                this.customerData.status !== ""
+            ) {
+                this.error = null;
+                this.isEditionMode = false;
+
+                if (
+                    Object.prototype.hasOwnProperty.call(
+                        this.customerData,
+                        "id"
+                    )
+                )
+                    this.saveCustomer(this.customerData);
+                else
+                    this.createCustomer(this.customerData).then(newCustomer => {
+                        this.customerData = newCustomer;
+                        this.isEditionMode = true;
+                    });
+            } else {
+                this.error = "Please fill required inputs";
+            }
+        }
+    },
+    watch: {
+        customerId() {
+            this.fetchCustomerData();
         }
     }
 };
@@ -178,10 +239,12 @@ export default {
 @import "src/scss/colors";
 @import "src/scss/typography";
 
-div#profile-card {
+form#profile-card {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    width: 100%;
 
     padding: 10px;
 

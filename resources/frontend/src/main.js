@@ -7,6 +7,7 @@ import VueAxios from "vue-axios";
 
 Vue.use(VueAxios, axios);
 
+// TODO: add env var for baseURL
 const baseURL =
     window.location.hostname === "localhost"
         ? "http://localhost:8000"
@@ -16,12 +17,14 @@ if (typeof baseURL !== "undefined") {
     Vue.axios.defaults.baseURL = baseURL;
 }
 
-let headers = {
-    "Content-Type": "application/json",
-    Accept: "application/json"
-};
-
-Vue.axios.defaults.headers.common = headers;
+(async function() {
+    await store.restored;
+    if (store.state.user.token != null) {
+        axios.defaults.headers.common[
+            "Authorization"
+        ] = `Bearer ${store.state.user.token}`;
+    }
+})();
 
 Vue.config.productionTip = false;
 

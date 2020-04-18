@@ -16,23 +16,23 @@
     - [updateCustomer](#updatecustomer)
     - [deleteCustomer](#deletecustomer)
   - [Contact](#contact)
-    - [deleteContact](#deletecontact)
+    - [allContact](#allcontact)
+    - [getContact](#getcontact)
     - [createContact](#createcontact)
     - [updateContacts](#updatecontacts)
-    - [getContact](#getcontact)
+    - [deleteContact](#deletecontact)
   - [Quotes](#quotes)
     - [allQuotes](#allquotes)
     - [quote](#quote)
-    - [updateQuote](#updatequote)
-  - [| last_qualification_date | Present | unspecified | datedate|  |](#lastqualificationdate--present--unspecified--datedate)
     - [createQuote](#createquote)
+    - [updateQuote](#updatequote)
     - [deleteQuote](#deletequote)
   - [Invoices](#invoices)
     - [allInvoices](#allinvoices)
     - [Invoice](#invoice)
     - [createInvoice](#createinvoice)
-    - [deleteInvoice](#deleteinvoice)
     - [updateInvoice](#updateinvoice)
+    - [deleteInvoice](#deleteinvoice)
 
 
 &nbsp; <!-- break line -->
@@ -174,18 +174,18 @@
 | --- | --- | --- | --- | --- |
 | customer_type | Present | unspecified | enum('individual', 'professional') |  |
 | status | Present | unspecified | text |  |
-| meeting_date | Present | unspecified | date |  |
+| meeting_date | Present | unspecified | Date |  |
 | company_name | Present | unspecified | text |  |
 | siret | Present | unspecified | Integer |  |
 | tva_number | Present | unspecified | Integer |  |
 | firstname | Present | unspecified | text |  |
 | lastname | Present | unspecified | text |  |
 | street_number | Present | unspecified | Integer |  |
-| stret_name | Present | unspecified | text |  |
+| street_name | Present | unspecified | text |  |
 | zipcode | Present | unspecified | Integer |  |
 | city | Present | unspecified | text |  |
 | note | Present | unspecified | text |  |
-| default_payement_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
+| default_payment_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
 | company | Required | unspecified | Integer |  |
 
 ---
@@ -203,7 +203,7 @@
 | id | Required | unspecified | Integer |  |
 | customer_type | Present | unspecified | text |  |
 | status | Present | unspecified | text |  |
-| meeting_date | Present | unspecified | date |  |
+| meeting_date | Present | unspecified | Date |  |
 | company_name | Present | unspecified | text |  |
 | siret | Present | unspecified | Integer |  |
 | tva_number | Present | unspecified | Integer |  |
@@ -239,17 +239,31 @@
 
 ## Contact
 
-### deleteContact
+### allContact
 
 > Description
 
-**URL** : `/api/deleteContact`
+**URL** : `/api/allContact`
 **Authentication required** : `true`
 **Method** : `POST`
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| id_contact | Required | unspecified | Integer |  |
+| id_company | Required | unspecified | Integer |  |
+
+---
+
+### getContact
+
+> Description
+
+**URL** : `/api/contact`
+**Authentication required** : `true`
+**Method** : `POST`
+
+| Key | Required | Default | Type | Description |
+| --- | --- | --- | --- | --- |
+| id_customer | Required | unspecified | Integer |  |
 
 ---
 
@@ -301,17 +315,17 @@
 
 ---
 
-### getContact
+### deleteContact
 
 > Description
 
-**URL** : `/api/contact`
+**URL** : `/api/deleteContact`
 **Authentication required** : `true`
 **Method** : `POST`
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| id_customer | Required | unspecified | Integer |  |
+| id_contact | Required | unspecified | Integer |  |
 
 ---
 
@@ -327,7 +341,7 @@
 
 **URL** : `/api/allQuote`
 **Authentication required** : `true`
-**Method** : `POST`
+**Method** : `GET`
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
@@ -349,32 +363,6 @@
 
 ---
 
-### updateQuote
-
-> Description
-
-**URL** : `/api/updateQuote`
-**Authentication required** : `true`
-**Method** : `POST`
-
-| Key | Required | Default | Type | Description |
-| --- | --- | --- | --- | --- |
-| company_id | Required | unspecified | Integer |  |
-| customer_id | Required | unspecified | Integer |  |
-| qualification | Present | unspecified | enum('draft', 'edited', 'awaiting_approuval', 'revived', 'accepted', 'declined', 'discontinued') |  |
-| ediition_date | Present | unspecified | Integer |  |
-| validity_delay_in_days | Present | unspecified | Integer |  |
-| payment_delay_in_days | Present | unspecified | Integer |  |
-| payment_terms | Present | unspecified | text |  |
-| payment_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
-| down_payment_percentage | Present | unspecified | Integer |  |
-| notice | Present | unspecified | text |  |
-| accepting_conditions | Present | unspecified | text |  |
-| sending_date | Present | unspecified | date |  |
-| revived_date | Present | unspecified | date |  |
-| last_qualification_date | Present | unspecified | datedate|  |
----
-
 ### createQuote
 
 > Description
@@ -388,7 +376,7 @@
 | company_id | Required | unspecified | Integer |  |
 | customer_id | Required | unspecified | Integer |  |
 | qualification | Present | unspecified | enum('draft', 'edited', 'awaiting_approuval', 'revived', 'accepted', 'declined', 'discontinued') |  |
-| ediition_date | Present | unspecified | Integer |  |
+| edition_date | Present | unspecified | Date |  |
 | validity_delay_in_days | Present | unspecified | Integer |  |
 | payment_delay_in_days | Present | unspecified | Integer |  |
 | payment_terms | Present | unspecified | text |  |
@@ -396,9 +384,36 @@
 | down_payment_percentage | Present | unspecified | Integer |  |
 | notice | Present | unspecified | text |  |
 | accepting_conditions | Present | unspecified | text |  |
-| sending_date | Present | unspecified | date |  |
-| revived_date | Present | unspecified | date |  |
-| last_qualification_date | Present | unspecified | date |  |
+| sending_date | Present | unspecified | Date |  |
+| revived_date | Present | unspecified | Date |  |
+| last_qualification_date | Present | unspecified | Date |  |
+
+---
+
+### updateQuote
+
+> Description
+
+**URL** : `/api/updateQuote`
+**Authentication required** : `true`
+**Method** : `POST`
+
+| Key | Required | Default | Type | Description |
+| --- | --- | --- | --- | --- |
+| company_id | Required | unspecified | Integer |  |
+| customer_id | Required | unspecified | Integer |  |
+| qualification | Present | unspecified | enum('draft', 'edited', 'awaiting_approuval', 'revived', 'accepted', 'declined', 'discontinued') |  |
+| edition_date | Present | unspecified | Date |  |
+| validity_delay_in_days | Present | unspecified | Integer |  |
+| payment_delay_in_days | Present | unspecified | Integer |  |
+| payment_terms | Present | unspecified | text |  |
+| payment_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
+| down_payment_percentage | Present | unspecified | Integer |  |
+| notice | Present | unspecified | text |  |
+| accepting_conditions | Present | unspecified | text |  |
+| sending_date | Present | unspecified | Date |  |
+| revived_date | Present | unspecified | Date |  |
+| last_qualification_date | Present | unspecified | Date|  |
 
 ---
 
@@ -427,7 +442,7 @@
 
 **URL** : `/api/allInvoice`
 **Authentication required** : `true`
-**Method** : `POST`
+**Method** : `GET`
 
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
@@ -462,32 +477,18 @@
 | company_id | Required | unspecified | Integer |  |
 | customer_id | Required | unspecified | Integer |  |
 | qualification | Present | unspecified | enum('draft', 'edited', 'awaiting_approuval', 'revived', 'accepted', 'declined', 'discontinued') |  |
-| edition_date | Present | unspecified | date |  |
-| payment_date | Present | unspecified | date |  |
+| edition_date | Present | unspecified | Date |  |
+| payment_date | Present | unspecified | Date |  |
 | payment_delay_in_days | Present | unspecified | Integer |  |
 | payment_terms | Present | unspecified | text |  |
 | notice | Present | unspecified | text |  |
 | payment_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
-| sending_date | Present | unspecified | date |  |
-| revived_date | Present | unspecified | date |  |
-| last_qualification_date | Present | unspecified | date |  |
-| chasing_date | Present | unspecified | date |  |
+| sending_date | Present | unspecified | Date |  |
+| revived_date | Present | unspecified | Date |  |
+| last_qualification_date | Present | unspecified | Date |  |
+| chasing_date | Present | unspecified | Date |  |
 | note | Present | unspecified | text |  |
 | original_quote | Required | unspecified | Integer |  |
-
----
-
-### deleteInvoice
-
-> Description
-
-**URL** : `/api/deleteInvoice`
-**Authentication required** : `true`
-**Method** : `POST`
-
-| Key | Required | Default | Type | Description |
-| --- | --- | --- | --- | --- |
-| id | Required | unspecified | Integer |  |
 
 ---
 
@@ -504,17 +505,31 @@
 | company_id | Required | unspecified | Integer |  |
 | customer_id | Required | unspecified | Integer |  |
 | qualification | Present | unspecified | enum('draft', 'edited', 'awaiting_approuval', 'revived', 'accepted', 'declined', 'discontinued') |  |
-| edition_date | Present | unspecified | date |  |
-| payment_date | Present | unspecified | date |  |
+| edition_date | Present | unspecified | Date |  |
+| payment_date | Present | unspecified | Date |  |
 | payment_delay_in_days | Present | unspecified | Integer |  |
 | payment_terms | Present | unspecified | text |  |
 | notice | Present | unspecified | text |  |
 | payment_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
-| sending_date | Present | unspecified | date |  |
-| revived_date | Present | unspecified | date |  |
-| last_qualification_date | Present | unspecified | date |  |
-| chasing_date | Present | unspecified | date |  |
+| sending_date | Present | unspecified | Date |  |
+| revived_date | Present | unspecified | Date |  |
+| last_qualification_date | Present | unspecified | Date |  |
+| chasing_date | Present | unspecified | Date |  |
 | note | Present | unspecified | text |  |
 | original_quote | Required | unspecified | Integer |  |
+
+---
+
+### deleteInvoice
+
+> Description
+
+**URL** : `/api/deleteInvoice`
+**Authentication required** : `true`
+**Method** : `POST`
+
+| Key | Required | Default | Type | Description |
+| --- | --- | --- | --- | --- |
+| id | Required | unspecified | Integer |  |
 
 ---

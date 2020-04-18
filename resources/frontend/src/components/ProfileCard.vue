@@ -88,7 +88,7 @@
 import DropdownInput from "./Fileds/Themed/Inputs/DropdownInput";
 import TextInput from "./Fileds/Themed/Inputs/TextInput";
 import BtnIcon from "./Buttons/BtnIcon";
-import { mapMutations } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
     name: "ProfileCard",
@@ -104,14 +104,11 @@ export default {
         };
     },
     methods: {
-        ...mapMutations({
-            set_token: "SET_TOKEN",
-            set_user: "SET_USER"
-        }),
+        ...mapActions({ logout: "logoutUser" }),
         logoutUser() {
-            this.set_token(null);
-            this.set_user({});
-            this.$router.push({ name: "Login" });
+            this.logout().then(() => {
+                this.$router.push({ name: "Login" });
+            });
         },
         displayContact: function(contact_id) {
             this.$emit("displayContact", contact_id);

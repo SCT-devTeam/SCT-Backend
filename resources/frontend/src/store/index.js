@@ -26,76 +26,8 @@ export default new Vuex.Store({
         companies: null,
         customers: null,
         contacts: null,
-        quotes: [
-            {
-                id: 0,
-                date: "01/01/2020",
-                customer_id: 28,
-                company_id: 22,
-                status: "paid",
-                items: [
-                    {
-                        id: 0,
-                        label: "item 2",
-                        quantity: 1,
-                        price: 10
-                    },
-                    {
-                        id: 1,
-                        label: "item 2",
-                        quantity: 1,
-                        price: 20
-                    },
-                    {
-                        id: 2,
-                        label: "item 3",
-                        quantity: 3,
-                        price: 15
-                    },
-                    {
-                        id: 3,
-                        label: "item 4",
-                        quantity: 2,
-                        price: 0.75
-                    }
-                ]
-            }
-        ],
-        invoices: [
-            {
-                id: 0,
-                date: "01/01/2020",
-                customer_id: 28,
-                company_id: 1,
-                status: "draft",
-                items: [
-                    {
-                        id: 0,
-                        label: "item 2",
-                        quantity: 1,
-                        price: 10
-                    },
-                    {
-                        id: 1,
-                        label: "item 2",
-                        quantity: 1,
-                        price: 20
-                    },
-                    {
-                        id: 2,
-                        label: "item 3",
-                        quantity: 3,
-                        price: 15
-                    },
-                    {
-                        id: 3,
-                        label: "item 4",
-                        quantity: 2,
-                        price: 0.75
-                    }
-                ]
-            }
-        ],
+        quotes: null,
+        invoices: null,
         receipts: [
             {
                 id: 0,
@@ -282,99 +214,6 @@ export default new Vuex.Store({
                         price: 0.75
                     }
                 ]
-            },
-            {
-                id: 6,
-                date: "15/03/2020",
-                company: "Company",
-                items: [
-                    {
-                        id: 0,
-                        label: "item 2",
-                        quantity: 1,
-                        price: 10
-                    },
-                    {
-                        id: 1,
-                        label: "item 2",
-                        quantity: 1,
-                        price: 20
-                    },
-                    {
-                        id: 2,
-                        label: "item 3",
-                        quantity: 3,
-                        price: 15
-                    },
-                    {
-                        id: 3,
-                        label: "item 4",
-                        quantity: 2,
-                        price: 0.75
-                    }
-                ]
-            },
-            {
-                id: 7,
-                date: "15/03/2020",
-                company: "Company",
-                items: [
-                    {
-                        id: 0,
-                        label: "item 2",
-                        quantity: 1,
-                        price: 10
-                    },
-                    {
-                        id: 1,
-                        label: "item 2",
-                        quantity: 1,
-                        price: 20
-                    },
-                    {
-                        id: 2,
-                        label: "item 3",
-                        quantity: 3,
-                        price: 15
-                    },
-                    {
-                        id: 3,
-                        label: "item 4",
-                        quantity: 2,
-                        price: 0.75
-                    }
-                ]
-            },
-            {
-                id: 8,
-                date: "15/03/2020",
-                company: "Company",
-                items: [
-                    {
-                        id: 0,
-                        label: "item 2",
-                        quantity: 1,
-                        price: 10
-                    },
-                    {
-                        id: 1,
-                        label: "item 2",
-                        quantity: 1,
-                        price: 20
-                    },
-                    {
-                        id: 2,
-                        label: "item 3",
-                        quantity: 3,
-                        price: 15
-                    },
-                    {
-                        id: 3,
-                        label: "item 4",
-                        quantity: 2,
-                        price: 0.75
-                    }
-                ]
             }
         ]
     },
@@ -392,6 +231,10 @@ export default new Vuex.Store({
             };
         },
         getToken: state => state.user.token,
+        getCompanies: state => state.companies,
+        getActiveCompany: state => state.user.companies,
+        getCompanyByID: state => company_id =>
+            state.companies.find(company => company.id === company_id),
         getProspects: state =>
             state.customers.filter(customer => customer.status === "prospect"),
         getCustomers: state =>
@@ -402,31 +245,52 @@ export default new Vuex.Store({
                     customer.status !== "prospect" &&
                     customer.status !== "deleted"
             ),
-        getQuotes: state => state.quotes,
-        getInvoices: state => state.invoices,
         getCustomerByID: state => customer_id =>
             state.customers.find(customer => customer.id === customer_id),
-        getReceiptByID: state => receipt_id =>
-            state.receipts.find(receipt => receipt.id === receipt_id),
+        getCustomerContacts: state => customer_id =>
+            state.contacts.filter(contact => contact.customer === customer_id),
+        getContactByID: state => contact_id =>
+            state.contacts.find(contact => contact.id === contact_id),
+        getQuotes: state => state.quotes,
         getQuoteByID: state => quote_id =>
             state.quotes.find(quote => quote.id === quote_id),
+        getInvoices: state => state.invoices,
         getInvoiceByID: state => invoice_id =>
             state.invoices.find(invoice => invoice.id === invoice_id),
-        getCompanyByID: state => company_id =>
-            state.companies.find(company => company.id === company_id)
+        getReceipts: state => state.receipts,
+        getReceiptByID: state => receipt_id =>
+            state.receipts.find(receipt => receipt.id === receipt_id)
     },
     mutations: {
         SET_TOKEN(state, token) {
             state.user.token = token || null;
+            token
+                ? (axios.defaults.headers.common.Authorization = `Bearer ${token}`)
+                : null;
         },
-        SET_USER(state, userData) {
-            state.user.firstname = userData.firstname || null;
-            state.user.lastname = userData.lastname || null;
-            state.user.email = userData.email || null;
-            state.user.gender = userData.gender || null;
-            state.user.phone = userData.phone || null;
-            state.user.notes = userData.notes || null;
-            state.user.companies = userData.companies || null;
+        REMOVE_TOKEN(state) {
+            state.user.token = null;
+        },
+        SET_USER(state, data) {
+            state.user.firstname = data.firstname || null;
+            state.user.lastname = data.lastname || null;
+            state.user.email = data.email || null;
+            state.user.gender = data.gender || null;
+            state.user.phone = data.phone || null;
+            state.user.notes = data.notes || null;
+            state.user.companies = data.companies || null;
+        },
+        REMOVE_USER(state) {
+            state.user.firstname = null;
+            state.user.lastname = null;
+            state.user.email = null;
+            state.user.gender = null;
+            state.user.phone = null;
+            state.user.notes = null;
+            state.user.companies = null;
+        },
+        SET_COMPANIES(state, data) {
+            state.companies = data;
         },
         SET_CUSTOMERS(state, data) {
             state.customers = data;
@@ -434,17 +298,18 @@ export default new Vuex.Store({
         SET_CONTACTS(state, data) {
             state.contacts = data;
         },
-        SET_COMPANY(state, data) {
-            state.companies = data;
-        },
         SET_QUOTES(state, data) {
             state.quotes = data;
         },
         SET_INVOICES(state, data) {
             state.invoices = data;
+        },
+        SET_RECEIPTS(state, data) {
+            state.receipts = data;
         }
     },
     actions: {
+        // TODO: set name to requests (for network tab in devtools)
         loginUser({ commit, dispatch }, { email, password }) {
             return new Promise((resolve, reject) => {
                 axios
@@ -456,15 +321,17 @@ export default new Vuex.Store({
                     .then(response => {
                         if (response.status === 200) {
                             const token = response.data.token;
-                            // Add check on commit
-                            commit("SET_TOKEN", token);
-                            dispatch("fetchUser", token);
 
-                            resolve(true);
+                            // TODO: Add check on commit, if fail; throw an error
+                            commit("SET_TOKEN", token);
+
+                            dispatch("fetchUser").then(() => {
+                                dispatch("fetchData");
+                            });
+
+                            resolve(response.data);
                         } else {
-                            reject(
-                                `An error has occurred, code: ${response.status}`
-                            );
+                            reject(response.status);
                         }
                     })
                     .catch(error => {
@@ -472,189 +339,401 @@ export default new Vuex.Store({
                     });
             });
         },
-        async fetchUser({ getter, commit, dispatch }) {
-            axios
-                .get("/api/me", {
-                    headers: {
-                        Authorization: getter.token
-                    }
-                })
-                .then(data => {
-                    if (data.message) {
-                        console.error(
-                            "An error has occurred while fetching user data : ",
-                            data.message
-                        );
-                    }
-                    commit("SET_USER", data.data);
-                    dispatch("fetchCompanies");
-                    dispatch("fetchCustomers");
-                    // dispatch("fetchQuotes");
-                    // dispatch("fetchInvoices");
-                })
-                .catch(reason => {
-                    console.error(reason);
-                });
-        },
-        async fetchCompanies({ getter, commit }) {
-            axios
-                .get("/api/company", {
-                    headers: {
-                        Authorization: getter.token
-                    }
-                })
-                .then(data => {
-                    if (data.message) {
-                        console.error(
-                            "An error has occurred while fetching customers data : ",
-                            data.message
-                        );
-                    }
-                    commit("SET_COMPANY", data.data.comp);
-                })
-                .catch(reason => {
-                    console.error(reason);
-                });
-        },
-        async fetchCustomers({ getter, commit, state }) {
-            axios
-                .post(
-                    "/api/customers",
-                    { id_company: state.user.companies },
-                    {
-                        headers: {
-                            Authorization: getter.token
+        logoutUser({ commit }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .get("/api/logout")
+                    .then(response => {
+                        if (response.status === 200) {
+                            // TODO: Add check on commit, if fail; throw an error
+                            commit("REMOVE_TOKEN");
+                            commit("REMOVE_USER");
+                            // TODO: create all REMOVE commit for all entities & create an action to use them all
+
+                            resolve(response.data);
+                        } else {
+                            reject(response.status);
                         }
-                    }
-                )
-                .then(data => {
-                    if (data.message) {
-                        console.error(
-                            "An error has occurred while fetching customers data : ",
-                            data.message
-                        );
-                    }
-                    commit("SET_CUSTOMERS", data.data["cust"]);
-                })
-                .catch(reason => {
-                    console.error(reason);
-                });
+                    })
+                    .catch(error => {
+                        reject(error);
+                    });
+            });
         },
-        getContacts({ getter }, id_customer) {
-            axios
-                .post(
-                    "/api/contact",
-                    { id_customer: id_customer },
-                    {
-                        headers: {
-                            Authorization: getter.token
+        fetchData({ dispatch }) {
+            // TODO: add promise to return true if all request are done without error else return it
+            dispatch("fetchCompanies");
+            dispatch("fetchCustomers");
+            dispatch("fetchContacts");
+            dispatch("fetchQuotes");
+            dispatch("fetchInvoices");
+            // TODO: add a fetching indicator (FIX: error on display data if the user go too clickly in views)
+            // TODO: add fetchReceipts
+        },
+
+        fetchUser({ commit }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .get("/api/me")
+                    .then(response => {
+                        // TODO: FIX: this eslint error in all actions
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
                         }
-                    }
-                )
-                .then(data => {
-                    if (data.message) {
-                        console.error(
-                            "An error has occurred while fetching contacts data : ",
-                            data.message
-                        );
-                    }
-                    return data.data;
-                })
-                .catch(reason => {
-                    console.error(reason);
-                });
+
+                        commit("SET_USER", response.data);
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
         },
-        saveCustomer({ getter, dispatch }, customerObj) {
-            axios
-                .post("/api/updateCustomer", customerObj, {
-                    headers: {
-                        Authorization: getter.token
-                    }
-                })
-                .then(data => {
-                    if (data.message) {
-                        console.error(
-                            "An error has occurred while fetching contacts data : ",
-                            data.message
-                        );
-                    }
-                    dispatch("fetchCustomers");
-                    return true;
-                })
-                .catch(reason => {
-                    console.error(reason);
-                });
-        },
-        // TODO: FIX: Waiting API fix : route return an empty array on get & post doesn't work
-        async fetchQuotes({ getter, commit }) {
-            axios
-                .post(
-                    "/api/allQuote",
-                    {},
-                    {
-                        headers: {
-                            Authorization: getter.token
+
+        fetchCompanies({ commit }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .get("/api/company")
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
                         }
-                    }
-                )
-                .then(data => {
-                    if (data.message) {
-                        console.error(
-                            "An error has occurred while fetching customers data : ",
-                            data.message
-                        );
-                    }
-                    commit("SET_CUSTOMERS", data.data);
-                })
-                .catch(reason => {
-                    console.error(reason);
-                });
+
+                        commit("SET_COMPANIES", response.data);
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
         },
-        async fetchInvoices({ getter, commit }) {
-            // TODO: FIX: routes doesn't work !
-            axios
-                .get("/api/allInvoice", {
-                    headers: {
-                        Authorization: getter.token
-                    }
-                })
-                .then(data => {
-                    if (data.message) {
-                        console.error(
-                            "An error has occurred while fetching contacts data : ",
-                            data.message
-                        );
-                    }
-                    commit("SET_INVOICES", data.data.invoices);
-                })
-                .catch(reason => {
-                    console.error(reason);
-                });
-        },
-        async updateQuote({ getter, dispatch }, quote) {
-            axios
-                .post(
-                    "/api/updateQuote",
-                    {},
-                    {
-                        headers: {
-                            Authorization: getter.token
+        // TODO: Implement insertCompany
+
+        fetchCustomers({ commit, state }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/customers", {
+                        id_company: state.user.companies
+                    })
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
                         }
-                    }
-                )
-                .then(data => {
-                    if (data.message) {
-                        console.error(
-                            `An error has occurred while updating quote n°${quote.id} data : ${data.message}`
-                        );
-                    }
-                    dispatch("fetchQuotes");
-                })
-                .catch(reason => {
-                    console.error(
-                        `An error has occurred while updating quote n°${quote.id} data : ${reason}`
-                    );
-                });
+
+                        commit("SET_CUSTOMERS", response.data);
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        createCustomer({ dispatch }, customerObj) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/createCustomer", customerObj)
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        dispatch("fetchCustomers");
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        updateCustomer({ dispatch }, customerObj) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/updateCustomer", customerObj)
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        dispatch("fetchCustomers");
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        deleteCustomer({ dispatch }, customer_id) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/deleteCustomer", { id: customer_id })
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        dispatch("fetchCustomers");
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+
+        fetchContacts({ state, commit }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/allContact", {
+                        id_company: state.user.companies
+                    })
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        commit("SET_CONTACTS", response.data);
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        getContacts(_, customer_id) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/contact", { id_customer: customer_id })
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        createContact(_, contactObj) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/createContact", contactObj)
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        updateContact(_, contactObj) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/updateContact", contactObj)
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        deleteContact(_, contact_id) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/contact", { id_contact: contact_id })
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+
+        fetchQuotes({ commit }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .get("/api/allQuote")
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        commit("SET_QUOTES", response.data);
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        createQuote({ dispatch }, quoteObj) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/createQuote", quoteObj)
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        dispatch("fetchQuotes");
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        updateQuote({ dispatch }, quoteObj) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/updateQuote", quoteObj)
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        dispatch("fetchQuotes");
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        deleteQuote({ dispatch }, quote_id) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/updateQuote", { id: quote_id })
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        dispatch("fetchQuotes");
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+
+        fetchInvoices({ commit }) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .get("/api/allInvoice")
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        commit("SET_INVOICES", response.data);
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        createInvoice({ dispatch }, invoiceObj) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/createInvoice", invoiceObj)
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        dispatch("fetchInvoices");
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        updateInvoice({ dispatch }, invoiceObj) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/updateInvoice", invoiceObj)
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        dispatch("fetchQuotes");
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
+        },
+        deleteInvoice({ dispatch }, invoice_id) {
+            return new Promise((resolve, reject) => {
+                axios
+                    .post("/api/updateQuote", { id: invoice_id })
+                    .then(response => {
+                        // noinspection JSUnresolvedVariable
+                        if (response.message) {
+                            reject(response.message);
+                        }
+
+                        dispatch("fetchQuotes");
+
+                        resolve(response.data);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    });
+            });
         }
     },
     modules: {},
