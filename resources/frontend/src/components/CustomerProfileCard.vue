@@ -1,5 +1,5 @@
 <template>
-    <form id="profile-card" @submit.prevent="save">
+    <form id="profile-card" @submit.prevent="">
         <img
             alt="Picture of the customer"
             src="../assets/Artboards_Diversity_Avatars_by_Netguru-29.png"
@@ -90,7 +90,7 @@
         <BtnIcon
             :icon-rotation="45"
             :icon-size="10"
-            @clicked="toggleMode"
+            @clicked="isEditionMode = true"
             bg-color="--colors-main"
             class="btn"
             iconName="pencil_icon_blue"
@@ -109,6 +109,7 @@
             v-if="isEditionMode && this.customerData != null"
             value="submit"
             type="submit"
+            @clicked="save"
         ></BtnIcon>
 
         <BtnIcon
@@ -193,34 +194,37 @@ export default {
         displayContact: function(contact_id) {
             this.$emit("displayContact", contact_id);
         },
-        toggleMode: function() {
-            if (this.isEditionMode) {
-                if (
-                    this.customerData.firstname !== "" &&
-                    this.customerData.lastname !== "" &&
-                    this.customerData.status !== ""
-                ) {
-                    this.error = null;
-                    this.isEditionMode = false;
-                    this.save();
-                } else {
-                    this.error = "Please fill required inputs";
-                }
-            } else {
-                this.isEditionMode = true;
-            }
-        },
         contactFullname: function(contactObj) {
             return `${contactObj.firstname} ${contactObj.lastname}`;
         },
+        toggleMode() {
+            this.isEditionMode = !this.isEditionMode;
+        },
         save() {
-            if (Object.prototype.hasOwnProperty.call(this.customerData, "id"))
-                this.saveCustomer(this.customerData);
-            else
-                this.createCustomer(this.customerData).then(newCustomer => {
-                    this.customerData = newCustomer;
-                    this.isEditionMode = true;
-                });
+            if (
+                this.isEditionMode &&
+                this.customerData.firstname !== "" &&
+                this.customerData.lastname !== "" &&
+                this.customerData.status !== ""
+            ) {
+                this.error = null;
+                this.isEditionMode = false;
+
+                if (
+                    Object.prototype.hasOwnProperty.call(
+                        this.customerData,
+                        "id"
+                    )
+                )
+                    this.saveCustomer(this.customerData);
+                else
+                    this.createCustomer(this.customerData).then(newCustomer => {
+                        this.customerData = newCustomer;
+                        this.isEditionMode = true;
+                    });
+            } else {
+                this.error = "Please fill required inputs";
+            }
         }
     },
     watch: {
