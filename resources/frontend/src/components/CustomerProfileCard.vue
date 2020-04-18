@@ -5,6 +5,7 @@
             src="../assets/Artboards_Diversity_Avatars_by_Netguru-29.png"
         />
 
+        <!-- TODO: FIX: reset the dropdown on new customer object -->
         <DropdownInput
             :options="['prospect', 'active', 'archived', 'deleted']"
             :isDisabled="!isEditionMode"
