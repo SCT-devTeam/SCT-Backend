@@ -202,11 +202,13 @@ export default {
                     this.customerData.status !== ""
                 ) {
                     this.error = null;
-                    this.isEditionMode = !this.isEditionMode;
+                    this.isEditionMode = false;
                     this.save();
                 } else {
                     this.error = "Please fill required inputs";
                 }
+            } else {
+                this.isEditionMode = true;
             }
         },
         contactFullname: function(contactObj) {
