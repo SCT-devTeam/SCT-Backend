@@ -1,5 +1,5 @@
 <template>
-    <form id="profile-card" @submit.prevent="toggleMode">
+    <form id="profile-card" @submit.prevent="save">
         <img
             alt="Picture of the customer"
             src="../assets/Artboards_Diversity_Avatars_by_Netguru-29.png"
