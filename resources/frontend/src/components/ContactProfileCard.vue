@@ -7,74 +7,73 @@
 
         <div id="name">
             <TextInput
-                name="firstname"
-                title="FirstName"
-                placeholder="FirstName"
-                v-model:value="entity.firstName"
-                @onInput="entity.firstName = $event"
                 :isEditable="isEditionMode"
+                @onInput="entity.firstName = $event"
+                name="firstname"
+                placeholder="FirstName"
+                title="FirstName"
+                v-model="entity.firstName"
             >
             </TextInput>
 
             <TextInput
-                name="lastname"
-                title="LastName"
-                placeholder="LastName"
-                v-model:value="entity.lastName"
-                @onInput="entity.lastName = $event"
                 :isEditable="isEditionMode"
+                @onInput="entity.lastName = $event"
+                name="lastname"
+                placeholder="LastName"
+                title="LastName"
+                v-model="entity.lastName"
             >
             </TextInput>
         </div>
 
         <TextInput
-            name="job-position"
-            title="Job Position"
-            placeholder="Job Position"
-            v-model:value="entity.job"
+            :isEditable="isEditionMode"
             @onInput="entity.job = $event"
-            :isEditable="isEditionMode"
+            name="job-position"
+            placeholder="Job Position"
+            title="Job Position"
+            v-model="entity.job"
         >
         </TextInput>
 
         <TextInput
-            name="phone-fixed"
-            title="Phone Fixed"
-            placeholder="Phone Fixed"
-            v-model:value="entity.phone_fixe"
+            :isEditable="isEditionMode"
             @onInput="entity.phone_fixe = $event"
-            :isEditable="isEditionMode"
+            name="phone-fixed"
+            placeholder="Phone Fixed"
+            title="Phone Fixed"
+            v-model="entity.phone_fixe"
         >
         </TextInput>
 
         <TextInput
-            name="phone-mobile"
-            title="Phone Mobile"
-            placeholder="Phone Mobile"
-            v-model:value="entity.phone_mobile"
+            :isEditable="isEditionMode"
             @onInput="entity.phone_mobile = $event"
-            :isEditable="isEditionMode"
+            name="phone-mobile"
+            placeholder="Phone Mobile"
+            title="Phone Mobile"
+            v-model="entity.phone_mobile"
         >
         </TextInput>
 
-
         <TextInput
-            name="phone-personal"
-            title="Phone Personal"
-            placeholder="Phone Personal"
-            v-model:value="entity.phone_personnal"
+            :isEditable="isEditionMode"
             @onInput="entity.phone_personnal = $event"
-            :isEditable="isEditionMode"
+            name="phone-personal"
+            placeholder="Phone Personal"
+            title="Phone Personal"
+            v-model="entity.phone_personnal"
         >
         </TextInput>
 
         <TextInput
-            name="phone-fax"
-            title="Phone Fax"
-            placeholder="Phone Fax"
-            v-model:value="entity.phone_fax"
-            @onInput="entity.phone_fax = $event"
             :isEditable="isEditionMode"
+            @onInput="entity.phone_fax = $event"
+            name="phone-fax"
+            placeholder="Phone Fax"
+            title="Phone Fax"
+            v-model="entity.phone_fax"
         >
         </TextInput>
 
@@ -82,40 +81,50 @@
 
         <!-- TODO: replace it by text area -->
         <TextInput
-            name="Notes"
-            title="Notes"
-            placeholder="Notes"
-            v-model:value="entity.notes"
-            @onInput="entity.notes = $event"
             :isEditable="isEditionMode"
+            @onInput="entity.notes = $event"
+            name="Notes"
+            placeholder="Notes"
+            title="Notes"
+            v-model="entity.notes"
         >
         </TextInput>
 
-        <EditCircleBtnSCT
+        <BtnIcon
+            :icon-rotation="45"
+            :icon-size="10"
             @clicked="toggleMode"
+            bg-color="--colors-main"
             class="btn"
+            iconName="pencil_icon_blue"
+            name="Edit"
+            title="Enable edition"
             v-if="!isEditionMode"
-        ></EditCircleBtnSCT>
+            value="edit"
+        ></BtnIcon>
 
-        <ValidationCircleBtnSCT
+        <BtnIcon
             @clicked="toggleMode"
+            bg-color="--colors-main"
             class="btn"
+            iconName="tick_icon_blue"
+            name="Validate"
+            title="Disable edition"
             v-if="isEditionMode"
-        ></ValidationCircleBtnSCT>
+            value="validate"
+        ></BtnIcon>
     </div>
 </template>
 
 <script>
 import TextInput from "./Fileds/Themed/Inputs/TextInput";
-import EditCircleBtnSCT from "./Buttons/EditCircleBtnSCT";
-import ValidationCircleBtnSCT from "./Buttons/ValidationCircleBtnSCT";
+import BtnIcon from "./Buttons/BtnIcon";
 
 export default {
     name: "ProfileCard",
     components: {
         TextInput,
-        EditCircleBtnSCT,
-        ValidationCircleBtnSCT
+        BtnIcon
     },
     data() {
         return {

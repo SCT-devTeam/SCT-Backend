@@ -5,7 +5,7 @@
         <SimpleDashboardWidget
             :indicator="this.default"
             class="widget-simple"
-            icon="invoice"
+            icon="invoice_icon_blue"
             text="invoicies"
         ></SimpleDashboardWidget>
 
@@ -13,7 +13,7 @@
             :indicator="this.default"
             class="widget-simple"
             color="secondary-principal"
-            icon="invoice"
+            icon="invoice_icon_blue"
             text="overdued invoicies"
         ></SimpleDashboardWidget>
 
@@ -21,7 +21,7 @@
             :indicator="this.default"
             class="widget-simple"
             color="validation-no"
-            icon="invoice"
+            icon="invoice_icon_blue"
             text="need action"
         ></SimpleDashboardWidget>
 
@@ -29,7 +29,7 @@
             :indicator="this.default"
             class="widget-simple"
             color="validation-no"
-            icon="invoice"
+            icon="invoice_icon_blue"
             text="disputed"
         ></SimpleDashboardWidget>
 
@@ -37,7 +37,7 @@
             :indicator="this.default"
             class="widget-simple"
             color="active"
-            icon="avatar"
+            icon="avatar_icon_blue"
             text="customers"
         ></SimpleDashboardWidget>
 
@@ -45,7 +45,7 @@
             :indicator="this.default"
             class="widget-simple"
             color="active"
-            icon="avatar"
+            icon="avatar_icon_blue"
             text="prospects active"
         ></SimpleDashboardWidget>
 
@@ -65,7 +65,7 @@
             :indicator="this.default"
             class="widget-simple"
             color="main"
-            icon="avatar"
+            icon="avatar_icon_blue"
             text="prospects converted"
         ></SimpleDashboardWidget>
 
@@ -73,7 +73,7 @@
             :indicator="this.default"
             class="widget-simple"
             color="active"
-            icon="robot"
+            icon="robot_icon_blue"
             text="automatic actions"
         ></SimpleDashboardWidget>
     </div>

@@ -2,16 +2,20 @@
     <div class="writing_modal">
         <span @click="exit" class="background"></span>
         <div class="writing_modal__invoice" ref="invoice">
-            <input
-                class="invoice__company"
-                type="text"
-                v-model="invoice.company"
-            />
-            <input
-                class="invoice__customer"
-                type="text"
-                v-model="invoice.customer"
-            />
+            <label>
+                <input
+                    class="invoice__company"
+                    type="text"
+                    v-model="invoice.company"
+                />
+            </label>
+            <label>
+                <input
+                    class="invoice__customer"
+                    type="text"
+                    v-model="invoice.customer"
+                />
+            </label>
             <div class="invoice__items-table">
                 <span class="table__head">
                     <p class="label">Label</p>
@@ -23,13 +27,23 @@
                     class="table__item"
                     v-for="(item, index) in invoice.items"
                 >
-                    <input class="label" type="text" v-model="item.label" />
-                    <input
-                        class="quantity"
-                        type="number"
-                        v-model="item.quantity"
-                    />
-                    <input class="price" type="number" v-model="item.price" />
+                    <label>
+                        <input class="label" type="text" v-model="item.label" />
+                    </label>
+                    <label>
+                        <input
+                            class="quantity"
+                            type="number"
+                            v-model="item.quantity"
+                        />
+                    </label>
+                    <label>
+                        <input
+                            class="price"
+                            type="number"
+                            v-model="item.price"
+                        />
+                    </label>
                 </span>
             </div>
             <p class="total">{{ this.total }}</p>
@@ -204,7 +218,7 @@ div.writing_modal {
 
                         font-family: $font__heading;
                         font-weight: bold;
-                        font-size: 1.2em;
+                        font-size: 1.2rem;
                     }
                 }
 

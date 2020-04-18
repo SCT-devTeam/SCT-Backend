@@ -9,7 +9,7 @@ $font__pre: 'Courier 10 Pitch', Courier, monospace;
 * {
   font-family: $font__text;
   font-weight: normal;
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 
@@ -19,5 +19,5 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1, h2, h3 {
-  font-size: 1.2em;
+  font-size: 1.2rem;
 }

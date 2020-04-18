@@ -6,16 +6,16 @@
             class="table"
         ></ReceiptTable>
         <Receipt
-            :writingId="receiptEditIdforModal"
+            :receiptId="receiptEditIdforModal"
             @close="receiptEditIdforModal = null"
-            v-if="receiptEditIdforModal"
+            v-if="receiptEditIdforModal != null"
         ></Receipt>
     </div>
 </template>
 
 <script>
 import SearchForm from "../components/Forms/SearchForm";
-import ReceiptTable from "../components/ReceiptTable";
+import ReceiptTable from "../components/Tables/ReceiptTable";
 import Receipt from "../components/modals/Receipt";
 
 export default {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ContactController extends Controller
 {
@@ -32,7 +33,7 @@ class ContactController extends Controller
             'notes' => $request->notes,
             'customer' => $request->id_customer,
         ]);
-        return response()->json(['Contact', $contact], 200);
+        return response()->json($contact, 200);
     }
 
     /**
@@ -45,7 +46,7 @@ class ContactController extends Controller
             'id_customer'=>'required'
         ]);
         $contacts = Contact::where('customer', '=', $request->id_customer)->get();
-        return response()->json(['contacts', $contacts]);
+        return response()->json($contacts);
     }
 
     /**
@@ -84,7 +85,7 @@ class ContactController extends Controller
 
         $contact->save();
 
-        return response()->json(['contact', $contact]);
+        return response()->json($contact);
     }
 
     /**
@@ -100,5 +101,22 @@ class ContactController extends Controller
         $contact->delete();
 
         return response()->json(['status', 'Deletion ok'], 200);
+    }
+
+    public function allContacts(Request $request)
+    {
+        $request->validate(
+            ['id_company'=>'required']
+        );
+
+        $contacts =DB::table('contacts')
+            ->join('customers','contacts.customer','=','customers.id')
+            ->join('companies','customers.company','=','companies.id')
+            ->where('companies.id','=',$request->id_company)
+            ->select('contacts.*')
+            ->get();
+
+        return response()->json($contacts);
+
     }
 }

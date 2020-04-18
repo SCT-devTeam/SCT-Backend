@@ -2,21 +2,21 @@
     <div id="Customers-table">
         <span id="head">
             <p class="date">Date</p>
-            <p class="label">Entity</p>
-            <p class="entity">Label</p>
-            <p class="amount">Amount</p>
+            <p class="status">Status</p>
+            <p class="customerName">Customer</p>
+            <p class="status">Amount</p>
         </span>
         <div id="container">
             <span
                 :key="index"
                 @click="itemClicked(index)"
                 class="line"
-                v-for="(receipt, index) in this.receipts"
+                v-for="(writing, index) in this.writings"
             >
-                <p class="date">{{ receipt.date }}</p>
-                <p class="label">{{ receipt.entity }}</p>
-                <p class="entity">{{ receipt.label }}</p>
-                <p class="amount">{{ receipt.amount }}</p>
+                <p class="date">{{ writing.date }}</p>
+                <p class="status">{{ writing.status }}</p>
+                <p class="customerName">{{ writing.customerName }}</p>
+                <p class="amount">{{ writing.amount }}</p>
             </span>
         </div>
     </div>
@@ -24,112 +24,112 @@
 
 <script>
 export default {
-    entity: "CustomersTable",
+    customerName: "CustomersTable",
     data() {
         return {
-            receipts: [
+            writings: [
                 {
                     date: "15/03/2020",
-                    entity: "John Doe",
+                    customerName: "John Doe",
                     amount: "150,00€",
-                    label: "------"
+                    status: "Paid"
                 },
                 {
                     date: "15/03/2020",
-                    entity: "John Doe",
+                    customerName: "John Doe",
                     amount: "150,00€",
-                    label: "------"
+                    status: "Paid"
                 },
                 {
                     date: "15/03/2020",
-                    entity: "John Doe",
+                    customerName: "John Doe",
                     amount: "150,00€",
-                    label: "------"
+                    status: "Paid"
                 },
                 {
                     date: "15/03/2020",
-                    entity: "John Doe",
+                    customerName: "John Doe",
                     amount: "150,00€",
-                    label: "------"
+                    status: "Paid"
                 },
                 {
                     date: "15/03/2020",
-                    entity: "John Doe",
+                    customerName: "John Doe",
                     amount: "150,00€",
-                    label: "------"
+                    status: "Paid"
                 },
                 {
                     date: "15/03/2020",
-                    entity: "John Doe",
+                    customerName: "John Doe",
                     amount: "150,00€",
-                    label: "------"
+                    status: "Paid"
                 },
                 {
                     date: "15/03/2020",
-                    entity: "John Doe",
+                    customerName: "John Doe",
                     amount: "150,00€",
-                    label: "------"
+                    status: "Paid"
                 },
                 {
                     date: "15/03/2020",
-                    entity: "John Doe",
+                    customerName: "John Doe",
                     amount: "150,00€",
-                    label: "------"
+                    status: "Paid"
                 },
                 {
                     date: "15/03/2020",
-                    entity: "John Doe",
+                    customerName: "John Doe",
                     amount: "150,00€",
-                    label: "------"
+                    status: "Paid"
                 },
                 {
                     date: "15/03/2020",
-                    entity: "John Doe",
+                    customerName: "John Doe",
                     amount: "150,00€",
-                    label: "------"
+                    status: "Paid"
                 },
                 {
                     date: "15/03/2020",
-                    entity: "John Doe",
+                    customerName: "John Doe",
                     amount: "150,00€",
-                    label: "------"
+                    status: "Paid"
                 },
                 {
                     date: "15/03/2020",
-                    entity: "John Doe",
+                    customerName: "John Doe",
                     amount: "150,00€",
-                    label: "------"
+                    status: "Paid"
                 },
                 {
                     date: "15/03/2020",
-                    entity: "John Doe",
+                    customerName: "John Doe",
                     amount: "150,00€",
-                    label: "------"
+                    status: "Paid"
                 },
                 {
                     date: "15/03/2020",
-                    entity: "John Doe",
+                    customerName: "John Doe",
                     amount: "150,00€",
-                    label: "------"
+                    status: "Paid"
                 },
                 {
                     date: "15/03/2020",
-                    entity: "John Doe",
+                    customerName: "John Doe",
                     amount: "150,00€",
-                    label: "------"
+                    status: "Paid"
                 },
                 {
                     date: "15/03/2020",
-                    entity: "John Doe",
+                    customerName: "John Doe",
                     amount: "150,00€",
-                    label: "------"
+                    status: "Paid"
                 }
             ]
         };
     },
     methods: {
-        itemClicked: function(receipt_id) {
-            this.$emit("itemClicked", receipt_id);
+        itemClicked: function(writing_id) {
+            this.$emit("itemClicked", writing_id);
         }
     }
 };
@@ -185,7 +185,7 @@ div#Customers-table {
 
         > p {
             font-family: $font__heading;
-            font-size: 2em;
+            font-size: 2rem;
         }
     }
 
@@ -220,7 +220,7 @@ div#Customers-table {
 
             > p {
                 font-family: $font__text;
-                font-size: 1em;
+                font-size: 1rem;
             }
         }
     }

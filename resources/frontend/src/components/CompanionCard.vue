@@ -10,7 +10,9 @@
             :key="index"
             @iconClicked="removeDevice(device.id)"
             class="filed"
-            icon="cross"
+            icon="cross_icon_blue"
+            name="Device name"
+            title="Device name"
             v-for="(device, index) in devices"
         ></TextFiledSCT>
     </div>
@@ -86,7 +88,7 @@ div#profile-card {
         padding-left: 10%;
 
         font-family: $font__text;
-        font-size: 1.2em;
+        font-size: 1.2rem;
     }
 
     > div.filed {

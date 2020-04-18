@@ -42,7 +42,7 @@ class QuoteController extends Controller
             'revived_date' => $request->revived_date,
             'last_qualification_date' => $request->last_qualification_date,
         ]);
-        return response()->json(['quote',$quote]);
+        return response()->json($quote);
 
 
     }
@@ -85,7 +85,7 @@ class QuoteController extends Controller
 
         $quote->save();
 
-        return response()->json(['quote',$quote]);
+        return response()->json($quote);
     }
 
     public function delete(Request $request)
@@ -109,8 +109,15 @@ class QuoteController extends Controller
             ['customer_id','=',$request->customer_id]
         ])->get();
 
-        return response()->json(['quote',$quotes]);
+        return response()->json($quotes);
 
+    }
+
+    public function getAllQuote(Request $request)
+    {
+        $quotes = Quote::where('company_id', '=', $request->user()->companies)->get();
+
+        return response()->json($quotes);
     }
 
     public function getAllQuote(Request $request)

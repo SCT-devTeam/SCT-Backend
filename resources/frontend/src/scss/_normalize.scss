@@ -42,7 +42,7 @@ main {
  */
 
 h1 {
-  font-size: 2em;
+  font-size: 2rem;
   margin: 0.67em 0;
 }
 
@@ -75,7 +75,7 @@ pre {
   font-family: monospace, monospace;
 
   /* 1 */
-  font-size: 1em;
+  font-size: 1rem;
 
   /* 2 */
 }
@@ -125,7 +125,7 @@ code, kbd, samp {
   font-family: monospace, monospace;
 
   /* 1 */
-  font-size: 1em;
+  font-size: 1rem;
 
   /* 2 */
 }
@@ -151,11 +151,11 @@ sub, sup {
 }
 
 sub {
-  bottom: -0.25em;
+  bottom: -0.25rem;
 }
 
 sup {
-  top: -0.5em;
+  top: -0.5rem;
 }
 
 /* Embedded content
@@ -242,7 +242,7 @@ button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focus
  */
 
 fieldset {
-  padding: 0.35em 0.75em 0.625em;
+  padding: 0.35em 0.75em 0.625rem;
 }
 
 /**
@@ -365,7 +365,7 @@ details {
  */
 
 summary {
-  display: list-item;
+  display: list-itrem;
 }
 
 /* Misc

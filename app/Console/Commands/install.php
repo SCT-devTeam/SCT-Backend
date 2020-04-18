@@ -51,6 +51,8 @@ class install extends Command
 
         if (!$app_key) {
             $this->info("First install detected !");
+            $this->warn("No API key found. You need to generate one !");
+            $this->line("run : php artisan key:generate");
             $this->call('migrate');
         }
 

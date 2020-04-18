@@ -6,52 +6,65 @@
         />
 
         <DropdownInput
-            name="customer-status"
-            title="Customer Status"
-            placeholder="Customer Status"
             :options="['prospect', 'active', 'archived', 'deleted']"
+            :isDisabled="!isEditionMode"
+            @onInput="customerData.status = $event"
+            name="customer-status"
+            placeholder="Customer Status"
+            title="Customer Status"
+            :value="customerData.status"
+            v-if="customerData != null"
         >
         </DropdownInput>
 
         <DropdownInput
-            name="customer-type"
-            title="Customer Type"
-            placeholder="Customer Type"
             :options="['individual', 'professional']"
+            :isDisabled="!isEditionMode"
+            @onInput="customerData.customer_type = $event"
+            name="customer-type"
+            placeholder="Customer Type"
+            title="Customer Type"
+            :value="customerData.customer_type"
+            v-if="customerData != null"
         >
         </DropdownInput>
 
         <div id="name">
             <TextInput
+                :isDisabled="!isEditionMode"
+                @onInput="customerData.firstname = $event"
                 name="firstname"
-                title="FirstName"
                 placeholder="FirstName"
-                :isEditable="isEditionMode"
-                v-model:value="entity.firstName"
-                @onInput="entity.firstName = $event">
+                title="FirstName"
+                v-model="customerData.firstname"
+                v-if="customerData != null"
+            >
             </TextInput>
 
             <TextInput
+                :isDisabled="!isEditionMode"
+                @onInput="customerData.lastname = $event"
                 name="lastname"
-                title="LastName"
                 placeholder="LastName"
-                :isEditable="isEditionMode"
-                v-model:value="entity.lastName"
-                @onInput="entity.lastName = $event">
+                title="LastName"
+                v-model="customerData.lastname"
+                v-if="customerData != null"
+            >
             </TextInput>
         </div>
 
         <p class="title">Contacts</p>
 
         <TextFiledSCT
-            :name="'Contact-' + contactFullname(contact)"
-            title="Click on it to view his card"
-            :value="contactFullname(contact)"
-            icon="arrow"
             :key="index"
+            :name="'Contact-' + contactFullname(contact)"
+            :value="contactFullname(contact)"
             @iconClicked="displayContact(contact.id)"
             class="filed"
-            v-for="(contact, index) in entity.contacts"
+            icon="arrow_icon_blue"
+            title="Click on it to view his card"
+            v-for="(contact, index) in customerContacts"
+            v-if="customerData != null"
         ></TextFiledSCT>
 
         <p class="title">Notes</p>
@@ -59,25 +72,49 @@
         <!-- TODO: replace it by text area -->
 
         <TextInput
+            :isDisabled="!isEditionMode"
+            @onInput="customerData.notes = $event"
             name="notes"
-            title="Notes"
             placeholder="Notes"
-            :isEditable="isEditionMode"
-            v-model:value="entity.notes"
-            @onInput="entity.notes = $event">
+            title="Notes"
+            v-model="customerData.note"
+            v-if="customerData != null"
+        >
         </TextInput>
 
-        <EditCircleBtnSCT
+        <BtnIcon
+            :icon-rotation="45"
+            :icon-size="10"
             @clicked="toggleMode"
+            bg-color="--colors-main"
             class="btn"
-            v-if="!isEditionMode"
-        ></EditCircleBtnSCT>
+            iconName="pencil_icon_blue"
+            name="Edit"
+            title="Enable edition"
+            v-if="!isEditionMode && this.customerData != null"
+            value="edit"
+        ></BtnIcon>
 
-        <ValidationCircleBtnSCT
+        <BtnIcon
             @clicked="toggleMode"
+            bg-color="--colors-main"
             class="btn"
-            v-if="isEditionMode"
-        ></ValidationCircleBtnSCT>
+            iconName="tick_icon_blue"
+            name="Validate"
+            title="Disable edition"
+            v-if="isEditionMode && this.customerData != null"
+            value="validate"
+        ></BtnIcon>
+
+        <BtnIcon
+            @clicked="createNewCustomer"
+            class="btn-add"
+            bg-color="--colors-main"
+            iconName="plus_icon_white"
+            name="new"
+            title="Create new customer"
+            value=""
+        ></BtnIcon>
     </div>
 </template>
 
@@ -85,51 +122,89 @@
 import TextInput from "./Fileds/Themed/Inputs/TextInput";
 import TextFiledSCT from "./Fileds/Themed/Display/TextFiled";
 import DropdownInput from "./Fileds/Themed/Inputs/DropdownInput";
-import EditCircleBtnSCT from "./Buttons/EditCircleBtnSCT";
-import ValidationCircleBtnSCT from "./Buttons/ValidationCircleBtnSCT";
+import BtnIcon from "./Buttons/BtnIcon";
+import { mapActions } from "vuex";
 
 export default {
-    name: "ProfileCard",
+    name: "CustomerCard",
+    created() {
+        if (this.customerId != null) {
+            this.fetchCustomerData();
+        }
+    },
     components: {
         TextInput,
         TextFiledSCT,
         DropdownInput,
-        EditCircleBtnSCT,
-        ValidationCircleBtnSCT
+        BtnIcon
     },
     data() {
         return {
             isEditionMode: false,
-            entity: {
-                status: "Prospect",
-                firstName: "John",
-                lastName: "Doe",
-                contacts: [
-                    {
-                        id: 1,
-                        firstName: "John",
-                        lastName: "Doe",
-                        notes: "Here's some notes"
-                    },
-                    {
-                        id: 2,
-                        firstName: "Jan",
-                        lastName: "Doe",
-                        notes: "Silence is golden"
-                    }
-                ]
-            }
+            customerData: null,
+            customerContacts: null
         };
     },
+    props: {
+        customerId: {
+            type: Number,
+            default: null
+        }
+    },
     methods: {
+        ...mapActions({
+            saveCustomer: "updateCustomer",
+            createCustomer: "createCustomer"
+        }),
+        fetchCustomerData() {
+            // eslint-disable-next-line
+            this.customerData = JSON.parse ( JSON.stringify ( this.$store.getters.getCustomerByID(this.customerId)) );
+            // eslint-disable-next-line
+            this.customerContacts = JSON.parse ( JSON.stringify ( this.$store.getters.getCustomerContacts(this.customerId)) );
+        },
+        createNewCustomer() {
+            this.customerData = {
+                customer_type: null,
+                status: "",
+                meeting_date: "",
+                company_name: "",
+                siret: null,
+                tva_number: null,
+                firstname: "",
+                lastname: "",
+                street_number: null,
+                street_name: "",
+                zipcode: null,
+                city: "",
+                note: "",
+                default_payment_method: null,
+                company: this.$store.getters.getActiveCompany
+            };
+            this.isEditionMode = true;
+        },
         displayContact: function(contact_id) {
             this.$emit("displayContact", contact_id);
         },
         toggleMode: function() {
+            if (this.isEditionMode) this.save();
             this.isEditionMode = !this.isEditionMode;
         },
-        contactFullname: function (contactObj) {
-            return contactObj.firstName + ' ' + contactObj.lastName;
+        contactFullname: function(contactObj) {
+            return `${contactObj.firstname} ${contactObj.lastname}`;
+        },
+        save() {
+            if (Object.prototype.hasOwnProperty.call(this.customerData, "id"))
+                this.saveCustomer(this.customerData);
+            else
+                this.createCustomer(this.customerData).then(newCustomer => {
+                    this.customerData = newCustomer;
+                    this.isEditionMode = true;
+                });
+        }
+    },
+    watch: {
+        customerId() {
+            this.fetchCustomerData();
         }
     }
 };
