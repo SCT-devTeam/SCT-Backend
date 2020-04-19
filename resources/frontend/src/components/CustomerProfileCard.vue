@@ -7,7 +7,12 @@
 
         <!-- TODO: FIX: reset the dropdown on new customer object -->
         <DropdownInput
-            :options="['prospect', 'active', 'archived', 'deleted']"
+            :options="[
+                { name: 'Prospect', value: 'prospect' },
+                { name: 'Active', value: 'active' },
+                { name: 'Archived', value: 'archived' },
+                { name: 'Deleted', value: 'deleted' }
+            ]"
             :isDisabled="!isEditionMode"
             @onInput="customerData.status = $event"
             name="customer-status"
@@ -20,7 +25,10 @@
         </DropdownInput>
 
         <DropdownInput
-            :options="['individual', 'professional']"
+            :options="[
+                { name: 'Individual', value: 'individual' },
+                { name: 'Professional', value: 'professional' }
+            ]"
             :isDisabled="!isEditionMode"
             @onInput="customerData.customer_type = $event"
             name="customer-type"
