@@ -110,7 +110,9 @@ export default {
 
                 if (this.dataPropertyMapping.amount[2]) {
                     item[this.dataPropertyMapping.amount[0]].forEach(item => {
-                        amount += item[this.dataPropertyMapping.amount[1]] * item[this.dataPropertyMapping.amount[2]];
+                        amount +=
+                            item[this.dataPropertyMapping.amount[1]] *
+                            item[this.dataPropertyMapping.amount[2]];
                     });
                 } else {
                     item[this.dataPropertyMapping.amount[0]].forEach(item => {
