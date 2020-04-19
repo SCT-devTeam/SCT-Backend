@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
         ]);
         \App\Customer::create([
             'customer_type' => 'professional',
-            'status' => 'achived',
+            'status' => 'archived',
             'company_name'=>'Mp doila',
             'lastname' => 'Jhon',
             'firstname' => 'Fiz',
@@ -119,7 +119,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $customer1 = \App\Customer::create([
             'customer_type' => 'professional',
-            'status' => 'achived',
+            'status' => 'archived',
             'company_name'=>'Amabook',
             'lastname' => 'Zone',
             'firstname' => 'Face',
