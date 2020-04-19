@@ -16,7 +16,7 @@ class CreateTableClient extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('customer_type', ['individual', 'professional'])->nullable();
-            $table->enum('status', ['prospect', 'active', 'achived', 'deleted'])->nullable();
+            $table->enum('status', ['prospect', 'active', 'archived', 'deleted'])->nullable();
             $table->date('meeting_date')->nullable();
             $table->string('company_name')->nullable();
             $table->integer('siret')->nullable();
