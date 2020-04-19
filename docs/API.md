@@ -123,7 +123,7 @@
 | default_revive_delay_in_days | Present | unspecified | Integer |  |
 | default_quote_notice | Present | unspecified | Integer |  |
 | capital_in_cents | Present | unspecified | Integer |  |
-| bban_anytmie | Present | unspecified | Integer |  |
+| bban_anytime | Present | unspecified | Boolean |  |
 | siret | Present | unspecified | Integer |  |
 | phone | Present | unspecified | Integer |  |
 | city | Present | unspecified | text |  |

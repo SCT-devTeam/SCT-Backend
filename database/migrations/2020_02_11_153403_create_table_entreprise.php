@@ -27,7 +27,7 @@ class CreateTableEntreprise extends Migration
             $table->integer('capital_in_cents')->nullable();
             $table->string('insurance')->nullable();
             $table->string('bban', 34)->nullable();
-            $table->boolean('bban_anytmie')->nullable();
+            $table->boolean('bban_anytime')->nullable();
             $table->smallInteger('default_revive_delay_in_days')->nullable();
             $table->smallInteger('default_payment_delay_in_days')->nullable();
             $table->string('default_payment_terms')->nullable();

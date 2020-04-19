@@ -30,7 +30,7 @@ class CompanyController extends Controller
             'capital_in_cents' => $request->capital_in_cents,
             'insurance' => $request->insurance,
             'bban' => $request->bban,
-            'bban_anytmie' => $request->bban_anytmie,
+            'bban_anytime' => $request->bban_anytime,
             'default_revive_delay_in_days' => $request->default_revive_delay_in_days,
             'default_payment_delay_in_days' => $request->default_payment_delay_in_days,
             'default_payment_terms' => $request->default_payment_terms,
@@ -63,7 +63,7 @@ class CompanyController extends Controller
             'capital_in_cents'=>'present',
             'insurance'=>'present',
             'bban'=>'present',
-            'bban_anytmie'=>'present',
+            'bban_anytime'=>'present',
             'default_revive_delay_in_days'=>'present',
             'default_payment_delay_in_days'=>'present',
             'default_payment_terms'=>'present',
@@ -90,7 +90,7 @@ class CompanyController extends Controller
         $company->capital_in_cents = $request->capital_in_cents;
         $company->insurance = $request->insurance;
         $company->bban = $request->bban;
-        $company->bban_anytmie = $request->bban_anytmie;
+        $company->bban_anytime = $request->bban_anytime;
         $company->default_revive_delay_in_days = $request->default_revive_delay_in_days;
         $company->default_payment_delay_in_days = $request->default_payment_delay_in_days;
         $company->default_payment_terms = $request->default_payment_terms;
