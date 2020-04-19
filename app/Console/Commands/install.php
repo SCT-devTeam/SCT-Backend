@@ -70,7 +70,7 @@ class install extends Command
             }
 
             $company = Company::create([
-                'legal_form' => 'SA',
+                'legal_form' => 'AE_FR',
                 'name' => $firstCompanyName,
                 'email' => 'a@a.com'
             ]);
