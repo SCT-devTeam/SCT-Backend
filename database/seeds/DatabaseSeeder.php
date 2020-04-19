@@ -11,48 +11,48 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $companie = \App\Company::create(
+        $company = \App\Company::create(
             [
-                'legal_form'=>'SAS',
+                'legal_form' => 'AE_FR',
                 'name' => 'The yes company',
                 'siret'=>'055123698',
                 'email' => 'contact@company.com',
                 'phone' => '0607080910',
-                'city'=>'Lyon',
-                'default_payment_terms'=>'default condition',
+                'city' => 'Lyon',
+                'default_payment_terms' => 'default condition',
                 'default_payment_method' => 'cash',
             ]
         );
 
-        $companie1 = \App\Company::create(
+        $company1 = \App\Company::create(
             [
-                'legal_form'=>'SA',
+                'legal_form' => 'SA_FR',
                 'name' => 'The cool enterprise',
                 'siret'=>'078542198',
                 'email' => 'contact@coolkid.com',
                 'phone' => '0607080910',
-                'city'=>'Paris',
-                'default_payment_terms'=>'default condition',
-                'default_payment_method' => 'credit_cardbank_transfer',
+                'city' => 'Paris',
+                'default_payment_terms' => 'default condition',
+                'default_payment_method' => 'bank_transfer',
             ]
         );
 
         \App\User::create([
-            'gender' => 'man',
-            'lastname' => 'Foo',
-            'firstname' => 'Barr',
-            'email' => 'foo@barr.com',
-            'pwd' => Hash::make('A'),
-            'companies' => $companie->id
+            'gender' => 'unspecified',
+            'lastname' => 'a',
+            'firstname' => 'a',
+            'email' => 'a@aa.co',
+            'pwd' => Hash::make('azER&é34az'),
+            'companies' => $company->id
         ]);
 
         \App\User::create([
             'gender' => 'woman',
             'lastname' => 'Foo',
             'firstname' => 'Barr',
-            'email' => 'barr@barr.com',
-            'pwd' => Hash::make('A'),
-            'companies' => $companie->id
+            'email' => 'foo@barr.com',
+            'pwd' => Hash::make('azER&é34az'),
+            'companies' => $company->id
         ]);
 
         \App\User::create([
@@ -60,15 +60,15 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'Foolou',
             'firstname' => 'Berhaer',
             'email' => 'lou@barer.com',
-            'pwd' => Hash::make('B'),
-            'companies' => $companie1->id
+            'pwd' => Hash::make('azER&é34az'),
+            'companies' => $company1->id
         ]);
 
         \App\Customer::create([
             'customer_type' => 'individual',
             'lastname' => 'cust1',
             'firstname' => 'Non',
-            'company' => $companie->id
+            'company' => $company->id
         ]);
 
 
@@ -76,10 +76,10 @@ class DatabaseSeeder extends Seeder
             'customer_type' => 'individual',
             'status' => 'active',
             'company_name'=>'TY customer',
-            'lastname' => 'cust1',
+            'lastname' => 'cust2',
             'firstname' => 'Non',
             'city'=>'Lyon',
-            'company' => $companie->id
+            'company' => $company->id
         ]);
         \App\Customer::create([
             'customer_type' => 'professional',
@@ -88,7 +88,7 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'Jhon',
             'firstname' => 'Fiz',
             'city'=>'Paris',
-            'company' => $companie->id
+            'company' => $company->id
         ]);
         \App\Customer::create([
             'customer_type' => 'individual',
@@ -97,7 +97,7 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'Gérald',
             'firstname' => 'Ken',
             'city'=>'Lyon',
-            'company' => $companie->id
+            'company' => $company->id
         ]);
         $customer = \App\Customer::create([
             'customer_type' => 'professional',
@@ -106,7 +106,7 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'Eddith',
             'firstname' => 'Coco',
             'city'=>'Grenoble',
-            'company' => $companie->id
+            'company' => $company->id
         ]);
         \App\Customer::create([
             'customer_type' => 'individual',
@@ -115,7 +115,7 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'Gonmar',
             'firstname' => 'Chela',
             'city'=>'Lyon',
-            'company' => $companie1->id
+            'company' => $company1->id
         ]);
         $customer1 = \App\Customer::create([
             'customer_type' => 'professional',
@@ -124,7 +124,7 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'Zone',
             'firstname' => 'Face',
             'city'=>'Lyon',
-            'company' => $companie1->id
+            'company' => $company1->id
         ]);
 
         \App\Contact::create([
