@@ -356,6 +356,11 @@ export default new Vuex.Store({
                         }
                     })
                     .catch(error => {
+                        if (error.toString().includes("401")) {
+                            commit("REMOVE_TOKEN");
+                            commit("REMOVE_USER");
+                            resolve(error);
+                        }
                         reject(error);
                     });
             });
