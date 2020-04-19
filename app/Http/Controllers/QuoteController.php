@@ -119,11 +119,4 @@ class QuoteController extends Controller
 
         return response()->json($quotes);
     }
-
-    public function getAllQuote(Request $request)
-    {
-        $quotes = Quote::where('company_id', '=', $request->user()->companies)->get();
-
-        return response()->json(['quotes'=>$quotes]);
-    }
 }
