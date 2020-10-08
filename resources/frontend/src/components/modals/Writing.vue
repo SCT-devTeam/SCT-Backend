@@ -1,99 +1,144 @@
 <template>
-    <div class="writing_modal">
+    <div class="modal">
         <span @click="exit" class="background"></span>
-        <div class="writing_modal__invoice" ref="invoice">
-            <label>
-                <input
-                    class="invoice__company"
-                    type="text"
-                    v-model="invoice.company"
-                />
-            </label>
-            <label>
-                <input
-                    class="invoice__customer"
-                    type="text"
-                    v-model="invoice.customer"
-                />
-            </label>
-            <div class="invoice__items-table">
-                <span class="table__head">
-                    <p class="label">Label</p>
-                    <p class="quantity">Quantity</p>
-                    <p class="price">Price</p>
-                </span>
-                <span
-                    :key="index"
-                    class="table__item"
-                    v-for="(item, index) in invoice.items"
+        <div class="modal__content">
+            <div class="writing">
+                <TextFiled
+                    class="writing__company"
+                    name="company"
+                    placeholder="The creditor company"
+                    title="The creditor company"
+                    :value="companyName(writing.company_id)"
                 >
-                    <label>
-                        <input class="label" type="text" v-model="item.label" />
-                    </label>
-                    <label>
-                        <input
-                            class="quantity"
-                            type="number"
-                            v-model="item.quantity"
-                        />
-                    </label>
-                    <label>
-                        <input
-                            class="price"
-                            type="number"
-                            v-model="item.price"
-                        />
-                    </label>
-                </span>
+                </TextFiled>
+
+                <DropdownInput
+                    :options="selectableCustomers()"
+                    :value="writing.customer_id"
+                    @onInput="writing.customer_id = Number($event)"
+                    name="customer"
+                    placeholder="Customer"
+                    title="Select the customer"
+                >
+                </DropdownInput>
+
+                <EditableTable
+                    :columns="[
+                        { name: 'Label', size: '5' },
+                        { name: 'Quantity', size: '0.5' },
+                        { name: 'Price', size: '0.7' }
+                    ]"
+                    :data="writing.items"
+                    :dataPropertyMapping="{
+                        label: 'Label',
+                        quantity: 'Quantity',
+                        price: 'Price'
+                    }"
+                ></EditableTable>
+                <!--                <TextInput-->
+                <!--                    @onInput="writing.customer_id = $event"-->
+                <!--                    class="writing__customer"-->
+                <!--                    name="customer"-->
+                <!--                    placeholder="The customer"-->
+                <!--                    title="The customer"-->
+                <!--                    v-model="writing.customer_id"-->
+                <!--                    :isDisabled="true"-->
+                <!--                >-->
+                <!--                </TextInput>-->
+
+                <!--                <div class="writing__items-table">-->
+                <!--                    <span class="items-table__head">-->
+                <!--                        <p class="label">Label</p>-->
+                <!--                        <p class="quantity">Quantity</p>-->
+                <!--                        <p class="price">Price</p>-->
+                <!--                    </span>-->
+                <!--                    <span-->
+                <!--                        :key="index"-->
+                <!--                        class="items-table__item"-->
+                <!--                        v-for="(item, index) in writing.items"-->
+                <!--                    >-->
+                <!--                        <TransparentTextInput-->
+                <!--                            @onInput="item.label = $event"-->
+                <!--                            class="label"-->
+                <!--                            name="item_label"-->
+                <!--                            title="The label of the item"-->
+                <!--                            v-model="item.label"-->
+                <!--                        ></TransparentTextInput>-->
+
+                <!--                        <TransparentNumberInput-->
+                <!--                            @onInput="item.quantity = $event"-->
+                <!--                            class="quantity"-->
+                <!--                            name="item_quantity"-->
+                <!--                            title="The debtor company"-->
+                <!--                            v-model="item.quantity"-->
+                <!--                        ></TransparentNumberInput>-->
+
+                <!--                        <TransparentNumberInput-->
+                <!--                            @onInput="item.price = $event"-->
+                <!--                            class="price"-->
+                <!--                            name="item_price"-->
+                <!--                            title="The debtor company"-->
+                <!--                            v-model="item.price"-->
+                <!--                        ></TransparentNumberInput>-->
+                <!--                    </span>-->
+                <!--                </div>-->
+
+                <!--                <p class="total">{{ this.total }}</p>-->
             </div>
-            <p class="total">{{ this.total }}</p>
         </div>
-        <div></div>
     </div>
 </template>
 
 <script>
 import mixin from "./mixins/mixin";
+import ThemedTextInput from "../Fileds/Themed/Inputs/TextInput";
+import TransparentTextInput from "../Fileds/Transparent/Inputs/TextInput";
+import TransparentNumberInput from "../Fileds/Transparent/Inputs/NumberInput";
 import DropdownInput from "../Fileds/Themed/Inputs/DropdownInput";
 import TextFiled from "../Fileds/Themed/Display/TextFiled";
-import { mapActions } from "vuex";
+import EditableTable from "../Tables/EditableTable";
 
 export default {
     name: "writing",
+    components: {
+        TextInput: ThemedTextInput,
+        TransparentTextInput,
+        TransparentNumberInput,
+        DropdownInput,
+        TextFiled,
+        EditableTable
+    },
+    mixins: [mixin],
+    created() {
+        this.getData(this.writingId);
+    },
     data() {
         return {
-            invoice: {
-                company: "Company",
-                customer: "Customer",
-                items: [
-                    {
-                        label: "item label",
-                        quantity: 1,
-                        price: 10
-                    },
-                    {
-                        label: "item label",
-                        quantity: 3,
-                        price: 30
-                    }
-                ]
-            }
+            writing: null
         };
     },
     props: {
-        writingId: Number
+        writingId: {
+            type: Number,
+            required: true
+        },
+        writingType: {
+            type: String,
+            required: true
+        }
     },
     computed: {
         total() {
             let total = 0;
-            for (let itemIndex in this.invoice.items) {
-                total += Number(this.invoice.items[itemIndex].price);
-            }
+
+            this.writing.items.forEach(item => {
+                total += Math.round(item.price * item.quantity * 100) / 100;
+            });
+
             return total;
         }
     },
     methods: {
-        ...mapActions({ saveQuote: "updateQuote" }),
         getData: function(writing_id) {
             if (this.writingType === "quotes")
                 this.writing = this.$store.getters.getQuoteByID(writing_id);
@@ -119,9 +164,6 @@ export default {
             });
 
             return selectableCustomers;
-        },
-        save() {
-            this.saveQuote(this.writing);
         }
     }
 };
@@ -129,88 +171,4 @@ export default {
 
 <style lang="scss" scoped>
 @import "mixins/mixin";
-
-div.writing__items-table {
-    display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-
-    align-self: center;
-    justify-self: center;
-
-    width: 90%;
-
-    border-radius: 20px 20px 15px 15px;
-
-    background-color: #fafafa;
-
-    > span {
-        display: flex;
-        justify-content: space-around;
-
-        padding: 5px 25px;
-
-        > p.label,
-        > input.label {
-            flex: 5;
-        }
-
-        > p.quantity,
-        > input.quantity {
-            flex: 0.7;
-            text-align: center;
-        }
-
-        > p.price,
-        > input.price {
-            flex: 0.7;
-            text-align: right;
-        }
-
-        &.table__head {
-            border-radius: 15px 15px 0 0;
-
-            background-color: $color__main;
-
-            > p {
-                margin: 5px 0;
-
-                font-family: $font__heading;
-                font-weight: bold;
-                font-size: 1.2rem;
-            }
-        }
-
-        &.table__item {
-            margin-bottom: 10px;
-            background-color: #ececec80;
-
-            &:last-child {
-                margin-bottom: 0;
-                border-radius: 0 0 15px 15px;
-            }
-        }
-    }
-}
-
-p.total {
-    align-self: flex-end;
-    margin-right: 50px;
-    padding: 7px;
-
-    border: 2px solid $color__secondary;
-    border-radius: 20px;
-
-    background-color: #ececec;
-}
-
-p.notice {
-    justify-self: flex-end;
-    align-self: center;
-
-    padding: 10px;
-
-    border-radius: 20px;
-    background-color: #ececec;
-}
 </style>
