@@ -3,8 +3,8 @@
 
 - [API documentation](#api-documentation)
   - [Authentication](#authentication)
-    - [logout](#logout)
-    - [login](#login)
+    - [Logout](#logout)
+    - [Login](#login)
   - [User](#user)
     - [me](#me)
   - [Companies](#companies)
@@ -40,7 +40,7 @@
 
 ## Authentication
 
-### logout
+### Logout
 
 > Revoke the token specified in the header
 
@@ -51,9 +51,11 @@
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
 
+This route doesn't accept parameter
+
 ---
 
-### login
+### Login
 
 > Description
 
@@ -86,6 +88,8 @@
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
 
+This route doesn't accept parameter
+
 ---
 
 
@@ -105,6 +109,8 @@
 | Key | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
 
+This route doesn't accept parameter
+
 ---
 
 ### InsertCompany
@@ -115,31 +121,31 @@
 **Authentication required** : `true`
 **Method** : `POST`
 
-| Key | Required | Default | Type | Description |
-| --- | --- | --- | --- | --- |
-| legal_form | Present | unspecified | enum('AE_FR','EI_FR','EIRL_FR','EURL_FR','SA_FR','SAS_FR','SASU_FR','SARL_FR') |  |
-| default_down_payment_percentage | Present | unspecified | Integer |  |
-| email | Present | unspecified | text |  |
-| default_revive_delay_in_days | Present | unspecified | Integer |  |
-| default_quote_notice | Present | unspecified | Integer |  |
-| capital_in_cents | Present | unspecified | Integer |  |
-| bban_anytime | Present | unspecified | Boolean |  |
-| siret | Present | unspecified | Integer |  |
-| phone | Present | unspecified | Integer |  |
-| city | Present | unspecified | text |  |
-| notes | Present | unspecified | text |  |
-| street_number | Present | unspecified | Integer |  |
-| street_name | Present | unspecified | text |  |
-| default_payment_method | Present | unspecified | enum('credit_card','bank_transfer', 'bank_check', 'cash', 'multiple') |  |
-| default_payment_terms | Present | unspecified | text |  |
-| default_payment_delay_in_days | Present | unspecified | Integer |  |
-| default_invoice_notice | Present | unspecified | Integer |  |
-| bban | Present | unspecified | Integer |  |
-| insurance | Present | unspecified | text |  |
-| default_quote_validity_delay_in_days | Present | unspecified | Integer |  |
-| zipcode | Present | unspecified | Integer |  |
-| default_quote_accepting_conditions | Present | unspecified | Integer |  |
-| name | Required | unspecified | text |  |
+| Key                                   | Required     | Default  | Type                                                                            | Description                                                                                                   |
+| ------------------------------------- |:------------:|:--------:|:-------------------------------------------------------------------------------:| ------------------------------------------------------------------------------------------------------------- |
+| legal_form                            | **required** | none     | enum['AE_FR','EI_FR','EIRL_FR','EURL_FR','SA_FR','SAS_FR','SASU_FR','SARL_FR']  | The legal form of the company. For now only FR status is supported and the program is only adapt for `AE_FR`  |
+| name                                  | **required** | none     | string                                                                          | The name of the company                                                                                       |
+| siret                                 | _recomended_ | null     | integer                                                                         | SIRET number of the company                                                                                   |
+| email                                 | _recomended_ | null     | string                                                                          | The email contact of the company, will be used in quotes / invoices & automation by default                   |
+| phone                                 | _recomended_ | null     | integer                                                                         | The phone number of the company, will be used in quotes / invoices & automation by default                    |
+| street_number                         | _recomended_ | null     | integer                                                                         | The street number of the company, will be used in quotes / invoices & automation                              |
+| street_name                           | _recomended_ | null     | string                                                                          | The street name of the company, will be used in quotes / invoices & automation                                |
+| zipcode                               | _recomended_ | null     | integer                                                                         | The zipcode of the company, will be used in quotes / invoices & automation                                    |
+| city                                  | _recomended_ | null     | string                                                                          | The city of the company, will be used in quotes / invoices & automation                                       |
+| capital_in_cents                      | _recomended_ | null     | integer                                                                         | The capital (**in cents**) of the company, will be used in quotes / invoices & automation                     |
+| insurance                             | _recomended_ | null     | string                                                                          | The insurance reference of the company, will be used in quotes / invoices & automation                        |
+| bban                                  | _recomended_ | null     | string                                                                          | The bban of the company, will be used in quotes / invoices & automation                                       |
+| bban_anytime                          | _recomended_ | null     | boolean                                                                         | A toggle to enable / disable bban display on quotes & invoices                                                |
+| default_revive_delay_in_days          | _recomended_ | null     | smallInteger                                                                    | The default revive delay (**in days**) of the company, will be used for quotes / invoices & automation        |
+| default_payment_delay_in_days         | _recomended_ | null     | smallInteger                                                                    | The default payment delay (**in days**) of the company, will be used for quotes / invoices & automation       |
+| default_payment_terms                 | _recomended_ | null     | string                                                                          | The default payment terms of the company, will be used for quotes / invoices & automation                     |
+| default_payment_method                | _recomended_ | null     | enum['credit_card','bank_transfer', 'bank_check', 'cash', 'multiple']           | The default payment method of the company, will be used for quotes / invoices & automation                    |
+| default_down_payment_percentage       | _recomended_ | null     | integer                                                                         | The default down payment percentage of the company, will be used for quotes / invoices & automation           |
+| default_quote_validity_delay_in_days  | _recomended_ | null     | smallInteger                                                                    | The default quote validity delay (**in days**) of the company, will be used for quotes automation             |
+| default_quote_accepting_conditions    | _recomended_ | null     | string                                                                          | The default quote accepting conditions of the company, will be used for quotes automation                     |
+| default_invoice_notice                | _recomended_ | null     | string                                                                          | The default invoice notice of the company, will be used for invoices                                          |
+| default_quote_notice                  | _recomended_ | null     | string                                                                          | The default quote notice of the company, will be used for quotes                                              |
+| notes                                 | _recomended_ | null     | string                                                                          | Notes on the company                                                                                          |
 
 ---
 
