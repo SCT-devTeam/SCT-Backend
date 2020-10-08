@@ -53,6 +53,11 @@
 </template>
 
 <script>
+import mixin from "./mixins/mixin";
+import DropdownInput from "../Fileds/Themed/Inputs/DropdownInput";
+import TextFiled from "../Fileds/Themed/Display/TextFiled";
+import { mapActions } from "vuex";
+
 export default {
     name: "writing",
     data() {
@@ -88,172 +93,124 @@ export default {
         }
     },
     methods: {
-        exit() {
-            this.save();
-            this.$emit("close");
+        ...mapActions({ saveQuote: "updateQuote" }),
+        getData: function(writing_id) {
+            if (this.writingType === "quotes")
+                this.writing = this.$store.getters.getQuoteByID(writing_id);
+            else if (this.writingType === "invoices")
+                this.writing = this.$store.getters.getInvoiceByID(writing_id);
+            else
+                console.error(
+                    "An error has occurred while getting writing data !"
+                );
+        },
+        companyName() {
+            return this.$store.getters.getCompanyByID(this.writing.company_id)
+                .name;
+        },
+        selectableCustomers() {
+            let selectableCustomers = [];
+
+            this.$store.getters.getActiveCustomers.forEach(customer => {
+                selectableCustomers.push({
+                    name: `${customer.firstname} ${customer.lastname}`,
+                    value: customer.id
+                });
+            });
+
+            return selectableCustomers;
         },
         save() {
-            // TODO: API request
+            this.saveQuote(this.writing);
         }
     }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "src/scss/colors";
-@import "src/scss/typography";
+@import "mixins/mixin";
 
-div.writing_modal {
+div.writing__items-table {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: stretch;
 
-    padding: 20px 0;
+    align-self: center;
+    justify-self: center;
 
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
+    width: 90%;
 
-    overflow-y: scroll;
+    border-radius: 20px 20px 15px 15px;
 
-    > span.background {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 17px;
-        z-index: -1;
+    background-color: #fafafa;
 
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-
-    > div.writing_modal__invoice {
+    > span {
         display: flex;
-        flex-direction: column;
+        justify-content: space-around;
 
-        min-height: 90%;
-        height: fit-content;
-        width: 50%;
+        padding: 5px 25px;
 
-        border-radius: 15px;
-
-        background-color: white;
-
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-
-        > input.invoice__company {
-            max-width: 35%;
-
-            margin: 50px;
-            padding: 7px;
-
-            border-radius: 15px;
-
-            background-color: #ececec;
-
-            white-space: pre-line;
+        > p.label,
+        > input.label {
+            flex: 5;
         }
 
-        > input.invoice__customer {
-            align-self: flex-end;
-
-            max-width: 35%;
-
-            margin: 50px;
-            padding: 7px;
-
-            border-radius: 15px;
-
-            background-color: #ececec;
-
-            white-space: pre-line;
+        > p.quantity,
+        > input.quantity {
+            flex: 0.7;
+            text-align: center;
         }
 
-        > div.invoice__items-table {
-            display: flex;
-            flex-direction: column;
-            justify-content: stretch;
+        > p.price,
+        > input.price {
+            flex: 0.7;
+            text-align: right;
+        }
 
-            align-self: center;
-            justify-self: center;
+        &.table__head {
+            border-radius: 15px 15px 0 0;
 
-            width: 90%;
+            background-color: $color__main;
 
-            border-radius: 20px 20px 15px 15px;
+            > p {
+                margin: 5px 0;
 
-            background-color: #fafafa;
-
-            > span {
-                display: flex;
-                justify-content: space-around;
-
-                padding: 5px 25px;
-
-                > p.label,
-                > input.label {
-                    flex: 5;
-                }
-
-                > p.quantity,
-                > input.quantity {
-                    flex: 0.7;
-                    text-align: center;
-                }
-
-                > p.price,
-                > input.price {
-                    flex: 0.7;
-                    text-align: right;
-                }
-
-                &.table__head {
-                    border-radius: 15px 15px 0 0;
-
-                    background-color: $color__main;
-
-                    > p {
-                        margin: 5px 0;
-
-                        font-family: $font__heading;
-                        font-weight: bold;
-                        font-size: 1.2rem;
-                    }
-                }
-
-                &.table__item {
-                    margin-bottom: 10px;
-                    background-color: #ececec80;
-
-                    &:last-child {
-                        margin-bottom: 0;
-                        border-radius: 0 0 15px 15px;
-                    }
-                }
+                font-family: $font__heading;
+                font-weight: bold;
+                font-size: 1.2rem;
             }
         }
 
-        > p.total {
-            align-self: flex-end;
-            margin-right: 50px;
-            padding: 7px;
+        &.table__item {
+            margin-bottom: 10px;
+            background-color: #ececec80;
 
-            border: 2px solid $color__secondary;
-            border-radius: 20px;
-
-            background-color: #ececec;
-        }
-
-        > p.notice {
-            justify-self: flex-end;
-            align-self: center;
-
-            padding: 10px;
-
-            border-radius: 20px;
-            background-color: #ececec;
+            &:last-child {
+                margin-bottom: 0;
+                border-radius: 0 0 15px 15px;
+            }
         }
     }
+}
+
+p.total {
+    align-self: flex-end;
+    margin-right: 50px;
+    padding: 7px;
+
+    border: 2px solid $color__secondary;
+    border-radius: 20px;
+
+    background-color: #ececec;
+}
+
+p.notice {
+    justify-self: flex-end;
+    align-self: center;
+
+    padding: 10px;
+
+    border-radius: 20px;
+    background-color: #ececec;
 }
 </style>
